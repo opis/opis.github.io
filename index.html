@@ -11,6 +11,7 @@
         <!-- Bootstrap -->
         <link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
         <link href="/assets/css/font-awesome.css" rel="stylesheet">
+        <link href="/assets/css/github.css" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -21,6 +22,10 @@
         <script src="/assets/js/jquery-1.11.0.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="/assets/js/bootstrap.min.js"></script>
+        <script src="/assets/js/hilight.pack.js"></script>
+        <script>
+            hljs.initHighlightingOnLoad();
+        </script>
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -50,6 +55,17 @@
                             </strong>
                         </a>
                     </div>
+                    <pre>
+                        <code class="php">
+                            class Opis
+                            {
+                                public function Colibri()
+                                {
+                                    return 'Opis Colibri';
+                                }
+                            }
+                        </code>
+                    </pre>
                 </div>
                 <div class="col-md-8">
                     <h1>
@@ -199,7 +215,7 @@
                                 Simple config library 
                             </div>
                         </li>
-                                            </ul>
+                    </ul>
                 </div>
             </div>
         </div>
