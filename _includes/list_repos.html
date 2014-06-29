@@ -1,5 +1,17 @@
-<div>
+<ul class="media-list">
 {% for repository in site.github.public_repositories %}
-  <span>{{ repository.name }} </span>
+  <li class="media">
+    <div class="media-body">
+      <div class="media-heading">
+        <h4>
+          <a href="{{repository.html_url}}" title="{{repository.full_name}}" target="_blank">
+            <span class="media-object fa fa-code-fork text-default"></span>
+            <span>{{ repository.name | capitalize | replace: '-', ' '}}</span>
+          </a>
+        </h4>
+      </div>
+      {{repository.description}}
+    </div>
+  </li>
 {% endfor %}
-</div>
+</ul>
