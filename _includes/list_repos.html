@@ -1,5 +1,6 @@
 <ul class="media-list">
 {% for repository in site.github.public_repositories %}
+  {% if include.hide !contains repository.name %}
   <li class="media">
     <div class="media-body">
       <div class="media-heading">
@@ -13,5 +14,6 @@
       {{repository.description}}
     </div>
   </li>
+  {% endif %}
 {% endfor %}
 </ul>
