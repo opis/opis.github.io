@@ -8,6 +8,7 @@ highlight: /assets/css/syntax.css
 ga: true
 custom:
     css: /assets/css/style.css
+hide: ['opis.github.io']
 ---
 
 <div class="container">
@@ -33,7 +34,7 @@ custom:
             <h1>
                 <strong>Open source components</strong>
             </h1>
-            {%  include list_repos.html hide = ['opis.github.io'] %}
+            {%  include list_repos.html hide = page.hide %}
         </div>
     </div>
 </div>
