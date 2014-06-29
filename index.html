@@ -8,8 +8,9 @@ highlight: /assets/css/syntax.css
 ga: true
 custom:
     css: /assets/css/style.css
-hide:['opis.github.io']
-replace:['colibri']
+repo
+    hide:['opis.github.io']
+    replace:['colibri']
 ---
 
 <div class="container">
@@ -35,7 +36,7 @@ replace:['colibri']
             <h1>
                 <strong>Open source projects</strong>
             </h1>
-            {%  include list_repos.html hide = page.hide replace = page.replace %}
+            {%  include list_repos.html hide = page.repo.hide replace = page.repo.replace %}
         </div>
     </div>
 </div>
