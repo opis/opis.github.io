@@ -4,5 +4,7 @@
 <link href="{{ include.highlight }}" rel="stylesheet">
 {% endif %}
 {% if include.custom %}
-<link href="{{ include.custom }}" rel="stylesheet">
+{% for style in include.custom %}
+<link href="/assets/css/{{ style }}" rel="stylesheet">
+{% endfor %}
 {% endif %}

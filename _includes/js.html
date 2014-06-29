@@ -7,7 +7,9 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/assets/js/bootstrap.min.js"></script>
 {% if include.custom %}
-<script src="{{ include.custom }}"></script>
+{% for script in include.custom %}
+<script src="/assets/js/{{ script }}"></script>
+{% endfor %}
 {% endif %}
 {% if include.ga %}
 <script>

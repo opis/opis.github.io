@@ -5,5 +5,6 @@ server_port: 4000
 pygments: true
 markdown: rdiscount
 permalink: date
+favicon: /assets/img/favicon.png
 rdiscount:
   extensions: [smart]
