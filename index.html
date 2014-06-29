@@ -10,7 +10,6 @@ custom:
     css: /assets/css/style.css
 repo:
     hide:['opis.github.io']
-    replace:['colibri']
 ---
 
 <div class="container">
@@ -36,7 +35,7 @@ repo:
             <h1>
                 <strong>Open source projects</strong>
             </h1>
-            {%  include list_repos.html hide = page.repo.hide replace = page.repo.replace %}
+            {%  include list_repos.html hide=page.repo.hide  %}
         </div>
     </div>
 </div>
