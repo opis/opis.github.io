@@ -6,8 +6,8 @@
     <div class="media-body">
       <div class="media-heading">
         <h4>
-          {% if include.own_page contains repository.name %}
-          <a href="/{{repository.name}}" title="{{repository.full_name}}">
+          {% if include.replace contains repository.name %}
+          <a href="{{repository.name}}" title="{{repository.full_name}}">
           {% else %}
           <a href="{{repository.html_url}}" title="{{repository.full_name}}" target="_blank">
           {% endif %}

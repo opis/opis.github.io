@@ -9,7 +9,7 @@ ga: true
 custom:
     css: /assets/css/style.css
 hide:['opis.github.io']
-own_page:['colibri']
+replace:['colibri']
 ---
 
 <div class="container">
@@ -35,7 +35,7 @@ own_page:['colibri']
             <h1>
                 <strong>Open source projects</strong>
             </h1>
-            {%  include list_repos.html hide = page.hide own_page = page.own_page %}
+            {%  include list_repos.html hide = page.hide replace = page.replace %}
         </div>
     </div>
 </div>
