@@ -13,29 +13,40 @@ repo:
 ---
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="center-content">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-4">
                 <img src="/opis.png" class="img-responsive">
             </div>
-            <div>
-                <a class="btn btn-success btn-lg" href="https://github.com/opis" target="_blank">
-                    <strong>
-                        <span class="fa fa-github"></span> GitHub
-                    </strong>
-                </a>
-                <a class="btn btn-primary btn-lg" href="https://twitter.com/opisproject" target="_blank">
-                    <strong>
-                        <span class="fa fa-twitter"></span> Twitter
-                    </strong>
-                </a>
+            <div class="col-md-8">
+                <h2><strong>The Opis Project</strong></h2>
+                <p class="lead">
+                    A collection of open source projects.
+                </p>
+                <p>
+                    <a class="btn btn-success btn-lg" href="https://github.com/opis" target="_blank">
+                        <strong>
+                            <span class="fa fa-github"></span> GitHub
+                        </strong>
+                    </a>
+                    <a class="btn btn-primary btn-lg" href="https://twitter.com/opisproject" target="_blank">
+                        <strong>
+                            <span class="fa fa-twitter"></span> Twitter
+                        </strong>
+                    </a>
+                </p>
             </div>
         </div>
-        <div class="col-md-8">
-            <h1>
-                <strong>Open source projects</strong>
-            </h1>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h3>
+            <strong>Projects</strong>
+            </h3>
             {% include list_repos.html hide = page.repo.hide own_link = page.repo.own_link %}
+        </div>
+        <div class="col-md-8">
+            <
         </div>
     </div>
 </div>
