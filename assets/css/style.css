@@ -12,3 +12,14 @@
 body{
     margin: 20px 0px;
 }
+
+.opis-inline-logo{
+    display: inline;
+    width: 100px;
+    height: 100px;
+}
+
+.jumbotron {
+    background: url('/jumbotron.png');
+    color: #fff;
+}
