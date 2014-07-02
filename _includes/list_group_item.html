@@ -1,0 +1,10 @@
+{% if include.active %}
+<a href="{{include.link}}" class="list-group-item active">
+{% else %}
+<a href="{{include.link}}" class="list-group-item">
+{% endif %}
+    <h4 class="list-group-item-heading">{{include.title}}</h4>
+    <p class="list-group-item-text text-muted">
+        {{include.description}}
+    </p>
+</a>

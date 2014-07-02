@@ -1,0 +1,48 @@
+---
+layout: default
+highlight: /assets/css/syntax.css
+custom:
+    css: ['style2.css']
+---
+
+<div id="header" class="container">
+    <ul class="nav nav-pills pull-right">
+        <li>
+            <a href="http://www.opis.io" title="Main page">
+                <span class="fa fa-home"></span> Home
+            </a>
+        </li>
+        <li>
+            <a href="http://github.com/opis/{{page.project}}" title="Github page">
+                <span class="fa fa-github fa-lg"></span> GitHub
+            </a>
+        </li>
+        <li>
+            <a href="http://twitter.com/opisproject" target="_blank" title="Twitter page">
+                <span class="fa fa-twitter"></span> Twitter
+            </a>
+        </li>
+    </ul>
+    <h3 class="text-muted">
+        <img src="/assets/img/opis.png" class="img-responsive opis-inline-logo">
+        <strong>{{page.project | capitalize | replace: '-', ' '}}</strong>
+    </h3>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="list-group">
+            {% for item in page.navigation %}
+                {% if item.name == page.active %}
+                    {% include list_group_item.html link = item.url title = item.title description = item.description active = true %}
+                {% else %}
+                    {% include list_group_item.html link = item.url title = item.title description = item.description %}
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-8">
+            {{content}}
+        </div>
+    </div>
+</div>
