@@ -1,3 +1,12 @@
+html{
+    position: relative;
+    min-height: 100%;
+}
+
+body{
+    margin-bottom: 60px;
+}
+
 .highlight pre{
     background-color: #F8F8F8;
     border: 1px solid #DDDDDD;
@@ -22,4 +31,12 @@
 
 #header .nav{
     margin-top: 50px;
+}
+
+#footer{
+    height: 60px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    line-height: 60px;
 }
