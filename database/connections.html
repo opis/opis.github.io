@@ -7,20 +7,21 @@ active: connections
 ---
 <h1><strong>Connections</strong></h1>
 <p>
-    In order to be able to manipulate records from a database a connection must be defined first.
-    A connection can be defined by using the helper methods provided by the <kbd>Opis\Database\Connection</kbd> class.
+    In order to be able to manipulate records from a database a connection must be defined created.
+    A connection can be created by using the helper methods provided by the <kbd>Opis\Database\Connection</kbd> class.
     All connection objects are instances of <kbd>Opis\Database\Connection</kbd> or of a derived class. 
 </p>
 <p>
-    The role of the connection class is to allow a user to build a valid <em>DSN</em> that will be finally used
-    to construct a new <kbd>PDO</kbd> object that will establish a connection to the specified database.
+    The role of the connection class is to allow a user to build a valid
+    <a href="http://en.wikipedia.org/wiki/Data_source_name" target="_blank" data-toggle="tooltip" title="Data source name">DSN</a>
+    that will be finally used to construct a new <kbd>PDO</kbd> object that will establish a connection to the specified database.
     A connection class also defines what type of query builder(compiler) will be used to parse user's queries to the database. 
 </p>
-
 <h3><strong>2.1 Generic connections</strong></h3>
 <p>
-    A generic connection is a connection type where the user must provide the full <em>DSN</em> in order
-    to establish a connection to a database.
+    A generic connection is a connection type where the user must provide the full
+    <a href="http://en.wikipedia.org/wiki/Data_source_name" target="_blank" data-toggle="tooltip" title="Data source name">DSN</a>
+    in order to establish a connection to a database.
 </p>
 {% highlight php startinline %}
 use Opis\Database\Connection;
