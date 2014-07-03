@@ -4,6 +4,7 @@ title: Opis Database | www.opis.io
 keywords: php, database, abstraction, query builder, schema builder
 description: Database abstraction layer library
 active: home
+version: 1.4.0
 ---
 
 <h1><strong>Database abstraction layer</strong></h1>
@@ -30,7 +31,22 @@ active: home
 {% highlight json %}
 {
     "require": {
-        "opis/database": "1.3.*"
+        "opis/database": "{{page.version}}"
     }
 }
 {% endhighlight %}
+
+<p>
+    If you are unable to use <strong>Composer</strong> you can download the
+    <a href="https://github.com/opis/database/archive/{{page.version}}.tar.gz" data-toggle="tooltip" title="Opis Database {{page.version}}">tar.gz</a>
+    or the
+    <a href="https://github.com/opis/database/archive/{{page.version}}.zip" data-toggle="tooltip" title="Opis Database {{page.version}}">zip</a> archive file,
+    extract the content of the archive and include de <kbd>autoload.php</kbd> file into your project.
+</p>
+{% highlight php startinline %}
+require_once 'path/to/database-{{page.version}}/autoload.php';
+{% endhighlight %}
+
+<script>
+    $('[data-toggle=tooltip]').tooltip();
+</script>

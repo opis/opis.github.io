@@ -1,0 +1,28 @@
+---
+layout: database
+title: Create records | Opis Database
+keywords: php, database, abstraction, query builder, schema builder
+description: Learn how to insert new records into a table
+active: insert
+---
+<h1><strong>Create records</strong></h1>
+<p>
+    Adding new records into a table is done using the <kbd>insert</kbd> method.
+    The method accepts a single argument that represents a <kbd>key => value</kbd> mapped array
+    where the <kbd>key</kbd> is the name of the column and <kbd>value</kbd> is the actual value
+    that will be inserted into the column.
+</p>
+{% highlight php startinline %}
+$result = $db->insert(array(
+                'name' => 'John Doe',
+                'email' => 'john.doe@example.com'
+            ))
+            ->into('users');
+{% endhighlight %}
+{% highlight sql %}
+INSERT INTO `users` (`name`, `email`) VALUES ("John Doe", "john.doe@example.com")
+{% endhighlight %}
+<p>
+    <strong>Opis Database</strong> will compile your command and execute the resulting SQL statement,
+    returning <kbd>TRUE</kbd> on success or <kbd>FALSE</kbd> otherwise.
+</p>

@@ -1,0 +1,55 @@
+---
+layout: database
+title: Fetch records | Opis Database
+keywords: php, database, abstraction, query builder, schema builder
+description: Learn how to fetch records from a database
+active: select
+---
+<h1><strong>Fetch records</strong></h1>
+<p>
+    Fetching records from a database is done using the <kbd>from</kbd> method.
+</p>
+{% highlight php startinline %}
+$result = $db->from('users')
+             ->select()
+             ->all();
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users`
+{% endhighlight %}
+<p>
+    If your query succeeds, the result will be an array of records, otherwise the method will return <kbd>FALSE</kbd>.
+</p>
+{% highlight php startinline %}
+if($result)
+{
+    foreach($result as $user)
+    {
+        echo $user->name;
+    }
+}
+else
+{
+    echo 'No records were found';
+}
+{% endhighlight %}
+
+<p>
+    If you only want to retrive a single record, you can use the <kbd>first</kbd> method.
+</p>
+
+{% highlight php startinline %}
+$user = $db->from('users')
+           ->select()
+           ->first();
+if($user)
+{
+    echo $user->name;
+}
+else
+{
+    echo 'No records were found';
+}
+{% endhighlight %}
+
+
