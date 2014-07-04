@@ -8,3 +8,12 @@ permalink: date
 favicon: /assets/img/favicon.png
 rdiscount:
   extensions: [smart]
+projects:
+  database:
+    name: Database
+    git: https://github.com/opis/database
+    version: 1.4.0
+  closure:
+    name: Closure
+    git: https://github.com/opis/closure
+    version: 1.2.1

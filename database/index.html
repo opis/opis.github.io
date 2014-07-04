@@ -4,9 +4,7 @@ title: Opis Database | www.opis.io
 keywords: php, database, abstraction, query builder, schema builder
 description: Database abstraction layer library
 active: home
-version: 1.4.0
 ---
-
 <h1><strong>Database abstraction layer</strong></h1>
 <p>
     <strong>Opis Database</strong> is a library that provides an abstraction layer over several database systems, offering a standard way of handling database records and thus, making the differences between various SQL dialects irrelevant to the developers.
@@ -23,30 +21,23 @@ version: 1.4.0
 <h3><strong>1.2 Installation</strong></h3>
 <p>
     <strong>Opis Database</strong> is available on
-    <a href="https://packagist.org/packages/opis/database" title="Packagist site" target="_blank">Packagist</a>
+    {% include packagist.html project = "database" %}
     and can be installed using
     <a href="http://getcomposer.org" target="_blank" title="Composer site">Composer</a>.
 </p>
-            
-{% highlight json %}
-{
-    "require": {
-        "opis/database": "{{page.version}}"
-    }
-}
-{% endhighlight %}
+
+{% include composer.html package = "opis/database" version = site.projects.database.version %}
 
 <p>
     If you are unable to use <strong>Composer</strong> you can download the
-    <a href="https://github.com/opis/database/archive/{{page.version}}.tar.gz" data-toggle="tooltip" title="Opis Database {{page.version}}">tar.gz</a>
+    {% include archive.html project = site.projects.database file = "tar.gz" %}
     or the
-    <a href="https://github.com/opis/database/archive/{{page.version}}.zip" data-toggle="tooltip" title="Opis Database {{page.version}}">zip</a> archive file,
+    {% include archive.html project = site.projects.database file = "zip" %} archive file,
     extract the content of the archive and include de <kbd>autoload.php</kbd> file into your project.
 </p>
+
 {% highlight php startinline %}
-require_once 'path/to/database-{{page.version}}/autoload.php';
+require_once 'path/to/database-{{site.projects.database.version}}/autoload.php';
 {% endhighlight %}
 
-<script>
-    $('[data-toggle=tooltip]').tooltip();
-</script>
+{% include tooltips.html %}

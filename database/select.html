@@ -18,24 +18,19 @@ $result = $db->from('users')
 SELECT * FROM `users`
 {% endhighlight %}
 <p>
-    If your query succeeds, the result will be an array of records, otherwise the method will return <kbd>FALSE</kbd>.
+    The result of calling the <kbd>all</kbd> method will be an array that will contain all records that were found
+    or an empty array if no records were found.
 </p>
 {% highlight php startinline %}
-if($result)
+foreach($result as $user)
 {
-    foreach($result as $user)
-    {
-        echo $user->name;
-    }
-}
-else
-{
-    echo 'No records were found';
+    echo $user->name;
 }
 {% endhighlight %}
 
 <p>
-    If you only want to retrive a single record, you can use the <kbd>first</kbd> method.
+    If you only want to retrieve a single record, you can use the <kbd>first</kbd> method.
+    If no records are found the method returns <kbd>FALSE</kbd>.
 </p>
 
 {% highlight php startinline %}
@@ -52,4 +47,18 @@ else
 }
 {% endhighlight %}
 
+<p>
+    Retrieving only a column's value is also possible by using the <kbd>column</kbd> method.
+    If no records are found the method returns <kbd>FALSE</kbd>.
+</p>
+{% highlight php startinline %}
+$name = $db->from('users')
+           ->column('name');
+           
+echo $name === false ? 'No records were found' : $name;
+{% endhighlight %}
 
+<p class="well">
+    <strong class="text-danger"><span class="fa fa-exclamation-triangle"></span> Important.</strong>
+    Event if
+</p>

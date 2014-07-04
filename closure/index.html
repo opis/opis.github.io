@@ -1,0 +1,38 @@
+---
+layout: closure
+title: Opis Closure | www.opis.io
+keywords: php, closure, serialization, serializable closure, anonymous functions
+description: Serializable PHP closures
+active: home
+---
+<h1><strong>Serializable closures</strong></h1>
+
+
+<h3><strong>Requirements</strong></h3>
+<ul>
+    <li>PHP 5.3.0 or higher</li>
+</ul>
+
+<h3><strong>Installation</strong></h3>
+<p>
+    <strong>Opis Closure</strong> is available on
+    {% include packagist.html project = "closure" %}
+    and can be installed using
+    <a href="http://getcomposer.org" target="_blank" title="Composer site">Composer</a>.
+</p>
+
+{% include composer.html package = "opis/closure" version = site.projects.closure.version %}
+
+<p>
+    If you are unable to use <strong>Composer</strong> you can download the
+    {% include archive.html project = site.projects.closure file = "tar.gz" %}
+    or the
+    {% include archive.html project = site.projects.closure file = "zip" %} archive file,
+    extract the content of the archive and include de <kbd>autoload.php</kbd> file into your project.
+</p>
+
+{% highlight php startinline %}
+require_once 'path/to/database-{{site.projects.closure.version}}/autoload.php';
+{% endhighlight %}
+
+{% include tooltips.html %}
