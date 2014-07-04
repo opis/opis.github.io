@@ -7,9 +7,9 @@ active: insert
 ---
 <h1><strong>Create records</strong></h1>
 <p>
-    Adding new records into a table is done using the <kbd>insert</kbd> method.
-    The method accepts a single argument that represents a <kbd>key => value</kbd> mapped array
-    where the <kbd>key</kbd> is the name of the column and <kbd>value</kbd> is the actual value
+    Adding new records into a table is done using the <code>insert</code> method.
+    The method accepts a single argument that represents a <code>key => value</code> mapped array
+    where the <code>key</code> is the name of the column and <code>value</code> is the actual value
     that will be inserted into the column.
 </p>
 {% highlight php startinline %}
@@ -24,5 +24,5 @@ INSERT INTO `users` (`name`, `email`) VALUES ("John Doe", "john.doe@example.com"
 {% endhighlight %}
 <p>
     <strong>Opis Database</strong> will compile your command and execute the resulting SQL statement,
-    returning <kbd>TRUE</kbd> on success or <kbd>FALSE</kbd> otherwise.
+    returning <code>TRUE</code> on success or <code>FALSE</code> otherwise.
 </p>

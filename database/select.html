@@ -7,7 +7,7 @@ active: select
 ---
 <h1><strong>Fetch records</strong></h1>
 <p>
-    Fetching records from a database is done using the <kbd>from</kbd> method.
+    Fetching records from a database is done using the <code>from</code> method.
 </p>
 {% highlight php startinline %}
 $result = $db->from('users')
@@ -18,7 +18,7 @@ $result = $db->from('users')
 SELECT * FROM `users`
 {% endhighlight %}
 <p>
-    The result of calling the <kbd>all</kbd> method will be an array that will contain all records that were found
+    The result of calling the <code>all</code> method will be an array that will contain all records that were found
     or an empty array if no records were found.
 </p>
 {% highlight php startinline %}
@@ -29,8 +29,8 @@ foreach($result as $user)
 {% endhighlight %}
 
 <p>
-    If you only want to retrieve a single record, you can use the <kbd>first</kbd> method.
-    If no records are found the method returns <kbd>FALSE</kbd>.
+    If you only want to retrieve a single record, you can use the <code>first</code> method.
+    If no records are found the method returns <code>FALSE</code>.
 </p>
 
 {% highlight php startinline %}
@@ -48,8 +48,8 @@ else
 {% endhighlight %}
 
 <p>
-    Retrieving only a column's value is also possible by using the <kbd>column</kbd> method.
-    If no records are found the method returns <kbd>FALSE</kbd>.
+    Retrieving only a column's value is also possible by using the <code>column</code> method.
+    If no records are found the method returns <code>FALSE</code>.
 </p>
 {% highlight php startinline %}
 $name = $db->from('users')

@@ -1,0 +1,11 @@
+{% if include.h %}
+    {% assign h = include.h %}
+{% else %}
+    {% assign h = 3 %}    
+{% endif %}
+<h{{h}}>
+    {% if include.anchor %}
+    <a id="{{include.anchor}}"></a>
+    {% endif %}
+    <strong>{{include.value}}</strong>
+</h{{h}}>
