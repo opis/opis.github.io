@@ -1,0 +1,36 @@
+---
+layout: database
+title: Result set | Opis Database
+keywords: php, database, abstraction, query builder, schema builder
+description: Learn how to handle the result set
+active: result
+---
+<h1><strong>Result set</strong></h1>
+
+<p>
+    Every time we query a database using the <code>select</code> method,
+    instead of returning an array of results, <strong>Opis Database</strong> returns an
+    instance of the <code>Opis\Database\ResultSet</code> class.
+    By doing so, <strong>Opis Database</strong> allows us to have greater control over how the results will be further handled.
+</p>
+<p>
+    Using the <code>all</code> method is perfectly fine when we are dealing with reasonable data sets, but
+    we can quickly run out of memory if we are dealing with large data sets. This is because the <code>all</code>
+    method transfer all the results from the database into PHP's memory and stores them into an array.
+    One solution to avoid going out of memory when dealing with large data sets is to iterate through the
+    entire result set and process one result at a time.
+</p>
+{% highlight php startinline %}
+$result = $db->from('users')
+             ->select(array('name', 'email'));
+             
+while(false !== $user = $result->next())
+{
+    echo $user->name, $user->email;
+}
+{% endhighlight %}
+
+<p class="well text-primary">
+    <strong><span class="fa fa-pencil"></span> TODO:</strong>
+    Describe how to handle the result set of a query.
+</p>

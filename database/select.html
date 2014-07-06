@@ -119,3 +119,37 @@ foreach($result as $user)
 {% highlight sql %}
 SELECT `name` AS `n`, `email`, `age` AS `a` FROM `users`
 {% endhighlight %}
+
+{% include subtitle.html anchor="Tables" value="Tables" %}
+
+<p>
+    When fetching records from a database you can specify muliple table sources by passing
+    as an argument to the <code>from</code> method an array containing all table names you want to use.
+</p>
+
+{% highlight php startinline %}
+$result = $db->from(array('users', 'profiles'))
+             ->select()
+             ->all();
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users`, `profiles`
+{% endhighlight %}
+
+<p>
+    As in the case of columns, you can alias table names by passing as an argument a <code>key => value</code>
+    mapped array, where the <code>key</code> represents the table's name and the <code>value</code> represents
+    the table's alias name. If you want a table name not being aliased, just omit the <code>key</code> for that specific table.
+</p>
+
+{% highlight php startinline %}
+$result = $db->from(array(
+                'users' => 'u',
+                'profiles' => 'p'
+             ))
+             ->select()
+             ->all();
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users` AS `u`, `profiles` AS `p`
+{% endhighlight %}

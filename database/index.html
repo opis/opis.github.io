@@ -35,11 +35,44 @@ active: home
     {% include archive.html project = site.projects.database file = "tar.gz" %}
     or the
     {% include archive.html project = site.projects.database file = "zip" %} archive file,
-    extract the content of the archive and include de <kbd>autoload.php</kbd> file into your project.
+    extract the content of the archive and include de <code>autoload.php</code> file into your project.
 </p>
 
 {% highlight php startinline %}
 require_once 'path/to/database-{{site.projects.database.version}}/autoload.php';
 {% endhighlight %}
+
+{% include subtitle.html anchor="Content" value="Content" %}
+
+<ol>
+    <li>
+        <a href="/database/connections.html">Connections</a>
+        <ol type="a">
+            <li>
+                <a href="/database/connections.html#Options">Connection options</a>
+            </li>
+            <li>
+                <a href="/database/connections.html#DSN">DSN builder</a>
+            </li>
+        </ol>
+    </li>
+    <li>
+        <a href="/database/insert.html">Create records</a>
+    </li>
+    <li>
+        <a href="/database/select.html">Fetch records</a>
+        <ol type="a">
+            <li>
+                <a href="/database/select.html#Distinct">Distinct results</a>
+            </li>
+            <li>
+                <a href="/database/select.html#Columns">Columns</a>
+            </li>
+            <li>
+                <a href="/database/select.html#Tables">Tables</a>
+            </li>
+        </ol>
+    </li>
+</ol>
 
 {% include tooltips.html %}
