@@ -7,7 +7,7 @@ active: select
 ---
 <h1><strong>Fetch records</strong></h1>
 <p>
-    Fetching records from a database is done using the <code>from</code> method.
+    Fetching records from a database is done using the <code>from</code> and the <code>select</code> methods.
 </p>
 {% highlight php startinline %}
 $result = $db->from('users')
@@ -18,7 +18,7 @@ $result = $db->from('users')
 SELECT * FROM `users`
 {% endhighlight %}
 <p>
-    The result of calling the <code>all</code> method will be an array that will contain all records that were found
+    The result of calling the <code>all</code> method will be an array that will contain all of the records that were found
     or an empty array if no records were found.
 </p>
 {% highlight php startinline %}
@@ -58,7 +58,64 @@ $name = $db->from('users')
 echo $name === false ? 'No records were found' : $name;
 {% endhighlight %}
 
-<p class="well">
-    <strong class="text-danger"><span class="fa fa-exclamation-triangle"></span> Important.</strong>
-    Event if
+<p class="well text-danger">
+    <strong><span class="fa fa-exclamation-triangle"></span> Important!</strong>
+    You should always <a href="/database/filters.html">filter</a> your records before handling the results of a query even if
+    you use the <code>first</code> or the <code>column</code> method, otherwise you may have performance issues when quering
+    over large data sets.
 </p>
+
+{% include subtitle.html anchor="Distinct" value="Distinct results" %}
+
+<p>
+    Retrieving only the distinct results is done using the <code>distinct</code> method.
+</p>
+{% highlight php startinline %}
+$result = $db->from('users')
+             ->distinct()
+             ->select()
+             ->all();
+{% endhighlight %}
+{% highlight sql %}
+SELECT DISTINCT * FROM `users`
+{% endhighlight %}
+
+{% include subtitle.html anchor="Columns" value="Columns" %}
+
+<p>
+    You can specify which columns you want to include in the result set by passing as an argument
+    to the <code>select</code> method an array containing th column names.
+</p>
+{% highlight php startinline %}
+$result = $db->from('users')
+             ->select(array('name', 'age'))
+             ->all();
+{% endhighlight %}
+{% highlight sql %}
+SELECT `name`, `age` FROM `users`
+{% endhighlight %}
+
+<p>
+    Aliasing column names is done by passing as an argument to the <code>select</code> method a
+    <code>key => value</code> mapped array, where the <code>key</code> represents the column's name
+    and the <code>value</code> represents the column's alias name. If you want a column name
+    not being aliased, just omit the <code>key</code> for that specific column.
+</p>
+
+{% highlight php startinline %}
+$result = $db->from('users')
+             ->select(array(
+                'name' => 'n',
+                'email'
+                'age' => 'a',
+             ))
+             ->all();
+
+foreach($result as $user)
+{
+    echo $user->n, $user->email, $user->a;
+}
+{% endhighlight %}
+{% highlight sql %}
+SELECT `name` AS `n`, `email`, `age` AS `a` FROM `users`
+{% endhighlight %}

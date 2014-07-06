@@ -7,110 +7,138 @@ active: connections
 ---
 <h1><strong>Connections</strong></h1>
 <p>
-    In order to be able to manipulate records from a database a connection must be created first.
-    A connection can be created by using the helper methods provided by the <code>Opis\Database\Connection</code> class.
-</p>
-<p>
-    All connection objects are instances of a class that extends <code>Opis\Database\Connection</code>
-    and each instance has an associated <a href="http://en.wikipedia.org/wiki/Data_source_name" target="_blank" data-toggle="tooltip" title="Data source name">DSN</a>,
-    an associated <code>PDO</code> object and an associated compiler that extends <code>Opis\Database\SQL\Compiler</code>
-    and is used to build all commands that are sent to a database.
-</p>
-<p>
-    The role of the connection class is to provide a set of methods that will be used to build a valid
-    <a href="http://en.wikipedia.org/wiki/Data_source_name" target="_blank" data-toggle="tooltip" title="Data source name">DSN</a>.
-    The resulting <a href="http://en.wikipedia.org/wiki/Data_source_name" target="_blank" data-toggle="tooltip" title="Data source name">DSN</a> string
-    will be finally used to construct the associated <code>PDO</code> object that will actually establish a connection to the specified database.
-</p>
-
-{% include subtitle.html anchor="generic-connections" value="Generic connections" %}
-
-<p>
-    A generic connection is a connection type where the user must provide the full
-    <a href="http://en.wikipedia.org/wiki/Data_source_name" target="_blank" data-toggle="tooltip" title="Data source name">DSN</a>
-    in order to establish a connection to a database.
+    To establish a connection to a database you must create an instance of <code>Opis\Database\Connection</code> class.
+    The constructor of this class accepts parameters for specifying the <a href="http://en.wikipedia.org/wiki/Data_source_name" target="_blank" data-toggle="tooltip" title="Data source name">DSN</a>
+    and optionally for the username and password(if any).
 </p>
 {% highlight php startinline %}
 use Opis\Database\Connection;
 use Opis\Database\Database;
 
-$connection = Connection::generic('mysql:host=localhost;dbname=test',
-                                  'username',
-                                  'password');
+$connection = new Connection('mysql:host=localhost;dbname=test', 'username', 'password');
 
 $db = new Database($connection);
 {% endhighlight %}
 <p>
-    Once the connection is established, <strong>Opis Database</strong> will try to figure out itself
-    what's the most appropriate compiler to be used for building queries.
-</p>
-<p>
-If you have created a new compiler or extended an existing one, you can associated that compiler
-with a generic connection by calling the <code>setCompiler</code> method and passing as an argument a callback function
-that will return a new instance of your compiler.
+    You can also create a connection by using the <code>create</code> static method
+    of <code>Opid\Database\Connection</code> class.
 </p>
 {% highlight php startinline %}
-$connection = Connection::generic('mysql:host=localhost;dbname=test',
-                                  'username',
-                                  'password')
-                        ->setCompiler(function(){
-                            return new MyCustomCompiler();
-                        });
+use Opis\Database\Connection;
+
+$connection = Connection::create('mysql:host=localhost;dbname=test', 'username', 'password');
 {% endhighlight %}
 
-{% include subtitle.html anchor="specialized-connections" value="Specialized connections" %}
+{% include subtitle.html anchor="Options" value="Connection options" %}
 
 <p>
-    A specialized connection targets a specific database by providing a set of helper methods that can be
-    used to build a valid
-    <a href="http://en.wikipedia.org/wiki/Data_source_name" target="_blank" data-toggle="tooltip" title="Data source name">DSN</a>
-    for that specific database.
-    <strong>Opis Colibri</strong> provides specialized connections for the following databases:
-    MySQL, PostgreSQL, Microsoft SQL Server, Oracle, IBM DB2, Firebird, SQLite.
-</p>
-
-{% include subtitle.html anchor="MySQL" value="MySQL" h=4 %}
-
-<p>
-    Connecting to a MySQL database is done using the <code>mysql</code> method. The method accepts two
-    parameters representing the user name and the password for that database. If you haven't setup a password
-    for your username, you can pass an empty string or <code>null</code> as a second parameter.
+    The <a href="http://en.wikipedia.org/wiki/Data_source_name" target="_blank" data-toggle="tooltip" title="Data source name">DSN</a>,
+    the username and the password provided when instantiating a new  <code>Opis\Database\Connection</code> class,
+    will be further used to build a <code>PDO</code> object that will actually establish a connection to the database.
+    <strong>Opis Database</strong> allows you to specify options for the <code>PDO</code> object by calling the <code>option</code> method.
 </p>
 
 {% highlight php startinline %}
-use Opis\Database\Connection
+$connection = Connection::create($dsn, $user, $password)
+                        ->option(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ)
+                        ->option(PDO::ATTR_STRINGIFY_FETCHES, false);
+{% endhighlight %}
+<p>
+    Setting multiple options simultaneously is done by calling the <code>options</code> method
+    and passing as an argument an array of options.
+</p>
+{% highlight php startinline %}
+$connection = Connection::create($dsn, $user, $password)
+                        ->options(array(
+                            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+                            PDO::ATTR_STRINGIFY_FETCHES => false
+                        ));
+{% endhighlight %}
+<p>
+    Making a connection persistent is done by using the <code>persistent</code> method.
+</p>
+{% highlight php startinline %}
+$connection = Connection::create($dsn, $user, $password)
+                        ->persistent();
+{% endhighlight %}
+<p>
+    You can keep a log  with all of the queries sent to a database by calling the <code>logQueries</code> method.
+    Retrieving the list of logged queries is done using the <code>getLog</code> method.
+</p>
+{% highlight php startinline %}
+$connection = Connection::create($dsn, $user, $password)
+                        ->logQueries();
 
-$connection = Connection::mysql('username', 'password')
-                        ->database('my_database')
-                        ->host('localhost')
-                        ->port(3306);
+//Your queries...
+
+foreach($connection->getLog() as $entry)
+{
+    echo $entry;
+}
 {% endhighlight %}
 
 <p>
-    Specifying a database source is mandatory and is done using the <code>database</code> method.
-    Setting a host or a port number is optional. If the host or port number were not specified,
-    <strong>Opis Colibri</strong> will assume <code>localhost</code> for host and <code>3306</code> for
-    port number.
-</p>
-
-{% include subtitle.html anchor="PostgreSQL" value="PostgreSQL" h=4 %}
-
-<p>
-    Connecting to a PostgreSQL database is done using the <code>postgreSQL</code> method.
+    You also have the posibilitty to specify a list of commands that will be executed after connecting to
+    a database by using the <code>initCommand</code> method.
 </p>
 
 {% highlight php startinline %}
-use Opis\Database\Connection
-
-$connection = Connection::postgreSQL('username', 'password')
-                        ->database('my_database')
-                        ->host('localhost')
-                        ->port(5432);
+$connection = Connection::create($dsn, $user, $password)
+                        ->initCommand('SET NAMES UTF-8');
 {% endhighlight %}
+
+{% include subtitle.html anchor="DSN" value="DSN builder" %}
+
 <p>
-    If the host or port number were not specified, <strong>Opis Colibri</strong> will assume
-    <code>localhost</code> for host and <code>5432</code> for port number.
-    Specifying a database source is mandatory.
+    <strong>Opis Database</strong> provides a <a href="http://en.wikipedia.org/wiki/Data_source_name" target="_blank" data-toggle="tooltip" title="Data source name">DSN</a>
+    builder that will help you to construct a database source string by using a set of helper methods from the <code>Opid\Database\DSN</code> class.
+</p>
+<p>
+    To build a DSN for MySQL call the <code>mysql</code> static method and provide as an argument the
+    a database name.
+</p>
+{% highlight php startinline %}
+use Opis\Database\DSN;
+use Opis\Database\Connection;
+
+$dsn = DSN::mysq('mydatabase');
+
+$connection = new Connection((string) $dsn, $user, $password);
+{% endhighlight %}
+
+<p>
+    The resulting DSN string will be <code>mysql:host=localhost;port=3306;dbname=mydatabase</code>.
+    If you want to change the host name, the port number or if you want to specify a charset, you can
+    do so by using the <code>host</code> method, the <code>port</code> method and respectively the
+    <code>charset</code> method.
+</p>
+
+{% highlight php startinline %}
+use Opis\Database\DSN;
+
+$dsn = DSN::mysq('mydatabase')->host('127.0.0.2')->port('1234')->charset('UTF8');
+{% endhighlight %}
+
+<p>
+    The resulting DSN string will be <code>mysql:host=127.0.0.2;port=1234;dbname=mydatabase;charset=UTF8</code>.
+</p>
+
+<p class="well text-info">
+    <strong><span class="fa fa-info-circle"></span> Remember!</strong>
+    The <code>host</code>, <code>port</code> and <code>charset</code> methods ar common to all DSN builders.
+</p>
+
+<p>
+    Creating a DSN for PostgreSQL is done using the <code>postgreSQL</code> static method.
+</p>
+{% highlight php startinline %}
+use Opis\Database\DSN;
+
+$dsn = DSN::postgreSQL('mydatabase');
+{% endhighlight %}
+
+<p>
+    The resulting DSN will be <code>pgsql:host=localhost;port=5432;dbname=mydatabase</code>.
 </p>
 
 {% include tooltips.html %}
