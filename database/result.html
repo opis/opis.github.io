@@ -20,6 +20,7 @@ active: result
     One solution to avoid going out of memory when dealing with large data sets is to iterate through the
     entire result set and process one result at a time.
 </p>
+
 {% highlight php startinline %}
 $result = $db->from('users')
              ->select(array('name', 'email'));

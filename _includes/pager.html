@@ -1,0 +1,8 @@
+<ul class="pager">
+  {% if include.back %}
+  <li class="previous"><a href="{{include.back}}">&larr; Back</a></li>
+  {% endif %}
+  {% if include.next %}
+  <li class="next"><a href="{{include.next}}">Next &rarr;</a></li>
+  {% endif %}
+</ul>
