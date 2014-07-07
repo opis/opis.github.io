@@ -1,11 +1,11 @@
 ---
 layout: database
-title: Result set | Opis Database
+title: The result set | Opis Database
 keywords: php, database, abstraction, query builder, schema builder
 description: Learn how to handle the result set
 active: result
 ---
-<h1><strong>Result set</strong></h1>
+<h1><strong>The result set</strong></h1>
 
 <p>
     Every time we query a database using the <code>select</code> method,
@@ -31,7 +31,53 @@ while(false !== $user = $result->next())
 }
 {% endhighlight %}
 
+{% include subtitle.html anchor="Options" value="Fetching options" %}
+
+<p>
+    By default the results of a query are fetched as anonymous objects with property names
+    that correspond to the column names returned in your result set.
+    You can change this behavior by using a set of methods provided by the <code>Opid\Database\ResultSet</code>
+    class.
+</p>
+
+<p>
+    Fetching results as an array indexed by column name is done using the <code>fetchAssoc</code> method.
+</p>
+
+{% highlight php startinline %}
+$result = $db->from('users')
+             ->select(array('name', 'email'))
+             ->fetchAssoc()
+             ->all();
+             
+foreach($result as $user)
+{
+    echo $user['name'], $user['email'];
+}
+
+{% endhighlight %}
+
+<p>
+    Fetching results as an array indexed by column number, starting at column 0, is done using the
+    <code>fetchNum</code> method.
+</p>
+
+{% highlight php startinline %}
+$result = $db->from('users')
+             ->select(array('name', 'email'))
+             ->fetchNum()
+             ->all();
+             
+foreach($result as $user)
+{
+    echo $user[0], $user[1];
+}
+
+{% endhighlight %}
+
 <p class="well text-primary">
     <strong><span class="fa fa-pencil"></span> TODO:</strong>
     Describe how to handle the result set of a query.
 </p>
+
+{% include pager.html back="/database/select.html" next="/database/filter.html" %}
