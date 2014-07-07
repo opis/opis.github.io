@@ -6,6 +6,40 @@ description: Learn about aggregate functions
 active: aggregate
 ---
 <h1><strong>Aggregate functions</strong></h1>
+
+<p>
+   <strong>Opis Database</strong> provides support for most common and widely used aggreate functions.
+</p>
+
+{% include subtitle.html anchor="Counting" value="Counting" %}
+
+<p>
+    Counting records is done using the <code>count</code> method.
+</p>
+
+{% highlight php startinline %}
+$result = $db->from('users')->count();
+
+echo 'There are ' . $result . ' users registred on this site.';
+{% endhighlight %}
+{% highlight sql %}
+SELECT COUNT(*) FROM `users`
+{% endhighlight %}
+
+<p>
+    Counting all values(<code>NULL</code> values will not be counted) of a column is done by passing
+    the column's name as an argument to the <code>count</code> method.
+</p>
+
+{% highlight php startinline %}
+$result = $db->from('users')->count('description');
+
+echo 'There are ' . $result . ' users that have provided a description for their profile.';
+{% endhighlight %}
+{% highlight sql %}
+SELECT COUNT(`description`) FROM `users`
+{% endhighlight %}
+
 <p class="well text-primary">
     <strong><span class="fa fa-pencil"></span> TODO:</strong>
     Describe how to use aggregate functions.
