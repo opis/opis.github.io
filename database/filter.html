@@ -6,9 +6,38 @@ description: Learn how to filter records
 active: filter
 ---
 <h1><strong>Filter records</strong></h1>
+
+<p>
+    Filtering records is one of the most important operation in database manipulation.
+    <strong>Opis Database</strong> allows you to add filters to your queries by providing a
+    set of methods that will make filtering records an easy task.
+</p>
+
+{% include subtitle.html anchor="Where" value="WHERE clause" %}
+
+<p>
+    The <strong>WHERE</strong> clause is used to extract only those records that fulfill a specified criterion.
+    Adding a <strong>WHERE</strong> filter to your query is done by calling the
+    <code>where</code>, <code>andWhere</code> and <code>orWhere</code> methods.
+</p>
+
+{% highlight php startinline %}
+$result = $db->from('users')
+             ->where('age', 18)
+             ->select()
+             ->all();
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users` WHERE `age` = 18
+{% endhighlight %}
+
+<p>
+    The following operators can be used when 
+</p>
+
+{% include subtitle.html anchor="WhereIn" value="WHERE NULL clause" %}
+
 <p class="well text-primary">
     <strong><span class="fa fa-pencil"></span> TODO:</strong>
     Describe how to filter records.
 </p>
-
-{% include pager.html back="/database/result.html" next="/database/aggregate.html" %}

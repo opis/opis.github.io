@@ -11,16 +11,16 @@ active: aggregate
    <strong>Opis Database</strong> provides support for most common and widely used aggreate functions.
 </p>
 
-{% include subtitle.html anchor="Counting" value="Counting" %}
+{% include subtitle.html anchor="Count" value="Counting" %}
 
 <p>
     Counting records is done using the <code>count</code> method.
 </p>
 
 {% highlight php startinline %}
-$result = $db->from('users')->count();
+$count = $db->from('users')->count();
 
-echo 'There are ' . $result . ' users registred on this site.';
+echo 'There are ' . $count . ' users registred on this site.';
 {% endhighlight %}
 {% highlight sql %}
 SELECT COUNT(*) FROM `users`
@@ -32,17 +32,88 @@ SELECT COUNT(*) FROM `users`
 </p>
 
 {% highlight php startinline %}
-$result = $db->from('users')->count('description');
+$count = $db->from('users')->count('description');
 
-echo 'There are ' . $result . ' users that have provided a description for their profile.';
+echo 'There are ' . $count . ' users that have provided a description for their profile.';
 {% endhighlight %}
 {% highlight sql %}
 SELECT COUNT(`description`) FROM `users`
 {% endhighlight %}
 
-<p class="well text-primary">
-    <strong><span class="fa fa-pencil"></span> TODO:</strong>
-    Describe how to use aggregate functions.
+<p>
+    If we want to count only distinct values of a column, we must pass <code>TRUE</code> as a second
+    argument to the <code>count</code> method.
 </p>
 
-{% include pager.html back="/database/filter.html" next="/database/update.html" %}
+{% highlight php startinline %}
+$count = $db->from('users')->count('country', true);
+
+echo 'We have registred users from ' . $count . ' different countries.';
+{% endhighlight %}
+{% highlight sql %}
+SELECT COUNT(DISTINCT `country`) FROM `users`
+{% endhighlight %}
+
+{% include subtitle.html anchor="Max" value="Largest value" %}
+
+<p>
+    Finding the largest value of a column is done using the <code>max</code> method.
+    This method accepts the column's name as an argument.
+</p>
+
+{% highlight php startinline %}
+$count = $db->from('users')->max('age');
+
+echo 'Our oldest user is ' . $count . ' years old.';
+{% endhighlight %}
+{% highlight sql %}
+SELECT MAX(`age`) FROM `users`
+{% endhighlight %}
+
+{% include subtitle.html anchor="Min" value="Smallest value" %}
+
+<p>
+    Finding the largest value of a column is done using the <code>min</code> method.
+    This method accepts the column's name as an argument.
+</p>
+
+{% highlight php startinline %}
+$count = $db->from('users')->min('age');
+
+echo 'Our youngest user is ' . $count . ' years old.';
+{% endhighlight %}
+{% highlight sql %}
+SELECT MIN(`age`) FROM `users`
+{% endhighlight %}
+
+{% include subtitle.html anchor="Avg" value="Average value" %}
+
+<p>
+    Finding the average value of a numeric column is done using the <code>avg</code> method.
+    This method accepts the column's name as an argument.
+</p>
+
+{% highlight php startinline %}
+$count = $db->from('users')->avg('age');
+
+echo 'The average age of our users is ' . $count . ' years.';
+{% endhighlight %}
+{% highlight sql %}
+SELECT AVG(`age`) FROM `users`
+{% endhighlight %}
+
+{% include subtitle.html anchor="Sum" value="Total sum" %}
+
+<p>
+    Finding the total sum of a numeric column is done using the <code>sum</code> method.
+    This method accepts the column's name as an argument.
+</p>
+
+{% highlight php startinline %}
+$count = $db->from('users')->sum('age');
+
+echo 'Our users gathered together ' . $count . ' years of life experience.';
+{% endhighlight %}
+{% highlight sql %}
+SELECT SUM(`age`) FROM `users`
+{% endhighlight %}

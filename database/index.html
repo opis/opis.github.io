@@ -3,6 +3,7 @@ layout: database
 title: Opis Database | www.opis.io
 keywords: php, database, abstraction, query builder, schema builder
 description: Database abstraction layer library
+tooltips: true
 active: home
 ---
 <h1><strong>Database abstraction layer</strong></h1>
@@ -41,40 +42,3 @@ active: home
 {% highlight php startinline %}
 require_once 'path/to/database-{{site.projects.database.version}}/autoload.php';
 {% endhighlight %}
-
-{% include subtitle.html anchor="Content" value="Content" %}
-
-<ol>
-    <li>
-        <a href="/database/connections.html">Connections</a>
-        <ol type="a">
-            <li>
-                <a href="/database/connections.html#Options">Connection options</a>
-            </li>
-            <li>
-                <a href="/database/connections.html#DSN">DSN builder</a>
-            </li>
-        </ol>
-    </li>
-    <li>
-        <a href="/database/insert.html">Create records</a>
-    </li>
-    <li>
-        <a href="/database/select.html">Fetch records</a>
-        <ol type="a">
-            <li>
-                <a href="/database/select.html#Distinct">Distinct results</a>
-            </li>
-            <li>
-                <a href="/database/select.html#Columns">Columns</a>
-            </li>
-            <li>
-                <a href="/database/select.html#Tables">Tables</a>
-            </li>
-        </ol>
-    </li>
-</ol>
-
-{% include pager.html next="/database/connection.html" %}
-
-{% include tooltips.html %}

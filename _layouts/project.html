@@ -43,6 +43,10 @@ custom:
         </div>
         <div class="col-md-8">
             {{content}}
+            {% include autopager.html navigation = page.navigation active = page.active %}
+            {% if page.tooltips %}
+                {% include tooltips.html %}
+            {% endif %}
         </div>
     </div>
 </div>

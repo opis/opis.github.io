@@ -60,7 +60,7 @@ echo $name === false ? 'No records were found' : $name;
 
 <p class="well text-danger">
     <strong><span class="fa fa-exclamation-triangle"></span> Important!</strong>
-    You should always <a href="/database/filters.html">filter</a> your records before handling the results of a query even if
+    You should always <a href="/database/filter.html">filter</a> your records before handling the results of a query even if
     you use the <code>first</code> or the <code>column</code> method, otherwise you may have performance issues when quering
     over large data sets.
 </p>
@@ -153,5 +153,3 @@ $result = $db->from(array(
 {% highlight sql %}
 SELECT * FROM `users` AS `u`, `profiles` AS `p`
 {% endhighlight %}
-
-{% include pager.html back="/database/insert.html" next="/database/result.html" %}
