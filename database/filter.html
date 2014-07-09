@@ -8,20 +8,107 @@ active: filter
 <h1><strong>Filter records</strong></h1>
 
 <p>
-    Filtering records is one of the most important operation in database manipulation.
-    <strong>Opis Database</strong> allows you to add filters to your queries by providing a
-    set of methods that will make filtering records an easy task.
+    Filtering records is one of the most important and intensively used operation in database manipulation.
+    <strong>Opis Database</strong> aims to make data filtering an easy task for the developers,
+    by implementing a set of targeted methods capable of simplifying the filtering process.
 </p>
 
-{% include subtitle.html anchor="Where" value="WHERE clause" %}
+<p>
+    Adding a filter is done using the <code>where</code> method in conjunction with one of the
+    following conditional methods: <code>is</code>, <code>isNot</code>, <code>lessThan</code>,
+    <code>greaterThan</code>, <code>atLeast</code>, <code>atMost</code>, <code>between</code>,
+    <code>notBetween</code>, <code>in</code>, <code>notIn</code>, <code>like</code>, <code>notLike</code>,
+    <code>isNull</code> and <code>notNull</code>.
+</p>
+
+{% include subtitle.html anchor="is" value="The <em>is</em> conditional method" h=4 %}
 
 <p>
-    The <strong>WHERE</strong> clause is used to extract only those records that fulfill a specified criterion.
-    Adding a <strong>WHERE</strong> filter to your query is done by calling the
-    <code>where</code>, <code>andWhere</code> and <code>orWhere</code> methods.
+    The operator for this conditional method is the <code>=</code>(equal) operator.
 </p>
 
 {% highlight php startinline %}
+
+// Select all users that are 18.
+
+$result = $db->from('users')
+             ->where('age')->is(18)
+             ->select()
+             ->all();
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users` WHERE `age` = 18
+{% endhighlight %}
+
+{% include subtitle.html anchor="isNot" value="The <em>isNot</em> conditional method" %}
+
+<p>
+    The operator for this conditional method is the <code>!=</code>(not equal) operator.
+</p>
+
+{% highlight php startinline %}
+
+// Select all users that are not 18.
+
+$result = $db->from('users')
+             ->where('age')->isNot(18)
+             ->select()
+             ->all();
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users` WHERE `age` != 18
+{% endhighlight %}
+
+{% include subtitle.html anchor="lessThan" value="The <em>lessThan</em> conditional method" %}
+
+<p>
+    The operator for this conditional method is the <code>&lt;</code>(less than) operator.
+</p>
+
+{% highlight php startinline %}
+
+// Select all users that are under 18.
+
+$result = $db->from('users')
+             ->where('age')->lessThan(18)
+             ->select()
+             ->all();
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users` WHERE `age` < 18
+{% endhighlight %}
+
+{% include subtitle.html anchor="greaterThan" value="The <em>greaterThan</em> conditional method" %}
+
+<p>
+    The operator for this conditional method is the <code>&gt;</code>(greater than) operator.
+</p>
+
+{% highlight php startinline %}
+
+// Select all users that are over 18.
+
+$result = $db->from('users')
+             ->where('age')->greaterThan(18)
+             ->select()
+             ->all();
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users` WHERE `age` > 18
+{% endhighlight %}
+
+{% include subtitle.html anchor="Where" value="WHERE clause" %}
+
+
+<p>
+    The <strong>WHERE</strong> clause is used to extract only those records that fulfill a specified criterion.
+    Adding a <strong>WHERE</strong> filter to your query is done by calling the <code>where</code> method.
+</p>
+
+{% highlight php startinline %}
+
+// Select all users that are 18.
+
 $result = $db->from('users')
              ->where('age', 18)
              ->select()
@@ -32,10 +119,176 @@ SELECT * FROM `users` WHERE `age` = 18
 {% endhighlight %}
 
 <p>
-    The following operators can be used when 
+    The default conditional operator for the <code>where</code> method is <code>=</code>(equal).
+    Changing the search's conditional operator is done by providing a third argument to the <code>where</code> method,
+    representing the conditional operator you want to use.
+    The conditional operator can be one of the following:
+    <ul>
+        <li><code>!=</code> Not equal</li>
+        <li><code>&gt; </code> Greater than</li>
+        <li><code>&lt; </code> Lest than</li>
+        <li><code>&gt;=</code> Greater than or equal</li>
+        <li><code>&lt;=</code> Less than or equal</li>
+    </ul>
 </p>
 
-{% include subtitle.html anchor="WhereIn" value="WHERE NULL clause" %}
+{% highlight php startinline %}
+
+// Select all users that are at least 18.
+
+$result = $db->from('users')
+             ->where('age', 18, '>=')
+             ->select()
+             ->all();
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users` WHERE `age` >= 18
+{% endhighlight %}
+
+<p>
+    You can add multiple search conditions to a query by using the <code>andWhere</code> method ...
+</p>
+
+{% highlight php startinline %}
+
+// Select all users that are 18 and are from London.
+
+$result = $db->from('users')
+             ->where('age', 18)
+             ->andWhere('city', 'London')
+             ->select()
+             ->all();
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users` WHERE `age` = 18 AND `city` = "London"
+{% endhighlight %}
+
+<p>
+    ... or by using the <code>orWhere</code> method.
+</p>
+
+{% highlight php startinline %}
+
+// Select all users that are from London or New York.
+
+$result = $db->from('users')
+             ->where('city', 'London')
+             ->orWhere('city', 'New York')
+             ->select()
+             ->all();
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users` WHERE `city` = "London" OR `city` = "New York"
+{% endhighlight %}
+
+<p>
+    <strong>Opis Database</strong> allows you to group your conditions by passing a callback function
+    as the first argument to the <code>where</code>,  <code>andWhere</code> or <code>orWhere</code> methods.
+</p>
+
+{% highlight php startinline %}
+
+// Select all users that are 18 and are either from London or from New York.
+
+$result = $db->from('users')
+             ->where('age', 18)
+             ->andWhere(function($group){
+                $group->where('city', 'London')
+                      ->orWhere('city', 'New York');
+             })
+             ->select()
+             ->all();
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users` WHERE `age` = 18 AND (`city` = "London" OR `city` = "New York")
+{% endhighlight %}
+
+<p class="well text-info">
+    <strong><span class="fa fa-info-circle"></span> Remember!</strong>
+    There are no differences between <code>where</code> and <code>andWhere</code> methods.
+    The <code>andWhere</code> method is just an alias for the <code>where</code> method and its sole
+    purpose is to make the code more readable.
+</p>
+
+{% include subtitle.html anchor="WhereBetween" value="WHERE BETWEEN clause" %}
+
+<p>
+    Selecting records that have a value within a range is done using the <code>whereBetween</code> method.
+</p>
+
+{% highlight php startinline %}
+
+// Select all users that are between 18 and 21
+
+$result = $db->from('users')
+             ->whereBetween('age', 18, 21)
+             ->select()
+             ->all();
+             
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users` WHERE `age` BETWEEN 18 AND 21
+{% endhighlight %}
+
+<p>
+    You can add multiple search conditions to a query by using the <code>andWhereBetween</code> method ...
+</p>
+
+{% highlight php startinline %}
+
+// Select all users that are between 18 and 21 and between 30 and 32
+
+$result = $db->from('users')
+             ->whereBetween('age', 18, 21)
+             ->andWhereBetween('age', 30, 32)
+             ->select()
+             ->all();
+             
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users` WHERE `age` BETWEEN 18 AND 21 AND `age` BETWEEN 30 AND 32
+{% endhighlight %}
+
+<p>
+    ... or by using the <code>orWhereBetween</code> method.
+</p>
+
+{% highlight php startinline %}
+
+// Select all users that are between 18 and 21 or between 30 and 32
+
+$result = $db->from('users')
+             ->whereBetween('age', 18, 21)
+             ->orWhereBetween('age', 30, 32)
+             ->select()
+             ->all();
+             
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users` WHERE `age` BETWEEN 18 AND 21 OR `age` BETWEEN 30 AND 32
+{% endhighlight %}
+
+<p class="well text-info">
+    <strong><span class="fa fa-info-circle"></span> Remember!</strong>
+    There are no differences between <code>whereBetween</code> and <code>andWhereBetween</code> methods.
+    The <code>andWhereBetween</code> method is just an alias for the <code>whereBetween</code> method and its sole
+    purpose is to make the code more readable.
+</p>
+{% highlight php startinline %}
+$result = $db->from('users')
+             ->where('age')->between(18, 21)
+             ->andWhere('city')->is('London')
+             ->select()
+             ->all();
+             
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users` WHERE `age` BETWEEN 18 AND 21 OR `age` BETWEEN 30 AND 32
+{% endhighlight %}
+
+<p>
+    
+</p>
 
 <p class="well text-primary">
     <strong><span class="fa fa-pencil"></span> TODO:</strong>
