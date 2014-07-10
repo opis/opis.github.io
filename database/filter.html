@@ -44,8 +44,8 @@ SELECT * FROM `users` WHERE `age` = 18
 {% include subtitle.html anchor="isNot" value="The <em>isNot</em> method" h=4 %}
 
 <p>
-    Adds a filtering condition, so that only those records, that don't have the specified column's value equal
-    to a given value, will be added to the result set.
+    Adds a filtering condition, so that only those records, that have the specified column's value
+    not equal to a given value, will be added to the result set.
 </p>
 
 {% highlight php startinline %}
@@ -206,10 +206,10 @@ SELECT * FROM `users` WHERE `city` IN ("London", "New York", "Paris")
 {% endhighlight %}
 
 <p>
-    Instead of providing a set of values by passing an array to <code>in</code> method, you could also
-    obtain a set of values by making a subquery to the database. To make a subquery, just pass
-    an anonymous function callback as an aqrgument to the <code>in</code> method, then use the object that is
-    passed as an argument to your callback function to build a query.
+    Instead of providing a set of values by passing an array to the <code>in</code> method, you could also
+    obtain a set of values by using a subquery. To use a subquery, just pass
+    an anonymous function callback as an argument to the <code>in</code> method, then use the object that
+    will be passed as an argument to your callback function to build your query.
 </p>
 
 {% highlight php startinline %}
@@ -254,8 +254,8 @@ SELECT * FROM `users` WHERE `city` NOT IN ("London", "New York", "Paris")
 {% endhighlight %}
 
 <p>
-    As like in the case of the <code>in</code> method, you could also obtain a set of values to be used
-    for comparition, by making a subquery to the database.
+    As in the case of the <code>in</code> method, you could obtain a set of values to be used
+    for comparison, by using a subquery.
 </p>
 
 {% highlight php startinline %}
@@ -282,14 +282,15 @@ SELECT * FROM `users` WHERE `city` NOT IN (SELECT `name` FROM `cities` WHERE `po
 {% include subtitle.html anchor="like" value="The <em>like</em> method" h=4 %}
 
 <p>
-    Adds a record to the result set only if the specified column's value match a given pattern.
+    Adds a filtering condition, so that only those records,
+    whose specified column's value match a given pattern, will be added to the result set. 
 </p>
 
 {% highlight php startinline %}
 
 /**
  * Select all users that are living in a city
- * of which name starts with the letter 'P'.
+ * whose name starts with the letter 'P'.
  */
 
 $result = $db->from('users')
@@ -304,15 +305,15 @@ SELECT * FROM `users` WHERE `city` LIKE "P%"
 {% include subtitle.html anchor="notLike" value="The <em>notLike</em> method" h=4 %}
 
 <p>
-    This method is the opposite of the <code>like</code> method.
-    A record will be added to the result set only if the value of the specified column doesn't match the given pattern.
+    Adds a filtering condition, so that only those records,
+    whose specified column's value don't match a given pattern, will be added to the result set. 
 </p>
 
 {% highlight php startinline %}
 
 /**
  * Select all users that are living in a city
- * of which name does not starts with the letter 'P'.
+ * whose name doesn't starts with the letter 'P'.
  */
  
 $result = $db->from('users')
@@ -327,7 +328,8 @@ SELECT * FROM `users` WHERE `city` NOT LIKE "P%"
 {% include subtitle.html anchor="isNull" value="The <em>isNull</em> method" h=4 %}
 
 <p>
-    Adds a record to the result set only if the value of the specified column is equal to <code>NULL</code>.
+    Adds a filtering condition, so that only those records, that have the specified column's value
+    equal to <code>NULL</code>, will be added to the result set.
 </p>
 
 {% highlight php startinline %}
@@ -346,8 +348,8 @@ SELECT * FROM `users` WHERE `website` IS NULL
 {% include subtitle.html anchor="notNull" value="The <em>notNull</em> method" h=4 %}
 
 <p>
-    This method is the opposite of the <code>isNull</code> method.
-    A record will be added to the result set only if the value of the specified column is not equal to <code>NULL</code>.
+    Adds a filtering condition, so that only those records, that have the specified column's value
+    not equal to <code>NULL</code>, will be added to the result set.
 </p>
 
 {% highlight php startinline %}
@@ -361,6 +363,117 @@ $result = $db->from('users')
 {% endhighlight %}
 {% highlight sql %}
 SELECT * FROM `users` WHERE `website` IS NOT NULL
+{% endhighlight %}
+
+{% include subtitle.html anchor="Multiple" value="Multiple conditions" %}
+
+<p>
+    Adding multiple conditions to your query is done by using the <code>andWhere</code> and <code>orWhere</code> methods.
+    Those methods works exactly as the <code>where</code> method and depending on which method you use,
+    they will combine with the previous declared condition by using an <code>AND</code> or an <code>OR</code> operator. 
+</p>
+
+<p>
+    To add an additional condition to your query, that combines with the previous declared condition by using an
+    <code>AND</code> operator, use the <code>andWhere</code> method.
+</p>
+
+{% highlight php startinline %}
+
+// Select all users that are 18 and are living in London.
+ 
+$result = $db->from('users')
+             ->where('age')->is(18)
+             ->andWhere('city')->is('London')
+             ->select()
+             ->all();
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users` WHERE `age` = 18 AND `city` = "London"
+{% endhighlight %}
+
+<p>
+    To add an additional condition to your query, that combines with the previous declared condition by using an
+    <code>OR</code> operator, use the <code>orWhere</code> method.
+</p>
+
+{% highlight php startinline %}
+
+// Select all users that are either 18 or 21.
+ 
+$result = $db->from('users')
+             ->where('age')->is(18)
+             ->orWhere('age')->is(21)
+             ->select()
+             ->all();
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users` WHERE `age` = 18 OR `age` = 21
+{% endhighlight %}
+
+<p>
+    You can group your conditions in order to add a more complex filter to your query.
+    Grouping conditions is done by passing as an argument to the <code>where</code>,
+    <code>andWhere</code> or the <code>orWhere</code> methods an anonymous callback function.
+    The callback functions takes a single argument that will be further used to add filtering conditions
+    to your query.
+</p>
+
+{% highlight php startinline %}
+
+/**
+ * Select all users that are 18 and
+ * are living either in London or Paris.
+ */
+ 
+$result = $db->from('users')
+             ->where('age')->is(18)
+             ->andWhere(function($group){
+                $group->where('city')->is('London')
+                      ->orWhere('city')->is('Paris');
+             })
+             ->select()
+             ->all();
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users` WHERE `age` = 18 AND (`city` = "London" OR `city` = "Paris")
+{% endhighlight %}
+
+{% include subtitle.html anchor="Exists" value="The EXISTS condition" %}
+
+<p>
+    This condition is used in combination with a subquery and is considered to be met,
+    if the subquery returns at least one row.
+    Adding an <code>EXISTS</code> condition is done by using the <code>whereExists</code> method.
+    You can add multiple <strong>EXISTS</strong> conditions by using the <code>andWhereExists</code>
+    and the <code>orWhereExists</code> methods.
+</p>
+
+<p>
+    This methods are used in a similar manner as the <code>where</code>,
+    <code>andWhere</code> and <code>orWhere</code> methods,
+    receiving as an argument an anonymous function callback, that will be further used to build a subquery.
+</p>
+
+{% highlight php startinline %}
+
+/**
+ * Select all users that had purchased at least one product.
+ */
+ 
+$result = $db->from('users')
+             ->whereExists(function($query){
+                $query->from('orders')
+                      ->where('orders.name')->is(function($expr){
+                            $expr->column('users.name');
+                      })
+                      ->select();
+             })
+             ->select()
+             ->all();
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users` WHERE EXISTS (SELECT * FROM `orders` WHERE `orders`.`name` = `users`.`name`)
 {% endhighlight %}
 
 <p class="well text-primary">
