@@ -14,7 +14,7 @@ active: filter
 </p>
 
 <p>
-    Adding a filter is done using the <code>where</code> method in conjunction with one of the
+    Adding a filtering condition is done by using the <code>where</code> method in conjunction with one of the
     following methods: <code>is</code>, <code>isNot</code>, <code>lessThan</code>,
     <code>greaterThan</code>, <code>atLeast</code>, <code>atMost</code>, <code>between</code>,
     <code>notBetween</code>, <code>in</code>, <code>notIn</code>, <code>like</code>, <code>notLike</code>,
@@ -24,8 +24,8 @@ active: filter
 {% include subtitle.html anchor="is" value="The <em>is</em> method" h=4 %}
 
 <p>
-    This method is used when you want to add to your result set only the records that
-    have the specified column's value equal with a given value.
+    Adds a filtering condition, so that only those records, that have the specified column's value equal
+    to a given value, will be added to the result set.
 </p>
 
 {% highlight php startinline %}
@@ -44,9 +44,8 @@ SELECT * FROM `users` WHERE `age` = 18
 {% include subtitle.html anchor="isNot" value="The <em>isNot</em> method" h=4 %}
 
 <p>
-    This method is the opposite of the <code>is</code> method.
-    It will add to the result set only the records that doesn't have the specified column's value
-    equal with a given value.
+    Adds a filtering condition, so that only those records, that don't have the specified column's value equal
+    to a given value, will be added to the result set.
 </p>
 
 {% highlight php startinline %}
@@ -65,10 +64,9 @@ SELECT * FROM `users` WHERE `age` != 18
 {% include subtitle.html anchor="lessThan" value="The <em>lessThan</em> method" h=4 %}
 
 <p>
-    Use this method when you want to add to the result set all the records that have the specified
-    column's value lesser than a given value.
-    You can also add a <em>less than</em> condition by using the <code>lt</code> method,
-    which is an alias for the <code>lessThan</code> method.
+    Adds a filtering condition, so that only those records, that have the specified column's value lesser
+    than a given value, will be added to the result set. Alternatively, you can use the <code>lt</code>
+    method, which is an alias for the <code>lessThan</code> method, to add this filtering condition.
 </p>
 
 {% highlight php startinline %}
@@ -87,10 +85,9 @@ SELECT * FROM `users` WHERE `age` < 18
 {% include subtitle.html anchor="greaterThan" value="The <em>greaterThan</em> method" h=4 %}
 
 <p>
-    This method is the opposite of the <code>lessThan</code> method. It will add to the result set
-    all the records that have the specified column's value greater than a given value.
-    You can also add a <em>greater than</em> condition by using the <code>gt</code> method,
-    which is an alias for the <code>greaterThan</code> method.
+    Adds a filtering condition, so that only those, records that have the specified column's value greater
+    than a given value, will be added to the result set. Alternatively, you can use the <code>gt</code>
+    method, which is an alias for the <code>greaterThan</code> method, to add this filtering condition.
 </p>
 
 {% highlight php startinline %}
@@ -109,9 +106,9 @@ SELECT * FROM `users` WHERE `age` > 18
 {% include subtitle.html anchor="atLeast" value="The <em>atLeast</em> method" h=4 %}
 
 <p>
-    Adds to the result set all the records that have the specified column's value equal or greater than
-    a given value. A <em>greater than or equal</em> condition can be alternatively specified by using
-    the <code>gte</code> method, which is an alias for the <code>atLeast</code> method.
+    Adds a filtering condition, so that only those records, that have the specified column's value greater
+    than or equal to a given value, will be added to the result set. Alternatively, you can use the <code>gte</code>
+    method, which is an alias for the <code>atLeast</code> method, to add this filtering condition.
 </p>
 
 {% highlight php startinline %}
@@ -130,10 +127,9 @@ SELECT * FROM `users` WHERE `age` >= 18
 {% include subtitle.html anchor="atMost" value="The <em>atMost</em> method" h=4 %}
 
 <p>
-    This method is the opposite of the <code>atLeast</code> method.
-    It adds to the result set all the records that have the specified column's value equal or lesser than
-    a given value. A <em>less than or equal</em> condition can be alternatively specified by using
-    the <code>lte</code> method, which is an alias for the <code>atMost</code> method.
+    Adds a filtering condition, so that only those records, that have the specified column's value lesser
+    than or equal to a given value, will be added to the result set. Alternatively, you can use the <code>lte</code>
+    method, which is an alias for the <code>atMost</code> method, to add this filtering condition.
 </p>
 
 {% highlight php startinline %}
@@ -152,8 +148,8 @@ SELECT * FROM `users` WHERE `age` <= 18
 {% include subtitle.html anchor="between" value="The <em>between</em> method" h=4 %}
 
 <p>
-    Adds to the result set all the records that have the specified column's value within
-    a given range.
+    Adds a filtering condition, so that only those records, that have the specified column's value
+    within a given range, will be added to the result set.
 </p>
 
 {% highlight php startinline %}
@@ -172,9 +168,8 @@ SELECT * FROM `users` WHERE `age` BETWEEN 18 AND 21
 {% include subtitle.html anchor="notBetween" value="The <em>notBetween</em> method" h=4 %}
 
 <p>
-    This method is the opposite of the <code>between</code> method.
-    It adds to the result set all the records that doesn't have the specified column's value within
-    a given range.
+    Adds a filtering condition, so that only those records, that don't have the specified column's value
+    within a given range, will be added to the result set.
 </p>
 
 {% highlight php startinline %}
@@ -193,8 +188,8 @@ SELECT * FROM `users` WHERE `age` NOT BETWEEN 18 AND 21
 {% include subtitle.html anchor="in" value="The <em>in</em> method" h=4 %}
 
 <p>
-    Adds to the result set all the records that have the specified column's value contained within
-    a given set of values.
+    Adds a filtering condition, so that only those records, that have the specified column's value
+    contained within a given set of values, will be added to the result set.
 </p>
 
 {% highlight php startinline %}
@@ -211,8 +206,10 @@ SELECT * FROM `users` WHERE `city` IN ("London", "New York", "Paris")
 {% endhighlight %}
 
 <p>
-    You can also specify that the given set of values to be setted to the result returned by a subquery,
-    just by passing as an argument a callback function where you will construct the subquery.
+    Instead of providing a set of values by passing an array to <code>in</code> method, you could also
+    obtain a set of values by making a subquery to the database. To make a subquery, just pass
+    an anonymous function callback as an aqrgument to the <code>in</code> method, then use the object that is
+    passed as an argument to your callback function to build a query.
 </p>
 
 {% highlight php startinline %}
@@ -239,9 +236,8 @@ SELECT * FROM `users` WHERE `city` IN (SELECT `name` FROM `cities` WHERE `popula
 {% include subtitle.html anchor="notIn" value="The <em>notIn</em> method" h=4 %}
 
 <p>
-    This method is the opposite of the <code>in</code> method.
-    It adds to the result set all the records that doesn't have the specified column's value contained within
-    a given set of values.
+    Adds a filtering condition, so that only those records, that don't have the specified column's value
+    contained within a given set of values, will be added to the result set.
 </p>
 
 {% highlight php startinline %}
@@ -258,8 +254,8 @@ SELECT * FROM `users` WHERE `city` NOT IN ("London", "New York", "Paris")
 {% endhighlight %}
 
 <p>
-    You can also specify that the given set of values to be setted to the result returned by a subquery,
-    just by passing as an argument a callback function where you will construct the subquery.
+    As like in the case of the <code>in</code> method, you could also obtain a set of values to be used
+    for comparition, by making a subquery to the database.
 </p>
 
 {% highlight php startinline %}
@@ -291,7 +287,10 @@ SELECT * FROM `users` WHERE `city` NOT IN (SELECT `name` FROM `cities` WHERE `po
 
 {% highlight php startinline %}
 
-// Select all users that are living in a city of which name starts with the letter 'P'.
+/**
+ * Select all users that are living in a city
+ * of which name starts with the letter 'P'.
+ */
 
 $result = $db->from('users')
              ->where('city')->like('P%')
@@ -306,13 +305,16 @@ SELECT * FROM `users` WHERE `city` LIKE "P%"
 
 <p>
     This method is the opposite of the <code>like</code> method.
-    Adds a record to the result set only if the specified column's value match a given pattern.
+    A record will be added to the result set only if the value of the specified column doesn't match the given pattern.
 </p>
 
 {% highlight php startinline %}
 
-// Select all users that are living in a city of which name does not starts with the letter 'P'.
-
+/**
+ * Select all users that are living in a city
+ * of which name does not starts with the letter 'P'.
+ */
+ 
 $result = $db->from('users')
              ->where('city')->notLike('P%')
              ->select()
@@ -322,7 +324,44 @@ $result = $db->from('users')
 SELECT * FROM `users` WHERE `city` NOT LIKE "P%"
 {% endhighlight %}
 
+{% include subtitle.html anchor="isNull" value="The <em>isNull</em> method" h=4 %}
 
+<p>
+    Adds a record to the result set only if the value of the specified column is equal to <code>NULL</code>.
+</p>
+
+{% highlight php startinline %}
+
+// Select all users that do not have a website.
+ 
+$result = $db->from('users')
+             ->where('website')->isNull()
+             ->select()
+             ->all();
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users` WHERE `website` IS NULL
+{% endhighlight %}
+
+{% include subtitle.html anchor="notNull" value="The <em>notNull</em> method" h=4 %}
+
+<p>
+    This method is the opposite of the <code>isNull</code> method.
+    A record will be added to the result set only if the value of the specified column is not equal to <code>NULL</code>.
+</p>
+
+{% highlight php startinline %}
+
+// Select all users that do have a website.
+ 
+$result = $db->from('users')
+             ->where('website')->notNull()
+             ->select()
+             ->all();
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users` WHERE `website` IS NOT NULL
+{% endhighlight %}
 
 <p class="well text-primary">
     <strong><span class="fa fa-pencil"></span> TODO:</strong>
