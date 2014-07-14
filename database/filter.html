@@ -5,7 +5,7 @@ keywords: php, database, abstraction, query builder, schema builder
 description: Learn how to filter records
 active: filter
 ---
-<h1><strong>Filter records</strong></h1>
+<h1><strong>Filters</strong></h1>
 
 <p>
     Filtering records is one of the most important and intensively used operation in SQL.
@@ -15,10 +15,12 @@ active: filter
 
 <p>
     Adding a filtering condition is done by using the <code>where</code> method in conjunction with one of the
-    following methods: <code>is</code>, <code>isNot</code>, <code>lessThan</code>,
-    <code>greaterThan</code>, <code>atLeast</code>, <code>atMost</code>, <code>between</code>,
-    <code>notBetween</code>, <code>in</code>, <code>notIn</code>, <code>like</code>, <code>notLike</code>,
-    <code>isNull</code> and <code>notNull</code>.
+    following methods: <code>is</code> or <code>eq</code>, <code>isNot</code> or <code>ne</code>,
+    <code>lessThan</code> or <code>lt</code>,<code>greaterThan</code> or <code>gt</code>,
+    <code>atLeast</code> or <code>gte</code>,
+    <code>atMost</code> or <code>lte</code>,
+    <code>between</code>, <code>notBetween</code>, <code>in</code>, <code>notIn</code>,
+    <code>like</code>, <code>notLike</code>, <code>isNull</code> and <code>notNull</code>.
 </p>
 
 {% include subtitle.html anchor="is" value="The <em>is</em> method" h=4 %}
@@ -26,6 +28,8 @@ active: filter
 <p>
     Adds a filtering condition, so that only those records, that have the specified column's value equal
     to a given value, will be added to the result set.
+    Alternatively, to add this filtering condition, you can use the <code>eq</code>(equal)
+    method, which is an alias of the <code>is</code> method.
 </p>
 
 {% highlight php startinline %}
@@ -33,7 +37,7 @@ active: filter
 // Select all users that are 18.
 
 $result = $db->from('users')
-             ->where('age')->is(18)
+             ->where('age')->is(18) //Alternatively: ->where('age')->eq(18)
              ->select()
              ->all();
 {% endhighlight %}
@@ -46,6 +50,8 @@ SELECT * FROM `users` WHERE `age` = 18
 <p>
     Adds a filtering condition, so that only those records, that have the specified column's value
     not equal to a given value, will be added to the result set.
+    Alternatively, to add this filtering condition, you can use the <code>ne</code>(not equal)
+    method, which is an alias of the <code>isNot</code> method.
 </p>
 
 {% highlight php startinline %}
@@ -53,7 +59,7 @@ SELECT * FROM `users` WHERE `age` = 18
 // Select all users that are not 18.
 
 $result = $db->from('users')
-             ->where('age')->isNot(18)
+             ->where('age')->isNot(18) //Alternatively: ->where('age')->ne(18)
              ->select()
              ->all();
 {% endhighlight %}
@@ -65,8 +71,9 @@ SELECT * FROM `users` WHERE `age` != 18
 
 <p>
     Adds a filtering condition, so that only those records, that have the specified column's value lesser
-    than a given value, will be added to the result set. Alternatively, you can use the <code>lt</code>
-    method, which is an alias for the <code>lessThan</code> method, to add this filtering condition.
+    than a given value, will be added to the result set.
+    Alternatively, to add this filtering condition, you can use the <code>lt</code>(less than)
+    method, which is an alias of the <code>lessThan</code> method.
 </p>
 
 {% highlight php startinline %}
@@ -86,8 +93,9 @@ SELECT * FROM `users` WHERE `age` < 18
 
 <p>
     Adds a filtering condition, so that only those, records that have the specified column's value greater
-    than a given value, will be added to the result set. Alternatively, you can use the <code>gt</code>
-    method, which is an alias for the <code>greaterThan</code> method, to add this filtering condition.
+    than a given value, will be added to the result set.
+    Alternatively, to add this filtering condition, you can use the <code>gt</code>(greater than)
+    method, which is an alias of the <code>greaterThan</code> method.
 </p>
 
 {% highlight php startinline %}
@@ -107,8 +115,9 @@ SELECT * FROM `users` WHERE `age` > 18
 
 <p>
     Adds a filtering condition, so that only those records, that have the specified column's value greater
-    than or equal to a given value, will be added to the result set. Alternatively, you can use the <code>gte</code>
-    method, which is an alias for the <code>atLeast</code> method, to add this filtering condition.
+    than or equal to a given value, will be added to the result set.
+    Alternatively, to add this filtering condition, you can use the <code>gte</code>(greater than or equal)
+    method, which is an alias of the <code>atLeast</code> method.
 </p>
 
 {% highlight php startinline %}
@@ -128,8 +137,9 @@ SELECT * FROM `users` WHERE `age` >= 18
 
 <p>
     Adds a filtering condition, so that only those records, that have the specified column's value lesser
-    than or equal to a given value, will be added to the result set. Alternatively, you can use the <code>lte</code>
-    method, which is an alias for the <code>atMost</code> method, to add this filtering condition.
+    than or equal to a given value, will be added to the result set.
+    Alternatively, to add this filtering condition, you can use the <code>lte</code>(less than or equal)
+    method, which is an alias of the <code>atMost</code> method.
 </p>
 
 {% highlight php startinline %}
@@ -439,6 +449,47 @@ $result = $db->from('users')
 SELECT * FROM `users` WHERE `age` = 18 AND (`city` = "London" OR `city` = "Paris")
 {% endhighlight %}
 
+{% include subtitle.html anchor="Columns-comparision" value="Columns comparison" %}
+
+<p>
+    <strong>Opis Database</strong> allows you to add comparision conditions between columns.
+    You can add comparision conditions between two columns, by passing <code>TRUE</code> as a second argument
+    to the <code>is</code>, <code>isNot</code>, <code>lessThan</code>, <code>greaterThan</code>,
+    <code>atLeast</code> and <code>atMost</code> methods, or to their corresponding aliases <code>eq</code>
+    , <code>ne</code>, <code>lt</code>, <code>gt</code>, <code>lte</code> and <code>gte</code> methods.
+</p>
+
+{% highlight php startinline %}
+
+/**
+ * Select all users that are living in the same city they were born.
+ */
+ 
+$result = $db->from('users')
+             ->where('city')->eq('birthplace', true)
+             ->select()
+             ->all();
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users` WHERE `city` = `birthplace`
+{% endhighlight %}
+
+<p>
+    Building the above query without passing <code>TRUE</code> as the second argument to the
+    <code>eq</code> method, will result into a query that will select all users that are living in
+    a city named <code>birthplace</code>.
+</p>
+
+{% highlight php startinline %}
+$result = $db->from('users')
+             ->where('city')->eq('birthplace')
+             ->select()
+             ->all();
+{% endhighlight %}
+{% highlight sql %}
+SELECT * FROM `users` WHERE `city` = "birthplace"
+{% endhighlight %}
+
 {% include subtitle.html anchor="Exists" value="The EXISTS condition" %}
 
 <p>
@@ -464,9 +515,7 @@ SELECT * FROM `users` WHERE `age` = 18 AND (`city` = "London" OR `city` = "Paris
 $result = $db->from('users')
              ->whereExists(function($query){
                 $query->from('orders')
-                      ->where('orders.name')->is(function($expr){
-                            $expr->column('users.name');
-                      })
+                      ->where('orders.name')->eq('users.name', true)
                       ->select();
              })
              ->select()
@@ -475,8 +524,3 @@ $result = $db->from('users')
 {% highlight sql %}
 SELECT * FROM `users` WHERE EXISTS (SELECT * FROM `orders` WHERE `orders`.`name` = `users`.`name`)
 {% endhighlight %}
-
-<p class="well text-primary">
-    <strong><span class="fa fa-pencil"></span> TODO:</strong>
-    Describe how to filter records.
-</p>

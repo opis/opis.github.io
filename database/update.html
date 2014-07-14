@@ -6,7 +6,46 @@ description: Learn how to update existing records
 active: update
 ---
 <h1><strong>Update records</strong></h1>
-<p class="well text-primary">
-    <strong><span class="fa fa-pencil"></span> TODO:</strong>
-    Describe how to update existing records.
+
+<p>
+    Updating existing records is done by using the <code>update</code> method. This method takes
+    a single argument representing the table name which needs to be updated and returns an integer value,
+    representing the number of updated records.
 </p>
+
+<p>
+    Setting new values is done by passing as an argument to the <code>set</code> method
+    a <code>key => value</code> mapped array, where the <code>key</code> represents the column that will be updated,
+    and <code>value</code> represents the value that will be stored into the specifed column.
+</p>
+
+{% highlight php startinline %}
+// Update the description of all users
+
+$result = $db->update('users')
+             ->set(array(
+                'description' => 'Some description'
+             ));
+{% endhighlight %}
+{% highlight sql %}
+UPDATE `users` SET `description` = "Some description"
+{% endhighlight %}
+
+<p>
+    Updating a specific set of records is done by adding <a href="/database/filter.html">filtering</a> conditions.
+</p>
+
+{% highlight php startinline %}
+// Update the email and the description of a specific user
+
+$result = $db->update('users')
+             ->where('id')->is(2014)
+             ->set(array(
+                'email' => 'email@example.com',
+                'description' => 'Some description',
+             ));
+{% endhighlight %}
+{% highlight sql %}
+UPDATE `users` SET `email` = "email@example.com", `description` = "Some description" WHERE `id` = 2014
+{% endhighlight %}
+
