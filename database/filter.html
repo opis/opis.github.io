@@ -495,9 +495,9 @@ SELECT * FROM `users` WHERE `city` = "birthplace"
 <p>
     This condition is used in combination with a subquery and is considered to be met,
     if the subquery returns at least one row.
-    Adding an <code>EXISTS</code> condition is done by using the <code>whereExists</code> method.
-    You can add multiple <strong>EXISTS</strong> conditions by using the <code>andWhereExists</code>
-    and the <code>orWhereExists</code> methods.
+    Adding an <code>EXISTS</code> condition is done by using the <code>whereExists</code> and the <code>whereNotExists</code> methods.
+    You can add multiple <strong>EXISTS</strong> conditions by using the <code>andWhereExists</code> or <code>andWhereNotExists</code> methods
+    and the <code>orWhereExists</code> or <code>orWhereNotExists</code> methods.
 </p>
 
 <p>
@@ -524,3 +524,4 @@ $result = $db->from('users')
 {% highlight sql %}
 SELECT * FROM `users` WHERE EXISTS (SELECT * FROM `orders` WHERE `orders`.`name` = `users`.`name`)
 {% endhighlight %}
+
