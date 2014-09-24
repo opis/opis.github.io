@@ -102,7 +102,7 @@ $connection = Connection::create($dsn, $user, $password)
 use Opis\Database\DSN;
 use Opis\Database\Connection;
 
-$dsn = DSN::mysq('mydatabase');
+$dsn = DSN::mysql('mydatabase');
 
 $connection = new Connection((string) $dsn, $user, $password);
 {% endhighlight %}
@@ -117,7 +117,7 @@ $connection = new Connection((string) $dsn, $user, $password);
 {% highlight php startinline %}
 use Opis\Database\DSN;
 
-$dsn = DSN::mysq('mydatabase')->host('127.0.0.2')->port('1234')->charset('UTF8');
+$dsn = DSN::mysql('mydatabase')->host('127.0.0.2')->port('1234')->charset('UTF8');
 {% endhighlight %}
 
 <p>
