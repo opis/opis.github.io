@@ -1,0 +1,24 @@
+---
+layout: database
+title: Ordering criteria | Opis Database
+keywords: php, database, abstraction, query builder, schema builder
+description: Learn how to order results
+active: order
+---
+<h1><strong>Ordering criteria</strong></h1>
+
+<p class="well text-primary">
+    <strong><span class="fa fa-pencil"></span> TODO:</strong>
+    Provide a more detailed description about how to order results.
+</p>
+
+{% highlight php startinline %}
+$result = $db->from('users')
+             ->orderBy('name')
+             ->select()
+             ->all();
+{% endhighlight %}
+
+{% highlight sql %}
+SELECT * FROM `users` ORDER BY `name` ASC
+{% endhighlight %}
