@@ -1,7 +1,8 @@
+{% assign version = {{include.version | split:'.'}} %}
 {% highlight json %}
 {
     "require": {
-        "{{include.package}}": "{{include.version}}"
+        "{{include.package}}": "{{version[0]}}.{{version[1]}}.*"
     }
 }
 {% endhighlight %}
