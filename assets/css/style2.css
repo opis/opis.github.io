@@ -40,3 +40,13 @@ body{
     width: 100%;
     line-height: 100px;
 }
+
+a.link-anchor{
+  color: #2C3E50;
+  visibility: hidden;
+}
+
+*:hover > a.link-anchor{
+    visibility: visible;
+}
+

@@ -4,8 +4,7 @@
     {% assign h = 3 %}    
 {% endif %}
 <h{{h}}>
-    {% if include.anchor %}
-    <a id="{{include.anchor}}"></a>
-    {% endif %}
+    {%capture linkid%}{{include.value | strip_html | downcase | replace:' ','-'}}{%endcapture%}
     <strong>{{include.value}}</strong>
+    <a id="{{linkid}}" href="#{{linkid}}" class="link-anchor"><span class="fa fa-link"></span></a>
 </h{{h}}>
