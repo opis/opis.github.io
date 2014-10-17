@@ -16,5 +16,5 @@ projects:
   closure:
     name: Closure
     git: https://github.com/opis/closure
-    version: 1.2.1
+    version: 1.3.0
     

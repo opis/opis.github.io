@@ -3,36 +3,85 @@ layout: closure
 title: Opis Closure | www.opis.io
 keywords: php, closure, serialization, serializable closure, anonymous functions
 description: Serializable PHP closures
+tooltips: true
 active: home
 ---
 <h1><strong>Serializable closures</strong></h1>
 
+<p>
+    <strong>Opis Closure</strong> is a library that aims to overcome PHP's limitations regarding closure serialization
+    by providing a wrapper that will make the closure serializable.
+</p>
 
-<h3><strong>Requirements</strong></h3>
+<p>
+    <strong>The library's key features:</strong>
+    <ul>
+        <li>Serialize any closure</li>
+        <li>Doesn't use <code>eval</code> for closure serialization or unserialization</li>
+        <li>Works with any PHP version that has support for closures (Yes, even with PHP 5.3)</li>
+        <li>Handles all variables referenced/imported in <code>use()</code> and automatically
+        wraps all referenced/imported closures for proper serialization</li>
+        <li>Handles recursive closures</li>
+        <li>Handles magic constants like <code>__FILE__</code>, <code>__DIR__</code>,
+            <code>__LINE__</code>, <code>__NAMESPACE__</code></li>
+        <li>Simple and very fast parser</li>
+        <li>Any error or exception, that might occur when executing an unserialized closure,
+        can be caught and treated properly</li>
+        <li>You can serialize/unserialize any closure unlimited times,
+        even those previously unserialized (this is possible because <code>eval()</code> is not used for unserialization)</li>
+        <li>Provides a reflector that can give you informations about closure code's, parameters, ...</li>
+        <li>Supports serialization of bounded objects and scopes (available only from PHP >= 5.4)</li>
+    </ul>
+</p>
+
+{% include subtitle.html value="License" %}
+
+<p>
+    <strong>Opis Closure</strong> is licensed under the <a href="http://opensource.org/licenses/MIT" rel="nofollow">MIT License (MIT)</a>.
+</p>
+
+{% include subtitle.html value="Requirements" %}
+
 <ul>
-    <li>PHP 5.3.0 or higher</li>
+    <li>PHP 5.3.* or higher</li>
 </ul>
 
-<h3><strong>Installation</strong></h3>
+{% include subtitle.html value="Installation" %}
+
 <p>
     <strong>Opis Closure</strong> is available on
     {% include packagist.html project = "closure" %}
     and can be installed using
-    <a href="http://getcomposer.org" target="_blank" title="Composer site">Composer</a>.
+    <a href="http://getcomposer.org" target="_blank" rel="nofollow" title="Composer site">Composer</a>.
 </p>
 
 {% include composer.html package = "opis/closure" version = site.projects.closure.version %}
 
 <p>
-    If you are unable to use <strong>Composer</strong> you can download the
+    If you are unable to use <a href="http://getcomposer.org" target="_blank" rel="nofollow" title="Composer site">Composer</a>
+    you can download the
     {% include archive.html project = site.projects.closure file = "tar.gz" %}
     or the
     {% include archive.html project = site.projects.closure file = "zip" %} archive file,
-    extract the content of the archive and include de <kbd>autoload.php</kbd> file into your project.
+    extract the content of the archive and include de <code>autoload.php</code> file into your project.
 </p>
 
 {% highlight php startinline %}
-require_once 'path/to/database-{{site.projects.closure.version}}/autoload.php';
+require_once 'path/to/closure-{{site.projects.closure.version}}/autoload.php';
 {% endhighlight %}
 
-{% include tooltips.html %}
+{% include subtitle.html value="Note" %}
+
+<p>
+    Due to PHP limitations, this <strong>Opis Closure</strong> library cannot detect the correct closure code
+    if there is more then one closure on a single line.
+</p>
+
+{% highlight php startinline %}
+// This will NOT work!
+$first = function() {return "1st";}; $second = function() {return "2nd";};
+
+// This will work!
+$first = function() {return "1st";};
+$second = function() {return "2nd";};
+{% endhighlight %}
