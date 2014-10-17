@@ -23,7 +23,7 @@ active: filter
     <code>like</code>, <code>notLike</code>, <code>isNull</code> and <code>notNull</code>.
 </p>
 
-{% include subtitle.html anchor="is" value="The <em>is</em> method" h=4 %}
+{% include subtitle.html value="The <em>is</em> method" h=4 %}
 
 <p>
     Adds a filtering condition, so that only those records, that have the specified column's value equal
@@ -45,7 +45,7 @@ $result = $db->from('users')
 SELECT * FROM `users` WHERE `age` = 18
 {% endhighlight %}
 
-{% include subtitle.html anchor="isNot" value="The <em>isNot</em> method" h=4 %}
+{% include subtitle.html value="The <em>isNot</em> method" h=4 %}
 
 <p>
     Adds a filtering condition, so that only those records, that have the specified column's value
@@ -67,7 +67,7 @@ $result = $db->from('users')
 SELECT * FROM `users` WHERE `age` != 18
 {% endhighlight %}
 
-{% include subtitle.html anchor="lessThan" value="The <em>lessThan</em> method" h=4 %}
+{% include subtitle.html value="The <em>lessThan</em> method" h=4 %}
 
 <p>
     Adds a filtering condition, so that only those records, that have the specified column's value lesser
@@ -89,7 +89,7 @@ $result = $db->from('users')
 SELECT * FROM `users` WHERE `age` < 18
 {% endhighlight %}
 
-{% include subtitle.html anchor="greaterThan" value="The <em>greaterThan</em> method" h=4 %}
+{% include subtitle.html value="The <em>greaterThan</em> method" h=4 %}
 
 <p>
     Adds a filtering condition, so that only those, records that have the specified column's value greater
@@ -111,7 +111,7 @@ $result = $db->from('users')
 SELECT * FROM `users` WHERE `age` > 18
 {% endhighlight %}
 
-{% include subtitle.html anchor="atLeast" value="The <em>atLeast</em> method" h=4 %}
+{% include subtitle.html value="The <em>atLeast</em> method" h=4 %}
 
 <p>
     Adds a filtering condition, so that only those records, that have the specified column's value greater
@@ -133,7 +133,7 @@ $result = $db->from('users')
 SELECT * FROM `users` WHERE `age` >= 18
 {% endhighlight %}
 
-{% include subtitle.html anchor="atMost" value="The <em>atMost</em> method" h=4 %}
+{% include subtitle.html value="The <em>atMost</em> method" h=4 %}
 
 <p>
     Adds a filtering condition, so that only those records, that have the specified column's value lesser
@@ -155,7 +155,7 @@ $result = $db->from('users')
 SELECT * FROM `users` WHERE `age` <= 18
 {% endhighlight %}
 
-{% include subtitle.html anchor="between" value="The <em>between</em> method" h=4 %}
+{% include subtitle.html value="The <em>between</em> method" h=4 %}
 
 <p>
     Adds a filtering condition, so that only those records, that have the specified column's value
@@ -175,7 +175,7 @@ $result = $db->from('users')
 SELECT * FROM `users` WHERE `age` BETWEEN 18 AND 21
 {% endhighlight %}
 
-{% include subtitle.html anchor="notBetween" value="The <em>notBetween</em> method" h=4 %}
+{% include subtitle.html value="The <em>notBetween</em> method" h=4 %}
 
 <p>
     Adds a filtering condition, so that only those records, that don't have the specified column's value
@@ -195,7 +195,7 @@ $result = $db->from('users')
 SELECT * FROM `users` WHERE `age` NOT BETWEEN 18 AND 21
 {% endhighlight %}
 
-{% include subtitle.html anchor="in" value="The <em>in</em> method" h=4 %}
+{% include subtitle.html value="The <em>in</em> method" h=4 %}
 
 <p>
     Adds a filtering condition, so that only those records, that have the specified column's value
@@ -243,7 +243,7 @@ SELECT * FROM `users` WHERE `city` IN (SELECT `name` FROM `cities` WHERE `popula
 {% endhighlight %}
 
 
-{% include subtitle.html anchor="notIn" value="The <em>notIn</em> method" h=4 %}
+{% include subtitle.html value="The <em>notIn</em> method" h=4 %}
 
 <p>
     Adds a filtering condition, so that only those records, that don't have the specified column's value
@@ -289,7 +289,7 @@ SELECT * FROM `users` WHERE `city` NOT IN (SELECT `name` FROM `cities` WHERE `po
 {% endhighlight %}
 
 
-{% include subtitle.html anchor="like" value="The <em>like</em> method" h=4 %}
+{% include subtitle.html value="The <em>like</em> method" h=4 %}
 
 <p>
     Adds a filtering condition, so that only those records,
@@ -312,7 +312,7 @@ $result = $db->from('users')
 SELECT * FROM `users` WHERE `city` LIKE "P%"
 {% endhighlight %}
 
-{% include subtitle.html anchor="notLike" value="The <em>notLike</em> method" h=4 %}
+{% include subtitle.html value="The <em>notLike</em> method" h=4 %}
 
 <p>
     Adds a filtering condition, so that only those records,
@@ -335,7 +335,7 @@ $result = $db->from('users')
 SELECT * FROM `users` WHERE `city` NOT LIKE "P%"
 {% endhighlight %}
 
-{% include subtitle.html anchor="isNull" value="The <em>isNull</em> method" h=4 %}
+{% include subtitle.html value="The <em>isNull</em> method" h=4 %}
 
 <p>
     Adds a filtering condition, so that only those records, that have the specified column's value
@@ -355,7 +355,7 @@ $result = $db->from('users')
 SELECT * FROM `users` WHERE `website` IS NULL
 {% endhighlight %}
 
-{% include subtitle.html anchor="notNull" value="The <em>notNull</em> method" h=4 %}
+{% include subtitle.html value="The <em>notNull</em> method" h=4 %}
 
 <p>
     Adds a filtering condition, so that only those records, that have the specified column's value
@@ -375,7 +375,7 @@ $result = $db->from('users')
 SELECT * FROM `users` WHERE `website` IS NOT NULL
 {% endhighlight %}
 
-{% include subtitle.html anchor="Multiple" value="Multiple conditions" %}
+{% include subtitle.html value="Multiple conditions" %}
 
 <p>
     Adding multiple conditions to your query is done by using the <code>andWhere</code> and <code>orWhere</code> methods.
@@ -449,7 +449,7 @@ $result = $db->from('users')
 SELECT * FROM `users` WHERE `age` = 18 AND (`city` = "London" OR `city` = "Paris")
 {% endhighlight %}
 
-{% include subtitle.html anchor="Columns-comparision" value="Columns comparison" %}
+{% include subtitle.html value="Columns comparison" %}
 
 <p>
     <strong>Opis Database</strong> allows you to add comparision conditions between columns.
@@ -490,7 +490,7 @@ $result = $db->from('users')
 SELECT * FROM `users` WHERE `city` = "birthplace"
 {% endhighlight %}
 
-{% include subtitle.html anchor="Exists" value="The EXISTS condition" %}
+{% include subtitle.html value="The EXISTS condition" %}
 
 <p>
     This condition is used in combination with a subquery and is considered to be met,

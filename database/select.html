@@ -65,7 +65,7 @@ echo $name === false ? 'No records were found' : $name;
     over large data sets.
 </p>
 
-{% include subtitle.html anchor="Distinct" value="Distinct results" %}
+{% include subtitle.html value="Distinct results" %}
 
 <p>
     Retrieving only the distinct results is done using the <code>distinct</code> method.
@@ -80,7 +80,7 @@ $result = $db->from('users')
 SELECT DISTINCT * FROM `users`
 {% endhighlight %}
 
-{% include subtitle.html anchor="Columns" value="Columns" %}
+{% include subtitle.html value="Columns" %}
 
 <p>
     You can specify which columns you want to include in the result set by passing as an argument
@@ -120,7 +120,7 @@ foreach($result as $user)
 SELECT `name` AS `n`, `email`, `age` AS `a` FROM `users`
 {% endhighlight %}
 
-{% include subtitle.html anchor="Tables" value="Tables" %}
+{% include subtitle.html value="Tables" %}
 
 <p>
     When fetching records from a database you can specify muliple table sources by passing

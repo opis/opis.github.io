@@ -11,7 +11,7 @@ active: aggregate
    <strong>Opis Database</strong> provides support for most common and widely used aggreate functions.
 </p>
 
-{% include subtitle.html anchor="Count" value="Counting" %}
+{% include subtitle.html value="Counting" %}
 
 <p>
     Counting records is done using the <code>count</code> method.
@@ -54,7 +54,7 @@ echo 'We have registred users from ' . $count . ' different countries.';
 SELECT COUNT(DISTINCT `country`) FROM `users`
 {% endhighlight %}
 
-{% include subtitle.html anchor="Max" value="Largest value" %}
+{% include subtitle.html value="Largest value" %}
 
 <p>
     Finding the largest value of a column is done using the <code>max</code> method.
@@ -70,7 +70,7 @@ echo 'Our oldest user is ' . $count . ' years old.';
 SELECT MAX(`age`) FROM `users`
 {% endhighlight %}
 
-{% include subtitle.html anchor="Min" value="Smallest value" %}
+{% include subtitle.html value="Smallest value" %}
 
 <p>
     Finding the largest value of a column is done using the <code>min</code> method.
@@ -86,7 +86,7 @@ echo 'Our youngest user is ' . $count . ' years old.';
 SELECT MIN(`age`) FROM `users`
 {% endhighlight %}
 
-{% include subtitle.html anchor="Avg" value="Average value" %}
+{% include subtitle.html value="Average value" %}
 
 <p>
     Finding the average value of a numeric column is done using the <code>avg</code> method.
@@ -102,7 +102,7 @@ echo 'The average age of our users is ' . $count . ' years.';
 SELECT AVG(`age`) FROM `users`
 {% endhighlight %}
 
-{% include subtitle.html anchor="Sum" value="Total sum" %}
+{% include subtitle.html value="Total sum" %}
 
 <p>
     Finding the total sum of a numeric column is done using the <code>sum</code> method.

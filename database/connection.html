@@ -30,7 +30,7 @@ use Opis\Database\Connection;
 $connection = Connection::create('mysql:host=localhost;dbname=test', 'username', 'password');
 {% endhighlight %}
 
-{% include subtitle.html anchor="Options" value="Connection options" %}
+{% include subtitle.html value="Connection options" %}
 
 <p>
     The <a href="http://en.wikipedia.org/wiki/Data_source_name" target="_blank" data-toggle="tooltip" title="Data source name">DSN</a>,
@@ -88,7 +88,7 @@ $connection = Connection::create($dsn, $user, $password)
                         ->initCommand('SET NAMES UTF-8');
 {% endhighlight %}
 
-{% include subtitle.html anchor="DSN" value="DSN builder" %}
+{% include subtitle.html value="DSN builder" %}
 
 <p>
     <strong>Opis Database</strong> provides a <a href="http://en.wikipedia.org/wiki/Data_source_name" target="_blank" data-toggle="tooltip" title="Data source name">DSN</a>
