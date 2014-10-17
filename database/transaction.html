@@ -10,3 +10,26 @@ active: transaction
     <strong><span class="fa fa-pencil"></span> TODO:</strong>
     Describe how to perform transactions
 </p>
+
+{% highlight php startinline %}
+use Opis\Database\Connection;
+use Opis\Database\Database;
+
+$connection = new Connection('mysql:host=localhost;dbname=test', 'username', 'password');
+
+$db = new Database($connection);
+
+$db->transaction(function($db){
+    
+    $db->insert(array(
+        'first_name' => 'John',
+        'last_name' => 'Doe'
+    ))
+    ->into('users');
+    
+    return $db->getConnection()->pdo()->lastInsertId();
+    
+})
+->execute();
+
+{% endhighlight %}
