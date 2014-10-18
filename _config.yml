@@ -20,4 +20,4 @@ projects:
   container:
     name: Container
     git: https://github.com/opis/container
-    version: 2.1.0
+    version: 2.2.0
