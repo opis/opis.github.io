@@ -1,0 +1,110 @@
+---
+layout: container
+title: The container | www.opis.io
+keywords: php, container, dependency injection, abstractization
+description: Learn how the DIC works
+active: container
+---
+<h1><strong>The container</strong></h1>
+
+<p>
+    Creating a dependency injection container is done by simply creating a new instance
+    of the <code>Opis\Container\Container</code> class. The constructor of this class takes no arguments.
+</p>
+
+{% highlight php startinline %}
+use Opis\Container\Container;
+
+$container = new Container();
+{% endhighlight %}
+
+<p>
+    Creating an instance of a given class is done by calling the <code>make</code> method or by invoking the container
+    instance and passing as an argument a string, representing the name of the class or of the interface you want to build.
+</p>
+
+{% highlight php startinline %}
+// calling the 'make' method
+$instance = $container->make('Some\Namespace\SampleClass');
+
+// invoking the container
+$instance = $container('Some\Namespace\SampleClass');
+{% endhighlight %}
+
+<p>
+    Optionally, you can pass as the second argument to the <code>make</code> method(or when you invoke the container) an
+    array of values that will be passed as arguments when the specified class or interface will be builded.
+</p>
+
+{% highlight php startinline %}
+class User
+{
+    protected $name;
+    protected $number;
+    
+    public function __construct($name)
+    {
+        $this->name = $name;
+    }
+    
+    public function name()
+    {
+        return $this->name;
+    }
+    
+    public function phoneNumber()
+    {
+        return $this->number;
+    }
+    
+    public function setPhoneNumber($number)
+    {
+        $this->number = $number;
+    }
+}
+
+// calling the 'make' method
+$user = $container->make('User', array('John Doe'));
+
+// or you can directly invoke the container
+$user = $container('User', array('John Doe'));
+
+echo $user->name(); //> John Doe
+{% endhighlight %}
+
+{% include subtitle.html value="Setters" %}
+
+<p>
+    After a specified type was builded, the container allows you to manipulate the resulted object
+    by defining one ore more <em>setters</em>. Defining a setter is done by calling the <code>setter</code>
+    method and passing as an argument to the method an anonymous function callback.
+    The callback has two argument: the instance of the builded type and the instance of the container.
+</p>
+
+{% highlight php startinline %}
+
+$user = $container('User', array('John Doe'))->setter(function($user, $container){
+    $user->setPhoneNumber('000-1234-5678');
+});
+
+echo $user->phoneNumber(); //> 000-1234-5678
+
+{% endhighlight %}
+
+{% include subtitle.html value="Aliasing names" %}
+
+<p>
+    The container allows you to define alias names for class names or interface names by calling the <code>alias</code> method.
+    The method takes as arguments the class or the interface name and the alias name for that type.
+</p>
+
+{% highlight php startinline %}
+$container->alias('Some\Very\Long\Namespace\ClassName', 'ShorterTypeName');
+$instance = $container->make('ShorterTypeName');
+echo get_class($instance); //> Some\Very\Long\Namespace\ClassName
+
+$container->alias('ShorterTypeName', 'Stn');
+$instance = $container->make('Stn');
+echo get_class($instance); //> Some\Very\Long\Namespace\ClassName
+{% endhighlight %}
+

@@ -1,0 +1,52 @@
+---
+layout: container
+title: Opis Container | www.opis.io
+keywords: php, container, dependency injection, abstractization
+description: A serializable dependency injection container
+tooltips: true
+active: home
+---
+<h1><strong>Dependency injection container</strong></h1>
+
+<p>
+    <strong>Opis Container</strong> is a library that provides a fully serializable dependency injection container.
+    The <strong>Opis Container</strong> library can be used to deliver a more reusable, testable and maintainable code,
+    while increasing the speed of development.
+</p>
+
+{% include subtitle.html value="License" %}
+
+<p>
+    <strong>Opis Container</strong> is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" rel="nofollow">Apache License, Version 2.0</a>.
+</p>
+
+{% include subtitle.html value="Requirements" %}
+
+<ul>
+    <li>PHP 5.3.* or higher</li>
+    <li><a href="/closure" data-toggle="tooltip" title="Opis Closure {{site.projects.closure.version}}">Opis Closure</a> 1.3.*</li>
+</ul>
+
+{% include subtitle.html value="Installation" %}
+
+<p>
+    <strong>Opis Container</strong> is available on
+    {% include packagist.html project = "container" %}
+    and can be installed using
+    <a href="http://getcomposer.org" target="_blank" rel="nofollow" title="Composer site">Composer</a>.
+</p>
+
+{% include composer.html package = "opis/container" version = site.projects.container.version %}
+
+<p>
+    If you are unable to use <a href="http://getcomposer.org" target="_blank" rel="nofollow" title="Composer site">Composer</a>
+    you can download the
+    {% include archive.html project = site.projects.container file = "tar.gz" %}
+    or the
+    {% include archive.html project = site.projects.container file = "zip" %} archive file,
+    extract the content of the archive and include de <code>autoload.php</code> file into your project.
+</p>
+
+{% highlight php startinline %}
+require_once 'path/to/container-{{site.projects.container.version}}/autoload.php';
+{% endhighlight %}

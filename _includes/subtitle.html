@@ -4,7 +4,7 @@
     {% assign h = 3 %}    
 {% endif %}
 <h{{h}}>
-    {%capture linkid%}{{include.value | strip_html | downcase | replace:' ','-'}}{%endcapture%}
+    {%capture linkid%}{{include.value | strip_html | downcase | replace:  "'",'-' | replace:' ','-'}}{%endcapture%}
     <strong>{{include.value}}</strong>
     <a id="{{linkid}}" href="#{{linkid}}" class="link-anchor"><span class="fa fa-link"></span></a>
 </h{{h}}>
