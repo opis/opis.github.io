@@ -11,3 +11,14 @@ active: bind
     <strong><span class="fa fa-pencil"></span> TODO:</strong>
     Provide a more detailed description about how to bind abstract types to concrete types.
 </p>
+
+
+{% include subtitle.html value="Setters" %}
+
+<p>
+After a specified type was builded, the container allows you to manipulate the resulted object by defining one or more setters.
+Defining a setter is done by calling the <code>setter</code> method and passing an anonymous function callback as an argument
+to the method.
+The callback has two arguments: the instance of the builded type and the instance of the container.
+</p>
+

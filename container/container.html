@@ -72,25 +72,6 @@ $user = $container('User', array('John Doe'));
 echo $user->name(); //> John Doe
 {% endhighlight %}
 
-{% include subtitle.html value="Setters" %}
-
-<p>
-    After a specified type was builded, the container allows you to manipulate the resulted object
-    by defining one ore more <em>setters</em>. Defining a setter is done by calling the <code>setter</code>
-    method and passing as an argument to the method an anonymous function callback.
-    The callback has two argument: the instance of the builded type and the instance of the container.
-</p>
-
-{% highlight php startinline %}
-
-$user = $container('User', array('John Doe'))->setter(function($user, $container){
-    $user->setPhoneNumber('000-1234-5678');
-});
-
-echo $user->phoneNumber(); //> 000-1234-5678
-
-{% endhighlight %}
-
 {% include subtitle.html value="Aliasing names" %}
 
 <p>
