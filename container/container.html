@@ -19,8 +19,8 @@ $container = new Container();
 {% endhighlight %}
 
 <p>
-    Creating an instance of a given class is done by calling the <code>make</code> method or by invoking the container
-    instance and passing as an argument a string, representing the name of the class or of the interface you want to build.
+    Resolving a type is done by calling the <code>make</code> method or by invoking the container
+    instance and passing as an argument a string, representing the type you want to resolve.
 </p>
 
 {% highlight php startinline %}
@@ -33,7 +33,7 @@ $instance = $container('Some\Namespace\SampleClass');
 
 <p>
     Optionally, you can pass as the second argument to the <code>make</code> method(or when you invoke the container) an
-    array of values that will be passed as arguments when the specified class or interface will be builded.
+    array of values that will be passed as arguments when the specified type will be resolved.
 </p>
 
 {% highlight php startinline %}
@@ -75,7 +75,7 @@ echo $user->name(); //> John Doe
 {% include subtitle.html value="Aliasing names" %}
 
 <p>
-    The container allows you to define alias names for class names or interface names by calling the <code>alias</code> method.
+    The container allows you to define alias names for types by calling the <code>alias</code> method.
     The method takes as arguments the class or the interface name and the alias name for that type.
 </p>
 
