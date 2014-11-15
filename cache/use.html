@@ -1,0 +1,108 @@
+---
+layout: cache
+title: Opis Cache | www.opis.io
+keywords: php, cache, database cache, file cache, multiple storages
+description: Learn how to use the library and how to deal with cached content
+active: use
+---
+<h1><strong>Using the library</strong></h1>
+
+<p>
+    Working with cached content is done by using the <code>Opis\Cache\Cache</code> class.
+    The constructor of this class takes as an argument an instance of the the <code>Opis\Cache\StorageInterface</code>,
+    representing the backend storage where you will write and read from.
+</p>
+
+{% highlight php startinline %}
+use Opis\Cache\Cache;
+use Opis\Cache\Storage\Memory as CacheStorage;
+
+$cache = new Cache(new CacheStorage());
+{% endhighlight %}
+
+<p>
+    All content is stored using key-value pairs and storing a value is
+    done by calling the <code>write</code> method. The method takes as a first argument a
+    string, representing the key, and as a second argument the value you want to be stored.
+    The method returns <code>true</code> if the content was cached successfully and <code>false</code>
+    otherwise.
+</p>
+
+{% highlight php startinline %}
+$cache->write('hello', 'Hello World!');
+{% endhighlight %}
+
+<p>
+    Optionally, you can specify how long will be the cached content available, by passing a
+    third argument to the <code>write</code> method, representing the amount of time expressed in seconds.
+    By default the cached content is available for an undetermined period.
+</p>
+
+{% highlight php startinline %}
+//The content will expire after 1 hour
+$cache->write('hello', 'Hello World!', 3600);
+{% endhighlight %}
+
+<p>
+    Retrieving content from cache is done by calling the <code>read</code> method with a string argument representing
+    the key that was used to store the content. If no content is available, or if the cached content has expired, this
+    method returns <code>false</code>.
+</p>
+
+{% highlight php startinline %}
+echo $cache->read('hello'); //> Hello World!
+{% endhighlight %}
+
+<p>
+    Checking if some content was stored under a certain key is done by calling the <code>has</code> method and passing as an
+    argument a string representing the key name you want to check. This method returns <code>false</code> if
+    if nothing was stored under the specified key, or if the content expired and <code>true</code> otherwise.
+</p>
+
+{% highlight php startinline %}
+if($cache->has('read'))
+{
+    echo $cache->read('hello'); //> Hello World!
+}
+{% endhighlight %}
+
+<p>
+    The <code>load</code> method returns the data stored under the specified key, or, if nothing was stored under
+    that key, it will store and return the result obtained by calling the given closure with
+    a string argument representing the specified key.
+</p>
+
+{% highlight php startinline %}
+$content = $cache->load('hello', function($key){
+    return 'Hello Wolrd!';
+});
+{% endhighlight %}
+
+<p>
+    Optionally, you can specify how long will be available the content obtained when the given closure was called,
+    by passing a third argument to the <code>load</code> method, representing the amount of time expressed in seconds.
+</p>
+
+{% highlight php startinline %}
+$content = $cache->load('hello', function($key){
+    return 'Hello Wolrd!';
+}, 3600);
+{% endhighlight %}
+
+<p>
+    Deleting content that was stored under a certain key is done by calling the <code>delete</code>
+    method. This method returns <code>true</code> on success and <code>false</code> otherwise.
+</p>
+
+{% highlight php startinline %}
+$cache->delete('hello');
+{% endhighlight %}
+
+<p>
+    You can delete all cached content by calling the <code>clear</code> method.
+    The method returns <code>true</code> on success and <code>false</code> otherwise.
+</p>
+
+{% highlight php startinline %}
+$cache->clear();
+{% endhighlight %}
