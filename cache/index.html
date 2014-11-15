@@ -1,0 +1,60 @@
+---
+layout: cache
+title: Opis Cache | www.opis.io
+keywords: php, cache, database cache, file cache, multiple storages
+description: A caching library with support for multiple backend storages
+tooltips: true
+active: home
+---
+<h1><strong>Caching library</strong></h1>
+
+<p>
+    <strong>Opis Cache</strong> is a caching library, with support for multiple backend storages,
+    that provides developers an API which allows them to deal with cached content in a standardised way,
+    no matter where that content is stored. Also, the <strong>Opis Cache</strong>'s simple and effective architecture, ensures that support for new backend storages
+    can be easily achieved by simply implementing an interface.
+</p>
+
+<p>
+    The currently supported storages are: APC, APCU, Database, File, Memory, Memcache, Memcached, MongoDB,
+    Proxy, Redis, WinCache, XCache, ZendCache and ZendMemory.
+</p>
+
+{% include subtitle.html value="License" %}
+
+<p>
+    <strong>Opis Cache</strong> is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" rel="nofollow">Apache License, Version 2.0</a>.
+</p>
+
+{% include subtitle.html value="Requirements" %}
+
+<ul>
+    <li>PHP 5.3.* or higher</li>
+    <li><a href="/closure" data-toggle="tooltip" title="Opis Closure 1.3.*">Opis Closure</a> 1.3.*</li>
+    <li><a href="/database" data-toggle="tooltip" title="Opis Database 2.0.*">Opis Database</a> 2.0.* (for Database storage)</li>
+    <li><a href="https://github.com/nrk/predis" data-toggle="tooltip" title="Predis 0.8.*">Predis</a> 0.8.* (for Redis storage)</li>
+</ul>
+
+{% include subtitle.html value="Installation" %}
+
+<p>
+    <strong>Opis Cache</strong> is available on
+    {% include packagist.html project = "cache" %}
+    and can be installed using
+    <a href="http://getcomposer.org" target="_blank" rel="nofollow" title="Composer site">Composer</a>.
+</p>
+
+{% include composer.html package = "opis/cache" version = site.projects.cache.version %}
+
+<p>
+    If you are unable to use <a href="http://getcomposer.org" target="_blank" rel="nofollow" title="Composer site">Composer</a>
+    you can download the
+    {% include archive.html project = site.projects.cache file = "tar.gz" %}
+    or the
+    {% include archive.html project = site.projects.cache file = "zip" %} archive file,
+    extract the content of the archive and include de <code>autoload.php</code> file into your project.
+</p>
+
+{% highlight php startinline %}
+require_once 'path/to/cache-{{site.projects.cache.version}}/autoload.php';
+{% endhighlight %}

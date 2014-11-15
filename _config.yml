@@ -21,3 +21,8 @@ projects:
     name: Container
     git: https://github.com/opis/container
     version: 2.2.0
+  cache:
+    name: Cache
+    git: https://github.com/opis/cache
+    version: 2.0.0
+    
