@@ -1,0 +1,93 @@
+---
+layout: cache
+title: Opis Cache | www.opis.io
+keywords: php, cache, database cache, file cache, multiple storages, collections
+description: Learn how to create and use storage collections
+active: collection
+---
+<h1><strong>Storage collection</strong></h1>
+
+<p>
+    Storage collections allows you to group multiple cache storage implementations into a single collection.
+    The collection is fully serializable, allowing you save the state of the collection at any time.
+</p>
+
+<p>
+    Creating a new collection is simply done by creating a new instance of <code>Opis\Cache\StorageCollection</code> class.
+</p>
+
+{% highlight php startinline %}
+use Opis\Cache\SorageCollection
+
+$collection = new StorageCollection();
+{% endhighlight %}
+
+<p>
+    Adding a cache storage implementation to the collection is done by calling the <code>add</code> method.
+    The method takes three arguments: a string, representing the name of the implementation, an anonymous function,
+    callback and optionally a boolean value that specify if this is the default implementation of this collection (by default is <code>false</code>).
+</p>
+
+<p>
+    The anonymous callback function must return an instance of <code>Opis\Cache\StorageInterface</code> that
+    will be further used to build an <code>Opis\Cache\Cache</code> instance.
+</p>
+
+{% highlight php startinline %}
+//Adding a new implementation
+$collection->add('memory', function(){
+    return new \Opis\Cache\Storage\Memory();
+});
+
+//Adding another implementation and set it as the default cache implementation
+$collection->add('file', function(){
+    return new \Opis\Cache\Storage\File('/path/to/cache/folder');
+}, true);
+{% endhighlight %}
+
+
+<p>
+    Retrieving an implementation is done bay calling the <code>get</code> method with a string argument
+    representing the name of the implementation. If the argument is omitted, then the default implementation
+    will be returned. If no implementation was explicitly designated as the default implementation,
+    then the first implementation added to the collection will be designated as the default implementation
+    for this collection.
+</p>
+
+{% highlight php startinline %}
+//Write to memory cache
+$collection->get('memory')->write('hello', 'Hello world');
+
+//Write to the default (file) cache
+$collection->get()->write('hello', 'Hello world');
+{% endhighlight %}
+
+<p>
+    Checking if an implementation exist, is done by using the <code>has</code> method.
+</p>
+{% highlight php startinline %}
+
+if($collection->has('memory'))
+{
+    $collection->get('memory')->write('hello', 'Hello World!');
+}
+
+{% endhighlight %}
+<p>
+    Changing or setting the default implementation is done by calling the <code>setDefault</code> method
+    and passing as an argument to the method a string representing the implementation name.
+</p>
+
+{% highlight php startinline %}
+$collection->setDefault('memory');
+{% endhighlight %}
+
+<p>
+    Removing an implementation is done by calling the <code>remove</code> method and passing as an argument
+    a string representing the implementation name.
+</p>
+
+{% highlight php startinline %}
+$collection->remove('file');
+{% endhighlight %}
+
