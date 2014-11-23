@@ -24,7 +24,7 @@ projects:
   cache:
     name: Cache
     git: https://github.com/opis/cache
-    version: 2.0.0
+    version: 2.1.0
   session:
     name: Session
     git: https://github.com/opis/session
