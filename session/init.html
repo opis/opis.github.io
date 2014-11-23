@@ -1,0 +1,90 @@
+---
+layout: session
+title: Initiating a session | Opis Session
+keywords: php, session, session manager, session redis, session database
+description: Learn how to initiate a session.
+active: init
+---
+<h1><strong>Initiating a session</strong></h1>
+
+<p>
+    Initiating a sessions is done by creating a new instance of the <code>Opis\Session\Session</code> class.
+    The constructor of this class takes two optional arguments: an instance of <code>SessionHandlerInterface</code>,
+    representing the session storage, and an array containing configuration options.
+</p>
+
+{% highlight php startinline %}
+use Opis\Session\Session;
+use Opis\Session\Storage\File;
+
+$session = new Session(new File('/path/to/session/folder'), array('name' => 'my_session'));
+{% endhighlight %}
+
+<p>
+    You can instantiate a session using the default configuration options, by omitting the second
+    argument.
+</p>
+
+{% highlight php startinline %}
+use Opis\Session\Session;
+use Opis\Session\Storage\File;
+
+$session = new Session(new File('/path/to/session/folder'));
+{% endhighlight %}
+
+<p>
+    The available configuration options are:
+    <ul>
+        <li>
+            <code>name</code> &rarr; The session name. The default value is <code>opis</code>.
+        </li>
+        <li>
+            <code>flashslot</code> &rarr; The name of the key where flash data will be saved.
+            The default value is <code>opis:flashdata</code>.
+        </li>
+        <li>
+            <code>lifetime</code> &rarr; Lifetime of the session cookie, defined in seconds.
+            The default value is retrieved from <code>php.ini</code> (<code>session.cookie_lifetime</code>)
+        </li>
+        <li>
+            <code>domain</code> &rarr; Cookie's domain. To make cookies visible on all subdomains then the domain must be prefixed with a dot.
+            The default value is retrieved from <code>php.ini</code> (<code>session.cookie_domain</code>)
+        </li>
+        <li>
+            <code>path</code> &rarr; Path on the domain where the cookie will work.
+            Use a single slash (<code>/</code>) for all paths on the domain.
+            The default value is retrieved from <code>php.ini</code> (<code>session.cookie_path</code>)
+        </li>
+        <li>
+            <code>secure</code> &rarr; If <code>true</code> cookie will only be sent over secure connections. 
+            The default value is retrieved from <code>php.ini</code> (<code>session.cookie_secure</code>)
+        </li>
+        <li>
+            <code>httponly</code> &rarr; If set to <code>true</code> then PHP will attempt to send the <code>httponly</code>
+            flag when setting the session cookie. 
+            The default value is retrieved from <code>php.ini</code> (<code>session.cookie_httponly</code>)
+        </li>
+    </ul>
+</p>
+
+<p>
+    To use the PHP's default session storage along with the default configurations, simply create an instance
+    of the <code>Opis\Session\Session</code> class without passing arguments to the constructor.
+</p>
+
+{% highlight php startinline %}
+use Opis\Session\Session;
+
+$session = new Session();
+{% endhighlight %}
+
+<p>
+    If you want to use the PHP's default session storage, but you also want to setup some configurations,
+    then pass <code>null</code> as the first argument to the constructor.
+</p>
+
+{% highlight php startinline %}
+use Opis\Session\Session;
+
+$session = new Session(null, array('name' => 'my_session'));
+{% endhighlight %}

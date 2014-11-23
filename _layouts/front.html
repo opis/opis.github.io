@@ -1,0 +1,35 @@
+---
+layout: default
+highlight: /assets/css/syntax.css
+custom:
+    css: ['style.css']
+---
+
+<div id="header" class="container">
+    <ul class="nav nav-pills pull-right">
+        <li>
+            <a href="http://www.opis.io" title="Main page">
+                <span class="fa fa-home"></span> Home
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/opis/{{page.project}}" title="Github page">
+                <span class="fa fa-github fa-lg"></span> GitHub
+            </a>
+        </li>
+        <li>
+            <a href="http://twitter.com/opisproject" target="_blank" title="Twitter page">
+                <span class="fa fa-twitter"></span> Twitter
+            </a>
+        </li>
+    </ul>
+    <h3 class="text-muted">
+        <strong>The</strong>
+        <img src="/assets/img/opis-100.png" class="img-responsive opis-inline-logo">
+        <strong>Project</strong>
+    </h3>
+</div>
+{{content}}
+<div id="footer" class="text-center text-muted">
+    Copyright &copy; 2014 Marius Sarca. All rights reserved.
+</div>

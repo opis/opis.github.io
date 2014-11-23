@@ -1,3 +1,12 @@
+html{
+    position: relative;
+    min-height: 100%;
+}
+
+body{
+    margin-bottom: 100px;
+}
+
 .highlight pre{
     background-color: #F8F8F8;
     border: 1px solid #DDDDDD;
@@ -9,17 +18,57 @@
     color: inherit;
 }
 
-body{
-    margin: 20px 0px;
-}
-
 .opis-inline-logo{
     display: inline;
     width: 100px;
     height: 100px;
 }
 
-.jumbotron {
-    background: url('/jumbotron.png');
-    color: #fff;
+#header{
+    margin-bottom: 30px;
+    border-bottom: #eee 1px solid;
+}
+
+#header .nav{
+    margin-top: 50px;
+}
+
+#footer{
+    height: 100px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    line-height: 100px;
+}
+
+a.link-anchor{
+  color: #2C3E50;
+  visibility: hidden;
+}
+
+*:hover > a.link-anchor{
+    visibility: visible;
+}
+
+p > code{
+    white-space: pre-wrap;
+}
+
+.project-logo-box{
+    background-image: url('/assets/img/opis-gs.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100px;
+}
+
+.project-logo-box:after{
+    content: attr(data-project-title);
+    font-family: "Lato","Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 100px;
+    display: block;
+    text-align: center;
+    padding-top: 40px;
+    text-shadow: 1px 1px 2px #EEEEEE, 2px 2px 0 #707070
 }

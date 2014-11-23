@@ -53,3 +53,22 @@ a.link-anchor{
 p > code{
     white-space: pre-wrap;
 }
+
+.project-logo-box{
+    background-image: url('/assets/img/opis-gs.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100px;
+}
+
+.project-logo-box:after{
+    content: attr(data-project-title);
+    font-family: "Lato","Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 100px;
+    display: block;
+    text-align: center;
+    padding-top: 40px;
+    text-shadow: 1px 1px 2px #EEEEEE, 2px 2px 0 #707070
+}

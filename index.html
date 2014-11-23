@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: front
 title: The Opis Project | www.opis.io
 keywords: php, project, components, open source, opis
 description: Open source PHP components. Database abstraction layer, Dependency injection, serializable closures and more
@@ -15,36 +15,128 @@ repo:
 <div class="container">
     <div class="jumbotron">
         <div class="row">
-            <div class="col-md-12 text-center">
-                <h2>
-                    <strong>The <img src="/assets/img/opis-100.png" class="img-responsive opis-inline-logo"> Project</strong>
-                </h2>
+            <div class="col-md-4">
+                <img class="img-responsive" src="/assets/img/opis-colibri-gs.png">
+            </div>
+            <div class="col-md-8">
+                <h2><strong>A different kind of framework</strong></h2>
                 <p class="lead">
-                    A collection of open source projects.
+                    Build and deploy your web application in minutes.
                 </p>
-                <p>
-                    <a class="btn btn-success btn-lg" href="https://github.com/opis" target="_blank">
-                        <strong>
-                            <span class="fa fa-github"></span> GitHub
-                        </strong>
+                
+                <p class="text-right">
+                    <a class="btn btn-default" role="button" href="https://github.com/opis/colibri">
+                        <span class="fa fa-github fa-large"></span> GitHub
                     </a>
-                    <a class="btn btn-primary btn-lg" href="https://twitter.com/opisproject" target="_blank">
-                        <strong>
-                            <span class="fa fa-twitter"></span> Twitter
-                        </strong>
-                    </a>
+                    <a class="btn btn-primary" role="button" href="/colibri">Read more</a>
                 </p>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
-            <h3>
-            <strong>Projects</strong>
-            </h3>
-            {% include list_repos.html hide = page.repo.hide own_link = page.repo.own_link %}
+            {% include component-start.html name="Database" title="Database abstraction layer" %}
+            <p>
+                Opis Database is a library that provides an abstraction layer over several database systems,
+                offering a standard way of handling database records and thus, making the differences
+                between various SQL dialects irrelevant to the developers.
+            </p>
+            {% include component-end.html github="https://github.com/opis/database" page="/database" %}
         </div>
-        <div class="col-md-8">
+        
+        <div class="col-md-4">
+            {% include component-start.html name="Closure" title="Serializable closures" %}
+            <p>
+                Opis Closure is a library that aims to overcome PHP's limitations regarding closure serialization
+                by providing a wrapper that will make the closure serializable. 
+            </p>
+            {% include component-end.html github="https://github.com/opis/closure" page="/closure" %}
         </div>
+        
+        <div class="col-md-4">
+            {% include component-start.html name="Container" title="Dependency injection container" %}
+            <p>
+                Opis Container is a library that provides a fully serializable dependency injection
+                container. The Opis Container library can be used to deliver a more reusable,
+                testable and maintainable code, while increasing the speed of development. 
+            </p>
+            {% include component-end.html github="https://github.com/opis/container" page="/container" %}
+        </div>
+        
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4">
+            {% include component-start.html name="Cache" title="Caching library" %}
+            <p>
+                Opis Cache is a caching library, with support for multiple backend storages, that provides
+                developers an API which allows them to deal with cached content in a standardised way,
+                no matter where that content is stored.
+            </p>
+            {% include component-end.html github="https://github.com/opis/cache" page="/cache" %}
+        </div>
+        
+        <div class="col-md-4">
+            {% include component-start.html name="Session" title="Session manager" %}
+            <p>
+                Opis Session is a session manager library with support for multiple backend storages that
+                provides developers with an API which allows them to handle session related informations
+                in a standardised way. 
+            </p>
+            {% include component-end.html github="https://github.com/opis/session" page="/session" %}
+        </div>
+        
+        <div class="col-md-4">
+            {% include component-start.html name="Config" title="Simple config library" %}
+            <p>
+                A config library.
+            </p>
+            {% include component-end.html github="https://github.com/opis/config" %}
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4">
+            {% include component-start.html name="Routing" title="Routing framework" %}
+            <p>
+                A routing framework.
+            </p>
+            {% include component-end.html github="https://github.com/opis/routing" %}
+        </div>
+        
+        <div class="col-md-4">
+            {% include component-start.html name="Http Routing" title="Http routing library" %}
+            <p>
+                A library that can route HTTP requests.
+            </p>
+            {% include component-end.html github="https://github.com/opis/session"  %}
+        </div>
+        
+        <div class="col-md-4">
+            {% include component-start.html name="Events" title="Events library" %}
+            <p>
+                Dispatch and intercept events.
+            </p>
+            {% include component-end.html github="https://github.com/opis/config" %}
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4">
+            {% include component-start.html name="View" title="Render engine" %}
+            <p>
+                A library that can be integrated with multiple template engines.
+            </p>
+            {% include component-end.html github="https://github.com/opis/view" %}
+        </div>
+        
+        <div class="col-md-4">
+            {% include component-start.html name="Http" title="Http library" %}
+            <p>
+                A library that deals with HTTP requests.
+            </p>
+            {% include component-end.html github="https://github.com/opis/http"  %}
+        </div>
+        
     </div>
 </div>
