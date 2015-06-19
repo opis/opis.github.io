@@ -18,6 +18,16 @@ body{
     color: inherit;
 }
 
+.box-highlight .highlight pre{
+    background-color: #fff;
+    border: none;
+    font-size: 11px;
+}
+
+.table.box-highlight th{
+    width: 50%;
+}
+
 .opis-inline-logo{
     display: inline;
     width: 100px;
