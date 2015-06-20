@@ -51,8 +51,23 @@ body{
     line-height: 100px;
 }
 
+ol.submenu{
+    list-style: decimal; 
+}
+
+ol.submenu ol{
+    list-style: lower-latin;
+}
+
+ol.submenu a, a.link-anchor, a.alter-link{
+    color: #2C3E50;
+}
+
+ol.submenu a{
+    font-weight: bold;
+}
+
 a.link-anchor{
-  color: #2C3E50;
   visibility: hidden;
 }
 
