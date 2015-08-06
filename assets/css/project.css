@@ -69,9 +69,15 @@ ol.submenu a{
 }
 
 a.link-anchor{
-  visibility: hidden;
-  padding-top: 80px;
-  margin-top: -80px;
+    visibility: hidden;
+    padding-top: 80px;
+    margin-top: -80px;
+}
+
+a.top-anchor{
+    visibility: hidden;
+    padding-top: 80px;
+    margin-top: -80px;
 }
 
 a.navbar-brand{
