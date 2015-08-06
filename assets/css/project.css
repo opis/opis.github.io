@@ -11,6 +11,10 @@ body > section {
     padding-top: 80px;
 }
 
+header{
+    position: static;
+}
+
 .highlight pre{
     background-color: #F8F8F8;
     border: 1px solid #DDDDDD;
@@ -66,6 +70,8 @@ ol.submenu a{
 
 a.link-anchor{
   visibility: hidden;
+  padding-top: 80px;
+  margin-top: -80px;
 }
 
 a.navbar-brand{
