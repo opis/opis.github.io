@@ -40,7 +40,11 @@ body{
 }
 
 #header .nav{
-    margin-top: 50px;
+    margin-top: 35px;
+}
+
+#header button{
+    margin-top: 45px;
 }
 
 #footer{
