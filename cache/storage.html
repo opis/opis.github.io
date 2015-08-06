@@ -17,7 +17,7 @@
 
 
 
-<link href="/assets/css/style.css" rel="stylesheet">
+<link href="/assets/css/project.css" rel="stylesheet">
 
 
         <!--[if lt IE 9]>
@@ -42,19 +42,22 @@
 
     </head>
     <body>
-        <header id="header" class="navbar">
+        <header id="header" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
-                <span class="sr-only">Toggle navigation</span>
-                <i class="fa fa-bars fa-2x"></i>
+            <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
+            <a href="" class="navbar-brand">
+                <strong>
+                    Cache
+                </strong>
+            </a>
+            <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
-            <h3 class="text-muted">
-                <img src="/assets/img/opis-100.png" class="img-responsive opis-inline-logo">
-                <strong>Cache</strong>
-            </h3>
         </div>
-        <nav class="collapse navbar-collapse navbar-right" role="navigation">
+        <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
             <ul class="nav navbar-nav">
                 <li>
                     <a href="http://www.opis.io" title="Main page">
@@ -89,13 +92,15 @@
         </nav>
     </div>
 </header>
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="list-group">
-            
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="list-group">
                 
                     
+                        
 <a href="/cache" class="list-group-item">
 
     <h4 class="list-group-item-heading">About</h4>
@@ -103,10 +108,10 @@
         Getting started with Opis Cache
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/cache/use.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Using the library</h4>
@@ -114,10 +119,10 @@
         Learn how to use the library
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/cache/collection.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Storage collection</h4>
@@ -125,10 +130,10 @@
         Learn how to create and use storage collections
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/cache/storage.html" class="list-group-item active">
 
     <h4 class="list-group-item-heading">Add new storages</h4>
@@ -136,12 +141,12 @@
         Learn how you can add support for new storages
     </p>
 </a>
+                    
                 
-            
+                </div>
             </div>
-        </div>
-        <div class="col-md-8">
-            <h1><strong>Add new storages</strong></h1>
+            <div class="col-md-8">
+                <h1><strong>Add new storages</strong></h1>
 
 <p>
     Creating a new storage type is simply a matter of declaring a new class that implements the
@@ -263,7 +268,7 @@ storage must be deleted. If the deletion succeed, then this method returns <code
 returns <code>false</code>.
 
 
-            
+                
 
 
 
@@ -306,13 +311,15 @@ returns <code>false</code>.
   
   
 </ul>
-            
+                
+            </div>
         </div>
     </div>
-</div>
-<div id="footer" class="text-center text-muted">
+</section>
+
+<footer class="text-center text-muted">
     Copyright &copy; 2014-2015 Marius Sarca. All rights reserved.
-</div>
+</footer>
 
     </body>
 </html>

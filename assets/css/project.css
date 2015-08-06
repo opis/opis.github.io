@@ -1,0 +1,82 @@
+html{
+    position: relative;
+    min-height: 100%;
+}
+
+body{
+    margin-bottom: 100px;
+}
+
+body > section {
+    padding-top: 80px;
+}
+
+.highlight pre{
+    background-color: #F8F8F8;
+    border: 1px solid #DDDDDD;
+    border-radius: 3px;
+    font-size: 13px;
+    line-height: 19px;
+    overflow: auto;
+    padding: 6px 10px;
+    color: inherit;
+}
+
+.box-highlight .highlight pre{
+    background-color: #fff;
+    border: none;
+    font-size: 11px;
+}
+
+.table.box-highlight th{
+    width: 50%;
+}
+
+.opis-inline-logo{
+    display: inline;
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin-right: 5px;
+}
+
+footer{
+    height: 100px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    line-height: 100px;
+}
+
+ol.submenu{
+    list-style: decimal; 
+}
+
+ol.submenu ol{
+    list-style: lower-latin;
+}
+
+ol.submenu a, a.link-anchor, a.alter-link{
+    color: #2C3E50;
+}
+
+ol.submenu a{
+    font-weight: bold;
+}
+
+a.link-anchor{
+  visibility: hidden;
+}
+
+a.navbar-brand{
+    outline: none;
+}
+
+*:hover > a.link-anchor{
+    visibility: visible;
+}
+
+p > code{
+    white-space: pre-wrap;
+}
+

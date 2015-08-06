@@ -17,7 +17,7 @@
 
 
 
-<link href="/assets/css/style.css" rel="stylesheet">
+<link href="/assets/css/project.css" rel="stylesheet">
 
 
         <!--[if lt IE 9]>
@@ -42,19 +42,22 @@
 
     </head>
     <body>
-        <header id="header" class="navbar">
+        <header id="header" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
-                <span class="sr-only">Toggle navigation</span>
-                <i class="fa fa-bars fa-2x"></i>
+            <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
+            <a href="" class="navbar-brand">
+                <strong>
+                    Utils
+                </strong>
+            </a>
+            <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
-            <h3 class="text-muted">
-                <img src="/assets/img/opis-100.png" class="img-responsive opis-inline-logo">
-                <strong>Utils</strong>
-            </h3>
         </div>
-        <nav class="collapse navbar-collapse navbar-right" role="navigation">
+        <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
             <ul class="nav navbar-nav">
                 <li>
                     <a href="http://www.opis.io" title="Main page">
@@ -89,13 +92,15 @@
         </nav>
     </div>
 </header>
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="list-group">
-            
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="list-group">
                 
                     
+                        
 <a href="/utils" class="list-group-item active">
 
     <h4 class="list-group-item-heading">About</h4>
@@ -103,12 +108,12 @@
         Getting started with Opis Utils
     </p>
 </a>
+                    
                 
-            
+                </div>
             </div>
-        </div>
-        <div class="col-md-8">
-            <h1><strong>Utilitary classes</strong></h1>
+            <div class="col-md-8">
+                <h1><strong>Utilitary classes</strong></h1>
 
 <p>
     <strong>Opis Utils</strong> is a collection of useful classes that will help you
@@ -194,7 +199,7 @@
 <div class="highlight"><pre><code class="php"><span class="k">require_once</span> <span class="s1">&#39;path/to/utils-1.0.0/autoload.php&#39;</span><span class="p">;</span>
 </code></pre></div>
 
-            
+                
 
 
 
@@ -211,17 +216,19 @@
   
   
 </ul>
-            
-                <script>
+                
+                    <script>
     $('[data-toggle=tooltip]').tooltip();
 </script>
-            
+                
+            </div>
         </div>
     </div>
-</div>
-<div id="footer" class="text-center text-muted">
+</section>
+
+<footer class="text-center text-muted">
     Copyright &copy; 2014-2015 Marius Sarca. All rights reserved.
-</div>
+</footer>
 
     </body>
 </html>

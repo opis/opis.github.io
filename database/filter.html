@@ -17,7 +17,7 @@
 
 
 
-<link href="/assets/css/style.css" rel="stylesheet">
+<link href="/assets/css/project.css" rel="stylesheet">
 
 
         <!--[if lt IE 9]>
@@ -42,19 +42,22 @@
 
     </head>
     <body>
-        <header id="header" class="navbar">
+        <header id="header" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
-                <span class="sr-only">Toggle navigation</span>
-                <i class="fa fa-bars fa-2x"></i>
+            <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
+            <a href="" class="navbar-brand">
+                <strong>
+                    Database
+                </strong>
+            </a>
+            <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
-            <h3 class="text-muted">
-                <img src="/assets/img/opis-100.png" class="img-responsive opis-inline-logo">
-                <strong>Database</strong>
-            </h3>
         </div>
-        <nav class="collapse navbar-collapse navbar-right" role="navigation">
+        <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
             <ul class="nav navbar-nav">
                 <li>
                     <a href="http://www.opis.io" title="Main page">
@@ -89,13 +92,15 @@
         </nav>
     </div>
 </header>
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="list-group">
-            
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="list-group">
                 
                     
+                        
 <a href="/database" class="list-group-item">
 
     <h4 class="list-group-item-heading">About</h4>
@@ -103,10 +108,10 @@
         Getting started with Opis Database
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/database/connection.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Connections</h4>
@@ -114,10 +119,10 @@
         Learn how to connect to a database
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/database/select.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Fetching records</h4>
@@ -125,10 +130,10 @@
         Fetching records from a database
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/database/result.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Results handling</h4>
@@ -136,10 +141,10 @@
         Learn how to handle the result set of a query
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/database/aggregate.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Aggregate functions</h4>
@@ -147,10 +152,10 @@
         Learn about aggregate functions
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/database/defining-columns.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Defining fetched columns</h4>
@@ -158,10 +163,10 @@
         Learn about how to define selected columns
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/database/filter.html" class="list-group-item active">
 
     <h4 class="list-group-item-heading">Filters</h4>
@@ -169,10 +174,10 @@
         Learn how to filter records
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/database/order.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Ordering criteria</h4>
@@ -180,10 +185,10 @@
         Learn how to order results
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/database/limit.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Limits and offsets</h4>
@@ -191,10 +196,10 @@
         Learn about limits and offsets
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/database/expression.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Expressions</h4>
@@ -202,10 +207,10 @@
         Learn about expressions
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/database/group.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Group</h4>
@@ -213,10 +218,10 @@
         Learn how to group results
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/database/join.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Joins</h4>
@@ -224,10 +229,10 @@
         Learn how to perform joins
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/database/insert.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Create records</h4>
@@ -235,10 +240,10 @@
         Insert new records into a table
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/database/update.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Update records</h4>
@@ -246,10 +251,10 @@
         Learn how to update existing records
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/database/delete.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Delete records</h4>
@@ -257,10 +262,10 @@
         Learn how to delete existing records
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/database/transaction.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Transactions</h4>
@@ -268,10 +273,10 @@
         Learn how to use transactions
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/database/schema.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Schema</h4>
@@ -279,12 +284,12 @@
         Create new tables and obtains information about existing ones
     </p>
 </a>
+                    
                 
-            
+                </div>
             </div>
-        </div>
-        <div class="col-md-8">
-            <h1><strong>Filters</strong></h1>
+            <div class="col-md-8">
+                <h1><strong>Filters</strong></h1>
 
 <ol class="submenu">
     <li>
@@ -1093,7 +1098,7 @@
 </code></pre></div>
 
 
-            
+                
 
 
 
@@ -1189,13 +1194,15 @@
   <li class="next"><a href="/database/order.html" title="Ordering criteria">Next &rarr;</a></li>
   
 </ul>
-            
+                
+            </div>
         </div>
     </div>
-</div>
-<div id="footer" class="text-center text-muted">
+</section>
+
+<footer class="text-center text-muted">
     Copyright &copy; 2014-2015 Marius Sarca. All rights reserved.
-</div>
+</footer>
 
     </body>
 </html>

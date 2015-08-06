@@ -17,7 +17,7 @@
 
 
 
-<link href="/assets/css/style.css" rel="stylesheet">
+<link href="/assets/css/project.css" rel="stylesheet">
 
 
         <!--[if lt IE 9]>
@@ -42,19 +42,22 @@
 
     </head>
     <body>
-        <header id="header" class="navbar">
+        <header id="header" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
-                <span class="sr-only">Toggle navigation</span>
-                <i class="fa fa-bars fa-2x"></i>
+            <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
+            <a href="" class="navbar-brand">
+                <strong>
+                    Closure
+                </strong>
+            </a>
+            <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
-            <h3 class="text-muted">
-                <img src="/assets/img/opis-100.png" class="img-responsive opis-inline-logo">
-                <strong>Closure</strong>
-            </h3>
         </div>
-        <nav class="collapse navbar-collapse navbar-right" role="navigation">
+        <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
             <ul class="nav navbar-nav">
                 <li>
                     <a href="http://www.opis.io" title="Main page">
@@ -89,13 +92,15 @@
         </nav>
     </div>
 </header>
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="list-group">
-            
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="list-group">
                 
                     
+                        
 <a href="/closure" class="list-group-item">
 
     <h4 class="list-group-item-heading">About</h4>
@@ -103,10 +108,10 @@
         Getting started with Opis Closure
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/closure/serialize.html" class="list-group-item active">
 
     <h4 class="list-group-item-heading">Serialize closures</h4>
@@ -114,10 +119,10 @@
         Learn how to wrap a closure and make it serializable
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/closure/context.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Serialization context</h4>
@@ -125,10 +130,10 @@
         Leran about serialization context
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/closure/bound.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Bounded objects</h4>
@@ -136,10 +141,10 @@
         Learn how to serialize bounded objects
     </p>
 </a>
-                
-            
+                    
                 
                     
+                        
 <a href="/closure/debug.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Debugging closures</h4>
@@ -147,12 +152,12 @@
         Learn how to debug serialized closures
     </p>
 </a>
+                    
                 
-            
+                </div>
             </div>
-        </div>
-        <div class="col-md-8">
-            <h1><strong>Serialize closures</strong></h1>
+            <div class="col-md-8">
+                <h1><strong>Serialize closures</strong></h1>
 
 <ol class="submenu">
     <li>
@@ -339,7 +344,7 @@
 </code></pre></div>
 
 
-            
+                
 
 
 
@@ -381,13 +386,15 @@
   <li class="next"><a href="/closure/context.html" title="Serialization context">Next &rarr;</a></li>
   
 </ul>
-            
+                
+            </div>
         </div>
     </div>
-</div>
-<div id="footer" class="text-center text-muted">
+</section>
+
+<footer class="text-center text-muted">
     Copyright &copy; 2014-2015 Marius Sarca. All rights reserved.
-</div>
+</footer>
 
     </body>
 </html>
