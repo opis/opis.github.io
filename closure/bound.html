@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="php, closure, serialization, serializable closure, anonymous functions">
+<meta name="description" content="Learn how to serialize bounded objects">
+<title>Bounded objects | Opis Closure</title>
+        
+        <link href="/assets/img/favicon.png" rel="shortcut icon">
+        
+        <link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+
+<link href="/assets/css/syntax.css" rel="stylesheet">
+
+
+
+<link href="/assets/css/style.css" rel="stylesheet">
+
+
+        <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-50415801-1', 'opis.io');
+    ga('send', 'pageview');
+</script>
+
+    </head>
+    <body>
+        <header id="header" class="navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-bars fa-2x"></i>
+            </button>
+            <h3 class="text-muted">
+                <img src="/assets/img/opis-100.png" class="img-responsive opis-inline-logo">
+                <strong>Closure</strong>
+            </h3>
+        </div>
+        <nav class="collapse navbar-collapse navbar-right" role="navigation">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="http://www.opis.io" title="Main page">
+                        <span class="fa fa-home"></span> Home
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="fa fa-cogs"></span> Components <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/cache" title="Caching library">Cache</a></li>
+                        <li><a href="/closure" title="Serializable closures">Closure</a></li>
+                        <li><a href="/config" title="Configuration manager">Config</a></li>
+                        <li><a href="/container" title="Dependency injection container">Container</a></li>
+                        <li><a href="/database" title="Database abstraction layer">Database</a></li>
+                        <li><a href="/events" title="Events library">Events</a></li>
+                        <li><a href="https://github.com/opis/http" title="HTTP library">HTTP</a></li>
+                        <li><a href="/http-routing" title="HTTP routing library">HTTP Routing</a></li>
+                        <li><a href="/routing" title="Routing framework">Routing</a></li>
+                        <li><a href="/session" title="Session manager">Session</a></li>
+                        <li><a href="/utils" title="Utilitary classes">Utils</a></li>
+                        <li><a href="/view" title="Rendering engine">View</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="https://github.com/opis/closure" title="Github page">
+                        <span class="fa fa-github fa-lg"></span> GitHub
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="list-group">
+            
+                
+                    
+<a href="/closure" class="list-group-item">
+
+    <h4 class="list-group-item-heading">About</h4>
+    <p class="list-group-item-text text-muted">
+        Getting started with Opis Closure
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/closure/serialize.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Serialize closures</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to wrap a closure and make it serializable
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/closure/context.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Serialization context</h4>
+    <p class="list-group-item-text text-muted">
+        Leran about serialization context
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/closure/bound.html" class="list-group-item active">
+
+    <h4 class="list-group-item-heading">Bounded objects</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to serialize bounded objects
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/closure/debug.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Debugging closures</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to debug serialized closures
+    </p>
+</a>
+                
+            
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h1><strong>Bounded objects</strong></h1>
+
+<p>
+    Starting with PHP 5.4 the <code>$this</code> keyword can be used inside a closure's body
+    if the closure was bound to an object. If you want to serialize the bounded object too, the only thing
+    you are required to do is to pass true as the second parameter to the
+    <code>Opis\Closure\SerializableClosure</code> constructor or to the <code>Opis\Closure\SerializableClosure::from</code>method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$wrapper</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SerializableClosure</span><span class="p">(</span><span class="nv">$closure</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+<span class="c1">//or</span>
+<span class="nv">$wrapper</span> <span class="o">=</span> <span class="nx">SerializableClosure</span><span class="o">::</span><span class="na">from</span><span class="p">(</span><span class="nv">$closure</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+<h3>
+    
+    <strong>Example</strong>
+    <a id="example" href="#example" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Bellow is an example of a serializable class containing bounded closures (PHP >=5.4 only):
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Serializable</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Opis\Closure\SerializableClosure</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">DynamicMethods</span> <span class="k">implements</span> <span class="nx">Serializable</span>
+<span class="p">{</span>
+
+    <span class="k">protected</span> <span class="nv">$methods</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+    <span class="k">private</span> <span class="nv">$the_answer</span> <span class="o">=</span> <span class="mo">052</span><span class="p">;</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__call</span><span class="p">(</span><span class="nv">$method</span><span class="p">,</span> <span class="nv">$args</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">methods</span><span class="p">[</span><span class="nv">$method</span><span class="p">]))</span>
+        <span class="p">{</span>
+          <span class="k">return</span> <span class="nb">call_user_func_array</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">methods</span><span class="p">[</span><span class="nv">$method</span><span class="p">],</span> <span class="nv">$args</span><span class="p">);</span>
+        <span class="p">}</span>
+        
+        <span class="k">throw</span> <span class="k">new</span> <span class="nx">\Exception</span><span class="p">(</span><span class="s2">&quot;The method </span><span class="si">$method</span><span class="s2"> doesn&#39;t exists!&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">addMethod</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nx">\Closure</span> <span class="nv">$func</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$func</span> <span class="o">=</span> <span class="nv">$func</span><span class="o">-&gt;</span><span class="na">bindTo</span><span class="p">(</span><span class="nv">$this</span><span class="p">,</span> <span class="nv">$this</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">methods</span><span class="p">[</span><span class="nv">$name</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$func</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nv">$func</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">serialize</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$methods</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+        
+        <span class="nx">SerializableClosure</span><span class="o">::</span><span class="na">enterContext</span><span class="p">();</span>
+        
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">methods</span> <span class="k">as</span> <span class="nv">$name</span> <span class="o">=&gt;</span> <span class="nv">$method</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nv">$methods</span><span class="p">[</span><span class="nv">$name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">SerializableClosure</span><span class="o">::</span><span class="na">from</span><span class="p">(</span><span class="nv">$method</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+        <span class="p">}</span>
+        
+        <span class="nx">SerializableClosure</span><span class="o">::</span><span class="na">exitContext</span><span class="p">();</span>
+        
+        <span class="k">return</span> <span class="nb">serialize</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;methods&#39;</span> <span class="o">=&gt;</span> <span class="nv">$methods</span><span class="p">,</span>
+            <span class="s1">&#39;answer&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">the_answer</span><span class="p">,</span>
+        <span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">unserialize</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$data</span> <span class="o">=</span> <span class="nx">SerializableClosure</span><span class="o">::</span><span class="na">unserialize</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">the_answer</span> <span class="o">=</span> <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;answer&#39;</span><span class="p">];</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;methods&#39;</span><span class="p">]</span> <span class="k">as</span> <span class="nv">$name</span> <span class="o">=&gt;</span> <span class="nv">$method</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">methods</span><span class="p">[</span><span class="nv">$name</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$method</span><span class="o">-&gt;</span><span class="na">getClosure</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+<h4>
+    
+    <strong>Class usage</strong>
+    <a id="class-usage" href="#class-usage" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Now let's see how we can use the above created class:
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="c1">// create a new instance</span>
+<span class="nv">$dyn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DynamicMethods</span><span class="p">();</span>
+
+<span class="c1">// a simple sum function</span>
+<span class="nv">$dyn</span><span class="o">-&gt;</span><span class="na">addMethod</span><span class="p">(</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$a</span><span class="p">,</span> <span class="nv">$b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$a</span> <span class="o">+</span> <span class="nv">$b</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="c1">// a simple average function</span>
+<span class="nv">$dyn</span><span class="o">-&gt;</span><span class="na">addMethod</span><span class="p">(</span><span class="s1">&#39;avg&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$args</span> <span class="o">=</span> <span class="nb">func_get_args</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">array_sum</span><span class="p">(</span><span class="nv">$args</span><span class="p">)</span> <span class="o">/</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$args</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="c1">// a function that calls another function</span>
+<span class="nv">$dyn</span><span class="o">-&gt;</span><span class="na">addMethod</span><span class="p">(</span><span class="s1">&#39;call&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$method</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// $this-&gt;methods is protected</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">methods</span><span class="p">[</span><span class="nv">$method</span><span class="p">]))</span>
+    <span class="p">{</span>
+        <span class="nv">$args</span> <span class="o">=</span> <span class="nb">func_get_args</span><span class="p">();</span>
+        <span class="nb">array_shift</span><span class="p">(</span><span class="nv">$args</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nb">call_user_func_array</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">methods</span><span class="p">[</span><span class="nv">$method</span><span class="p">],</span> <span class="nv">$args</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="c1">// a function that return a private property</span>
+<span class="nv">$dyn</span><span class="o">-&gt;</span><span class="na">addMethod</span><span class="p">(</span><span class="s1">&#39;answerUltimateQuestion&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// $this-&gt;the_answer is private</span>
+    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">the_answer</span><span class="p">;</span>
+<span class="p">});</span>
+
+
+<span class="c1">// now we can serialize-unserialize the object</span>
+<span class="nv">$newdyn</span> <span class="o">=</span> <span class="nb">unserialize</span><span class="p">(</span><span class="nb">serialize</span><span class="p">(</span><span class="nv">$dyn</span><span class="p">));</span>
+
+<span class="c1">// test sum</span>
+<span class="k">echo</span> <span class="s2">&quot;sum=&quot;</span><span class="p">,</span> <span class="nv">$newdyn</span><span class="o">-&gt;</span><span class="na">sum</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="s2">&quot; &quot;</span><span class="p">;</span> <span class="c1">//&gt; 13</span>
+<span class="c1">// test call with avg</span>
+<span class="k">echo</span> <span class="s2">&quot;avg=&quot;</span><span class="p">,</span> <span class="nv">$newdyn</span><span class="o">-&gt;</span><span class="na">call</span><span class="p">(</span><span class="s1">&#39;avg&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot; &quot;</span><span class="p">;</span> <span class="c1">//&gt; 2</span>
+<span class="c1">// now, the final answer...</span>
+<span class="k">echo</span> <span class="s2">&quot;answer=&quot;</span><span class="p">,</span> <span class="nv">$newdyn</span><span class="o">-&gt;</span><span class="na">answerUltimateQuestion</span><span class="p">(),</span> <span class="s2">&quot; &quot;</span><span class="p">;</span> <span class="c1">// I&#39;m curious too...</span>
+
+<span class="c1">// no one should ever know the answer</span>
+<span class="nv">$newdyn</span><span class="o">-&gt;</span><span class="na">addMethod</span><span class="p">(</span><span class="s1">&#39;removeAnswer&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">the_answer</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
+    <span class="nb">unset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">methods</span><span class="p">[</span><span class="s1">&#39;removeAnswer&#39;</span><span class="p">]);</span>
+    <span class="nb">unset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">methods</span><span class="p">[</span><span class="s1">&#39;answerUltimateQuestion&#39;</span><span class="p">]);</span>
+<span class="p">});</span>
+
+<span class="nv">$newdyn</span><span class="o">-&gt;</span><span class="na">removeAnswer</span><span class="p">();</span>
+
+<span class="c1">// let&#39;s see if the answer is now secret</span>
+
+<span class="nv">$otherdyn</span> <span class="o">=</span> <span class="nb">unserialize</span><span class="p">(</span><span class="nb">serialize</span><span class="p">(</span><span class="nv">$newdyn</span><span class="p">));</span>
+
+<span class="k">try</span> <span class="p">{</span>
+  <span class="k">echo</span> <span class="nv">$otherdyn</span><span class="o">-&gt;</span><span class="na">answerUltimateQuestion</span><span class="p">();</span> <span class="c1">// throws exception</span>
+<span class="p">}</span>
+<span class="k">catch</span> <span class="p">(</span><span class="nx">\Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">echo</span> <span class="s2">&quot;The answer is secret!&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+            
+
+
+
+
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+        
+    
+
+    
+        
+            
+                
+                
+            
+        
+    
+
+
+<ul class="pager">
+  
+  <li class="previous"><a href="/closure/context.html" title="Serialization context">&larr; Back</a></li>
+  
+  
+  <li class="next"><a href="/closure/debug.html" title="Debugging closures">Next &rarr;</a></li>
+  
+</ul>
+            
+        </div>
+    </div>
+</div>
+<div id="footer" class="text-center text-muted">
+    Copyright &copy; 2014 Marius Sarca. All rights reserved.
+</div>
+
+    </body>
+</html>

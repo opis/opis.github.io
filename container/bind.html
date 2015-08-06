@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="php, container, dependency injection, abstractization">
+<meta name="description" content="Learn how the bind abstract types to concrete types">
+<title>Binding types | Opis Container</title>
+        
+        <link href="/assets/img/favicon.png" rel="shortcut icon">
+        
+        <link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+
+<link href="/assets/css/syntax.css" rel="stylesheet">
+
+
+
+<link href="/assets/css/style.css" rel="stylesheet">
+
+
+        <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-50415801-1', 'opis.io');
+    ga('send', 'pageview');
+</script>
+
+    </head>
+    <body>
+        <header id="header" class="navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-bars fa-2x"></i>
+            </button>
+            <h3 class="text-muted">
+                <img src="/assets/img/opis-100.png" class="img-responsive opis-inline-logo">
+                <strong>Container</strong>
+            </h3>
+        </div>
+        <nav class="collapse navbar-collapse navbar-right" role="navigation">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="http://www.opis.io" title="Main page">
+                        <span class="fa fa-home"></span> Home
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="fa fa-cogs"></span> Components <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/cache" title="Caching library">Cache</a></li>
+                        <li><a href="/closure" title="Serializable closures">Closure</a></li>
+                        <li><a href="/config" title="Configuration manager">Config</a></li>
+                        <li><a href="/container" title="Dependency injection container">Container</a></li>
+                        <li><a href="/database" title="Database abstraction layer">Database</a></li>
+                        <li><a href="/events" title="Events library">Events</a></li>
+                        <li><a href="https://github.com/opis/http" title="HTTP library">HTTP</a></li>
+                        <li><a href="/http-routing" title="HTTP routing library">HTTP Routing</a></li>
+                        <li><a href="/routing" title="Routing framework">Routing</a></li>
+                        <li><a href="/session" title="Session manager">Session</a></li>
+                        <li><a href="/utils" title="Utilitary classes">Utils</a></li>
+                        <li><a href="/view" title="Rendering engine">View</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="https://github.com/opis/container" title="Github page">
+                        <span class="fa fa-github fa-lg"></span> GitHub
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="list-group">
+            
+                
+                    
+<a href="/container" class="list-group-item">
+
+    <h4 class="list-group-item-heading">About</h4>
+    <p class="list-group-item-text text-muted">
+        Getting started with Opis Container
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/container/container.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">The container</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how the DIC works
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/container/bind.html" class="list-group-item active">
+
+    <h4 class="list-group-item-heading">Binding types</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to bind abstract types to concrete types
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/container/extend.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Extending types</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to extend abstract types
+    </p>
+</a>
+                
+            
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h1><strong>Binding types</strong></h1>
+
+<p>
+    Binding an abstract type to a concrete type is done using the <code>bind</code> method.
+    The <code>bind</code> method takes two arguments: a string representing the abstract type
+    and another string representing the concrete type. 
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Container\Container</span><span class="p">;</span>
+
+<span class="k">interface</span> <span class="nx">GreetingInterface</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">greet</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Greeting</span> <span class="nx">implement</span> <span class="nx">GreetingInterface</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">greet</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;Greetings man in white!&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$container</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Container</span><span class="p">();</span>
+<span class="nv">$container</span><span class="o">-&gt;</span><span class="na">bind</span><span class="p">(</span><span class="s1">&#39;GreetingInterface&#39;</span><span class="p">,</span> <span class="s1">&#39;Greeting&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$container</span><span class="p">(</span><span class="s1">&#39;GreetingInterface&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">greet</span><span class="p">();</span> <span class="c1">//&gt; Greetings man in white!</span>
+</code></pre></div>
+
+<p>
+    If the second argument is omitted, the type passed as the first argument will be both abstract and concrete type.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$container</span><span class="o">-&gt;</span><span class="na">bind</span><span class="p">(</span><span class="s1">&#39;SomeType&#39;</span><span class="p">);</span>
+<span class="c1">//same as</span>
+<span class="nv">$container</span><span class="o">-&gt;</span><span class="na">bind</span><span class="p">(</span><span class="s1">&#39;SomeType&#39;</span><span class="p">,</span> <span class="s1">&#39;SomeType&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+<p>
+    Alternatively, you can pass as the second argument to the <code>bind</code> method, an anonymous
+    callback function that will be used to resolve the abstract type. The callback will receive as
+    arguments the container's instance and an array of values that can be further used as arguments
+    to instantiate the concrete type.
+</p>
+
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Container\Container</span><span class="p">;</span>
+
+<span class="k">interface</span> <span class="nx">GreetingInterface</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">greet</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Greeting</span> <span class="nx">implement</span> <span class="nx">GreetingInterface</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$greetingText</span><span class="p">;</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nv">$text</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">greetingText</span> <span class="o">=</span> <span class="nv">$text</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">greet</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">greetingText</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$container</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Container</span><span class="p">();</span>
+<span class="nv">$container</span><span class="o">-&gt;</span><span class="na">bind</span><span class="p">(</span><span class="s1">&#39;GreetingInterface&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$container</span><span class="p">,</span> <span class="nv">$args</span><span class="p">){</span>
+    
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$args</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="p">{</span>
+        <span class="nv">$args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Greetings man in white!&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">Greeting</span><span class="p">(</span><span class="nv">$args</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="p">});</span>
+
+<span class="k">echo</span> <span class="nv">$container</span><span class="p">(</span><span class="s1">&#39;GreetingInterface&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">greet</span><span class="p">();</span> <span class="c1">//&gt; Greetings man in white!</span>
+<span class="k">echo</span> <span class="nv">$container</span><span class="p">(</span><span class="s1">&#39;GreetingInterface&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;Hello World!&#39;</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">greet</span><span class="p">();</span> <span class="c1">//&gt; Hello World!</span>
+</code></pre></div>
+
+<p>
+    Once an abstract type was bound to a concrete type, it will be automatically resolved
+    every time we use the container to instantiate a another type that have that abstract
+    type as a dependency.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">class</span> <span class="nc">Stewie</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$greetings</span><span class="p">;</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">GreetingInterface</span> <span class="nv">$greetings</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">greetings</span> <span class="o">=</span> <span class="nv">$greetings</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">talk</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">greetings</span><span class="o">-&gt;</span><span class="na">greet</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">echo</span> <span class="nv">$container</span><span class="p">(</span><span class="s1">&#39;Stewie&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">talk</span><span class="p">();</span> <span class="c1">//&gt; Greetings man in white!</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+<h3>
+    
+    <strong>Singletons</strong>
+    <a id="singletons" href="#singletons" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Occasionally is desirable that some types to be resolved once, and the same object to be returned on subsequent calls into the container.
+    To achieve this behavior, simply bind the abstract type using the <code>singleton</code> method.
+    This method takes same arguments as the <code>bind</code> method.
+</p>
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Container\Container</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Counter</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">increment</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">count</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$container</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Container</span><span class="p">();</span>
+
+<span class="nv">$container</span><span class="o">-&gt;</span><span class="na">singleton</span><span class="p">(</span><span class="s1">&#39;Counter&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$container</span><span class="p">(</span><span class="s1">&#39;Counter&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">increment</span><span class="p">()</span> <span class="c1">//&gt; 0;</span>
+<span class="k">echo</span> <span class="nv">$container</span><span class="p">(</span><span class="s1">&#39;Counter&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">increment</span><span class="p">()</span> <span class="c1">//&gt; 1;</span>
+<span class="k">echo</span> <span class="nv">$container</span><span class="p">(</span><span class="s1">&#39;Counter&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">increment</span><span class="p">()</span> <span class="c1">//&gt; 2;</span>
+</code></pre></div>
+
+
+
+        
+
+
+    
+
+<h3>
+    
+    <strong>Setters</strong>
+    <a id="setters" href="#setters" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    After a specified type was resolved, the container allows you to manipulate the resulted object by defining one or more setters.
+    Defining a setter is done by calling the <code>setter</code> method and passing an anonymous function callback as an argument
+    to the method. The callback has two arguments: the instance of the resolved type and the instance of the container.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Container\Container</span><span class="p">;</span>
+
+<span class="k">interface</span> <span class="nx">GreetingInterface</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">greet</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Greeting</span> <span class="nx">implement</span> <span class="nx">GreetingInterface</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$text</span><span class="p">;</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">greet</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">text</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setText</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">text</span> <span class="o">=</span> <span class="nv">$value</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$container</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Container</span><span class="p">();</span>
+<span class="nv">$container</span><span class="o">-&gt;</span><span class="na">bind</span><span class="p">(</span><span class="s1">&#39;GreetingInterface&#39;</span><span class="p">,</span> <span class="s1">&#39;Greeting&#39;</span><span class="p">)</span>
+          <span class="o">-&gt;</span><span class="na">setter</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$instance</span><span class="p">,</span> <span class="nv">$container</span><span class="p">){</span>
+                <span class="nv">$instance</span><span class="o">-&gt;</span><span class="na">setText</span><span class="p">(</span><span class="s1">&#39;Greetings man in white!&#39;</span><span class="p">);</span>
+          <span class="p">});</span>
+          
+<span class="k">echo</span> <span class="nv">$container</span><span class="p">(</span><span class="s1">&#39;GreetingInterface&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">greet</span><span class="p">();</span> <span class="c1">//&gt; Greetings man in white!</span>
+</code></pre></div>
+
+
+            
+
+
+
+
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+        
+    
+
+    
+        
+            
+                
+                
+            
+        
+    
+
+
+<ul class="pager">
+  
+  <li class="previous"><a href="/container/container.html" title="The container">&larr; Back</a></li>
+  
+  
+  <li class="next"><a href="/container/extend.html" title="Extending types">Next &rarr;</a></li>
+  
+</ul>
+            
+        </div>
+    </div>
+</div>
+<div id="footer" class="text-center text-muted">
+    Copyright &copy; 2014 Marius Sarca. All rights reserved.
+</div>
+
+    </body>
+</html>

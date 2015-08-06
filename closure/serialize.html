@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="php, closure, serialization, serializable closure, anonymous functions">
+<meta name="description" content="Learn how to wrap a closure and make it serializable">
+<title>Serialize closures | Opis Closure</title>
+        
+        <link href="/assets/img/favicon.png" rel="shortcut icon">
+        
+        <link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+
+<link href="/assets/css/syntax.css" rel="stylesheet">
+
+
+
+<link href="/assets/css/style.css" rel="stylesheet">
+
+
+        <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-50415801-1', 'opis.io');
+    ga('send', 'pageview');
+</script>
+
+    </head>
+    <body>
+        <header id="header" class="navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-bars fa-2x"></i>
+            </button>
+            <h3 class="text-muted">
+                <img src="/assets/img/opis-100.png" class="img-responsive opis-inline-logo">
+                <strong>Closure</strong>
+            </h3>
+        </div>
+        <nav class="collapse navbar-collapse navbar-right" role="navigation">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="http://www.opis.io" title="Main page">
+                        <span class="fa fa-home"></span> Home
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="fa fa-cogs"></span> Components <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/cache" title="Caching library">Cache</a></li>
+                        <li><a href="/closure" title="Serializable closures">Closure</a></li>
+                        <li><a href="/config" title="Configuration manager">Config</a></li>
+                        <li><a href="/container" title="Dependency injection container">Container</a></li>
+                        <li><a href="/database" title="Database abstraction layer">Database</a></li>
+                        <li><a href="/events" title="Events library">Events</a></li>
+                        <li><a href="https://github.com/opis/http" title="HTTP library">HTTP</a></li>
+                        <li><a href="/http-routing" title="HTTP routing library">HTTP Routing</a></li>
+                        <li><a href="/routing" title="Routing framework">Routing</a></li>
+                        <li><a href="/session" title="Session manager">Session</a></li>
+                        <li><a href="/utils" title="Utilitary classes">Utils</a></li>
+                        <li><a href="/view" title="Rendering engine">View</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="https://github.com/opis/closure" title="Github page">
+                        <span class="fa fa-github fa-lg"></span> GitHub
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="list-group">
+            
+                
+                    
+<a href="/closure" class="list-group-item">
+
+    <h4 class="list-group-item-heading">About</h4>
+    <p class="list-group-item-text text-muted">
+        Getting started with Opis Closure
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/closure/serialize.html" class="list-group-item active">
+
+    <h4 class="list-group-item-heading">Serialize closures</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to wrap a closure and make it serializable
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/closure/context.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Serialization context</h4>
+    <p class="list-group-item-text text-muted">
+        Leran about serialization context
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/closure/bound.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Bounded objects</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to serialize bounded objects
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/closure/debug.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Debugging closures</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to debug serialized closures
+    </p>
+</a>
+                
+            
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h1><strong>Serialize closures</strong></h1>
+
+<ol class="submenu">
+    <li>
+
+
+
+
+    
+
+<a href="#serialize-closures">Serialize closures</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#unserialize-closures">Unserialize closures</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#the-unserializedata-method">The <em>unserializeData</em> method</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#resolving-class-names">Resolving class names</a></li>
+</ol>
+
+
+        
+
+
+    
+
+<h3>
+    
+    <strong>Serialize closures</strong>
+    <a id="serialize-closures" href="#serialize-closures" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    If you ever used closures then you probably know that closures are not serializable. Trying to serialize
+    a closure will result into an exception:
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="x">Fatal error: Uncaught exception &#39;Exception&#39; with message &#39;Serialization of &#39;Closure&#39; is not allowed&#39;</span>
+</code></pre></div>
+
+<p>
+    The solution for overcoming this problem is to wrap the closure into an <code>Opis\Closure\SerializableClosure</code> object,
+    then serialize the wrapper object using the standard <code>serialize</code>.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Closure\SerializableClosure</span><span class="p">;</span>
+
+<span class="c1">// Recursive factorial closure</span>
+<span class="nv">$factorial</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$n</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="o">&amp;</span><span class="nv">$factorial</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nv">$n</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="nv">$factorial</span><span class="p">(</span><span class="nv">$n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="nv">$n</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// Wrap the closure</span>
+<span class="nv">$wrapper</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SerializableClosure</span><span class="p">(</span><span class="nv">$factorial</span><span class="p">);</span>
+<span class="c1">// Now it can be serialized</span>
+<span class="nv">$serialized</span> <span class="o">=</span> <span class="nb">serialize</span><span class="p">(</span><span class="nv">$wrapper</span><span class="p">);</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+<h3>
+    
+    <strong>Unserialize closures</strong>
+    <a id="unserialize-closures" href="#unserialize-closures" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Closure unserialization is done using the standard <code>unserialize</code> function.
+    Once the wrapper was unserialized, you can directly invoke the wrapper, or you can extract the
+    serialized closure by calling the <code>getClosure</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="c1">// Unserialize the closure</span>
+<span class="nv">$wrapper</span> <span class="o">=</span> <span class="nb">unserialize</span><span class="p">(</span><span class="nv">$serialized</span><span class="p">);</span>
+
+<span class="c1">// You can directly invoke the wrapper...</span>
+<span class="k">echo</span> <span class="nv">$wrapper</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">//&gt; 120</span>
+
+<span class="c1">// Or, the recommended way, extract the closure object</span>
+<span class="nv">$closure</span> <span class="o">=</span> <span class="nv">$wrapper</span><span class="o">-&gt;</span><span class="na">getClosure</span><span class="p">();</span>
+
+<span class="k">echo</span> <span class="nv">$closure</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">//&gt; 120</span>
+</code></pre></div>
+
+<p>
+    Due to the fact that <strong>Opis Closure</strong> doesn't use <code>eval</code>
+    in the serialization-deserialization process, all closures can be serialized and unserialized
+    an infinite amount of times.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="c1">// Once again, but this time using the previously unserialized closure</span>
+<span class="nv">$wrapper</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SerializableClosure</span><span class="p">(</span><span class="nv">$closure</span><span class="p">);</span>
+<span class="nv">$serialized</span> <span class="o">=</span> <span class="nb">serialize</span><span class="p">(</span><span class="nv">$wrapper</span><span class="p">);</span>
+<span class="nv">$wrapper</span> <span class="o">=</span> <span class="nb">unserialize</span><span class="p">(</span><span class="nv">$serialized</span><span class="p">);</span>
+<span class="nv">$closure</span> <span class="o">=</span> <span class="nv">$wrapper</span><span class="o">-&gt;</span><span class="na">getClosure</span><span class="p">();</span>
+
+<span class="c1">// Now watch this...</span>
+<span class="k">echo</span> <span class="nv">$closure</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">//&gt; 120</span>
+<span class="c1">// It worked!</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+<h4>
+    
+    <strong>The <em>unserializeData</em> method</strong>
+    <a id="the-unserializedata-method" href="#the-unserializedata-method" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    If you are planning to support PHP 5.3, then you should be aware that there is a
+    <a href="https://bugs.php.net/bug.php?id=36424" rel="nofollow" target="_blank">bug</a> (fixed in PHP 5.4.0)
+    that will prevent <strong>Opis Closure</strong> to work properly in <a href="/closure/context.html">certain situations</a>.
+</p>
+<p>
+    This problem can be overcome by using the <code>unserializeData</code> static method of the <code>Opis\Closure\SerializableClosure</code>
+    class, which is just a wrapper for the <code>unserialize</code> function, that will somehow fix the previously mentioned bug.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="c1">// Unserialize the closure</span>
+<span class="nv">$wrapper</span> <span class="o">=</span> <span class="nx">SerializableClosure</span><span class="o">::</span><span class="na">unserializeData</span><span class="p">(</span><span class="nv">$serialized</span><span class="p">);</span>
+
+<span class="c1">// Extract the closure object</span>
+<span class="nv">$closure</span> <span class="o">=</span> <span class="nv">$wrapper</span><span class="o">-&gt;</span><span class="na">getClosure</span><span class="p">();</span>
+
+<span class="k">echo</span> <span class="nv">$closure</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">//&gt; 120</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+<h3>
+    
+    <strong>Resolving class names</strong>
+    <a id="resolving-class-names" href="#resolving-class-names" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p class="well text-danger">
+    <strong><span class="fa fa-exclamation-triangle"></span> Important!</strong>
+    This feature is available starting with version 2.0.0 of Opis Closure
+</p>
+
+<p>
+    All class names referenced by a closure are automatically resolved at serialization time,
+    allowing you to write a more clear and concise code. 
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Some\Namespace\SomeClass</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Other\Namespace\SomeClass</span> <span class="k">as</span> <span class="nx">OtherClass</span><span class="p">;</span>
+
+<span class="nv">$closure</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="nx">SomeClass</span> <span class="nv">$a</span><span class="p">){</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">OtherClass</span><span class="p">(</span><span class="nv">$a</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="c1">//Class names are resolved</span>
+<span class="nv">$closure</span> <span class="o">=</span> <span class="nb">unserialize</span><span class="p">(</span><span class="nb">serialize</span><span class="p">(</span><span class="k">new</span> <span class="nx">SerializableClosure</span><span class="p">(</span><span class="nv">$closure</span><span class="p">)))</span><span class="o">-&gt;</span><span class="na">getClosure</span><span class="p">();</span>
+</code></pre></div>
+
+
+            
+
+
+
+
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+        
+    
+
+    
+        
+            
+                
+                
+            
+        
+    
+
+    
+
+    
+
+
+<ul class="pager">
+  
+  <li class="previous"><a href="/closure" title="About">&larr; Back</a></li>
+  
+  
+  <li class="next"><a href="/closure/context.html" title="Serialization context">Next &rarr;</a></li>
+  
+</ul>
+            
+        </div>
+    </div>
+</div>
+<div id="footer" class="text-center text-muted">
+    Copyright &copy; 2014 Marius Sarca. All rights reserved.
+</div>
+
+    </body>
+</html>

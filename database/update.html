@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="php, database, abstraction, query builder, schema builder">
+<meta name="description" content="Learn how to update existing records">
+<title>Update records | Opis Database</title>
+        
+        <link href="/assets/img/favicon.png" rel="shortcut icon">
+        
+        <link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+
+<link href="/assets/css/syntax.css" rel="stylesheet">
+
+
+
+<link href="/assets/css/style.css" rel="stylesheet">
+
+
+        <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-50415801-1', 'opis.io');
+    ga('send', 'pageview');
+</script>
+
+    </head>
+    <body>
+        <header id="header" class="navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-bars fa-2x"></i>
+            </button>
+            <h3 class="text-muted">
+                <img src="/assets/img/opis-100.png" class="img-responsive opis-inline-logo">
+                <strong>Database</strong>
+            </h3>
+        </div>
+        <nav class="collapse navbar-collapse navbar-right" role="navigation">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="http://www.opis.io" title="Main page">
+                        <span class="fa fa-home"></span> Home
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="fa fa-cogs"></span> Components <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/cache" title="Caching library">Cache</a></li>
+                        <li><a href="/closure" title="Serializable closures">Closure</a></li>
+                        <li><a href="/config" title="Configuration manager">Config</a></li>
+                        <li><a href="/container" title="Dependency injection container">Container</a></li>
+                        <li><a href="/database" title="Database abstraction layer">Database</a></li>
+                        <li><a href="/events" title="Events library">Events</a></li>
+                        <li><a href="https://github.com/opis/http" title="HTTP library">HTTP</a></li>
+                        <li><a href="/http-routing" title="HTTP routing library">HTTP Routing</a></li>
+                        <li><a href="/routing" title="Routing framework">Routing</a></li>
+                        <li><a href="/session" title="Session manager">Session</a></li>
+                        <li><a href="/utils" title="Utilitary classes">Utils</a></li>
+                        <li><a href="/view" title="Rendering engine">View</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="https://github.com/opis/database" title="Github page">
+                        <span class="fa fa-github fa-lg"></span> GitHub
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="list-group">
+            
+                
+                    
+<a href="/database" class="list-group-item">
+
+    <h4 class="list-group-item-heading">About</h4>
+    <p class="list-group-item-text text-muted">
+        Getting started with Opis Database
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/connection.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Connections</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to connect to a database
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/select.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Fetching records</h4>
+    <p class="list-group-item-text text-muted">
+        Fetching records from a database
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/result.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Results handling</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to handle the result set of a query
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/aggregate.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Aggregate functions</h4>
+    <p class="list-group-item-text text-muted">
+        Learn about aggregate functions
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/defining-columns.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Defining fetched columns</h4>
+    <p class="list-group-item-text text-muted">
+        Learn about how to define selected columns
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/filter.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Filters</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to filter records
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/order.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Ordering criteria</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to order results
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/limit.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Limits and offsets</h4>
+    <p class="list-group-item-text text-muted">
+        Learn about limits and offsets
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/expression.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Expressions</h4>
+    <p class="list-group-item-text text-muted">
+        Learn about expressions
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/group.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Group</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to group results
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/join.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Joins</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to perform joins
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/insert.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Create records</h4>
+    <p class="list-group-item-text text-muted">
+        Insert new records into a table
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/update.html" class="list-group-item active">
+
+    <h4 class="list-group-item-heading">Update records</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to update existing records
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/delete.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Delete records</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to delete existing records
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/transaction.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Transactions</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to use transactions
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/schema.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Schema</h4>
+    <p class="list-group-item-text text-muted">
+        Create new tables and obtains information about existing ones
+    </p>
+</a>
+                
+            
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h1><strong>Update records</strong></h1>
+
+<p>
+    Updating existing records is done by using the <code>update</code> method. This method takes
+    a single argument representing the table name which needs to be updated and returns an integer value,
+    representing the number of updated records.
+</p>
+
+<p>
+    Setting new values is done by passing as an argument to the <code>set</code> method
+    a <code>key => value</code> mapped array, where the <code>key</code> represents the column that will be updated,
+    and <code>value</code> represents the value that will be stored into the specifed column.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="c1">// Update the description of all users</span>
+
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;description&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Some description&#39;</span>
+             <span class="p">));</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="sql"><span class="k">UPDATE</span> <span class="o">`</span><span class="n">users</span><span class="o">`</span> <span class="k">SET</span> <span class="o">`</span><span class="n">description</span><span class="o">`</span> <span class="o">=</span> <span class="ss">&quot;Some description&quot;</span>
+</code></pre></div>
+
+<p>
+    Updating a specific set of records is done by adding <a href="/database/filter.html">filtering</a> conditions.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="c1">// Update the email and the description of a specific user</span>
+
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">is</span><span class="p">(</span><span class="mi">2014</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;email&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;email@example.com&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;description&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Some description&#39;</span><span class="p">,</span>
+             <span class="p">));</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="sql"><span class="k">UPDATE</span> <span class="o">`</span><span class="n">users</span><span class="o">`</span> <span class="k">SET</span> <span class="o">`</span><span class="n">email</span><span class="o">`</span> <span class="o">=</span> <span class="ss">&quot;email@example.com&quot;</span><span class="p">,</span> <span class="o">`</span><span class="n">description</span><span class="o">`</span> <span class="o">=</span> <span class="ss">&quot;Some description&quot;</span> <span class="k">WHERE</span> <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="o">=</span> <span class="mi">2014</span>
+</code></pre></div>
+
+
+            
+
+
+
+
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+        
+    
+
+    
+        
+            
+                
+                
+            
+        
+    
+
+    
+
+    
+
+
+<ul class="pager">
+  
+  <li class="previous"><a href="/database/insert.html" title="Create records">&larr; Back</a></li>
+  
+  
+  <li class="next"><a href="/database/delete.html" title="Delete records">Next &rarr;</a></li>
+  
+</ul>
+            
+        </div>
+    </div>
+</div>
+<div id="footer" class="text-center text-muted">
+    Copyright &copy; 2014 Marius Sarca. All rights reserved.
+</div>
+
+    </body>
+</html>

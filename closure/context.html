@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="php, closure, serialization, serializable closure, anonymous functions">
+<meta name="description" content="Learn about serialization context">
+<title>Serialization context | Opis Closure</title>
+        
+        <link href="/assets/img/favicon.png" rel="shortcut icon">
+        
+        <link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+
+<link href="/assets/css/syntax.css" rel="stylesheet">
+
+
+
+<link href="/assets/css/style.css" rel="stylesheet">
+
+
+        <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-50415801-1', 'opis.io');
+    ga('send', 'pageview');
+</script>
+
+    </head>
+    <body>
+        <header id="header" class="navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-bars fa-2x"></i>
+            </button>
+            <h3 class="text-muted">
+                <img src="/assets/img/opis-100.png" class="img-responsive opis-inline-logo">
+                <strong>Closure</strong>
+            </h3>
+        </div>
+        <nav class="collapse navbar-collapse navbar-right" role="navigation">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="http://www.opis.io" title="Main page">
+                        <span class="fa fa-home"></span> Home
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="fa fa-cogs"></span> Components <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/cache" title="Caching library">Cache</a></li>
+                        <li><a href="/closure" title="Serializable closures">Closure</a></li>
+                        <li><a href="/config" title="Configuration manager">Config</a></li>
+                        <li><a href="/container" title="Dependency injection container">Container</a></li>
+                        <li><a href="/database" title="Database abstraction layer">Database</a></li>
+                        <li><a href="/events" title="Events library">Events</a></li>
+                        <li><a href="https://github.com/opis/http" title="HTTP library">HTTP</a></li>
+                        <li><a href="/http-routing" title="HTTP routing library">HTTP Routing</a></li>
+                        <li><a href="/routing" title="Routing framework">Routing</a></li>
+                        <li><a href="/session" title="Session manager">Session</a></li>
+                        <li><a href="/utils" title="Utilitary classes">Utils</a></li>
+                        <li><a href="/view" title="Rendering engine">View</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="https://github.com/opis/closure" title="Github page">
+                        <span class="fa fa-github fa-lg"></span> GitHub
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="list-group">
+            
+                
+                    
+<a href="/closure" class="list-group-item">
+
+    <h4 class="list-group-item-heading">About</h4>
+    <p class="list-group-item-text text-muted">
+        Getting started with Opis Closure
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/closure/serialize.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Serialize closures</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to wrap a closure and make it serializable
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/closure/context.html" class="list-group-item active">
+
+    <h4 class="list-group-item-heading">Serialization context</h4>
+    <p class="list-group-item-text text-muted">
+        Leran about serialization context
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/closure/bound.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Bounded objects</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to serialize bounded objects
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/closure/debug.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Debugging closures</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to debug serialized closures
+    </p>
+</a>
+                
+            
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h1><strong>Serialization context</strong></h1>
+
+<ol class="submenu">
+    <li>
+
+
+
+
+    
+
+<a href="#introduction">Introduction</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#the-entercontext-method">The <em>enterContext</em> method</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#the-from-method">The <em>from</em> method</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#the-exitcontext-method">The <em>exitContext</em> method</a></li>
+</ol>
+
+
+        
+
+
+    
+
+<h3>
+    
+    <strong>Introduction</strong>
+    <a id="introduction" href="#introduction" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Sometimes, especially when we are working with serializable classes, it is desirable that an instance of a closure
+    to be wrapped only by a single <code>Opis\Closure\SerializableClosure</code> class,
+    in order to avoid multiple serialization of the same closure instance. Let's take the following example:
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Closure\SerializableClosure</span><span class="p">;</span>
+
+<span class="nv">$function</span> <span class="o">=</span> <span class="k">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="s2">&quot;Hello World&quot;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nv">$collection</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;a&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">SerializableClosure</span><span class="p">(</span><span class="nv">$function</span><span class="p">),</span>
+    <span class="s1">&#39;b&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">SerializableClosure</span><span class="p">(</span><span class="nv">$function</span><span class="p">),</span>
+<span class="p">);</span>
+
+<span class="c1">//Serialize</span>
+<span class="nv">$collection</span> <span class="o">=</span> <span class="nb">serialize</span><span class="p">(</span><span class="nv">$collection</span><span class="p">);</span>
+<span class="c1">//Unserialize</span>
+<span class="nv">$collection</span> <span class="o">=</span> <span class="nb">unserialize</span><span class="p">(</span><span class="nv">$collection</span><span class="p">);</span>
+
+<span class="nv">$a</span> <span class="o">=</span> <span class="nv">$collection</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">getClosure</span><span class="p">();</span>
+<span class="nv">$b</span> <span class="o">=</span> <span class="nv">$collection</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">getClosure</span><span class="p">();</span>
+
+<span class="c1">//Prints FALSE</span>
+<span class="k">print</span> <span class="nv">$a</span> <span class="o">===</span> <span class="nv">$b</span> <span class="o">?</span> <span class="s1">&#39;TRUE&#39;</span> <span class="o">:</span> <span class="s1">&#39;FALSE&#39;</span><span class="p">;</span>
+</code></pre></div>
+
+<p>
+    As we can see, in the above example, even though the same closure instance was serialized, after the deserialization,
+    two different instances of the same closure were created.
+</p>
+<p>
+    This happened because the same closure was wrapped by two different <code>Opis\Closure\SerializableClosure</code>
+    objects and therefore, when those objects were deserialized and the closures extracted, resulted two distinct closure instances.
+</p>
+<p>
+    Avoiding this kind of situations is done by serializing closures <em>in context</em>:
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Closure\SerializableClosure</span><span class="p">;</span>
+
+<span class="nv">$function</span> <span class="o">=</span> <span class="k">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="s2">&quot;Hello World&quot;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">SerializableClosure</span><span class="o">::</span><span class="na">enterContext</span><span class="p">();</span>
+
+<span class="nv">$collection</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;a&#39;</span> <span class="o">=&gt;</span> <span class="nx">SerializableClosure</span><span class="o">::</span><span class="na">from</span><span class="p">(</span><span class="nv">$function</span><span class="p">),</span>
+    <span class="s1">&#39;b&#39;</span> <span class="o">=&gt;</span> <span class="nx">SerializableClosure</span><span class="o">::</span><span class="na">from</span><span class="p">(</span><span class="nv">$function</span><span class="p">),</span>
+<span class="p">);</span>
+
+<span class="nx">SerializableClosure</span><span class="o">::</span><span class="na">exitContext</span><span class="p">();</span>
+
+<span class="c1">//Serialize</span>
+<span class="nv">$collection</span> <span class="o">=</span> <span class="nb">serialize</span><span class="p">(</span><span class="nv">$collection</span><span class="p">);</span>
+<span class="c1">//Unserialize</span>
+<span class="nv">$collection</span> <span class="o">=</span> <span class="nx">SerializableClosure</span><span class="o">::</span><span class="na">unserializeData</span><span class="p">(</span><span class="nv">$collection</span><span class="p">);</span>
+
+<span class="nv">$a</span> <span class="o">=</span> <span class="nv">$collection</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">getClosure</span><span class="p">();</span>
+<span class="nv">$b</span> <span class="o">=</span> <span class="nv">$collection</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">getClosure</span><span class="p">();</span>
+
+<span class="c1">//Prints TRUE</span>
+<span class="k">print</span> <span class="nv">$a</span> <span class="o">===</span> <span class="nv">$b</span> <span class="o">?</span> <span class="s1">&#39;TRUE&#39;</span> <span class="o">:</span> <span class="s1">&#39;FALSE&#39;</span><span class="p">;</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+<h4>
+    
+    <strong>The <em>enterContext</em> method</strong>
+    <a id="the-entercontext-method" href="#the-entercontext-method" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    If a <em>serialization context</em> wasn't allready created by a previous call to this method, then a new
+    <em>serialization context</em> is created. Each <em>serialization context</em> has an associated list of serialized
+    closures and an internal counter which is incremented each time this method is called.
+</p>
+
+<p>
+    Each call to this method must have a matching call to <code>Opis\Closure\SerializableClosure::exitContext</code> method.
+</p>
+
+
+    
+
+
+    
+
+<h4>
+    
+    <strong>The <em>from</em> method</strong>
+    <a id="the-from-method" href="#the-from-method" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Wraps a given closure inside a <code>Opis\Closure\SerializableClosure</code> object,
+    keeping a record of all closures that were wrapped in the current <em>serialization context</em>.
+    When calling this method, if a closure was already wrapped, the coresponding
+    <code>Opis\Closure\SerializableClosure</code> object will be returned. 
+</p>
+
+<p>
+    This method can be used even if a <em>serialization context</em> wasn't created at call time.
+</p>
+
+
+    
+
+
+    
+
+<h4>
+    
+    <strong>The <em>exitContext</em> method</strong>
+    <a id="the-exitcontext-method" href="#the-exitcontext-method" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Decrements the internal counter of the current <em>serialization context</em>, if any.
+    When the counter reaches to zero, the current <em>serialization context</em> is destroyed.
+</p>
+
+            
+
+
+
+
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+        
+    
+
+    
+        
+            
+                
+                
+            
+        
+    
+
+    
+
+
+<ul class="pager">
+  
+  <li class="previous"><a href="/closure/serialize.html" title="Serialize closures">&larr; Back</a></li>
+  
+  
+  <li class="next"><a href="/closure/bound.html" title="Bounded objects">Next &rarr;</a></li>
+  
+</ul>
+            
+        </div>
+    </div>
+</div>
+<div id="footer" class="text-center text-muted">
+    Copyright &copy; 2014 Marius Sarca. All rights reserved.
+</div>
+
+    </body>
+</html>

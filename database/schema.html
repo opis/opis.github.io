@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="php, database, abstraction, query builder, schema builder">
+<meta name="description" content="Create new tables and obtains information about existing ones">
+<title>Schema | Opis Database</title>
+        
+        <link href="/assets/img/favicon.png" rel="shortcut icon">
+        
+        <link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+
+<link href="/assets/css/syntax.css" rel="stylesheet">
+
+
+
+<link href="/assets/css/style.css" rel="stylesheet">
+
+
+        <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-50415801-1', 'opis.io');
+    ga('send', 'pageview');
+</script>
+
+    </head>
+    <body>
+        <header id="header" class="navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-bars fa-2x"></i>
+            </button>
+            <h3 class="text-muted">
+                <img src="/assets/img/opis-100.png" class="img-responsive opis-inline-logo">
+                <strong>Database</strong>
+            </h3>
+        </div>
+        <nav class="collapse navbar-collapse navbar-right" role="navigation">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="http://www.opis.io" title="Main page">
+                        <span class="fa fa-home"></span> Home
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="fa fa-cogs"></span> Components <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/cache" title="Caching library">Cache</a></li>
+                        <li><a href="/closure" title="Serializable closures">Closure</a></li>
+                        <li><a href="/config" title="Configuration manager">Config</a></li>
+                        <li><a href="/container" title="Dependency injection container">Container</a></li>
+                        <li><a href="/database" title="Database abstraction layer">Database</a></li>
+                        <li><a href="/events" title="Events library">Events</a></li>
+                        <li><a href="https://github.com/opis/http" title="HTTP library">HTTP</a></li>
+                        <li><a href="/http-routing" title="HTTP routing library">HTTP Routing</a></li>
+                        <li><a href="/routing" title="Routing framework">Routing</a></li>
+                        <li><a href="/session" title="Session manager">Session</a></li>
+                        <li><a href="/utils" title="Utilitary classes">Utils</a></li>
+                        <li><a href="/view" title="Rendering engine">View</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="https://github.com/opis/database" title="Github page">
+                        <span class="fa fa-github fa-lg"></span> GitHub
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="list-group">
+            
+                
+                    
+<a href="/database" class="list-group-item">
+
+    <h4 class="list-group-item-heading">About</h4>
+    <p class="list-group-item-text text-muted">
+        Getting started with Opis Database
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/connection.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Connections</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to connect to a database
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/select.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Fetching records</h4>
+    <p class="list-group-item-text text-muted">
+        Fetching records from a database
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/result.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Results handling</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to handle the result set of a query
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/aggregate.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Aggregate functions</h4>
+    <p class="list-group-item-text text-muted">
+        Learn about aggregate functions
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/defining-columns.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Defining fetched columns</h4>
+    <p class="list-group-item-text text-muted">
+        Learn about how to define selected columns
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/filter.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Filters</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to filter records
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/order.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Ordering criteria</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to order results
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/limit.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Limits and offsets</h4>
+    <p class="list-group-item-text text-muted">
+        Learn about limits and offsets
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/expression.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Expressions</h4>
+    <p class="list-group-item-text text-muted">
+        Learn about expressions
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/group.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Group</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to group results
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/join.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Joins</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to perform joins
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/insert.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Create records</h4>
+    <p class="list-group-item-text text-muted">
+        Insert new records into a table
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/update.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Update records</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to update existing records
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/delete.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Delete records</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to delete existing records
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/transaction.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Transactions</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to use transactions
+    </p>
+</a>
+                
+            
+                
+                    
+<a href="/database/schema.html" class="list-group-item active">
+
+    <h4 class="list-group-item-heading">Schema</h4>
+    <p class="list-group-item-text text-muted">
+        Create new tables and obtains information about existing ones
+    </p>
+</a>
+                
+            
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h1><strong>Schema</strong></h1>
+
+<ol class="submenu">
+    <li>
+
+
+
+
+    
+
+<a href="#introduction">Introduction</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#table-informations">Table informations</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#creating-tables">Creating tables</a></li>
+    <li>
+        
+
+
+
+
+    
+
+<a href="#adding-columns">Adding columns</a>
+        <ol>
+            <li>
+
+
+
+
+    
+
+<a href="#column-s-size">Column's size</a></li>
+            <li>
+
+
+
+
+    
+
+<a href="#column-s-properties">Column's properties</a></li>
+            <li>
+
+
+
+
+    
+
+<a href="#column-s-constraints">Column's constraints</a></li>
+            <li>
+
+
+
+
+    
+
+<a href="#indexing-a-column">Indexing a column</a></li>
+        </ol>
+    </li>
+    <li>
+
+
+
+
+    
+
+<a href="#primary-key">Primary key</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#unique-keys">Unique keys</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#foreign-keys">Foreign keys</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#indexes">Indexes</a></li>
+    <li>
+        
+
+
+
+
+    
+
+<a href="#alter-tables">Alter tables</a>
+        <ol>
+            <li>
+
+
+
+
+    
+
+<a href="#alter-tables-adding-columns">Adding columns</a></li>
+            <li>
+
+
+
+
+    
+
+<a href="#alter-tables-deleting-columns">Deleting columns</a></li>
+            <li>
+
+
+
+
+    
+
+<a href="#alter-tables-renaming-columns">Renaming columns</a></li>
+            <li>
+
+
+
+
+    
+
+<a href="#alter-tables-adding-default-values">Adding default values</a></li>
+            <li>
+
+
+
+
+    
+
+<a href="#alter-tables-removing-default-values">Removing default values</a></li>
+            <li>
+
+
+
+
+    
+
+<a href="#alter-tables-add-primary-key">Add primary key</a></li>
+            <li>
+
+
+
+
+    
+
+<a href="#alter-tables-delete-primary-key">Delete primary key</a></li>
+            <li>
+
+
+
+
+    
+
+<a href="#alter-tables-add-unique-keys">Add unique keys</a></li>
+            <li>
+
+
+
+
+    
+
+<a href="#alter-tables-delete-unique-keys">Delete unique keys</a></li>
+            <li>
+
+
+
+
+    
+
+<a href="#alter-tables-add-foreign-keys">Add foreign keys</a></li>
+            <li>
+
+
+
+
+    
+
+<a href="#alter-tables-delete-foreign-keys">Delete foreign keys</a></li>
+            <li>
+
+
+
+
+    
+
+<a href="#alter-tables-add-indexes">Add indexes</a></li>
+            <li>
+
+
+
+
+    
+
+<a href="#alter-tables-delete-indexes">Delete indexes</a></li>
+        </ol>
+    </li>
+    <li>
+
+
+
+
+    
+
+<a href="#changing-the-column-s-type">Changing the column's type</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#truncate-tables">Truncate tables</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#rename-tables">Rename tables</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#drop-tables">Drop tables</a></li>
+</ol>
+
+<p class="well text-danger">
+    <strong><span class="fa fa-exclamation-triangle"></span> Important!</strong>
+    At this moment all the features presented here are available only for MySQL database systemes.
+</p>
+
+
+        
+
+
+    
+
+<h3>
+    
+    <strong>Introduction</strong>
+    <a id="introduction" href="#introduction" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    <strong>Opis Database</strong> provides an unified API across all database supported systems
+    that allows developers to manipulate tables or to obtain other informations about a database.
+</p>
+
+<p>
+    Accessing the database associated schema is done by calling the <code>schema</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Database\Connection</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Opis\Database\Database</span><span class="p">;</span>
+
+<span class="nv">$connection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Connection</span><span class="p">(</span><span class="s1">&#39;mysql:host=localhost;dbname=test&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">);</span>
+
+<span class="nv">$db</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Database</span><span class="p">(</span><span class="nv">$connection</span><span class="p">);</span>
+
+<span class="nv">$schema</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">();</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+<h3>
+    
+    <strong>Table informations</strong>
+    <a id="table-informations" href="#table-informations" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Obtaining a list of tables from the current database is done by using the <code>getTables</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$tables</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getTables</span><span class="p">();</span>
+
+<span class="k">foreach</span><span class="p">(</span><span class="nv">$tables</span> <span class="k">as</span> <span class="nv">$table</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">//do something</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>
+    By default the list of tables obtained by calling this method is cached for performance reasons.
+    If you want to obtain an uncached list of tables then pass <code>true</code> as an argument to the
+    <code>getTables</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$tables</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getTables</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+
+<span class="k">foreach</span><span class="p">(</span><span class="nv">$tables</span> <span class="k">as</span> <span class="nv">$table</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">//do something</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>
+    You can check if a specific table exists by passing the table name as the first argument to the <code>hasTable</code> method. 
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">if</span><span class="p">(</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">hasTable</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">));</span>
+<span class="p">{</span>
+    <span class="c1">//do something</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>
+    This method accepts as an optional second argument a boolean value that indicates
+    if the checking for the table's existence should be done by using an uncached list of tables.
+    The default value of this optional argument is <code>false</code>.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">if</span><span class="p">(</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">hasTable</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">));</span>
+<span class="p">{</span>
+    <span class="c1">//do something</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+<h3>
+    
+    <strong>Creating tables</strong>
+    <a id="creating-tables" href="#creating-tables" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    You can create new tables by using the <code>create</code> method. This method takes two arguments:
+    its first argument represents the name of the table you want to create and the second argument is
+    an anonymous callback function (<code>Closure</code>) that takes as an argument an instance of
+    <code>Opis\Database\Schema\CreateTable</code> class. 
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+    <span class="c1">//add columns here</span>
+<span class="p">}));</span>
+</code></pre></div>
+
+<p>
+    The object passed as an argument to the anonymous callback function, will be further used
+    to add columns, constraints and indexes to the newly created table.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+    <span class="c1">//add column</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">);</span>
+<span class="p">}));</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+<h3>
+    
+    <strong>Adding columns</strong>
+    <a id="adding-columns" href="#adding-columns" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Below is a list containing all columns types that you may use when building your tables.
+</p>
+
+<table class="table table-bordered box-highlight">
+    <thead>
+        <tr>
+            <th>Command</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds an <code>INTEGER</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">float</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds a <code>FLOAT</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">double</span><span class="p">(</span><span class="s1">&#39;distance&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds a <code>DOUBLE</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">decimal</span><span class="p">(</span><span class="s1">&#39;ammount&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds a <code>DECIMAL</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">decimal</span><span class="p">(</span><span class="s1">&#39;ammount&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds a <code>DECIMAL</code> equivalent column to the table and specify column's precision.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">boolean</span><span class="p">(</span><span class="s1">&#39;registered&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds a <code>BOOLEAN</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">binary</span><span class="p">(</span><span class="s1">&#39;picture&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds a <code>BLOB</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds a <code>VARCHAR</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="mi">128</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds a <code>VARCHAR</code> equivalent column to the table and specify the column's length.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">fixed</span><span class="p">(</span><span class="s1">&#39;country_code&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds a <code>CHAR</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">fixed</span><span class="p">(</span><span class="s1">&#39;country_code&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds a <code>CHAR</code> equivalent column to the table and specify the column's length.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">text</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds a <code>TEXT</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">time</span><span class="p">(</span><span class="s1">&#39;sunrise&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds a <code>TIME</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="p">(</span><span class="s1">&#39;created_at&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds a <code>TIMESTAMP</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds a <code>VARCHAR</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">date</span><span class="p">(</span><span class="s1">&#39;created_at&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds a <code>DATE</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">dateTime</span><span class="p">(</span><span class="s1">&#39;created_at&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds a <code>DATETIME</code> equivalent column to the table.</td>
+        </tr>
+    </tbody>
+</table>
+
+
+    
+
+
+    
+
+<h4>
+    
+    <strong>Column's size</strong>
+    <a id="column-s-size" href="#column-s-size" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    For <code>integer</code> and <code>text</code> types you can specify the column size by calling the <code>size</code> method. The valid
+    sizes values are: <code>tiny</code>, <code>small</code>, <code>normal</code>, <code>medium</code> and <code>big</code>.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">size</span><span class="p">(</span><span class="s1">&#39;big&#39;</span><span class="p">);</span>
+
+<span class="p">}));</span>
+</code></pre></div>
+
+
+
+<table class="table table-bordered box-highlight">
+    <thead>
+        <tr>
+            <th>Command</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">size</span><span class="p">(</span><span class="s1">&#39;tiny&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds an <code>TINYINT</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">size</span><span class="p">(</span><span class="s1">&#39;small&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds an <code>SMALLINT</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">size</span><span class="p">(</span><span class="s1">&#39;normal&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds an <code>INTEGER</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">size</span><span class="p">(</span><span class="s1">&#39;medium&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds an <code>MEDIUMINT</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">size</span><span class="p">(</span><span class="s1">&#39;big&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds an <code>BIGINT</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">text</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">size</span><span class="p">(</span><span class="s1">&#39;tiny&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds an <code>SMALLTEXT</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">text</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">size</span><span class="p">(</span><span class="s1">&#39;small&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds an <code>SMALLTEXT</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">text</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">size</span><span class="p">(</span><span class="s1">&#39;normal&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds an <code>TEXT</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">text</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">size</span><span class="p">(</span><span class="s1">&#39;medium&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds an <code>MEDIUMTEXT</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">text</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">size</span><span class="p">(</span><span class="s1">&#39;big&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds an <code>LONGTEXT</code> equivalent column to the table.</td>
+        </tr>
+    </tbody>
+</table>
+
+
+    
+
+
+    
+
+<h4>
+    
+    <strong>Column's properties</strong>
+    <a id="column-s-properties" href="#column-s-properties" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    You can specify that an <code>integer</code> column contains an unsigned integer value by using the
+    <code>unsigned</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">unsigned</span><span class="p">();</span>
+</code></pre></div>
+
+<p>
+    You can provide a default value for column by using the <code>defaultValue</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;role&#39;</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">defaultValue</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+<p>
+    Specifying that a column in not nullable id bone by using the <code>notNull</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">notNull</span><span class="p">();</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+<h4>
+    
+    <strong>Column's constraints</strong>
+    <a id="column-s-constraints" href="#column-s-constraints" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Adding a <code>primary key</code> constraint is done by using the <code>primary</code> method.
+    The name of the constraint will be the same as the column's name.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">primary</span><span class="p">();</span>
+</code></pre></div>
+
+<p>
+    Adding an <code>unique</code> constraint is done by using the <code>unique</code> method.
+    The name of the constraint will be the same as the column's name
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">unique</span><span class="p">();</span>
+</code></pre></div>
+
+<p>
+    For <code>integer</code> column types you can specify that the column's value will be incremented
+    automatically, when a new row is inserted into the table, by using the <code>autoincrement</code> method.
+    When using this feature, a <code>primary key</code> constraint will be automatically added to the column.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">autoincrement</span><span class="p">();</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+<h4>
+    
+    <strong>Indexing a column</strong>
+    <a id="indexing-a-column" href="#indexing-a-column" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    You can specify that the current column should be indexed, by calling the <code>index</code> method.
+    The name of the newly added index will be the same as the column's name.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">index</span><span class="p">();</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+<h3>
+    
+    <strong>Primary key</strong>
+    <a id="primary-key" href="#primary-key" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Adding a primary key for a newly created table is done using the <code>primary</code> method.
+    The method takes as an argument the name of the column on which you want to add the primary key constraint.
+    The name of the primary key will be the same as the column's name.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+    <span class="c1">// ... Add other columns</span>
+    <span class="c1">//Add primary key</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">primary</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+
+<span class="p">}));</span>
+</code></pre></div>
+
+<p class="well text-danger">
+    <strong><span class="fa fa-exclamation-triangle"></span> Important!</strong>
+    You can add only one primary key per table.
+</p>
+
+<p>
+    Adding a primary key that has a custom name can be done by passing as arguments to the <code>primary</code>
+    method the name of the primary key and the name of the column on which the primary key will be added.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+    <span class="c1">// ... Add other columns</span>
+    <span class="c1">//Add a primary key named `pk_id` on column `id`</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">primary</span><span class="p">(</span><span class="s1">&#39;pk_id&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">);</span>
+
+<span class="p">}));</span>
+</code></pre></div>
+
+<p>
+    If you want add a primary key on multiple columns, you simply have to pass as arguments to the
+    <code>primary</code> method the name of the primary key and an array conatining tha column names
+    on which the primary key will be added.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">);</span>
+    <span class="c1">// ... Add other columns</span>
+    <span class="c1">//Add a primary key named `users_pk` on columns `id` and `group`</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">primary</span><span class="p">(</span><span class="s1">&#39;users_pk&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;group&#39;</span><span class="p">));</span>
+
+<span class="p">}));</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+<h3>
+    
+    <strong>Unique keys</strong>
+    <a id="unique-keys" href="#unique-keys" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Adding a unique key for a newly created table is done using the <code>unique</code> method.
+    The method takes as an argument the name of the column on which you want to add the unique key constraint.
+    The name of the unique key will be the same as the column's name.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span>
+    <span class="c1">// ... Add other columns</span>
+    <span class="c1">//Add unique key</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">unique</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span>
+
+<span class="p">}));</span>
+</code></pre></div>
+
+<p>
+    Adding a unique key that has a custom name can be done by passing as arguments to the <code>unique</code>
+    method the name of the unique key and the name of the column on which the unique key will be added.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span>
+    <span class="c1">// ... Add other columns</span>
+    <span class="c1">//Add a unique key named `uk_email` on column `email`</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">unique</span><span class="p">(</span><span class="s1">&#39;uk_email&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">);</span>
+
+<span class="p">}));</span>
+</code></pre></div>
+
+<p>
+    If you want add a unique key on multiple columns, you simply have to pass as arguments to the
+    <code>unique</code> method the name of the unique key and an array conatining tha column names
+    on which the unique key will be added.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">);</span>
+    <span class="c1">// ... Add other columns</span>
+    <span class="c1">//Add a unique key named `uk_users` on columns `email` and `uesername`</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">unique</span><span class="p">(</span><span class="s1">&#39;uk_users&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">));</span>
+
+<span class="p">}));</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+<h3>
+    
+    <strong>Foreign keys</strong>
+    <a id="foreign-keys" href="#foreign-keys" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Adding a foreign key to a newly created table is done using the <code>foreign</code> method.
+    The method takes as an argument the name of the column on which you want to add the foreign key.
+    The name of the foreign will be the same as the column's name.
+</p>
+
+<p>
+    The referenced table is set by calling the <code>references</code> method and the referenced column
+    is set by calling the <code>on</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;profile_id&#39;</span><span class="p">);</span>
+    <span class="c1">// ... Add other columns</span>
+    <span class="c1">//Add a foreign key</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">foreign</span><span class="p">(</span><span class="s1">&#39;profile_id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">references</span><span class="p">(</span><span class="s1">&#39;profiles&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+
+<span class="p">}));</span>
+</code></pre></div>
+
+<p>
+    You may also specify options for the <code>on delete</code> and <code>on update</code> actions by using
+    the <code>onDelete</code> and <code>onUpdate</code> methods. These methods accepts as an argument only
+    the following string values: <code>cascade</code>, <code>restrict</code>, <code>no action</code> and <code>set null</code>.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;profile_id&#39;</span><span class="p">);</span>
+    <span class="c1">// ... Add other columns</span>
+    <span class="c1">//Add a foreign key</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">foreign</span><span class="p">(</span><span class="s1">&#39;profile_id&#39;</span><span class="p">)</span>
+          <span class="o">-&gt;</span><span class="na">references</span><span class="p">(</span><span class="s1">&#39;profiles&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
+          <span class="o">-&gt;</span><span class="na">onDelete</span><span class="p">(</span><span class="s1">&#39;cascade&#39;</span><span class="p">)</span>
+          <span class="o">-&gt;</span><span class="na">onUpdate</span><span class="p">(</span><span class="s1">&#39;cascade&#39;</span><span class="p">);</span>
+
+<span class="p">}));</span>
+</code></pre></div>
+
+<p>
+    Adding a foreign key that has a custom name can be done by passing as arguments to the <code>foreign</code>
+    method the name of the foreign key and the name of the column on which the foreign key will be added.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;profile_id&#39;</span><span class="p">);</span>
+    <span class="c1">// ... Add other columns</span>
+    <span class="c1">//Add a foreign key named `fk_custom_name` on column `profile_id`</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">foreign</span><span class="p">(</span><span class="s1">&#39;fk_custom_name&#39;</span><span class="p">,</span> <span class="s1">&#39;profile_id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">references</span><span class="p">(</span><span class="s1">&#39;profiles&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+
+<span class="p">}));</span>
+</code></pre></div>
+
+
+
+        
+
+
+    
+
+<h3>
+    
+    <strong>Indexes</strong>
+    <a id="indexes" href="#indexes" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Adding an index for a newly created table is done using the <code>index</code> method.
+    The method takes as an argument the name of the column on which you want to add the index.
+    The name of the index will be the same as the column's name.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+    <span class="c1">// ... Add other columns</span>
+    <span class="c1">//Add index</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">index</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+
+<span class="p">}));</span>
+</code></pre></div>
+
+<p>
+    Adding a index that has a custom name can be done by passing as arguments to the <code>index</code>
+    method the name of the index and the name of the column that you want to be indexed.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+    <span class="c1">// ... Add other columns</span>
+    <span class="c1">//Add an index named `idx_name` on column `name`</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">index</span><span class="p">(</span><span class="s1">&#39;idx_name&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">);</span>
+
+<span class="p">}));</span>
+</code></pre></div>
+
+<p>
+    If you want add a index on multiple columns, you simply have to pass as arguments to the
+    <code>index</code> method the name of the index and an array conatining tha column names
+    on which the index will be added.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span>
+    <span class="c1">// ... Add other columns</span>
+    <span class="c1">//Add an index named `idx_users` on columns `email` and `name`</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">index</span><span class="p">(</span><span class="s1">&#39;idx_users&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">));</span>
+
+<span class="p">}));</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+<h3>
+    
+    <strong>Alter tables</strong>
+    <a id="alter-tables" href="#alter-tables" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    You can alter existing tables by using the <code>alter</code> method.
+    This method takes two arguments: the first argument represents the name of the table you want to modify
+    and the second argument is an anonymous callback function (<code>Closure</code>) that takes as an argument
+    an instance of <code>Opis\Database\Schema\AlterTable</code> class. 
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">alter</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+    
+    <span class="c1">//code</span>
+    
+<span class="p">}));</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+<h4>
+    
+    <strong>Adding columns</strong>
+    <a id="alter-tables-adding-columns" href="#alter-tables-adding-columns" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Adding a new column to an existing table is done in a similar way
+    described in the 
+
+
+
+
+    
+
+<a href="#adding-columns">Adding columns</a> section.
+    The only difference is that you won't be able to directly add
+    a 
+
+
+
+
+    
+
+<a href="#column-s-constraints">constraint</a>
+    or an 
+
+
+
+
+    
+
+<a href="#indexing-a-column">index</a>.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">alter</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+    
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">size</span><span class="p">(</span><span class="s1">&#39;small&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">unsigned</span><span class="p">();</span>
+    
+<span class="p">}));</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+<h4>
+    
+    <strong>Deleting columns</strong>
+    <a id="alter-tables-deleting-columns" href="#alter-tables-deleting-columns" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    You can delete a column by using the <code>dropColumn</code> method. The method accepts a single
+    argument representing the column's name.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">alter</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+    
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">dropColumn</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">);</span>
+    
+<span class="p">}));</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+<h4>
+    
+    <strong>Renaming columns</strong>
+    <a id="alter-tables-renaming-columns" href="#alter-tables-renaming-columns" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Renaming a column is done using the <code>renameColumn</code> method. This method takes three arguments:
+    the first argument is the name of the column you want to rename, the second argument is the new name of
+    the column and the third argument represents the type of the column.
+    The third argument must be a string having one of these values
+    <code>integer</code>, <code>float</code>, <code>double</code>, <code>boolean</code>,
+    <code>decimal</code>, <code>string</code>, <code>fixed</code>, <code>text</code>,
+    <code>date</code>, <code>time</code>, <code>datetime</code>, <code>timestamp</code>, <code>binary</code>.
+</p>
+<p class="well text-primary">
+    <strong><span class="fa fa-pencil"></span> TODO:</strong>
+    Get rid of the third argument
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">alter</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+    
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">renameColumn</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">);</span>
+    
+<span class="p">}));</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+<h4>
+    
+    <strong>Adding default values</strong>
+    <a id="alter-tables-adding-default-values" href="#alter-tables-adding-default-values" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    You can add a default value for a column by using the <code>setDefaultValue</code> method.
+    This method takes as arguments the name of the column and the default value for that column.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">alter</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+    
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">setDefaultValue</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">);</span>
+    
+<span class="p">}));</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+<h4>
+    
+    <strong>Removing default values</strong>
+    <a id="alter-tables-removing-default-values" href="#alter-tables-removing-default-values" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    You can remove a default value of a column by using the <code>dropDefaultValue</code> method.
+    This method takes as an argument the name of the column.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">alter</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+    
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">dropDefaultValue</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">);</span>
+    
+<span class="p">}));</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+<h4>
+    
+    <strong>Add primary key</strong>
+    <a id="alter-tables-add-primary-key" href="#alter-tables-add-primary-key" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    You may add the primary key by calling the <code>addPrimary</code> method. 
+</p>
+
+<p class="well text-primary">
+    <strong><span class="fa fa-pencil"></span> TODO:</strong>
+    Rename this method to <strong>primary</strong>
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">alter</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+    
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addPrimary</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">);</span>
+    
+<span class="p">}));</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+<h4>
+    
+    <strong>Delete primary key</strong>
+    <a id="alter-tables-delete-primary-key" href="#alter-tables-delete-primary-key" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Droping primary key is done by using the <code>dropPrimary</code> method. This method
+    takes a single argument representing the name of the primary key.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">alter</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+    
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">dropPrimary</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+    
+<span class="p">}));</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+<h4>
+    
+    <strong>Add unique keys</strong>
+    <a id="alter-tables-add-unique-keys" href="#alter-tables-add-unique-keys" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    You may add a unique key by calling the <code>addUnique</code> method. 
+</p>
+
+<p class="well text-primary">
+    <strong><span class="fa fa-pencil"></span> TODO:</strong>
+    Rename this method to <strong>unique</strong>
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">alter</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+    
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addUnique</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span>
+    
+<span class="p">}));</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+<h4>
+    
+    <strong>Delete unique keys</strong>
+    <a id="alter-tables-delete-unique-keys" href="#alter-tables-delete-unique-keys" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Droping a unique key is done by using the <code>dropUnique</code> method. This method
+    takes a single argument representing the name of the unique key you want to delete.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">alter</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+    
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">dropUnique</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span>
+    
+<span class="p">}));</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+<h4>
+    
+    <strong>Add foreign keys</strong>
+    <a id="alter-tables-add-foreign-keys" href="#alter-tables-add-foreign-keys" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    You may add a foreign key by using the <code>addForeign</code> method.
+</p>
+
+<p class="well text-primary">
+    <strong><span class="fa fa-pencil"></span> TODO:</strong>
+    Rename this method to <strong>foreign</strong>
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">alter</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addForeign</span><span class="p">(</span><span class="s1">&#39;profile_id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">references</span><span class="p">(</span><span class="s1">&#39;profiles&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+
+<span class="p">}));</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+<h4>
+    
+    <strong>Delete foreign keys</strong>
+    <a id="alter-tables-delete-foreign-keys" href="#alter-tables-delete-foreign-keys" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Droping foreign key is done by using the <code>dropForeign</code> method. This method
+    takes a single argument representing the name of the foreign key you want to delete.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">alter</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+    
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">dropForeign</span><span class="p">(</span><span class="s1">&#39;fk_profile&#39;</span><span class="p">);</span>
+    
+<span class="p">}));</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+<h4>
+    
+    <strong>Add indexes</strong>
+    <a id="alter-tables-add-indexes" href="#alter-tables-add-indexes" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    You can add an index by calling the <code>addIndex</code> method.
+</p>
+
+<p class="well text-primary">
+    <strong><span class="fa fa-pencil"></span> TODO:</strong>
+    Rename this method to <strong>index</strong>
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">alter</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+    
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addIndex</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">);</span>
+    
+<span class="p">}));</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+<h4>
+    
+    <strong>Delete indexes</strong>
+    <a id="alter-tables-delete-indexes" href="#alter-tables-delete-indexes" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Droping an index is done by using the <code>dropIndex</code> method. This method
+    takes a single argument representing the name of the index you want to remove.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">alter</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+    
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">dropIndex</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">);</span>
+    
+<span class="p">}));</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+<h3>
+    
+    <strong>Changing the column's type</strong>
+    <a id="changing-the-column-s-type" href="#changing-the-column-s-type" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    When a table is altered you may change the types of its columns by using the following methods:
+</p>
+
+<table class="table table-bordered box-highlight">
+    <thead>
+        <tr>
+            <th>Command</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">toInteger</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Changes the type of the column to <code>INTEGER</code> equivalent.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">toFloat</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Changes the type of the column to <code>FLOAT</code> equivalent.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">toDouble</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Changes the type of the column to <code>DOUBLE</code> equivalent.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">toDecimal</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Changes the type of the column to <code>DECIMAL</code> equivalent.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">toBoolean</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Changes the type of the column to <code>BOOLEAN</code> equivalent.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">toBinary</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Changes the type of the column to <code>BLOB</code> equivalent.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">toString</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Changes the type of the column to <code>VARCHAR</code> equivalent.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">toFixed</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Changes the type of the column to <code>CHAR</code> equivalent.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">toText</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Changes the type of the column to <code>TEXT</code> equivalent.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">toTime</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Changes the type of the column to <code>TIME</code> equivalent.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">toTimestamp</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Changes the type of the column to <code>TIMESTAMP</code> equivalent.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">toDate</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Changes the type of the column to <code>DATE</code> equivalent.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">toDateTime</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Changes the type of the column to <code>DATETIME</code> equivalent.</td>
+        </tr>
+    </tbody>
+</table>
+
+
+        
+
+
+    
+
+<h3>
+    
+    <strong>Truncate tables</strong>
+    <a id="truncate-tables" href="#truncate-tables" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    You may use the <code>truncate</code> method if you want to remove all rows from a table.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">truncate</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+<h3>
+    
+    <strong>Rename tables</strong>
+    <a id="rename-tables" href="#rename-tables" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Renaming a table is done by using the <code>renameTable</code> method. This method takes as
+    arguments the current name of the table and the new name for that table. 
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="c1">//Rename table `user` to `users` </span>
+<span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">renameTable</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;users&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+<h3>
+    
+    <strong>Drop tables</strong>
+    <a id="drop-tables" href="#drop-tables" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    You may use the <code>drop</code> method if you want to delete a table.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">drop</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+
+            
+
+
+
+
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+        
+    
+
+
+<ul class="pager">
+  
+  <li class="previous"><a href="/database/transaction.html" title="Transactions">&larr; Back</a></li>
+  
+  
+</ul>
+            
+        </div>
+    </div>
+</div>
+<div id="footer" class="text-center text-muted">
+    Copyright &copy; 2014 Marius Sarca. All rights reserved.
+</div>
+
+    </body>
+</html>
