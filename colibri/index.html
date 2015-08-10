@@ -10,14 +10,16 @@
         
         <link href="/assets/img/favicon.png" rel="shortcut icon">
         
-        <link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
+        
+<link rel="stylesheet" href="/assets/css/paper-theme.min.css">
+
 <link href="/assets/css/font-awesome.css" rel="stylesheet">
 
 <link href="/assets/css/syntax.css" rel="stylesheet">
 
 
 
-<link href="/assets/css/style.css" rel="stylesheet">
+<link href="/assets/css/colibri.css" rel="stylesheet">
 
 
         <!--[if lt IE 9]>
@@ -30,64 +32,144 @@
 <script src="/assets/js/bootstrap.min.js"></script>
 
 
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-50415801-1', 'opis.io');
+    ga('send', 'pageview');
+</script>
+
     </head>
     <body>
-        <header id="header" class="navbar">
+        <header id="header" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
-                <span class="sr-only">Toggle navigation</span>
-                <i class="fa fa-bars fa-2x"></i>
+            <img src="/assets/img/opis-colibri.png" class="img-responsive opis-inline-logo">
+            <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
-            <h3>
-                <img src="/assets/img/opis-colibri-100.png" class="img-responsive opis-inline-logo">
-            </h3>
         </div>
-        <nav class="collapse navbar-collapse navbar-right" role="navigation">
+        <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
             <ul class="nav navbar-nav">
-                <li>
-                    <a href="http://www.opis.io" title="Main page">
-                        <span class="fa fa-home"></span> Home
-                    </a>
-                </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <span class="fa fa-cogs"></span> Components <span class="caret"></span>
+                        <span class="fa fa-file-text"></span> Documentation <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="/cache" title="Caching library">Cache</a></li>
-                        <li><a href="/closure" title="Serializable closures">Closure</a></li>
-                        <li><a href="/config" title="Configuration manager">Config</a></li>
-                        <li><a href="/container" title="Dependency injection container">Container</a></li>
-                        <li><a href="/database" title="Database abstraction layer">Database</a></li>
-                        <li><a href="/events" title="Events library">Events</a></li>
-                        <li><a href="https://github.com/opis/http" title="HTTP library">HTTP</a></li>
-                        <li><a href="/http-routing" title="HTTP routing library">HTTP Routing</a></li>
-                        <li><a href="/routing" title="Routing framework">Routing</a></li>
-                        <li><a href="/session" title="Session manager">Session</a></li>
-                        <li><a href="/utils" title="Utilitary classes">Utils</a></li>
-                        <li><a href="/view" title="Rendering engine">View</a></li>
+                        <li><a href="/colibri/install" title="Installation">Installation</a></li>
+                        <li><a href="/colibri/install" title="Getting started">Getting started</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="https://github.com/opis/" title="Github page">
-                        <span class="fa fa-github fa-lg"></span> GitHub
+                    <a href="/" title="Main page">
+                        <span class="fa fa-home"></span> Home
                     </a>
                 </li>
                 <li>
-                    <a href="http://twitter.com/opisproject" target="_blank" title="Twitter page">
-                        <span class="fa fa-twitter"></span> Twitter
+                    <a href="https://github.com/opis/colibri" title="Github page">
+                        <span class="fa fa-github fa-lg"></span> GitHub
                     </a>
                 </li>
             </ul>
         </nav>
     </div>
 </header>
-<h1>Opis Colibri</h1>
-<hr>
-<h4>Under construction</h4>
-<div id="footer" class="text-center text-muted">
-    Copyright &copy; 2014-2015 Marius Sarca. All rights reserved.
+
+<section>
+    <div class="container">
+    <div class="row feature-v1">
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h4 class="text-success"><span class="fa fa-puzzle-piece"></span> Modular framework</h4>
+                    <p>
+                        Opis Colibri follows a modular architecture and treats each module as a standalone component that can be individually disabled or enabled on demand.
+                        Modules are reusable across all Opis Colibri based projects, offering a great way of extending existing web applications and maintaining large code bases clean and well structured.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h4 class="text-success"><span class="fa fa-gears"></span> Decoupled components</h4>
+                    <p>
+                        In contrast to other frameworks, Opis Colibri is builded from standalone libraries that can be used with any modern PHP framework.
+                        Each and every library was built to serve its own purpose and it's fully decoupled from the Opis Colibri framework, meaning that any feature of Opis Colibri can be ported to other systems.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h4 class="text-success"><span class="fa fa-code"></span> Open source</h4>
+                    <p>
+                        Opis Colibri is an open source project licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2.0 license</a>.
+                        The source code of this project is publicly available on <a href="http://github.com/opis/colibri">GitHub</a>
+                        and everyone is free to use, to modify, distribute or sublicense Opis Colibri or its standalone components, for both commercial or non-commercial purposes. 
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row feature-v2">
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h5 class="text-primary"><span class="fa fa-magic"></span> Composer compatible</h5>
+                    <p>
+                        Composer is a great tool for managing project dependencies and is fully compatible with Opis Colibri.
+                        Use Composer to enhance your web application functionalities by using third-party libraries listed on Packagist.
+                    </p>  
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h5 class="text-primary"><span class="fa fa-random"></span> Great routing system</h5>
+                    <p>
+                        Opis Colibri provides developers a high degree of freedom and flexibility when it comes to define complex routing patterns.
+                        Developers can control in slight details how a specific route will be handled by the framework.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h5 class="text-primary"><span class="fa fa-html5"></span> Flexible templating</h5>
+                    <p>
+                        When dealing with templates, Opis Colibri takes an unique approach.
+                        It allows you to use multiple rendering engines simultaneously and does not impose you how to store and retrieve your templates.
+                    </p>  
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h5 class="text-primary"><span class="fa fa-thumbs-o-up"></span> Developer-friendly</h5>
+                    <p>
+                        Opis Colibri follows an OOP paradigm and intensively uses anonymous functions to define callbacks.
+                        Principles as "code reusability" or "separation of concerns" are highly valued, making Opis Colibri the perfect tool for building new web applications.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+</section>
+
+<footer class="text-center text-muted">
+    Copyright &copy; 2014-2015 Marius Sarca. All rights reserved.
+</footer>
+
     </body>
 </html>

@@ -37,14 +37,19 @@ header{
 }
 
 .opis-inline-logo{
-    display: inline !important;
-    width: 60px;
-    height: 60px;
+    display: inline;
+    float: left;
+    height: 50px;
+    margin-right: 5px;
+    margin-top: 10px;
 }
 
-.navbar-brand{
-    padding-top: 0px;
-    padding-bottom: 0px;
+.feature-v1 .thumbnail {
+    min-height: 225px;
+}
+
+.feature-v2 .thumbnail {
+    min-height: 250px;
 }
 
 footer{
@@ -93,24 +98,5 @@ a.navbar-brand{
 
 p > code{
     white-space: pre-wrap;
-}
-
-.project-logo-box{
-    background-image: url('/assets/img/opis-gs.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100px;
-}
-
-.project-logo-box:after{
-    content: attr(data-project-title);
-    font-family: "Lato","Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 30px;
-    font-weight: bold;
-    line-height: 100px;
-    display: block;
-    text-align: center;
-    padding-top: 40px;
-    text-shadow: 1px 1px 2px #EEEEEE, 2px 2px 0 #707070
 }
 

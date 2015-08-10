@@ -10,7 +10,9 @@
         
         <link href="/assets/img/favicon.png" rel="shortcut icon">
         
-        <link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
+        
+<link rel="stylesheet" href="/assets/css/paper-theme.min.css">
+
 <link href="/assets/css/font-awesome.css" rel="stylesheet">
 
 <link href="/assets/css/syntax.css" rel="stylesheet">
@@ -42,23 +44,28 @@
 
     </head>
     <body>
-        <header id="header" class="navbar">
+        <header id="header" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
-                <span class="sr-only">Toggle navigation</span>
-                <i class="fa fa-bars fa-2x"></i>
-            </button>
-            <h3 class="text-muted">
-                <strong>The</strong>
+            <a href="" class="navbar-brand">
+                <strong>
+                    The
+                </strong>
                 <img src="/assets/img/opis-100.png" class="img-responsive opis-inline-logo">
-                <strong>Project</strong>
-            </h3>
+                <strong>
+                    Project
+                </strong>
+            </a>
+            <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
         </div>
-        <nav class="collapse navbar-collapse navbar-right" role="navigation">
+        <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="http://www.opis.io" title="Main page">
+                    <a href="/" title="Main page">
                         <span class="fa fa-home"></span> Home
                     </a>
                 </li>
@@ -86,16 +93,12 @@
                         <span class="fa fa-github fa-lg"></span> GitHub
                     </a>
                 </li>
-                <li>
-                    <a href="http://twitter.com/opisproject" target="_blank" title="Twitter page">
-                        <span class="fa fa-twitter"></span> Twitter
-                    </a>
-                </li>
             </ul>
         </nav>
     </div>
 </header>
-<div class="container">
+<section>
+    <div class="container">
     <!--
     <div class="jumbotron">
         <div class="row">
@@ -103,16 +106,13 @@
                 <img class="img-responsive" src="/assets/img/opis-colibri-gs.png">
             </div>
             <div class="col-md-8">
-                <h2><strong>A different kind of framework</strong></h2>
+                <h2><strong>Full-stack modular framework</strong></h2>
                 <p class="lead">
-                    Build and deploy your web application in minutes.
+                    The perfect tool for building new web applications.
                 </p>
                 
                 <p class="text-right">
-                    <a class="btn btn-default" role="button" href="https://github.com/opis/colibri">
-                        <span class="fa fa-github fa-large"></span> GitHub
-                    </a>
-                    <a class="btn btn-primary" role="button" href="/colibri">Read more</a>
+                    <a class="btn btn-success" role="button" href="/colibri">Find out more</a>
                 </p>
             </div>
         </div>
@@ -163,7 +163,7 @@
         <div style="height: 125px">
             <p>
                 Opis Closure is a library that aims to overcome PHP's limitations regarding closure serialization
-                by providing a wrapper that will make the closure serializable. 
+                by providing a wrapper that will make all closures serializable. 
             </p>
                     </div>
         <p>
@@ -190,7 +190,7 @@
 <div class="thumbnail">
     <div class="project-logo-box" data-project-title="Container"></div>
     <div class="caption">
-        <h4><strong>Dependency injection container</strong></h4>
+        <h4><strong>Dependency injection</strong></h4>
         <div style="height: 125px">
             <p>
                 Opis Container is a library that provides a fully serializable dependency injection
@@ -503,9 +503,10 @@
         </div>
     </div>
 </div>
-<div id="footer" class="text-center text-muted">
+</section>
+<footer class="text-center text-muted">
     Copyright &copy; 2014-2015 Marius Sarca. All rights reserved.
-</div>
+</footer>
 
     </body>
 </html>
