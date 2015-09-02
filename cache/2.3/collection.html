@@ -4,14 +4,12 @@
         <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="keywords" content="php, configuration, config, database configuration">
+<meta name="keywords" content="php, cache, database cache, file cache, multiple storages, collections">
 <meta name="description" content="Learn how to create and use storage collections">
-<title>Storage collections | Opis Config</title>
+<title>Storage collection | Opis Cache</title>
         
         <link href="/assets/img/favicon.png" rel="shortcut icon">
         
-        
-        <link rel="canonical" href="http://www.opis.io/config/1.6/storage-collections.html">
         
         
 <link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
@@ -54,7 +52,7 @@
             <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
             <a href="" class="navbar-brand">
                 <strong>
-                    Config
+                    Cache
                 </strong>
             </a>
             <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
@@ -100,19 +98,19 @@
     <ul class="dropdown-menu">
     
         
-        <li><a href="/config">Latest version</a></li>
+        <li><a href="/cache">Latest version</a></li>
         
     
         
         
-        <li><a href="/config/1.6">Version 1.6</a></li>
+        <li><a href="/cache/2.3">Version 2.3</a></li>
         
     
     </ul>
 </li>
 
                 <li>
-                    <a href="https://github.com/opis/config/tree/1.6" title="Github page">
+                    <a href="https://github.com/opis/cache/tree/2.3" title="Github page">
                         <span class="fa fa-github fa-lg"></span> GitHub
                     </a>
                 </li>
@@ -129,18 +127,18 @@
                 
                     
                         
-<a href="/config/1.6" class="list-group-item">
+<a href="/cache/2.3" class="list-group-item">
 
     <h4 class="list-group-item-heading">About</h4>
     <p class="list-group-item-text text-muted">
-        Getting started with Opis Config
+        Getting started with Opis Cache
     </p>
 </a>
                     
                 
                     
                         
-<a href="/config/1.6/use.html" class="list-group-item">
+<a href="/cache/2.3/use.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Using the library</h4>
     <p class="list-group-item-text text-muted">
@@ -151,9 +149,9 @@
                 
                     
                         
-<a href="/config/1.6/storage-collections.html" class="list-group-item active">
+<a href="/cache/2.3/collection.html" class="list-group-item active">
 
-    <h4 class="list-group-item-heading">Storage collections</h4>
+    <h4 class="list-group-item-heading">Storage collection</h4>
     <p class="list-group-item-text text-muted">
         Learn how to create and use storage collections
     </p>
@@ -162,11 +160,11 @@
                 
                     
                         
-<a href="/config/1.6/example.html" class="list-group-item">
+<a href="/cache/2.3/storage.html" class="list-group-item">
 
-    <h4 class="list-group-item-heading">Examples</h4>
+    <h4 class="list-group-item-heading">Add new storages</h4>
     <p class="list-group-item-text text-muted">
-        Examples of how to use this library
+        Learn how you can add support for new storages
     </p>
 </a>
                     
@@ -182,72 +180,60 @@
 
 <h1>
     
-    <strong>Storage collections</strong>
+    <strong>Storage collection</strong>
     
 </h1>
 
 <p>
-     Storage collections allows you to group multiple config storage implementations into a single collection.
-     The collection is fully serializable, allowing you to save the state of the collection at any time. 
+    Storage collections allows you to group multiple cache storage implementations into a single collection.
+    The collection is fully serializable, allowing you save the state of the collection at any time.
 </p>
 
 <p>
-    Creating a new storage collection is simply done by creating
-    a new instance of <code>Opis\Config\StorageCollection</code> class. 
+    Creating a new collection is simply done by creating a new instance of <code>Opis\Cache\StorageCollection</code> class.
 </p>
 
-<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Config\StorageCollection</span><span class="p">;</span>
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Cache\SorageCollection</span>
 
 <span class="nv">$collection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">StorageCollection</span><span class="p">();</span>
 </code></pre></div>
 
 <p>
-    Adding a storage implementation to the collection is done by using the <code>add</code> method.
-    The method takes three arguments: a string, representing the name of the implementation, an anonymous function
-    callback, and optionally a boolean value that specify if this is the default storage of this collection (by default is <code>false</code>).
+    Adding a cache storage implementation to the collection is done by calling the <code>add</code> method.
+    The method takes three arguments: a string, representing the name of the implementation, an anonymous function,
+    callback and optionally a boolean value that specify if this is the default implementation of this collection (by default is <code>false</code>).
 </p>
 
 <p>
-    The anonymous callback function, passed to the <code>add</code> method, must return an object that implements the <code>Opis\Config\StorageInterface</code> interface.
-    The returned configuration storage will be further used to build an <code>Opis\Config\Config</code> instance.
+    The anonymous callback function must return an instance of <code>Opis\Cache\StorageInterface</code> that
+    will be further used to build an <code>Opis\Cache\Cache</code> instance.
 </p>
 
 <div class="highlight"><pre><code class="php"><span class="c1">//Adding a new implementation</span>
 <span class="nv">$collection</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;memory&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="nx">\Opis\Config\Storage\Memory</span><span class="p">();</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">\Opis\Cache\Storage\Memory</span><span class="p">();</span>
 <span class="p">});</span>
 
-<span class="c1">//Adding another implementation and set it as the default storage implementation</span>
+<span class="c1">//Adding another implementation and set it as the default cache implementation</span>
 <span class="nv">$collection</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="nx">\Opis\Config\Storage\File</span><span class="p">(</span><span class="s1">&#39;/path/to/config/folder&#39;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">\Opis\Cache\Storage\File</span><span class="p">(</span><span class="s1">&#39;/path/to/cache/folder&#39;</span><span class="p">);</span>
 <span class="p">},</span> <span class="k">true</span><span class="p">);</span>
 </code></pre></div>
 
 
 <p>
     Retrieving an implementation is done bay calling the <code>get</code> method with a string argument
-    representing the name of the implementation. If the name is omitted, then the default implementation
+    representing the name of the implementation. If the argument is omitted, then the default implementation
     will be returned. If no implementation was explicitly designated as the default implementation,
     then the first implementation added to the collection will be designated as the default implementation
     for this collection.
 </p>
 
-<div class="highlight"><pre><code class="php"><span class="c1">//Write to memory storage</span>
-<span class="nv">$collection</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;memory&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;http.port&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
+<div class="highlight"><pre><code class="php"><span class="c1">//Write to memory cache</span>
+<span class="nv">$collection</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;memory&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">);</span>
 
-<span class="c1">//Write to the default (file) storage</span>
-<span class="nv">$collection</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;http.port&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
-</code></pre></div>
-
-<p>
-    The same thing can be achieved by simply invoking the collection object instance.
-</p>
-
-<div class="highlight"><pre><code class="php"><span class="c1">//Write to memory storage</span>
-<span class="nv">$collection</span><span class="p">(</span><span class="s1">&#39;memory&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;http.port&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
-
-<span class="c1">//Write to the default (file) storage</span>
-<span class="nv">$collection</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;http.port&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
+<span class="c1">//Write to the default (file) cache</span>
+<span class="nv">$collection</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">);</span>
 </code></pre></div>
 
 <p>
@@ -255,7 +241,7 @@
 </p>
 <div class="highlight"><pre><code class="php"><span class="k">if</span><span class="p">(</span><span class="nv">$collection</span><span class="o">-&gt;</span><span class="na">has</span><span class="p">(</span><span class="s1">&#39;memory&#39;</span><span class="p">))</span>
 <span class="p">{</span>
-    <span class="nv">$collection</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;memory&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;http.port&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
+    <span class="nv">$collection</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;memory&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;Hello World!&#39;</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>
@@ -273,6 +259,7 @@
 
 <div class="highlight"><pre><code class="php"><span class="nv">$collection</span><span class="o">-&gt;</span><span class="na">remove</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">);</span>
 </code></pre></div>
+
 
                 
 
@@ -314,10 +301,10 @@
 
 <ul class="pager">
   
-  <li class="previous"><a href="/config/1.6/use.html" title="Using the library">&larr; Back</a></li>
+  <li class="previous"><a href="/cache/2.3/use.html" title="Using the library">&larr; Back</a></li>
   
   
-  <li class="next"><a href="/config/1.6/example.html" title="Examples">Next &rarr;</a></li>
+  <li class="next"><a href="/cache/2.3/storage.html" title="Add new storages">Next &rarr;</a></li>
   
 </ul>
                 

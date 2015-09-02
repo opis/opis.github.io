@@ -49,7 +49,7 @@ header{
 }
 
 .feature-v2 .thumbnail {
-    min-height: 250px;
+    min-height: 260px;
 }
 
 footer{
@@ -68,24 +68,22 @@ ol.submenu ol{
     list-style: lower-latin;
 }
 
-ol.submenu a, a.link-anchor, a.alter-link{
-    color: #2C3E50;
-}
-
-ol.submenu a{
-    font-weight: bold;
+a.link-anchor, a.alter-link{
+    color: inherit;
 }
 
 a.link-anchor{
     visibility: hidden;
-    padding-top: 80px;
+    font-size: 0.75em;
     margin-top: -80px;
+    padding-top: 80px;
+    outline: none;
 }
 
 a.top-anchor{
     visibility: hidden;
-    padding-top: 80px;
     margin-top: -80px;
+    padding-top: 80px;
 }
 
 a.navbar-brand{
@@ -100,3 +98,28 @@ p > code{
     white-space: pre-wrap;
 }
 
+ul.file-tree{
+    list-style: none;
+    padding: 0px;
+}
+
+ul.file-tree ul.file-tree{
+    padding: 0px 20px;
+}
+
+ul.navigation, ul.navigation ul{
+    padding: 0px;
+    list-style: none;
+}
+
+ul.navigation .chapter {
+    font-size: 1.5em;
+    color: #bbb;
+    border-bottom: 1px dashed #bbb;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+ul.navigation ul{
+    margin-bottom: 25px;
+}

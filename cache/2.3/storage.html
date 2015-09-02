@@ -4,9 +4,9 @@
         <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="keywords" content="php, configuration, config, database configuration">
-<meta name="description" content="A configuration manager with support for multiple stoarages">
-<title>Opis Config | www.opis.io</title>
+<meta name="keywords" content="php, cache, database cache, file cache, multiple storages">
+<meta name="description" content="Learn how to add support for new storages">
+<title>Add new storages | Opis Cache</title>
         
         <link href="/assets/img/favicon.png" rel="shortcut icon">
         
@@ -52,7 +52,7 @@
             <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
             <a href="" class="navbar-brand">
                 <strong>
-                    Config
+                    Cache
                 </strong>
             </a>
             <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
@@ -98,19 +98,19 @@
     <ul class="dropdown-menu">
     
         
-        <li><a href="/config">Latest version</a></li>
+        <li><a href="/cache">Latest version</a></li>
         
     
         
         
-        <li><a href="/config/1.6">Version 1.6</a></li>
+        <li><a href="/cache/2.3">Version 2.3</a></li>
         
     
     </ul>
 </li>
 
                 <li>
-                    <a href="https://github.com/opis/config" title="Github page">
+                    <a href="https://github.com/opis/cache/tree/2.3" title="Github page">
                         <span class="fa fa-github fa-lg"></span> GitHub
                     </a>
                 </li>
@@ -127,18 +127,18 @@
                 
                     
                         
-<a href="/config" class="list-group-item active">
+<a href="/cache/2.3" class="list-group-item">
 
     <h4 class="list-group-item-heading">About</h4>
     <p class="list-group-item-text text-muted">
-        Getting started with Opis Config
+        Getting started with Opis Cache
     </p>
 </a>
                     
                 
                     
                         
-<a href="/config/use.html" class="list-group-item">
+<a href="/cache/2.3/use.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Using the library</h4>
     <p class="list-group-item-text text-muted">
@@ -149,11 +149,22 @@
                 
                     
                         
-<a href="/config/example.html" class="list-group-item">
+<a href="/cache/2.3/collection.html" class="list-group-item">
 
-    <h4 class="list-group-item-heading">Examples</h4>
+    <h4 class="list-group-item-heading">Storage collection</h4>
     <p class="list-group-item-text text-muted">
-        Examples of how to use this library
+        Learn how to create and use storage collections
+    </p>
+</a>
+                    
+                
+                    
+                        
+<a href="/cache/2.3/storage.html" class="list-group-item active">
+
+    <h4 class="list-group-item-heading">Add new storages</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how you can add support for new storages
     </p>
 </a>
                     
@@ -169,122 +180,154 @@
 
 <h1>
     
-    <strong>Configuration manager</strong>
+    <strong>Add new storages</strong>
     
 </h1>
 
-
 <p>
-    <strong>Opis Config</strong> is a configuration management library, with support for multiple backend
-    storages, that provides developers an API which allows them to work with configurations in a standardised way,
-    no matter where the configurations are stored.
+    Creating a new storage type is simply a matter of declaring a new class that implements the
+    <code>Opis\Cache\StorageInterface</code> interface.
 </p>
 
 <p>
-    The supported backend storages are: File, JSON, Mongo, MongoArray, PHPFile, Memory, DualStorage.
+    The interface has five methods that need to be implementented in order to have a fully functional
+    cache storage.
 </p>
 
-<p class="well text-primary">
-    <strong><span class="fa fa-exclamation-triangle"></span> Important!</strong>
-    You can install additional storage adapters, for SQL databases, by using the
-    optional <a href="https://github.com/opis/storages" target="_blank">Opis Storages</a> package.
-</p>
+<div class="highlight"><pre><code class="php"><span class="k">namespace</span> <span class="nx">Opis\Cache</span><span class="p">;</span>
 
-
-        
-
-
+<span class="k">interface</span> <span class="nx">StorageInterface</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">read</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span>
     
-
-
-        
-
-<h3>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">write</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$value</span><span class="p">,</span> <span class="nv">$ttl</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span>
     
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">delete</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span>
     
-    <strong>License</strong>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">has</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span>
     
-    <a id="license" href="#license" class="link-anchor"><span class="fa fa-link"></span></a>
-</h3>
-
-<p>
-    <strong>Opis Config</strong> is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" rel="nofollow">Apache License, Version 2.0</a>.
-</p>
-
-
-        
-
-
-    
-
-
-        
-
-<h3>
-    
-    
-    <strong>Requirements</strong>
-    
-    <a id="requirements" href="#requirements" class="link-anchor"><span class="fa fa-link"></span></a>
-</h3>
-
-<ul>
-    <li>PHP 5.3.* or higher</li>
-</ul>
-
-
-        
-
-
-    
-
-
-        
-
-<h3>
-    
-    
-    <strong>Installation</strong>
-    
-    <a id="installation" href="#installation" class="link-anchor"><span class="fa fa-link"></span></a>
-</h3>
-
-<p>
-    <strong>Opis Config</strong> is available on
-    <a href="https://packagist.org/packages/opis/config" title="Packagist site" target="_blank">Packagist</a>
-    and can be installed using
-    <a href="http://getcomposer.org" target="_blank" rel="nofollow" title="Composer site">Composer</a>.
-</p>
-
-
-
-<div class="highlight"><pre><code class="json"><span class="p">{</span>
-    <span class="nt">&quot;require&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;opis/config&quot;</span><span class="p">:</span> <span class="s2">&quot;^2.0.0&quot;</span>
-    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">clear</span><span class="p">();</span>
+  
 <span class="p">}</span>
 </code></pre></div>
 
 
+
+    
+
+
+    
+
+
+        
+
+<h4>
+    
+    
+    <strong>The <em>write</em> method</strong>
+    
+    <a id="the-write-method" href="#the-write-method" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
 <p>
-    If you are unable to use <a href="http://getcomposer.org" target="_blank" rel="nofollow" title="Composer site">Composer</a>
-    you can download the
-    <a href="https://github.com/opis/config/archive/2.0.0.tar.gz" data-toggle="tooltip" title="Opis Config 2.0.0">
-    
-        tar.gz
-    
-</a>
-    or the
-    <a href="https://github.com/opis/config/archive/2.0.0.zip" data-toggle="tooltip" title="Opis Config 2.0.0">
-    
-        zip
-    
-</a> archive file,
-    extract the content of the archive and include de <code>autoload.php</code> file into your project.
+    This methods takes two arguments representing a key-value pair and optionally a third argument
+    representing the amount of time(expressed in seconds) remained until the cache expires. If <code>0 (zero)</code>
+    is passed as a third argument, the cache will never expire.
+    This method must return <code>true</code> if the value was successfully stored at the specified key
+    or <code>false</code> otherwise.
 </p>
 
-<div class="highlight"><pre><code class="php"><span class="k">require_once</span> <span class="s1">&#39;path/to/config-2.0.0/autoload.php&#39;</span><span class="p">;</span>
-</code></pre></div>
+
+    
+
+
+    
+
+
+        
+
+<h4>
+    
+    
+    <strong>The <em>read</em> method</strong>
+    
+    <a id="the-read-method" href="#the-read-method" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    This method takes a single argument representing the key used to store the cached content.
+    If there is no associated content with the specified key, the method must return <code>false</code>.
+    If there is content associated with the specified key, then the content must be first removed from cache,
+    after which the method must return <code>false</code>.
+    Otherwise the method returns the content stored at the specified key.
+</p>
+
+
+    
+
+
+    
+
+
+        
+
+<h4>
+    
+    
+    <strong>The <em>has</em> method</strong>
+    
+    <a id="the-has-method" href="#the-has-method" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    This method takes a single argument representing the key that needs to be checked.
+    If there is no cache content associated with the specified key, or if the cache content has
+    expired, then the method must return <code>false</code>.
+    Otherwise this method returns <code>true</code>.
+</p>
+
+
+    
+
+
+    
+
+
+        
+
+<h4>
+    
+    
+    <strong>The <em>delete</em> method</strong>
+    
+    <a id="the-delete-method" href="#the-delete-method" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+This method takes a single argument representing the key that needs to be deleted.
+If there is no content associated with this key or if the content could not be deleted, then
+this method must return <code>false</code>. Otherwise this method returns <code>true</code>.
+
+
+    
+
+
+    
+
+
+        
+
+<h4>
+    
+    
+    <strong>The <em>clear</em> method</strong>
+    
+    <a id="the-clear-method" href="#the-clear-method" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+This method takes no arguments. When this method is called, all cached content stored by the current
+storage must be deleted. If the deletion succeed, then this method returns <code>true</code> otherwise it
+returns <code>false</code>.
+
 
                 
 
@@ -295,6 +338,8 @@
     
         
             
+                
+            
         
     
 
@@ -302,24 +347,31 @@
         
             
                 
+            
+        
+    
+
+    
+        
+            
                 
             
         
     
 
+    
+        
+            
+        
     
 
 
 <ul class="pager">
   
+  <li class="previous"><a href="/cache/2.3/collection.html" title="Storage collection">&larr; Back</a></li>
   
-  <li class="next"><a href="/config/use.html" title="Using the library">Next &rarr;</a></li>
   
 </ul>
-                
-                    <script>
-    $('[data-toggle=tooltip]').tooltip();
-</script>
                 
             </div>
         </div>

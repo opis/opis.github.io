@@ -11,6 +11,7 @@
         <link href="/assets/img/favicon.png" rel="shortcut icon">
         
         
+        
 <link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
 
 <link href="/assets/css/font-awesome.css" rel="stylesheet">
@@ -44,7 +45,8 @@
 
     </head>
     <body>
-        <header id="header" class="navbar navbar-default navbar-fixed-top">
+        
+<header id="header" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
@@ -85,6 +87,28 @@
                         <li><a href="/view" title="Rendering engine">View</a></li>
                     </ul>
                 </li>
+                
+    
+    
+
+<li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="fa fa-tags"></span> Versions <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+    
+        
+        <li><a href="/cache">Latest version</a></li>
+        
+    
+        
+        
+        <li><a href="/cache/2.3">Version 2.3</a></li>
+        
+    
+    </ul>
+</li>
+
                 <li>
                     <a href="https://github.com/opis/cache" title="Github page">
                         <span class="fa fa-github fa-lg"></span> GitHub
@@ -125,17 +149,6 @@
                 
                     
                         
-<a href="/cache/collection.html" class="list-group-item">
-
-    <h4 class="list-group-item-heading">Storage collection</h4>
-    <p class="list-group-item-text text-muted">
-        Learn how to create and use storage collections
-    </p>
-</a>
-                    
-                
-                    
-                        
 <a href="/cache/storage.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Add new storages</h4>
@@ -148,9 +161,18 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <h1>
+                
+        
+
+
+        
+
+<h1>
+    
     <strong>Caching library</strong>
+    
 </h1>
+
 
 <p>
     <strong>Opis Cache</strong> is a caching library, with support for multiple backend storages,
@@ -160,8 +182,14 @@
 </p>
 
 <p>
-    The currently supported storages are: APC, APCU, Database, File, Memory, Memcache, Memcached, MongoDB,
-    Proxy, Redis, WinCache, XCache, ZendCache and ZendMemory.
+    The currently supported storages are: APC, APCU, File, Memory, Memcache, Memcached, MongoDB,
+    Proxy, WinCache, XCache, ZendCache and ZendMemory.
+</p>
+
+<p class="well text-primary">
+    <strong><span class="fa fa-exclamation-triangle"></span> Important!</strong>
+    You can install additional storage adapters, for SQL databases and Redis, by using the
+    optional <a href="https://github.com/opis/storages" target="_blank">Opis Storages</a> package.
 </p>
 
 
@@ -170,9 +198,14 @@
 
     
 
+
+        
+
 <h3>
     
+    
     <strong>License</strong>
+    
     <a id="license" href="#license" class="link-anchor"><span class="fa fa-link"></span></a>
 </h3>
 
@@ -186,17 +219,19 @@
 
     
 
+
+        
+
 <h3>
     
+    
     <strong>Requirements</strong>
+    
     <a id="requirements" href="#requirements" class="link-anchor"><span class="fa fa-link"></span></a>
 </h3>
 
 <ul>
     <li>PHP 5.3.* or higher</li>
-    <li><a href="/closure" data-toggle="tooltip" title="Opis Closure ^2.0.0">Opis Closure</a> ^2.0.0</li>
-    <li><a href="/database" data-toggle="tooltip" title="Opis Database ^2.1.1">Opis Database</a> ^2.1.1 (for Database storage)</li>
-    <li><a href="https://github.com/nrk/predis" data-toggle="tooltip" title="Predis 1.0.*">Predis</a> 1.0.* (for Redis storage)</li>
 </ul>
 
 
@@ -205,9 +240,14 @@
 
     
 
+
+        
+
 <h3>
     
+    
     <strong>Installation</strong>
+    
     <a id="installation" href="#installation" class="link-anchor"><span class="fa fa-link"></span></a>
 </h3>
 
@@ -219,23 +259,25 @@
 </p>
 
 
+
 <div class="highlight"><pre><code class="json"><span class="p">{</span>
     <span class="nt">&quot;require&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;opis/cache&quot;</span><span class="p">:</span> <span class="s2">&quot;2.3.*&quot;</span>
+        <span class="nt">&quot;opis/cache&quot;</span><span class="p">:</span> <span class="s2">&quot;^3.0.0&quot;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
+
 <p>
     If you are unable to use <a href="http://getcomposer.org" target="_blank" rel="nofollow" title="Composer site">Composer</a>
     you can download the
-    <a href="https://github.com/opis/cache/archive/2.3.0.tar.gz" data-toggle="tooltip" title="Opis Cache 2.3.0">
+    <a href="https://github.com/opis/cache/archive/3.0.0.tar.gz" data-toggle="tooltip" title="Opis Cache 3.0.0">
     
         tar.gz
     
 </a>
     or the
-    <a href="https://github.com/opis/cache/archive/2.3.0.zip" data-toggle="tooltip" title="Opis Cache 2.3.0">
+    <a href="https://github.com/opis/cache/archive/3.0.0.zip" data-toggle="tooltip" title="Opis Cache 3.0.0">
     
         zip
     
@@ -243,7 +285,7 @@
     extract the content of the archive and include de <code>autoload.php</code> file into your project.
 </p>
 
-<div class="highlight"><pre><code class="php"><span class="k">require_once</span> <span class="s1">&#39;path/to/cache-2.3.0/autoload.php&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><code class="php"><span class="k">require_once</span> <span class="s1">&#39;path/to/cache-3.0.0/autoload.php&#39;</span><span class="p">;</span>
 </code></pre></div>
 
                 
@@ -265,8 +307,6 @@
                 
             
         
-    
-
     
 
     
