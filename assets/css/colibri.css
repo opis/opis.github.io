@@ -4,11 +4,11 @@ html{
 }
 
 body{
-    margin-bottom: 100px;
+    /*margin-bottom: 100px;*/
 }
 
 body > section {
-    padding-top: 80px;
+    /*padding-top: 80px;*/
 }
 
 header{
@@ -54,8 +54,8 @@ header{
 
 footer{
     height: 100px;
-    position: absolute;
-    bottom: 0;
+    /*position: absolute;
+    bottom: 0;*/
     width: 100%;
     line-height: 100px;
 }
@@ -75,15 +75,15 @@ a.link-anchor, a.alter-link{
 a.link-anchor{
     visibility: hidden;
     font-size: 0.75em;
-    margin-top: -80px;
-    padding-top: 80px;
+    /*margin-top: -80px;
+    padding-top: 80px;*/
     outline: none;
 }
 
 a.top-anchor{
     visibility: hidden;
-    margin-top: -80px;
-    padding-top: 80px;
+    /*margin-top: -80px;
+    padding-top: 80px;*/
 }
 
 a.navbar-brand{
@@ -122,4 +122,21 @@ ul.navigation .chapter {
 
 ul.navigation ul{
     margin-bottom: 25px;
+}
+
+#back-to-top{
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #e51c23;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    z-index: 100;
+    outline: none;
+    display: none;
 }

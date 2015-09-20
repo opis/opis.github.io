@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="php, full-stack, framework, php framework, modules, modular framework">
+<meta name="description" content="Learn about modules and how to create them">
+<title>Modules | Opis Colibri</title>
+        
+        <link href="/assets/img/favicon.png" rel="shortcut icon">
+        
+        
+        
+<link rel="stylesheet" href="/assets/css/paper-theme.min.css">
+
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+
+<link href="/assets/css/syntax.css" rel="stylesheet">
+
+
+
+<link href="/assets/css/colibri.css" rel="stylesheet">
+
+
+        <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-50415801-1', 'opis.io');
+    ga('send', 'pageview');
+</script>
+
+    </head>
+    <body>
+        <header id="header" class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="/colibri">
+                <img src="/assets/img/opis-colibri.png" class="img-responsive opis-inline-logo">
+            </a>
+            <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/colibri/documentation" title="Documentation">
+                        <span class="fa fa-file-text"></span> Documentation
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/opis/colibri" title="Github page">
+                        <span class="fa fa-github fa-lg"></span> GitHub
+                    </a>
+                </li>
+                <li>
+                    <a href="/" title="Main page">
+                        <span class="fa fa-home"></span> Home
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            
+<ul class="navigation">
+
+    
+        
+            
+        
+        <li class="chapter">Quick start</li>
+        <ul>
+            <li><a href="/colibri/documentation" title="Learn how to install Opis Colibri">Installation</a></li>
+    
+
+    
+        
+        </ul>
+        
+        <li class="chapter">The basics</li>
+        <ul>
+            <li><a href="/colibri/documentation/modules.html" title="Learn about modules and how to create them">Modules</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/collectors.html" title="Learn about collectors and how to use them">Collectors</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/installer.html" title="Learn about installers and what they do">Installers</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/classes.html" title="Learn about modules' classes">Classes</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/assets.html" title="Learn about Opis Colibri assets">Assets</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/functions.html" title="Learn about framework's global functions">Global functions</a></li>
+    
+
+    
+        
+        </ul>
+        
+        <li class="chapter">Administration</li>
+        <ul>
+            <li><a href="/colibri/documentation/commands.html" title="Learn about available commands">Console commands</a></li>
+    
+
+    
+        
+        </ul>
+        
+        <li class="chapter">Collectible items</li>
+        <ul>
+            <li><a href="/colibri/documentation/routes.html" title="Learn about Opis Colibri routes">Routes</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/route-aliases.html" title="Learn about Opis Colibri route aliases">Route aliases</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/dispatchers.html" title="Learn about Opis Colibri dispatchers">Dispatchers</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/views.html" title="Learn about Opis Colibri views">Views</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/view-engines.html" title="Learn about Opis Colibri view engines">View engines</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/contracts.html" title="Learn about Opis Colibri contracts">Contracts</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/events.html" title="Learn about Opis Colibri event handlers">Event handlers</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/databases.html" title="Learn about database connections">Database connections</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/session.html" title="Learn about Opis Colibri sessions">Session storages</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/cache.html" title="Learn about Opis Colibri cache storages">Cache storages</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/config.html" title="Learn about Opis Colibri config storages">Config storages</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/validators.html" title="Learn about Opis Colibri validators">Validators</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/translations.html" title="Learn about Opis Colibri translations">Translations</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/variables.html" title="Learn about Opis Colibri variables">Variables</a></li>
+    
+
+    </ul>
+</ul>
+
+        </div>
+        <div class="col-md-8">
+            
+    
+
+
+    
+
+<h2>
+    
+    Modules
+    
+</h2>
+
+<ol class="submenu">
+    <li>
+
+
+
+
+    
+
+<a href="#introduction">Introduction</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#creating-a-module">Creating a module</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#the-module.json-file">The <em>module.json</em> file</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#hidden-modules">Hidden modules</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#distributing-modules">Distributing modules</a></li>
+</ol>
+
+
+        
+
+
+    
+
+
+    
+
+
+    
+
+<h3>
+    
+    
+    Introduction
+    
+    <a id="introduction" href="#introduction" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Modules are the fundamental bricks of the Opis Colibri framework. In fact, everything in Opis Colibri
+    is a module. Even the code that controls the framework's installation process is encapsulated
+    into a module. This kind of approach has a profound implication over the development process:
+    it encourages code reusability, it allows you to alter framework's behavior and it allows you
+    to provide custom installers for the framework.
+</p>
+
+<p>
+    Modules can be found either into the <code>modules</code> folder or into the <code>system/modules</code> directory.
+    As a rule, all user created modules should be added into the <code>modules</code> folder, keeping the <code>system/modules</code>
+    directory reserved for official Opis Colibri modules or for those modules that were designated as being <em>system modules</em>.
+</p>
+
+
+        
+
+
+    
+
+
+    
+
+
+    
+
+<h3>
+    
+    
+    Creating a module
+    
+    <a id="creating-a-module" href="#creating-a-module" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Creating a module can be done simply by adding a new <code>module.json</code> file inside a subfolder
+    of the <code>modules</code> directory. The name of the module will be given by the name of the <code>module.json</code> file.
+    The file's name must be composed only from alpha-numeric characters and hyphens and must always begin with a letter.
+</p>
+
+<p>
+    Beside the restrictions regarding the file's name, the <code>module.json</code> file must contain a valid JSON object.
+</p>
+
+<div class="highlight"><pre><code class="json"><span class="p">{}</span>
+</code></pre></div>
+
+<p>
+    Here is how your folder structure should look like, assuming you have created a new module named <code>example</code>
+    inside a subfolder(also named <em>example</em>) of the <code>modules</code> directory.
+</p>
+
+<ul class="file-tree">
+    <li>
+        <span class="fa fa-folder-open"></span> modules
+        <ul class="file-tree">
+            <li><span class="fa fa-folder"></span> welcome</li>
+            <li class="text-primary">
+                <span class="fa fa-folder-open"></span> example
+                <ul class="file-tree">
+                    <li><span class="fa fa-file-text"></span> example.module.json</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li><span class="fa fa-folder"></span> public</li>
+    <li><span class="fa fa-folder"></span> storage</li>
+    <li><span class="fa fa-folder"></span> system</li>
+    <li><span class="fa fa-folder"></span> vendor</li>
+    <li><span class="fa fa-file-text"></span> bootstrap.php</li>
+    <li><span class="fa fa-file-text"></span> CHANGELOG.md</li>
+    <li><span class="fa fa-file-text"></span> colibri</li>
+    <li><span class="fa fa-file-text"></span> composer.json</li>
+    <li><span class="fa fa-file-text"></span> composer.lock</li>
+    <li><span class="fa fa-file-text"></span> LICENSE</li>
+    <li><span class="fa fa-file-text"></span> README.md</li>
+</ul>
+
+
+
+        
+
+
+    
+
+
+    
+
+
+    
+
+<h3>
+    
+    
+    The <em>module.json</em> file
+    
+    <a id="the-module.json-file" href="#the-module.json-file" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Not only that the <code>module.json</code> file gives the name of the module,
+    but it can also be used for making various settings regarding the module itself and the way
+    it will be handled by the framework.
+</p>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h5>
+    
+    
+    Title
+    
+    <a id="module.json-title" href="#module.json-title" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    You can set a module's title by adding a <code>title</code> property to the module's JSON object.
+</p>
+
+<div class="highlight"><pre><code class="json"><span class="p">{</span>
+    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;My module&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h5>
+    
+    
+    Description
+    
+    <a id="module.json-description" href="#module.json-description" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    Adding a description is done by adding a <code>description</code> property.
+</p>
+
+<div class="highlight"><pre><code class="json"><span class="p">{</span>
+    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;This is my first module&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h5>
+    
+    
+    Namespace
+    
+    <a id="module.json-namespace" href="#module.json-namespace" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    Use the <code>namespace</code> property if you want to change module's default
+    <a href="/colibri/documentation/classes.html#module-s-namespace">namespace</a>.
+</p>
+
+<div class="highlight"><pre><code class="json"><span class="p">{</span>
+    <span class="nt">&quot;namespace&quot;</span><span class="p">:</span> <span class="s2">&quot;My\Custom\Namespace&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h5>
+    
+    
+    Source
+    
+    <a id="module.json-source" href="#module.json-source" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    The <code>source</code> property is used to specify a new
+    <a href="/colibri/documentation/classes.html#source-folder">source folder</a> for a module.
+    The source folder's path must be realtive to the <code>module.json</code> file's path.
+</p>
+
+<div class="highlight"><pre><code class="json"><span class="p">{</span>
+    <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;lib&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h5>
+    
+    
+    Assets
+    
+    <a id="module.json-assets" href="#module.json-assets" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    You can specify where your module's <a href="/colibri/documentation/assets.html">assets</a>
+    are kept by adding an <code>assets</code> property.
+    The path to your module's assets folder must be relative to the <code>module.json</code> file's path.
+</p>
+
+<div class="highlight"><pre><code class="json"><span class="p">{</span>
+    <span class="nt">&quot;assets&quot;</span><span class="p">:</span> <span class="s2">&quot;assets&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h5>
+    
+    
+    Include
+    
+    <a id="module.json-include" href="#module.json-include" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    You can also designate a file for being always included at boot time,
+    by adding an <code>include</code> property containing the file's path.
+    The file's path must be relative to the <code>module.json</code> file's path.
+</p>
+
+<div class="highlight"><pre><code class="json"><span class="p">{</span>
+    <span class="nt">&quot;include&quot;</span><span class="p">:</span> <span class="s2">&quot;file.php&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h5>
+    
+    
+    Dependencies
+    
+    <a id="module.json-dependencies" href="#module.json-dependencies" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    If your module depends on other modules, then you must specify which are those modules by
+    using the <code>dependencies</code> property. The module's dependencies must be specified using
+    a JSON array.
+</p>
+
+<div class="highlight"><pre><code class="json"><span class="p">{</span>
+    <span class="nt">&quot;dependencies&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;other-module&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h5>
+    
+    
+    Collector
+    
+    <a id="module.json-collector" href="#module.json-collector" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    Use the <code>collector</code> property if you want to use a different name
+    or a different filepath for your
+    <a href="/colibri/documentation/collectors.html#the-collector-file">collector file</a>.
+    The collector file's path must be relative to the <code>module.json</code> file's path.
+</p>
+
+<div class="highlight"><pre><code class="json"><span class="p">{</span>
+    <span class="nt">&quot;collector&quot;</span><span class="p">:</span> <span class="s2">&quot;collector.php&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h5>
+    
+    
+    Installer
+    
+    <a id="module.json-installer" href="#module.json-installer" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    Use the <code>installer</code> property if you want to use a different name
+    or a different filepath for your
+    <a href="/colibri/documentation/installer.html#the-installer-file">installer file</a>.
+    The installer file's path must be relative to the <code>module.json</code> file's path.
+</p>
+
+<div class="highlight"><pre><code class="json"><span class="p">{</span>
+    <span class="nt">&quot;installer&quot;</span><span class="p">:</span> <span class="s2">&quot;installer.php&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h5>
+    
+    
+    Hidden
+    
+    <a id="module.json-hidden" href="#module.json-hidden" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    You can mark your module as being 
+
+
+
+
+    
+
+<a href="#hidden-modules">hidden</a>
+    by setting the <code>hidden</code> property to <code>true</code>.
+</p>
+
+<div class="highlight"><pre><code class="json"><span class="p">{</span>
+    <span class="nt">&quot;hidden&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>
+    Putting all together, here is how a <code>module.json</code> file might look like:
+</p>
+
+<div class="highlight"><pre><code class="json"><span class="p">{</span>
+    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;My module&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;This is my first module&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;namespace&quot;</span><span class="p">:</span> <span class="s2">&quot;My\Custom\Namespace&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;lib&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;assets&quot;</span><span class="p">:</span> <span class="s2">&quot;assets&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;include&quot;</span><span class="p">:</span> <span class="s2">&quot;file.php&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;dependencies&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;other-module&quot;</span><span class="p">],</span>
+    <span class="nt">&quot;collector&quot;</span><span class="p">:</span> <span class="s2">&quot;collector.php&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;installer&quot;</span><span class="p">:</span> <span class="s2">&quot;installer.php&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;hidden&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+
+    
+
+
+    
+
+<h3>
+    
+    
+    Hidden modules
+    
+    <a id="hidden-modules" href="#hidden-modules" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    A hidden module is a module that is not listed in the list of modules and can only be installed,
+    enabled, disabled or uninstalled programmatically, not by using console commands.
+</p>
+
+<p>
+    A possible usage for this kind of module is as a custom installer for the entire framework.
+    You can take a look at the <a href="https://github.com/opis-colibri/install" target="_blank">install</a>
+    module and study the code behind it.
+</p>
+
+
+        
+
+
+    
+
+
+    
+
+
+    
+
+<h3>
+    
+    
+    Distributing modules
+    
+    <a id="distributing-modules" href="#distributing-modules" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Modules can be distributed by listing them on <a href="http://packagist.org" rel="nofollow" target="_blank">Packagist</a>
+    or other PHP package repository. Other users will then be able to download your modules by using
+    <a href="http://getcomposer.org" rel="nofollow" target="_blank">Composer</a>.
+    So the first thing you must do, if you want to distribute a module, is to add a new <code>composer.json</code> file.
+</p>
+
+<ul class="file-tree">
+    <li>
+        <span class="fa fa-folder-open"></span> modules
+        <ul class="file-tree">
+            <li><span class="fa fa-folder"></span> welcome</li>
+            <li>
+                <span class="fa fa-folder-open"></span> example
+                <ul class="file-tree">
+                    <li class="text-primary"><span class="fa fa-file-text"></span> composer.json</li>
+                    <li><span class="fa fa-file-text"></span> example.module.json</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li><span class="fa fa-folder"></span> public</li>
+    <li><span class="fa fa-folder"></span> storage</li>
+    <li><span class="fa fa-folder"></span> system</li>
+    <li><span class="fa fa-folder"></span> vendor</li>
+    <li><span class="fa fa-file-text"></span> bootstrap.php</li>
+    <li><span class="fa fa-file-text"></span> CHANGELOG.md</li>
+    <li><span class="fa fa-file-text"></span> colibri</li>
+    <li><span class="fa fa-file-text"></span> composer.json</li>
+    <li><span class="fa fa-file-text"></span> composer.lock</li>
+    <li><span class="fa fa-file-text"></span> LICENSE</li>
+    <li><span class="fa fa-file-text"></span> README.md</li>
+</ul>
+
+<p>
+    A module is a package of <code>opis-colibri-module</code> type and you must specify this fact inside
+    your <code>composer.json</code> file.
+</p>
+
+<div class="highlight"><pre><code class="json"><span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;vendor/module&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;opis-colibri-module&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>
+    Opis Colibri is compatible with PHP 5.3, but if you prefer to develop modules for newer versions of PHP,
+    or if you are using features that are not available in PHP 5.3, then you should specify this requirement in your composer
+    file.
+</p>
+
+<div class="highlight"><pre><code class="json"><span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;vendor/module&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;opis-colibri-module&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;requires&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;php&quot;</span><span class="p">:</span> <span class="s2">&quot;&gt;=5.4.0&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>
+     The core version of the Opis Colibri framework, which your module is compatible with, is another
+     thing that is recommendable to be mentioned in your package requirements.
+</p>
+
+<div class="highlight"><pre><code class="json"><span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;vendor/module&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;opis-colibri-module&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;requires&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;php&quot;</span><span class="p">:</span> <span class="s2">&quot;&gt;=5.4.0&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;opis-colibri/core&quot;</span><span class="p">:</span> <span class="s2">&quot;^1.0.0&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+            
+
+
+
+
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+        
+    
+
+    
+        
+            
+                
+                
+            
+        
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<ul class="pager">
+  
+  <li class="previous"><a href="/colibri/documentation" title="Installation">&larr; Back</a></li>
+  
+  
+  <li class="next"><a href="/colibri/documentation/collectors.html" title="Collectors">Next &rarr;</a></li>
+  
+</ul>
+            
+        </div>
+    </div>
+    <a href="#0" id="back-to-top">
+        <span class="fa fa-arrow-up"></span>
+    </a>
+</div>
+<script>
+    (function($){
+        
+        $(document).ready(function(){
+           var visible = false;
+           $(window).scroll(function(){
+                var top = $(this).scrollTop();
+                
+                if (top >= 100 && !visible) {
+                   visible = true;
+                   $('#back-to-top').fadeIn().show();
+                 }
+                 if(top < 100 && visible){
+                   visible = false;
+                   $('#back-to-top').fadeOut();  
+                 }
+           });
+           
+            $('#back-to-top').click(function(){
+                $('html, body').animate({scrollTop : 0},800);
+                return false;
+            });
+            
+        });
+        
+        
+    })(jQuery);
+</script>
+</section>
+
+<footer class="text-center text-muted">
+    Copyright &copy; 2014-2015 Marius Sarca. All rights reserved.
+</footer>
+
+    </body>
+</html>
