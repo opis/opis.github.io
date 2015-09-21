@@ -275,8 +275,8 @@
 </h3>
 
 <p>
-    Modules are the fundamental bricks of the Opis Colibri framework. In fact, everything in Opis Colibri
-    is a module. Even the code that controls the framework's installation process is encapsulated
+    Modules are the fundamental bricks of the Opis Colibri framework. In fact, all framework's features
+    are provided by modules. Even the code that controls the framework's installation process is encapsulated
     into a module. This kind of approach has a profound implication over the development process:
     it encourages code reusability, it allows you to alter framework's behavior and it allows you
     to provide custom installers for the framework.
@@ -822,16 +822,18 @@
 </code></pre></div>
 
 <p>
-     The core version of the Opis Colibri framework, which your module is compatible with, is another
-     thing that is recommendable to be mentioned in your package requirements.
+     The core's version of the Opis Colibri framework, which your module is compatible with, is another
+     thing that is recommendable to be mentioned in your <code>composer.json</code> file.
 </p>
 
 <div class="highlight"><pre><code class="json"><span class="p">{</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;vendor/module&quot;</span><span class="p">,</span>
     <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;opis-colibri-module&quot;</span><span class="p">,</span>
     <span class="nt">&quot;requires&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;php&quot;</span><span class="p">:</span> <span class="s2">&quot;&gt;=5.4.0&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;opis-colibri/core&quot;</span><span class="p">:</span> <span class="s2">&quot;^1.0.0&quot;</span>
+        <span class="nt">&quot;php&quot;</span><span class="p">:</span> <span class="s2">&quot;&gt;=5.4.0&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;conflict&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;opis-colibri/core&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;1.3.0&quot;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
