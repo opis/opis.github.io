@@ -130,7 +130,7 @@
         
         <li class="chapter">Administration</li>
         <ul>
-            <li><a href="/colibri/documentation/commands.html" title="Learn about available commands">Console commands</a></li>
+            <li><a href="/colibri/documentation/console.html" title="Learn about available console commands">Console commands</a></li>
     
 
     
@@ -325,7 +325,7 @@
     <span class="c1">// Define an engine that handles all files that have a `.foo` extension</span>
 
     <span class="nv">$engine</span><span class="o">-&gt;</span><span class="na">register</span><span class="p">(</span><span class="k">function</span><span class="p">(){</span>
-        <span class="k">new</span> <span class="nx">FooEngine</span><span class="p">();</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">FooEngine</span><span class="p">();</span>
     <span class="p">})</span>
     <span class="o">-&gt;</span><span class="na">handle</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$path</span><span class="p">){</span>
         <span class="k">return</span> <span class="nb">preg_match</span><span class="p">(</span><span class="s1">&#39;/^.*\.foo/&#39;</span><span class="p">,</span> <span class="nv">$path</span><span class="p">);</span>
@@ -375,7 +375,7 @@
 <span class="nx">Define</span><span class="o">::</span><span class="na">ViewEngines</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$engine</span><span class="p">){</span>
     
     <span class="nv">$engine</span><span class="o">-&gt;</span><span class="na">register</span><span class="p">(</span><span class="k">function</span><span class="p">(){</span>
-        <span class="k">new</span> <span class="nx">NewFooEngine</span><span class="p">();</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">NewFooEngine</span><span class="p">();</span>
     <span class="p">},</span> <span class="mi">1</span><span class="p">)</span>
     <span class="o">-&gt;</span><span class="na">handle</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$path</span><span class="p">){</span>
         <span class="k">return</span> <span class="nb">preg_match</span><span class="p">(</span><span class="s1">&#39;/^.*\.foo/&#39;</span><span class="p">,</span> <span class="nv">$path</span><span class="p">);</span>

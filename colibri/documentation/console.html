@@ -5,8 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="keywords" content="php, full-stack, framework, php framework, modules, modular framework">
-<meta name="description" content="Learn about modules' classes">
-<title>Classes | Opis Colibri</title>
+<meta name="description" content="Learn about available console commands">
+<title>Console commands | Opis Colibri</title>
         
         <link href="/assets/img/favicon.png" rel="shortcut icon">
         
@@ -207,7 +207,7 @@
 
 <h2>
     
-    Classes
+    Console commands
     
 </h2>
 
@@ -227,7 +227,7 @@
 
     
 
-<a href="#source-folder">Source folder</a></li>
+<a href="#framework-related-commands">Framework related commands</a></li>
     <li>
 
 
@@ -235,7 +235,7 @@
 
     
 
-<a href="#module-s-namespace">Module's namespace</a></li>
+<a href="#composer-related-commands">Composer related commands</a></li>
 </ol>
 
 
@@ -259,9 +259,10 @@
 </h3>
 
 <p>
-    Beside the fact that a module provides collectible items that can be used by the framework,
-    each module behaves as an ordinary library and like any other library it can come with a set of
-    classes that can be used by the module itself or by other modules.
+    One of the most easiest way of managing Opis Colibri is through console commands.
+    Here is a list with all the supported commands and a short description for each of them.
+    You should be aware that Opis Colibri must be fully installed before being able to use
+    any of the framework related commands.
 </p>
 
 
@@ -279,57 +280,267 @@
 <h3>
     
     
-    Source folder
+    Framework related commands
     
-    <a id="source-folder" href="#source-folder" class="link-anchor"><span class="fa fa-link"></span></a>
+    <a id="framework-related-commands" href="#framework-related-commands" class="link-anchor"><span class="fa fa-link"></span></a>
 </h3>
 
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h4>
+    
+    
+    The <em>list</em> command
+    
+    <a id="the-list-command" href="#the-list-command" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
 <p>
-    The source folder of a module is the folder where all module's classes must be added. By default
-    the source folder is the same  with the folder where the <code>module.json</code> file was added.
-    Changing the source folder requires you to add a
-    <a href="/colibri/documentation/modules.html#module.json-source">source</a>
-    property into the <code>module.json</code> file.
+    Obtain a list with all the supported commands.
 </p>
 
 <p>
-    Below is an example where a couple of classes were added into a subfolder named  <code>lib</code>.
+    <strong>Usage:</strong> <kbd>php colibri list</kbd>
 </p>
 
-<ul class="file-tree">
-    <li>
-        <span class="fa fa-folder-open"></span> modules
-        <ul class="file-tree">
-            <li><span class="fa fa-folder"></span> welcome</li>
-            <li>
-                <span class="fa fa-folder-open"></span> example
-                <ul class="file-tree">
-                    <li class="text-primary">
-                        <span class="fa fa-folder-open"></span> lib
-                        <ul class="file-tree">
-                            <li><span class="fa fa-file-text"></span> Class1.php</li>
-                            <li><span class="fa fa-file-text"></span> Class2.php</li>
-                        </ul>
-                    </li>
-                    <li><span class="fa fa-file-text"></span> example.module.json</li>
-                    <li><span class="fa fa-file-text"></span> example.module.php</li>
-                    <li><span class="fa fa-file-text"></span> example.install.php</li>
-                </ul>
-            </li>
-        </ul>
-    </li>
-    <li><span class="fa fa-folder"></span> public</li>
-    <li><span class="fa fa-folder"></span> storage</li>
-    <li><span class="fa fa-folder"></span> system</li>
-    <li><span class="fa fa-folder"></span> vendor</li>
-    <li><span class="fa fa-file-text"></span> bootstrap.php</li>
-    <li><span class="fa fa-file-text"></span> CHANGELOG.md</li>
-    <li><span class="fa fa-file-text"></span> colibri</li>
-    <li><span class="fa fa-file-text"></span> composer.json</li>
-    <li><span class="fa fa-file-text"></span> composer.lock</li>
-    <li><span class="fa fa-file-text"></span> LICENSE</li>
-    <li><span class="fa fa-file-text"></span> README.md</li>
-</ul>
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h4>
+    
+    
+    The <em>help</em> command
+    
+    <a id="the-help-command" href="#the-help-command" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Display informations about a specific command.
+</p>
+
+<p>
+    <strong>Usage:</strong> <kbd>php colibri help &lt;command-name&gt;</kbd>
+</p>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h4>
+    
+    
+    The <em>modules</em> command
+    
+    <a id="the-modules-command" href="#the-modules-command" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Obtain a list with all the available modules.
+</p>
+
+<p>
+    <strong>Usage:</strong> <kbd>php colibri modules</kbd>
+</p>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h4>
+    
+    
+    The <em>about</em> command
+    
+    <a id="the-about-command" href="#the-about-command" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Display detailed information about a specific module.
+</p>
+
+<p>
+    <strong>Usage:</strong> <kbd>php colibri about &lt;module-name&gt;</kbd>
+</p>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h4>
+    
+    
+    The <em>install</em> command
+    
+    <a id="the-install-command" href="#the-install-command" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Install all the specified modules. This command takes as arguments a list of one or more modules
+    separated by space. If you use the <code>--enable</code> option, the modules will be enabled after
+    they are installed.
+</p>
+
+<p>
+    <strong>Usage:</strong> <kbd>php colibri install [--enable] &lt;module-1&gt;[ &lt;module-2&gt; &lt;module-3&gt; ... &lt;module-1=n&gt;]</kbd>
+</p>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h4>
+    
+    
+    The <em>enable</em> command
+    
+    <a id="the-enable-command" href="#the-enable-command" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Enable all the specified modules. This command takes as arguments a list of one or more modules
+    separated by space.
+</p>
+
+<p>
+    <strong>Usage:</strong> <kbd>php colibri enable &lt;module-1&gt;[ &lt;module-2&gt; &lt;module-3&gt; ... &lt;module-n&gt;]</kbd>
+</p>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h4>
+    
+    
+    The <em>disable</em> command
+    
+    <a id="the-disable-command" href="#the-disable-command" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Disable all the specified modules. This command takes as arguments a list of one or more modules
+    separated by space. If you use the <code>--uninstall</code> option, the modules will be uninstalled
+    after they are disabled.
+</p>
+
+<p>
+    <strong>Usage:</strong> <kbd>php colibri disable [--uninstall] &lt;module-1&gt;[ &lt;module-2&gt; &lt;module-3&gt; ... &lt;module-n&gt;]</kbd>
+</p>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h4>
+    
+    
+    The <em>uninstall</em> command
+    
+    <a id="the-uninstall-command" href="#the-uninstall-command" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Uninstall all the specified modules. This command takes as arguments a list of one or more modules
+    separated by space.
+</p>
+
+<p>
+    <strong>Usage:</strong> <kbd>php colibri uninstall &lt;module-1&gt;[ &lt;module-2&gt; &lt;module-3&gt; ... &lt;module-n&gt;]</kbd>
+</p>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h4>
+    
+    
+    The <em>collect</em> command
+    
+    <a id="the-collect-command" href="#the-collect-command" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Collect all the resources declared by modules.
+</p>
+<p>
+    <strong>Usage:</strong> <kbd>php colibri collect</kbd>
+</p>
 
 
         
@@ -346,33 +557,78 @@
 <h3>
     
     
-    Module's namespace
+    Composer related commands
     
-    <a id="module-s-namespace" href="#module-s-namespace" class="link-anchor"><span class="fa fa-link"></span></a>
+    <a id="composer-related-commands" href="#composer-related-commands" class="link-anchor"><span class="fa fa-link"></span></a>
 </h3>
 
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h4>
+    
+    
+    The <em>get-module</em> command
+    
+    <a id="the-get-module-command" href="#the-get-module-command" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
 <p>
-    The module's classes must be shipped under a namespace. By default, the namespace of a module is
-    formed using the module's name and the <code>Opis\Colibri\Module</code> prefix.
-    For example, if your module is named <code>foo</code>, then your module's namespace will be
-    <code>Opis\Colibri\Module\Foo</code>. If your module is named <code>foo-bar</code>,
-    then your module's namespace will be <code>Opis\Colibri\Module\FooBar</code>.
-    You can set a custom namespace for your module by adding a
-    <a href="/colibri/documentation/modules.html#module.json-namespace">namespace</a>
-    property into the <code>module.json</code> file.
+    Use Composer to download a list of one or more modules. Each module in the list must
+    be declared using the following format: <code>vendor/module:version</code>. If the
+    <code>version</code> is omitted, <code>*</code> will be used as the module's version. If the
+    <code>vendor</code> is ommitted, <code>opis-colibri</code> will be used as the module's vendor.
 </p>
 
 <p>
-    The namespace is mapped to the 
-
-
+    <strong>Usage:</strong> <kbd>composer get-module vendor/example1:1.0.*</kbd> <br>
+    <strong>Usage:</strong> <kbd>composer get-module vendor/example1:1.0.* vendor2/example2:3.0.*</kbd> <br>
+    <strong>Usage:</strong> <kbd>composer get-module vendor/example</kbd> <br>
+    <strong>Usage:</strong> <kbd>composer get-module module1</kbd> <br>
+    <strong>Usage:</strong> <kbd>composer get-module mdoule1 vendor/example1:1.0.* module2</kbd> <br>
+</p>
 
 
     
 
-<a href="#source-folder">source folder</a>
-    using the <a href="http://www.php-fig.org/psr/psr-4/" rel="nofollow" target="_blank">PSR-4</a>
-    standard.
+
+    
+
+
+    
+
+
+    
+
+<h4>
+    
+    
+    The <em>get-package</em> command
+    
+    <a id="the-get-package-command" href="#the-get-package-command" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Use Composer to download all modules and libraries defined by an Opis Colibri package.
+    The package must be declared using the following format: <code>vendor/package</code>.
+    If the <code>vendor</code> is omitted <code>opis-colibri</code> will be used as the package's vendor.
+    Optionally, you can pass a second parameter representing the package's version. If package's version
+    is omitted, <code>*</code> will be used.
+</p>
+<p>
+    <strong>Usage:</strong> <kbd>composer get-package vendor/pack1</kbd> <br>
+    <strong>Usage:</strong> <kbd>composer get-package vendor/pack1 ~1.0</kbd> <br>
+    <strong>Usage:</strong> <kbd>composer get-package pack1</kbd> <br>
+    <strong>Usage:</strong> <kbd>composer get-package pack1 2.0.*</kbd>
 </p>
 
             
@@ -416,6 +672,30 @@
     
         
             
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
         
     
 
@@ -426,12 +706,6 @@
                 
             
         
-    
-
-    
-
-    
-
     
 
     
@@ -463,10 +737,10 @@
 
 <ul class="pager">
   
-  <li class="previous"><a href="/colibri/documentation/installer.html" title="Installers">&larr; Back</a></li>
+  <li class="previous"><a href="/colibri/documentation/functions.html" title="Global functions">&larr; Back</a></li>
   
   
-  <li class="next"><a href="/colibri/documentation/assets.html" title="Assets">Next &rarr;</a></li>
+  <li class="next"><a href="/colibri/documentation/routes.html" title="Routes">Next &rarr;</a></li>
   
 </ul>
             
