@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="keywords" content="php, full-stack, framework, php framework, modules, modular framework">
-<meta name="description" content="Learn how to define commands">
+<meta name="description" content="Learn how to define new commands">
 <title>Commands | Opis Colibri</title>
         
         <link href="/assets/img/favicon.png" rel="shortcut icon">
@@ -163,6 +163,10 @@
     
 
     
+        <li><a href="/colibri/documentation/commands.html" title="Learn how to define new commands">Commands</a></li>
+    
+
+    
         <li><a href="/colibri/documentation/events.html" title="Learn about Opis Colibri event handlers">Event handlers</a></li>
     
 
@@ -211,6 +215,132 @@
     
 </h2>
 
+<ol class="submenu">
+    <li>
+
+
+
+
+    
+
+<a href="#introduction">Introduction</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#registering-new-commands">Registering new commands</a></li>
+</ol>
+
+
+        
+
+
+    
+
+
+    
+
+
+    
+
+<h3>
+    
+    
+    Introduction
+    
+    <a id="introduction" href="#introduction" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Beside the default commands provided by the framework, users can define their own commands.
+    The console command system is based on the
+    <a href="http://symfony.com/doc/current/components/console/index.html" target="_blank" rel="nofollow">Symfony Console</a>
+    component. All user defined commands are collected using the <code>Commands</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Commands</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$command</span><span class="p">){</span>
+
+    <span class="c1">// Collect commands</span>
+
+<span class="p">});</span>
+</code></pre></div>
+
+<p>
+    You can override commands by specifying a lower collecting priority.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Commands</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$command</span><span class="p">){</span>
+
+    <span class="c1">// Collect commands</span>
+
+<span class="p">},</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</code></pre></div>
+
+<p>
+    The collector passed to the callback function is an object that implements
+    the <code>Opis\Colibri\CommandCollectorInterface</code> interface.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">interface</span> <span class="nx">CommandCollectorInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * Register a new command</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param   string      $name       Command&#39;s name</span>
+<span class="sd">     * @param   callable    $callback   Callback</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return  \Opis\Colibri\CommandCollectorInterface   Self reference</span>
+<span class="sd">     */</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">register</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$callback</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+
+    
+
+
+    
+
+<h3>
+    
+    
+    Registering new commands
+    
+    <a id="registering-new-commands" href="#registering-new-commands" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Commands can be registered by passing the command's name and a callback to the <code>register</code>
+    method. The callback passed to the <code>register</code> method must return an instance of a class that inherits from
+    <code>Symfony\Component\Console\Command\Command</code>. You will find
+    <a href="http://symfony.com/doc/current/components/console/introduction.html#creating-a-basic-command" target="_blank" rel="nofollow">here</a>
+    all the documentation you need in order to start creating your own commands.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Commands</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$command</span><span class="p">){</span>
+
+    <span class="nv">$command</span><span class="o">-&gt;</span><span class="na">register</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">FooCommand</span><span class="p">();</span>
+    <span class="p">});</span>
+
+<span class="p">});</span>
+</code></pre></div>
 
 
             
@@ -334,8 +464,6 @@
     
         
             
-                
-            
         
     
 
@@ -343,63 +471,32 @@
         
             
                 
-            
-        
-    
-
-    
-        
-            
                 
             
         
     
 
     
-        
-            
-                
-            
-        
+
     
 
     
-        
-            
-                
-            
-        
+
     
 
     
-        
-            
-                
-            
-        
-    
 
     
-        
-            
-                
-            
-        
-    
 
-    
-        
-            
-                
-            
-        
     
 
 
 <ul class="pager">
   
-  <li class="previous"><a href="/colibri/documentation/variables.html" title="Variables">&larr; Back</a></li>
+  <li class="previous"><a href="/colibri/documentation/contracts.html" title="Contracts">&larr; Back</a></li>
   
+  
+  <li class="next"><a href="/colibri/documentation/events.html" title="Event handlers">Next &rarr;</a></li>
   
 </ul>
             
