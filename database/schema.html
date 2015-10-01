@@ -574,6 +574,9 @@
 
         
 
+
+    
+
 <h3>
     
     
@@ -609,6 +612,9 @@
 
 
         
+
+
+    
 
 <h3>
     
@@ -675,6 +681,9 @@
 
         
 
+
+    
+
 <h3>
     
     
@@ -714,6 +723,9 @@
 
 
         
+
+
+    
 
 <h3>
     
@@ -832,6 +844,9 @@
 
         
 
+
+    
+
 <h4>
     
     
@@ -841,7 +856,7 @@
 </h4>
 
 <p>
-    For <code>integer</code> and <code>text</code> types you can specify the column size by calling the <code>size</code> method. The valid
+    For <code>integer</code>, <code>text</code> and <code>binary</code> types you can specify the column size by calling the <code>size</code> method. The valid
     sizes values are: <code>tiny</code>, <code>small</code>, <code>normal</code>, <code>medium</code> and <code>big</code>.
 </p>
 
@@ -890,12 +905,12 @@
         <tr>
             <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">text</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">size</span><span class="p">(</span><span class="s1">&#39;tiny&#39;</span><span class="p">);</span> 
 </code></pre></div></td>
-            <td>Adds an <code>SMALLTEXT</code> equivalent column to the table.</td>
+            <td>Adds an <code>TINYTEXT</code> equivalent column to the table.</td>
         </tr>
         <tr>
             <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">text</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">size</span><span class="p">(</span><span class="s1">&#39;small&#39;</span><span class="p">);</span> 
 </code></pre></div></td>
-            <td>Adds an <code>SMALLTEXT</code> equivalent column to the table.</td>
+            <td>Adds an <code>TINYTEXT</code> equivalent column to the table.</td>
         </tr>
         <tr>
             <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">text</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">size</span><span class="p">(</span><span class="s1">&#39;normal&#39;</span><span class="p">);</span> 
@@ -912,6 +927,31 @@
 </code></pre></div></td>
             <td>Adds an <code>LONGTEXT</code> equivalent column to the table.</td>
         </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">binary</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">size</span><span class="p">(</span><span class="s1">&#39;tiny&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds an <code>TINYBLOB</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">binary</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">size</span><span class="p">(</span><span class="s1">&#39;small&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds an <code>TINYBLOB</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">binary</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">size</span><span class="p">(</span><span class="s1">&#39;normal&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds an <code>BLOB</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">binary</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">size</span><span class="p">(</span><span class="s1">&#39;medium&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds an <code>MEDIUMBLOB</code> equivalent column to the table.</td>
+        </tr>
+        <tr>
+            <td><div class="highlight"><pre><code class="php"> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">binary</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">size</span><span class="p">(</span><span class="s1">&#39;big&#39;</span><span class="p">);</span> 
+</code></pre></div></td>
+            <td>Adds an <code>LONGBLOB</code> equivalent column to the table.</td>
+        </tr>
     </tbody>
 </table>
 
@@ -923,6 +963,9 @@
 
 
         
+
+
+    
 
 <h4>
     
@@ -962,6 +1005,9 @@
 
 
         
+
+
+    
 
 <h4>
     
@@ -1005,6 +1051,9 @@
 
         
 
+
+    
+
 <h4>
     
     
@@ -1029,6 +1078,9 @@
 
 
         
+
+
+    
 
 <h3>
     
@@ -1100,6 +1152,9 @@
 
         
 
+
+    
+
 <h3>
     
     
@@ -1164,6 +1219,9 @@
 
 
         
+
+
+    
 
 <h3>
     
@@ -1238,6 +1296,9 @@
 
         
 
+
+    
+
 <h3>
     
     
@@ -1303,6 +1364,9 @@
 
         
 
+
+    
+
 <h3>
     
     
@@ -1333,6 +1397,9 @@
 
 
         
+
+
+    
 
 <h4>
     
@@ -1387,6 +1454,9 @@
 
         
 
+
+    
+
 <h4>
     
     
@@ -1415,6 +1485,9 @@
 
 
         
+
+
+    
 
 <h4>
     
@@ -1454,6 +1527,9 @@
 
         
 
+
+    
+
 <h4>
     
     
@@ -1483,6 +1559,9 @@
 
         
 
+
+    
+
 <h4>
     
     
@@ -1511,6 +1590,9 @@
 
 
         
+
+
+    
 
 <h4>
     
@@ -1545,6 +1627,9 @@
 
         
 
+
+    
+
 <h4>
     
     
@@ -1573,6 +1658,9 @@
 
 
         
+
+
+    
 
 <h4>
     
@@ -1607,6 +1695,9 @@
 
         
 
+
+    
+
 <h4>
     
     
@@ -1635,6 +1726,9 @@
 
 
         
+
+
+    
 
 <h4>
     
@@ -1669,6 +1763,9 @@
 
         
 
+
+    
+
 <h4>
     
     
@@ -1697,6 +1794,9 @@
 
 
         
+
+
+    
 
 <h4>
     
@@ -1731,6 +1831,9 @@
 
         
 
+
+    
+
 <h4>
     
     
@@ -1759,6 +1862,9 @@
 
 
         
+
+
+    
 
 <h3>
     
@@ -1857,6 +1963,9 @@
 
         
 
+
+    
+
 <h3>
     
     
@@ -1880,6 +1989,9 @@
 
 
         
+
+
+    
 
 <h3>
     
@@ -1906,6 +2018,9 @@
 
 
         
+
+
+    
 
 <h3>
     
