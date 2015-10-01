@@ -363,7 +363,51 @@ composer create-project opis/colibri website.test
 
 <p>
     The <strong>Opis Colibri</strong> framework is configured during the installation process.
-    Just open into a web browser your newly created site and follow the remaining installation steps.
+    Just open into a web browser your newly created site and follow the remaining installation steps in order
+    to finish the installation process of the framework.
+</p>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h4>
+    
+    
+    Dev mode
+    
+    <a id="dev-mode" href="#dev-mode" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Once the framework has been installed, you can start creating new modules right away.
+    However, in order to have a more pleasant development experience it's recommended to copy
+    the <code>storage/site.php</code> file to your root folder, next to the
+    <code>bootstrap.php</code> file and to replace the <code>PHPFile</code> cache storage
+    ,used in <code>site.php</code>, with the <code>Memory</code> cache storage.
+</p>
+
+<div class="highlight"><pre><code class="bash">cp storage/site.php site.php
+</code></pre></div>
+
+<div class="highlight"><pre><code class="php"><span class="c1">// - File site.php</span>
+<span class="k">use</span> <span class="nx">Opis\Cache\Storage\PHPFile</span> <span class="k">as</span> <span class="nx">CacheStorage</span><span class="p">;</span>
+<span class="c1">// Replace with</span>
+<span class="k">use</span> <span class="nx">Opis\Cache\Storage\Memory</span> <span class="k">as</span> <span class="nx">CacheStorage</span><span class="p">;</span>
+</code></pre></div>
+
+<p>
+    By doing so, you won't be forced to issue a new <a href="console.html#the-collect-command">collect command</a>
+    - which can be pretty annoying when you simply want to test new functionalities -
+    every time you change or add a new route or other collectible items.
 </p>
 
             
