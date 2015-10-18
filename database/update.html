@@ -186,6 +186,17 @@
                 
                     
                         
+<a href="/database/expression.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Expressions</h4>
+    <p class="list-group-item-text text-muted">
+        Learn about expressions
+    </p>
+</a>
+                    
+                
+                    
+                        
 <a href="/database/order.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Ordering criteria</h4>
@@ -208,33 +219,22 @@
                 
                     
                         
-<a href="/database/expression.html" class="list-group-item">
-
-    <h4 class="list-group-item-heading">Expressions</h4>
-    <p class="list-group-item-text text-muted">
-        Learn about expressions
-    </p>
-</a>
-                    
-                
-                    
-                        
-<a href="/database/group.html" class="list-group-item">
-
-    <h4 class="list-group-item-heading">Group</h4>
-    <p class="list-group-item-text text-muted">
-        Learn how to group results
-    </p>
-</a>
-                    
-                
-                    
-                        
 <a href="/database/join.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Joins</h4>
     <p class="list-group-item-text text-muted">
         Learn how to perform joins
+    </p>
+</a>
+                    
+                
+                    
+                        
+<a href="/database/aggregates-handling.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Working with aggregates</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to work with aggregates
     </p>
 </a>
                     
@@ -345,6 +345,93 @@
              <span class="p">));</span>
 </code></pre></div>
 <div class="highlight"><pre><code class="sql"><span class="k">UPDATE</span> <span class="o">`</span><span class="n">users</span><span class="o">`</span> <span class="k">SET</span> <span class="o">`</span><span class="n">email</span><span class="o">`</span> <span class="o">=</span> <span class="ss">&quot;email@example.com&quot;</span><span class="p">,</span> <span class="o">`</span><span class="n">description</span><span class="o">`</span> <span class="o">=</span> <span class="ss">&quot;Some description&quot;</span> <span class="k">WHERE</span> <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="o">=</span> <span class="mi">2014</span>
+</code></pre></div>
+
+<p>
+    You can also use <a href="expression.html">expressions</a> when you update a table by setting a closure
+    as the <code>value</code> for the column. 
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="c1">// Increments the number of friends</span>
+
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">is</span><span class="p">(</span><span class="mi">2014</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;friends_no&#39;</span> <span class="o">=&gt;</span> <span class="k">function</span><span class="p">(</span><span class="nv">$expr</span><span class="p">){</span>
+                    <span class="nv">$expr</span><span class="o">-&gt;</span><span class="na">column</span><span class="p">(</span><span class="s1">&#39;friends_no&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">}</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+                <span class="p">}</span>
+             <span class="p">));</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="sql"><span class="k">UPDATE</span> <span class="o">`</span><span class="n">users</span><span class="o">`</span> <span class="k">SET</span> <span class="o">`</span><span class="n">friends_no</span><span class="o">`</span> <span class="o">=</span> <span class="o">`</span><span class="n">friends_no</span><span class="o">`</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">WHERE</span> <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="o">=</span> <span class="mi">2014</span>
+</code></pre></div>
+
+
+<p>
+    Incrementing a column's value can be achieved by using the <code>increment</code> method.
+</p>
+
+<p class="well text-primary">
+    <strong><span class="fa fa-exclamation-triangle"></span> Important!</strong>
+    This method is available starting with version 2.2.0
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="c1">// Increments the number of friends</span>
+
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">is</span><span class="p">(</span><span class="mi">2014</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">increment</span><span class="p">(</span><span class="s1">&#39;friends_no&#39;</span><span class="p">);</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="sql"><span class="k">UPDATE</span> <span class="o">`</span><span class="n">users</span><span class="o">`</span> <span class="k">SET</span> <span class="o">`</span><span class="n">friends_no</span><span class="o">`</span> <span class="o">=</span> <span class="o">`</span><span class="n">friends_no</span><span class="o">`</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">WHERE</span> <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="o">=</span> <span class="mi">2014</span>
+</code></pre></div>
+
+<p>
+    Decrementing a column's value can be achieved by using the <code>decrement</code> method.
+</p>
+
+<p class="well text-primary">
+    <strong><span class="fa fa-exclamation-triangle"></span> Important!</strong>
+    This method is available starting with version 2.2.0
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="c1">// Decrements the number of friends</span>
+
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">is</span><span class="p">(</span><span class="mi">2014</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">decrement</span><span class="p">(</span><span class="s1">&#39;friends_no&#39;</span><span class="p">);</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="sql"><span class="k">UPDATE</span> <span class="o">`</span><span class="n">users</span><span class="o">`</span> <span class="k">SET</span> <span class="o">`</span><span class="n">friends_no</span><span class="o">`</span> <span class="o">=</span> <span class="o">`</span><span class="n">friends_no</span><span class="o">`</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">WHERE</span> <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="o">=</span> <span class="mi">2014</span>
+</code></pre></div>
+
+<p>
+    You can increment or decrement the value of a column by specifying an explicit quantity.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="c1">// Increments the number of friends by 2</span>
+
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">is</span><span class="p">(</span><span class="mi">2014</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">increment</span><span class="p">(</span><span class="s1">&#39;friends_no&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="sql"><span class="k">UPDATE</span> <span class="o">`</span><span class="n">users</span><span class="o">`</span> <span class="k">SET</span> <span class="o">`</span><span class="n">friends_no</span><span class="o">`</span> <span class="o">=</span> <span class="o">`</span><span class="n">friends_no</span><span class="o">`</span> <span class="o">+</span> <span class="mi">2</span> <span class="k">WHERE</span> <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="o">=</span> <span class="mi">2014</span>
+</code></pre></div>
+
+<p>
+    You can also increment or decrement multiple columns at the same time and you can use
+    different incrementing/decrementing values for each column.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="cm">/* Increments the number of friends and unread messages by 1</span>
+<span class="cm">   and the user&#39;s age by 5 */</span> 
+
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">is</span><span class="p">(</span><span class="mi">2014</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">increment</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;friends_no&#39;</span><span class="p">,</span> <span class="s1">&#39;unread_messages&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span> <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">));</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="sql"><span class="k">UPDATE</span> <span class="o">`</span><span class="n">users</span><span class="o">`</span> <span class="k">SET</span>
+    <span class="o">`</span><span class="n">friends_no</span><span class="o">`</span> <span class="o">=</span> <span class="o">`</span><span class="n">friends_no</span><span class="o">`</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="o">`</span><span class="n">unread_messages</span><span class="o">`</span> <span class="o">=</span> <span class="o">`</span><span class="n">unread_messages</span><span class="o">`</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="o">`</span><span class="n">age</span><span class="o">`</span> <span class="o">=</span> <span class="o">`</span><span class="n">age</span><span class="o">`</span> <span class="o">+</span> <span class="mi">5</span>
+<span class="k">WHERE</span> <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="o">=</span> <span class="mi">2014</span>
 </code></pre></div>
 
 

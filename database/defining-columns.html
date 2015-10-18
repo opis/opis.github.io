@@ -186,6 +186,17 @@
                 
                     
                         
+<a href="/database/expression.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Expressions</h4>
+    <p class="list-group-item-text text-muted">
+        Learn about expressions
+    </p>
+</a>
+                    
+                
+                    
+                        
 <a href="/database/order.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Ordering criteria</h4>
@@ -208,33 +219,22 @@
                 
                     
                         
-<a href="/database/expression.html" class="list-group-item">
-
-    <h4 class="list-group-item-heading">Expressions</h4>
-    <p class="list-group-item-text text-muted">
-        Learn about expressions
-    </p>
-</a>
-                    
-                
-                    
-                        
-<a href="/database/group.html" class="list-group-item">
-
-    <h4 class="list-group-item-heading">Group</h4>
-    <p class="list-group-item-text text-muted">
-        Learn how to group results
-    </p>
-</a>
-                    
-                
-                    
-                        
 <a href="/database/join.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Joins</h4>
     <p class="list-group-item-text text-muted">
         Learn how to perform joins
+    </p>
+</a>
+                    
+                
+                    
+                        
+<a href="/database/aggregates-handling.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Working with aggregates</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to work with aggregates
     </p>
 </a>
                     
@@ -327,57 +327,21 @@
 
 <a href="#adding-columns">Adding columns</a></li>
     <li>
-        
 
 
 
 
     
 
-<a href="#adding-aggregates">Adding aggregates</a>
-        <ol>
-            <li>
+<a href="#adding-aggregates">Adding aggregates</a></li>
+    <li>
 
 
 
 
     
 
-<a href="#counting">Counting</a></li>
-            <li>
-
-
-
-
-    
-
-<a href="#largest-value">Largest value</a></li>
-            <li>
-
-
-
-
-    
-
-<a href="#smallest-value">Smallest value</a></li>
-            <li>
-
-
-
-
-    
-
-<a href="#summing">Summing</a></li>
-            <li>
-
-
-
-
-    
-
-<a href="#average">Average</a></li>
-        </ol>
-    </li>
+<a href="#adding-functions">Adding functions</a></li>
 </ol>
 
 
@@ -815,11 +779,289 @@ and <code>sum</code> methods. This methods can be used in conjunction with <code
 <div class="highlight"><pre><code class="sql"><span class="k">SELECT</span> <span class="k">SUM</span><span class="p">(</span><span class="o">`</span><span class="n">wallet</span><span class="o">`</span><span class="p">)</span> <span class="k">AS</span> <span class="o">`</span><span class="n">average_amount</span><span class="o">`</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">users</span><span class="o">`</span>
 </code></pre></div>
 
-<p class="well text-primary">
-    <strong><span class="fa fa-pencil"></span> TODO:</strong>
-    Provide a more detailed description on how to define fetched columns.
+
+        
+
+
+    
+
+
+        
+
+
+    
+
+<h3>
+    
+    
+    <strong>Adding functions</strong>
+    
+    <a id="adding-functions" href="#adding-functions" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Adding functions is done using oneof the following methods: <code>ucase</code>,  <code>lcase</code>,
+    <code>mid</code>, <code>len</code>, <code>round</code>, <code>format</code> and <code>now</code>.
 </p>
 
+
+    
+
+
+    
+
+
+        
+
+
+    
+
+<h4>
+    
+    
+    <strong>Upper case</strong>
+    
+    <a id="upper-case" href="#upper-case" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Selecting the upper case value of a column is done by using the <code>ucase</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$include</span><span class="p">){</span>
+                <span class="nv">$include</span><span class="o">-&gt;</span><span class="na">ucase</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+             <span class="p">})</span>
+             <span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="sql"><span class="k">SELECT</span> <span class="n">UCASE</span><span class="p">(</span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">)</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">users</span><span class="o">`</span>
+</code></pre></div>
+
+<p>
+    You can also alias the returned value by passing an alias name as the second argument of the method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$include</span><span class="p">){</span>
+                <span class="nv">$include</span><span class="o">-&gt;</span><span class="na">ucase</span><span class="p">(</span><span class="s1">&#39;ucname&#39;</span><span class="p">);</span>
+             <span class="p">})</span>
+             <span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="sql"><span class="k">SELECT</span> <span class="n">UCASE</span><span class="p">(</span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">)</span> <span class="k">AS</span> <span class="o">`</span><span class="n">ucname</span><span class="o">`</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">users</span><span class="o">`</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+        
+
+
+    
+
+<h4>
+    
+    
+    <strong>Lower case</strong>
+    
+    <a id="lower-case" href="#lower-case" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Selecting the lower case value of a column is done by using the <code>lcase</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$include</span><span class="p">){</span>
+                <span class="nv">$include</span><span class="o">-&gt;</span><span class="na">lcase</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+             <span class="p">})</span>
+             <span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="sql"><span class="k">SELECT</span> <span class="n">LCASE</span><span class="p">(</span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">)</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">users</span><span class="o">`</span>
+</code></pre></div>
+
+<p>
+    You can also alias the returned value by passing an alias name as the second argument of the method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$include</span><span class="p">){</span>
+                <span class="nv">$include</span><span class="o">-&gt;</span><span class="na">lcase</span><span class="p">(</span><span class="s1">&#39;lcname&#39;</span><span class="p">);</span>
+             <span class="p">})</span>
+             <span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="sql"><span class="k">SELECT</span> <span class="n">LCASE</span><span class="p">(</span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">)</span> <span class="k">AS</span> <span class="o">`</span><span class="n">lcname</span><span class="o">`</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">users</span><span class="o">`</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+        
+
+
+    
+
+<h4>
+    
+    
+    <strong>Substring</strong>
+    
+    <a id="substring" href="#substring" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Extracting a substring from a column is done by using the <code>mid</code> method.
+    The method takes as arguments the column's name and the starting position from which
+    the substring will be extracted. The substring counting starts from <code>1</code>.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$include</span><span class="p">){</span>
+                <span class="nv">$include</span><span class="o">-&gt;</span><span class="na">mid</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+             <span class="p">})</span>
+             <span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="sql"><span class="k">SELECT</span> <span class="n">MID</span><span class="p">(</span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">users</span><span class="o">`</span>
+</code></pre></div>
+
+<p>
+    You can also alias the returned value by passing an alias name as the third argument of the method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$include</span><span class="p">){</span>
+                <span class="nv">$include</span><span class="o">-&gt;</span><span class="na">mid</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;sname&#39;</span><span class="p">);</span>
+             <span class="p">})</span>
+             <span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="sql"><span class="k">SELECT</span> <span class="n">MID</span><span class="p">(</span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="k">AS</span> <span class="o">`</span><span class="n">sname</span><span class="o">`</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">users</span><span class="o">`</span>
+</code></pre></div>
+
+<p>
+    You can limit the length of the substring by passing a fourth argument to the <code>mid</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$include</span><span class="p">){</span>
+                <span class="nv">$include</span><span class="o">-&gt;</span><span class="na">mid</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+             <span class="p">})</span>
+             <span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="sql"><span class="k">SELECT</span> <span class="n">MID</span><span class="p">(</span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">users</span><span class="o">`</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+        
+
+
+    
+
+<h4>
+    
+    
+    <strong>Length</strong>
+    
+    <a id="length" href="#length" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Adding the length of a column is done by using the <code>len</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$include</span><span class="p">){</span>
+                <span class="nv">$include</span><span class="o">-&gt;</span><span class="na">len</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+             <span class="p">})</span>
+             <span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="sql"><span class="k">SELECT</span> <span class="k">LENGTH</span><span class="p">(</span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">)</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">users</span><span class="o">`</span>
+</code></pre></div>
+
+<p>
+    You can also alias the returned value by passing an alias name as the second argument of the method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$include</span><span class="p">){</span>
+                <span class="nv">$include</span><span class="o">-&gt;</span><span class="na">len</span><span class="p">(</span><span class="s1">&#39;lname&#39;</span><span class="p">);</span>
+             <span class="p">})</span>
+             <span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="sql"><span class="k">SELECT</span> <span class="k">LENGTH</span><span class="p">(</span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">)</span> <span class="k">AS</span> <span class="o">`</span><span class="n">lname</span><span class="o">`</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">users</span><span class="o">`</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+        
+
+
+    
+
+<h4>
+    
+    
+    <strong>Formatting</strong>
+    
+    <a id="formatting" href="#formatting" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    Formatting the value of a column to a number with a specified number of decimals is
+    done by using the <code>format</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$include</span><span class="p">){</span>
+                <span class="nv">$include</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="s1">&#39;wallet&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+             <span class="p">})</span>
+             <span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="sql"><span class="k">SELECT</span> <span class="n">FORMAT</span><span class="p">(</span><span class="o">`</span><span class="n">wallet</span><span class="o">`</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">users</span><span class="o">`</span>
+</code></pre></div>
+
+<p>
+    The same effect can be obtained by using the <code>round</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$include</span><span class="p">){</span>
+                <span class="nv">$include</span><span class="o">-&gt;</span><span class="na">round</span><span class="p">(</span><span class="s1">&#39;wallet&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+             <span class="p">})</span>
+             <span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="sql"><span class="k">SELECT</span> <span class="n">FORMAT</span><span class="p">(</span><span class="o">`</span><span class="n">wallet</span><span class="o">`</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">users</span><span class="o">`</span>
+</code></pre></div>
+
+<p>
+    You can also alias the returned value by passing an alias name as the second argument of the method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$include</span><span class="p">){</span>
+                <span class="nv">$include</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="s1">&#39;wallet&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;fwallet&#39;</span><span class="p">);</span>
+             <span class="p">})</span>
+             <span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="sql"><span class="k">SELECT</span> <span class="n">FORMAT</span><span class="p">(</span><span class="o">`</span><span class="n">wallet</span><span class="o">`</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="k">AS</span> <span class="o">`</span><span class="n">fwallet</span><span class="o">`</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">users</span><span class="o">`</span>
+</code></pre></div>
 
                 
 

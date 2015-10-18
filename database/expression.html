@@ -186,6 +186,17 @@
                 
                     
                         
+<a href="/database/expression.html" class="list-group-item active">
+
+    <h4 class="list-group-item-heading">Expressions</h4>
+    <p class="list-group-item-text text-muted">
+        Learn about expressions
+    </p>
+</a>
+                    
+                
+                    
+                        
 <a href="/database/order.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Ordering criteria</h4>
@@ -208,33 +219,22 @@
                 
                     
                         
-<a href="/database/expression.html" class="list-group-item active">
-
-    <h4 class="list-group-item-heading">Expressions</h4>
-    <p class="list-group-item-text text-muted">
-        Learn about expressions
-    </p>
-</a>
-                    
-                
-                    
-                        
-<a href="/database/group.html" class="list-group-item">
-
-    <h4 class="list-group-item-heading">Group</h4>
-    <p class="list-group-item-text text-muted">
-        Learn how to group results
-    </p>
-</a>
-                    
-                
-                    
-                        
 <a href="/database/join.html" class="list-group-item">
 
     <h4 class="list-group-item-heading">Joins</h4>
     <p class="list-group-item-text text-muted">
         Learn how to perform joins
+    </p>
+</a>
+                    
+                
+                    
+                        
+<a href="/database/aggregates-handling.html" class="list-group-item">
+
+    <h4 class="list-group-item-heading">Working with aggregates</h4>
+    <p class="list-group-item-text text-muted">
+        Learn how to work with aggregates
     </p>
 </a>
                     
@@ -310,8 +310,41 @@
 </h1>
 
 <p>
-    Expressions are used to make complex queries
+    Expressions can be used to build complex queries. Using an expresion to add a complex
+    filter condition is simply a matter of passing a closure to the condition method. You can use then
+    the object passed to the closure as an argument, to build your custom expressions. The
+    methods used to build expressions are <code>column</code>, <code>op</code> and <code>value</code>.
 </p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;numbers&#39;</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">eq</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$expr</span><span class="p">){</span>
+                <span class="nv">$expr</span><span class="o">-&gt;</span><span class="na">column</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">op</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+             <span class="p">})</span>
+             <span class="o">-&gt;</span><span class="na">select</span><span class="p">()</span>
+             <span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">numbers</span><span class="o">`</span> <span class="k">WHERE</span> <span class="o">`</span><span class="k">c</span><span class="o">`</span> <span class="o">=</span> <span class="o">`</span><span class="n">b</span><span class="o">`</span> <span class="o">+</span> <span class="mi">10</span>
+</code></pre></div>
+
+<p>
+    The <code>column</code> method is used to add to the expression a value that must be treated as a column name.
+    The <code>value</code> method is used to add an arbitrary value that must treated as user input and handled properly.
+    The <code>op</code> method is used to add a raw value to the expression.
+</p>
+
+<p>
+    The <code>op</code> method can be replaced by curly brackets.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;numbers&#39;</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">eq</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$expr</span><span class="p">){</span>
+                <span class="nv">$expr</span><span class="o">-&gt;</span><span class="na">column</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">}</span><span class="o">-&gt;</span><span class="na">column</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">);</span>
+             <span class="p">})</span>
+             <span class="o">-&gt;</span><span class="na">select</span><span class="p">()</span>
+             <span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">numbers</span><span class="o">`</span> <span class="k">WHERE</span> <span class="o">`</span><span class="k">c</span><span class="o">`</span> <span class="o">=</span> <span class="o">`</span><span class="n">a</span><span class="o">`</span> <span class="o">+</span> <span class="o">`</span><span class="n">b</span><span class="o">`</span>
+</code></pre></div>
 
 <p class="well text-primary">
     <strong><span class="fa fa-pencil"></span> TODO:</strong>
@@ -384,22 +417,6 @@
     
         
             
-                
-            
-        
-    
-
-    
-        
-            
-                
-            
-        
-    
-
-    
-        
-            
         
     
 
@@ -410,6 +427,10 @@
                 
             
         
+    
+
+    
+
     
 
     
@@ -427,10 +448,10 @@
 
 <ul class="pager">
   
-  <li class="previous"><a href="/database/limit.html" title="Limits and offsets">&larr; Back</a></li>
+  <li class="previous"><a href="/database/filter.html" title="Filters">&larr; Back</a></li>
   
   
-  <li class="next"><a href="/database/group.html" title="Group">Next &rarr;</a></li>
+  <li class="next"><a href="/database/order.html" title="Ordering criteria">Next &rarr;</a></li>
   
 </ul>
                 
