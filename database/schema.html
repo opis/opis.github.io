@@ -1499,22 +1499,18 @@
 </h4>
 
 <p>
-    Renaming a column is done using the <code>renameColumn</code> method. This method takes three arguments:
-    the first argument is the name of the column you want to rename, the second argument is the new name of
-    the column and the third argument represents the type of the column.
-    The third argument must be a string having one of these values
-    <code>integer</code>, <code>float</code>, <code>double</code>, <code>boolean</code>,
-    <code>decimal</code>, <code>string</code>, <code>fixed</code>, <code>text</code>,
-    <code>date</code>, <code>time</code>, <code>datetime</code>, <code>timestamp</code>, <code>binary</code>.
+    Renaming a column is done using the <code>renameColumn</code> method. This method takes as arguments
+    the current and the new name of the column.
 </p>
+
 <p class="well text-primary">
-    <strong><span class="fa fa-pencil"></span> TODO:</strong>
-    Get rid of the third argument
+    <strong><span class="fa fa-exclamation-triangle"></span> Important!</strong>
+    This method is available since version 2.3.0
 </p>
 
 <div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">alter</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
     
-    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">renameColumn</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">);</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">renameColumn</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">);</span>
     
 <span class="p">}));</span>
 </code></pre></div>
@@ -1604,17 +1600,18 @@
 </h4>
 
 <p>
-    You may add the primary key by calling the <code>addPrimary</code> method. 
+    You may add the primary key by calling the <code>primary</code> method. 
 </p>
 
 <p class="well text-primary">
-    <strong><span class="fa fa-pencil"></span> TODO:</strong>
-    Rename this method to <strong>primary</strong>
+    <strong><span class="fa fa-exclamation-triangle"></span> Important!</strong>
+    This method is available since version 2.3.0 and replaces
+    the deprecated <strong>addPrimary</strong> method.
 </p>
 
 <div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">alter</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
     
-    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addPrimary</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">);</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">primary</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">);</span>
     
 <span class="p">}));</span>
 </code></pre></div>
@@ -1672,17 +1669,18 @@
 </h4>
 
 <p>
-    You may add a unique key by calling the <code>addUnique</code> method. 
+    You may add a unique key by calling the <code>unique</code> method. 
 </p>
 
 <p class="well text-primary">
-    <strong><span class="fa fa-pencil"></span> TODO:</strong>
-    Rename this method to <strong>unique</strong>
+    <strong><span class="fa fa-exclamation-triangle"></span> Important!</strong>
+    This method is available since version 2.3.0 and replaces
+    the deprecated <strong>addUnique</strong> method.
 </p>
 
 <div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">alter</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
     
-    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addUnique</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">unique</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span>
     
 <span class="p">}));</span>
 </code></pre></div>
@@ -1740,17 +1738,18 @@
 </h4>
 
 <p>
-    You may add a foreign key by using the <code>addForeign</code> method.
+    You may add a foreign key by using the <code>foreign</code> method.
 </p>
 
 <p class="well text-primary">
-    <strong><span class="fa fa-pencil"></span> TODO:</strong>
-    Rename this method to <strong>foreign</strong>
+    <strong><span class="fa fa-exclamation-triangle"></span> Important!</strong>
+    This method is available since version 2.3.0 and replaces
+    the deprecated <strong>addForeign</strong> method.
 </p>
 
 <div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">alter</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
 
-    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addForeign</span><span class="p">(</span><span class="s1">&#39;profile_id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">references</span><span class="p">(</span><span class="s1">&#39;profiles&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">foreign</span><span class="p">(</span><span class="s1">&#39;profile_id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">references</span><span class="p">(</span><span class="s1">&#39;profiles&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
 
 <span class="p">}));</span>
 </code></pre></div>
@@ -1808,17 +1807,18 @@
 </h4>
 
 <p>
-    You can add an index by calling the <code>addIndex</code> method.
+    You can add an index by calling the <code>index</code> method.
 </p>
 
 <p class="well text-primary">
-    <strong><span class="fa fa-pencil"></span> TODO:</strong>
-    Rename this method to <strong>index</strong>
+    <strong><span class="fa fa-exclamation-triangle"></span> Important!</strong>
+    This method is available since version 2.3.0 and replaces
+    the deprecated <strong>addIndex</strong> method.
 </p>
 
 <div class="highlight"><pre><code class="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">alter</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
     
-    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addIndex</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">);</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">index</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">);</span>
     
 <span class="p">}));</span>
 </code></pre></div>
