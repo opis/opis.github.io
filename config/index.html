@@ -23,6 +23,12 @@
 <link href="/assets/css/project.css" rel="stylesheet">
 
 
+        
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+        <![endif]--> 
+        
         <!--[if lt IE 9]>
 <script src="/assets/js/html5shiv.js"></script>
 <script src="/assets/js/respond.min.js"></script>
@@ -46,11 +52,18 @@
     </head>
     <body>
         
-<header id="header" class="navbar navbar-default navbar-fixed-top">
+
+<div class="github-fork-ribbon-wrapper right hidden-sm hidden-xs">
+    <div class="github-fork-ribbon" style="background-color: #f80">
+        <a href="https://github.com/opis/config">Fork me on GitHub</a>
+    </div>
+</div>
+
+<header id="header" class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">
             <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
-            <a href="" class="navbar-brand">
+            <a href="/config" class="navbar-brand">
                 <strong>
                     Config
                 </strong>
@@ -68,6 +81,23 @@
                         <span class="fa fa-home"></span> Home
                     </a>
                 </li>
+                <li class="dropdown hidden-md hidden-lg">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="fa fa-file-text"></span> Documentation <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+    
+        
+        <li class="active"><a href="/config" title="Getting started with Opis Config">About</a></li>
+    
+        
+        <li><a href="/config/use.html" title="Learn how to use the library">Using the library</a></li>
+    
+        
+        <li><a href="/config/example.html" title="Examples of how to use this library">Examples</a></li>
+    
+    </ul>
+</li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <span class="fa fa-cogs"></span> Components <span class="caret"></span>
@@ -109,7 +139,7 @@
     </ul>
 </li>
 
-                <li>
+                <li class="hidden-md hidden-lg">
                     <a href="https://github.com/opis/config" title="Github page">
                         <span class="fa fa-github fa-lg"></span> GitHub
                     </a>
@@ -122,45 +152,41 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <div class="list-group">
+            <div class="col-md-4 hidden-xs hidden-sm">
                 
-                    
-                        
-<a href="/config" class="list-group-item active">
+                    <div class="list-group">
 
-    <h4 class="list-group-item-heading">About</h4>
-    <p class="list-group-item-text text-muted">
-        Getting started with Opis Config
-    </p>
-</a>
-                    
-                
-                    
-                        
-<a href="/config/use.html" class="list-group-item">
+    
+    <a href="/config" class="list-group-item active">
+    
+        <h4 class="list-group-item-heading">About</h4>
+        <p class="list-group-item-text text-muted">
+            Getting started with Opis Config
+        </p>
+    </a>
 
-    <h4 class="list-group-item-heading">Using the library</h4>
-    <p class="list-group-item-text text-muted">
-        Learn how to use the library
-    </p>
-</a>
-                    
-                
-                    
-                        
-<a href="/config/example.html" class="list-group-item">
+    
+    <a href="/config/use.html" class="list-group-item">
+    
+        <h4 class="list-group-item-heading">Using the library</h4>
+        <p class="list-group-item-text text-muted">
+            Learn how to use the library
+        </p>
+    </a>
 
-    <h4 class="list-group-item-heading">Examples</h4>
-    <p class="list-group-item-text text-muted">
-        Examples of how to use this library
-    </p>
-</a>
-                    
+    
+    <a href="/config/example.html" class="list-group-item">
+    
+        <h4 class="list-group-item-heading">Examples</h4>
+        <p class="list-group-item-text text-muted">
+            Examples of how to use this library
+        </p>
+    </a>
+
+</div>
                 
-                </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8 col-sm-12">
                 
         
 
@@ -334,7 +360,37 @@
         </div>
     </div>
 </section>
-
+<a href="#0" id="back-to-top">
+    <span class="fa fa-arrow-up"></span>
+</a>
+<script>
+    (function($){
+        
+        $(document).ready(function(){
+           var visible = false;
+           $(window).scroll(function(){
+                var top = $(this).scrollTop();
+                
+                if (top >= 100 && !visible) {
+                   visible = true;
+                   $('#back-to-top').fadeIn().show();
+                 }
+                 if(top < 100 && visible){
+                   visible = false;
+                   $('#back-to-top').fadeOut();  
+                 }
+           });
+           
+            $('#back-to-top').click(function(){
+                $('html, body').animate({scrollTop : 0},800);
+                return false;
+            });
+            
+        });
+        
+        
+    })(jQuery);
+</script>
 <footer class="text-center text-muted">
     Copyright &copy; 2014-2015 Marius Sarca. All rights reserved.
 </footer>

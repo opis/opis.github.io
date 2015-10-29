@@ -25,6 +25,12 @@
 <link href="/assets/css/project.css" rel="stylesheet">
 
 
+        
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+        <![endif]--> 
+        
         <!--[if lt IE 9]>
 <script src="/assets/js/html5shiv.js"></script>
 <script src="/assets/js/respond.min.js"></script>
@@ -48,11 +54,18 @@
     </head>
     <body>
         
-<header id="header" class="navbar navbar-default navbar-fixed-top">
+
+<div class="github-fork-ribbon-wrapper right hidden-sm hidden-xs">
+    <div class="github-fork-ribbon" style="background-color: #f80">
+        <a href="https://github.com/opis/cache/tree/2.3">Fork me on GitHub</a>
+    </div>
+</div>
+
+<header id="header" class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">
             <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
-            <a href="" class="navbar-brand">
+            <a href="/cache" class="navbar-brand">
                 <strong>
                     Cache
                 </strong>
@@ -70,6 +83,26 @@
                         <span class="fa fa-home"></span> Home
                     </a>
                 </li>
+                <li class="dropdown hidden-md hidden-lg">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="fa fa-file-text"></span> Documentation <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+    
+        
+        <li><a href="/cache/2.3" title="Getting started with Opis Cache">About</a></li>
+    
+        
+        <li><a href="/cache/2.3/use.html" title="Learn how to use the library">Using the library</a></li>
+    
+        
+        <li class="active"><a href="/cache/2.3/collection.html" title="Learn how to create and use storage collections">Storage collection</a></li>
+    
+        
+        <li><a href="/cache/2.3/storage.html" title="Learn how you can add support for new storages">Add new storages</a></li>
+    
+    </ul>
+</li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <span class="fa fa-cogs"></span> Components <span class="caret"></span>
@@ -111,7 +144,7 @@
     </ul>
 </li>
 
-                <li>
+                <li class="hidden-md hidden-lg">
                     <a href="https://github.com/opis/cache/tree/2.3" title="Github page">
                         <span class="fa fa-github fa-lg"></span> GitHub
                     </a>
@@ -124,56 +157,50 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <div class="list-group">
+            <div class="col-md-4 hidden-xs hidden-sm">
                 
-                    
-                        
-<a href="/cache/2.3" class="list-group-item">
+                    <div class="list-group">
 
-    <h4 class="list-group-item-heading">About</h4>
-    <p class="list-group-item-text text-muted">
-        Getting started with Opis Cache
-    </p>
-</a>
-                    
-                
-                    
-                        
-<a href="/cache/2.3/use.html" class="list-group-item">
+    
+    <a href="/cache/2.3" class="list-group-item">
+    
+        <h4 class="list-group-item-heading">About</h4>
+        <p class="list-group-item-text text-muted">
+            Getting started with Opis Cache
+        </p>
+    </a>
 
-    <h4 class="list-group-item-heading">Using the library</h4>
-    <p class="list-group-item-text text-muted">
-        Learn how to use the library
-    </p>
-</a>
-                    
-                
-                    
-                        
-<a href="/cache/2.3/collection.html" class="list-group-item active">
+    
+    <a href="/cache/2.3/use.html" class="list-group-item">
+    
+        <h4 class="list-group-item-heading">Using the library</h4>
+        <p class="list-group-item-text text-muted">
+            Learn how to use the library
+        </p>
+    </a>
 
-    <h4 class="list-group-item-heading">Storage collection</h4>
-    <p class="list-group-item-text text-muted">
-        Learn how to create and use storage collections
-    </p>
-</a>
-                    
-                
-                    
-                        
-<a href="/cache/2.3/storage.html" class="list-group-item">
+    
+    <a href="/cache/2.3/collection.html" class="list-group-item active">
+    
+        <h4 class="list-group-item-heading">Storage collection</h4>
+        <p class="list-group-item-text text-muted">
+            Learn how to create and use storage collections
+        </p>
+    </a>
 
-    <h4 class="list-group-item-heading">Add new storages</h4>
-    <p class="list-group-item-text text-muted">
-        Learn how you can add support for new storages
-    </p>
-</a>
-                    
+    
+    <a href="/cache/2.3/storage.html" class="list-group-item">
+    
+        <h4 class="list-group-item-heading">Add new storages</h4>
+        <p class="list-group-item-text text-muted">
+            Learn how you can add support for new storages
+        </p>
+    </a>
+
+</div>
                 
-                </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8 col-sm-12">
                 
         
 
@@ -314,7 +341,37 @@
         </div>
     </div>
 </section>
-
+<a href="#0" id="back-to-top">
+    <span class="fa fa-arrow-up"></span>
+</a>
+<script>
+    (function($){
+        
+        $(document).ready(function(){
+           var visible = false;
+           $(window).scroll(function(){
+                var top = $(this).scrollTop();
+                
+                if (top >= 100 && !visible) {
+                   visible = true;
+                   $('#back-to-top').fadeIn().show();
+                 }
+                 if(top < 100 && visible){
+                   visible = false;
+                   $('#back-to-top').fadeOut();  
+                 }
+           });
+           
+            $('#back-to-top').click(function(){
+                $('html, body').animate({scrollTop : 0},800);
+                return false;
+            });
+            
+        });
+        
+        
+    })(jQuery);
+</script>
 <footer class="text-center text-muted">
     Copyright &copy; 2014-2015 Marius Sarca. All rights reserved.
 </footer>

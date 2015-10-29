@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="php, database, abstraction, query builder, schema builder, orm, obejct relational mapping">
+<meta name="description" content="Learn how to work with models">
+<title>Working with models | Opis Database</title>
+        
+        <link href="/assets/img/favicon.png" rel="shortcut icon">
+        
+        
+        
+<link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
+
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+
+<link href="/assets/css/syntax.css" rel="stylesheet">
+
+
+
+<link href="/assets/css/project.css" rel="stylesheet">
+
+
+        
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+        <![endif]--> 
+        
+        <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-50415801-1', 'opis.io');
+    ga('send', 'pageview');
+</script>
+
+    </head>
+    <body>
+        
+
+<div class="github-fork-ribbon-wrapper right hidden-sm hidden-xs">
+    <div class="github-fork-ribbon" style="background-color: #f80">
+        <a href="https://github.com/opis/database">Fork me on GitHub</a>
+    </div>
+</div>
+
+<header id="header" class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
+            <a href="/database" class="navbar-brand">
+                <strong>
+                    Database
+                </strong>
+            </a>
+            <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/" title="Main page">
+                        <span class="fa fa-home"></span> Home
+                    </a>
+                </li>
+                <li class="dropdown hidden-md hidden-lg">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="fa fa-file-text"></span> Documentation <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+    
+        
+        <li class="dropdown-header">Getting started</li>
+        
+        <li><a href="/database" title="Getting started with Opis Database">About</a></li>
+    
+        
+        <li><a href="/database/connection.html" title="Learn how to connect to a database">Database connections</a></li>
+    
+        
+        <li class="dropdown-header">The basics</li>
+        
+        <li><a href="/database/select.html" title="Fetching records from a database">Fetching records</a></li>
+    
+        
+        <li><a href="/database/result.html" title="Learn how to handle the result set of a query">Results handling</a></li>
+    
+        
+        <li><a href="/database/aggregate.html" title="Learn about aggregate functions">Aggregate functions</a></li>
+    
+        
+        <li><a href="/database/extended-selections.html" title="Learn about how to define custom selections">Extended selections</a></li>
+    
+        
+        <li><a href="/database/filter.html" title="Learn how to filter records">Filters</a></li>
+    
+        
+        <li><a href="/database/expression.html" title="Learn about expressions">Expressions</a></li>
+    
+        
+        <li><a href="/database/order.html" title="Learn how to order results">Ordering criteria</a></li>
+    
+        
+        <li><a href="/database/limit.html" title="Learn about limits and offsets">Limits and offsets</a></li>
+    
+        
+        <li><a href="/database/join.html" title="Learn how to perform joins">Joins</a></li>
+    
+        
+        <li><a href="/database/aggregates-handling.html" title="Learn how to work with aggregates">Working with aggregates</a></li>
+    
+        
+        <li><a href="/database/insert.html" title="Insert new records into a table">Create records</a></li>
+    
+        
+        <li><a href="/database/update.html" title="Learn how to update existing records">Update records</a></li>
+    
+        
+        <li><a href="/database/delete.html" title="Learn how to delete existing records">Delete records</a></li>
+    
+        
+        <li class="dropdown-header">Transactions</li>
+        
+        <li><a href="/database/transaction.html" title="Learn how to use transactions">Performing transactions</a></li>
+    
+        
+        <li class="dropdown-header">Database schema</li>
+        
+        <li><a href="/database/schema.html" title="Learn about Opis Database schema">Introduction</a></li>
+    
+        
+        <li><a href="/database/creating-tables.html" title="Creating new tables">Creating tables</a></li>
+    
+        
+        <li><a href="/database/modifying-tables.html" title="Modify existing tables">Modifying tables</a></li>
+    
+        
+        <li class="dropdown-header">ORM</li>
+        
+        <li><a href="/database/orm.html" title="Learn about Opis Database ORM">Introduction</a></li>
+    
+        
+        <li><a href="/database/orm-basics.html" title="Learn about ORM relationships">Basic operations</a></li>
+    
+        
+        <li><a href="/database/orm-relationships.html" title="Learn about ORM relationships">Relationships</a></li>
+    
+        
+        <li class="active"><a href="/database/orm-models.html" title="Learn about ORM relationships">Working with models</a></li>
+    
+    </ul>
+</li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="fa fa-cogs"></span> Components <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/cache" title="Caching library">Cache</a></li>
+                        <li><a href="/closure" title="Serializable closures">Closure</a></li>
+                        <li><a href="/config" title="Configuration manager">Config</a></li>
+                        <li><a href="/container" title="Dependency injection container">Container</a></li>
+                        <li><a href="/database" title="Database abstraction layer">Database</a></li>
+                        <li><a href="/events" title="Events library">Events</a></li>
+                        <li><a href="https://github.com/opis/http" title="HTTP library">HTTP</a></li>
+                        <li><a href="/http-routing" title="HTTP routing library">HTTP Routing</a></li>
+                        <li><a href="/routing" title="Routing framework">Routing</a></li>
+                        <li><a href="/session" title="Session manager">Session</a></li>
+                        <li><a href="/utils" title="Utilitary classes">Utils</a></li>
+                        <li><a href="/view" title="Rendering engine">View</a></li>
+                    </ul>
+                </li>
+                
+    
+    
+
+                <li class="hidden-md hidden-lg">
+                    <a href="https://github.com/opis/database" title="Github page">
+                        <span class="fa fa-github fa-lg"></span> GitHub
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 hidden-xs hidden-sm">
+                
+                    
+<ul class="navigation">
+
+    
+        
+            
+        
+        <li class="chapter">Getting started</li>
+        <ul>
+            <li><a href="/database" title="Getting started with Opis Database">About</a></li>
+    
+
+    
+        <li><a href="/database/connection.html" title="Learn how to connect to a database">Database connections</a></li>
+    
+
+    
+        
+        </ul>
+        
+        <li class="chapter">The basics</li>
+        <ul>
+            <li><a href="/database/select.html" title="Fetching records from a database">Fetching records</a></li>
+    
+
+    
+        <li><a href="/database/result.html" title="Learn how to handle the result set of a query">Results handling</a></li>
+    
+
+    
+        <li><a href="/database/aggregate.html" title="Learn about aggregate functions">Aggregate functions</a></li>
+    
+
+    
+        <li><a href="/database/extended-selections.html" title="Learn about how to define custom selections">Extended selections</a></li>
+    
+
+    
+        <li><a href="/database/filter.html" title="Learn how to filter records">Filters</a></li>
+    
+
+    
+        <li><a href="/database/expression.html" title="Learn about expressions">Expressions</a></li>
+    
+
+    
+        <li><a href="/database/order.html" title="Learn how to order results">Ordering criteria</a></li>
+    
+
+    
+        <li><a href="/database/limit.html" title="Learn about limits and offsets">Limits and offsets</a></li>
+    
+
+    
+        <li><a href="/database/join.html" title="Learn how to perform joins">Joins</a></li>
+    
+
+    
+        <li><a href="/database/aggregates-handling.html" title="Learn how to work with aggregates">Working with aggregates</a></li>
+    
+
+    
+        <li><a href="/database/insert.html" title="Insert new records into a table">Create records</a></li>
+    
+
+    
+        <li><a href="/database/update.html" title="Learn how to update existing records">Update records</a></li>
+    
+
+    
+        <li><a href="/database/delete.html" title="Learn how to delete existing records">Delete records</a></li>
+    
+
+    
+        
+        </ul>
+        
+        <li class="chapter">Transactions</li>
+        <ul>
+            <li><a href="/database/transaction.html" title="Learn how to use transactions">Performing transactions</a></li>
+    
+
+    
+        
+        </ul>
+        
+        <li class="chapter">Database schema</li>
+        <ul>
+            <li><a href="/database/schema.html" title="Learn about Opis Database schema">Introduction</a></li>
+    
+
+    
+        <li><a href="/database/creating-tables.html" title="Creating new tables">Creating tables</a></li>
+    
+
+    
+        <li><a href="/database/modifying-tables.html" title="Modify existing tables">Modifying tables</a></li>
+    
+
+    
+        
+        </ul>
+        
+        <li class="chapter">ORM</li>
+        <ul>
+            <li><a href="/database/orm.html" title="Learn about Opis Database ORM">Introduction</a></li>
+    
+
+    
+        <li><a href="/database/orm-basics.html" title="Learn about ORM relationships">Basic operations</a></li>
+    
+
+    
+        <li><a href="/database/orm-relationships.html" title="Learn about ORM relationships">Relationships</a></li>
+    
+
+    
+        <li class="active"><a href="/database/orm-models.html" title="Learn about ORM relationships">Working with models</a></li>
+    
+
+    </ul>
+</ul>
+
+                
+            </div>
+            <div class="col-md-8 col-sm-12">
+                
+        
+
+
+        
+
+<h1>
+    
+    <strong>Working with models</strong>
+    
+</h1>
+
+<ol class="submenu">
+    <li>
+
+
+
+
+    
+
+<a href="#creating-related-records">Creating related records</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#eager-loading">Eager loading</a></li>
+</ol>
+
+
+        
+
+
+    
+
+
+        
+
+
+    
+
+<h3>
+    
+    
+    <strong>Creating related records</strong>
+    
+    <a id="creating-related-records" href="#creating-related-records" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Let's assume we have an <code>User</code> and an <code>Article</code> model defined like
+    bellow.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">class</span> <span class="nc">Article</span> <span class="k">extends</span> <span class="nx">BaseModel</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">author</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">belongsTo</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">BaseModel</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">articles</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">hasMany</span><span class="p">(</span><span class="s1">&#39;Article&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>
+    When you want to create a new <code>Article</code> you can specify its author by setting
+    an instance of the <code>User</code> model as a value to the <code>author</code> property.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$user</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="nv">$article</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Article</span><span class="p">;</span>
+
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">title</span> <span class="o">=</span> <span class="s2">&quot;Some title&quot;</span><span class="p">;</span>
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">content</span> <span class="o">=</span> <span class="s2">&quot;Some content&quot;</span><span class="p">;</span>
+
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">author</span> <span class="o">=</span> <span class="nv">$user</span><span class="p">;</span>
+
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">();</span>
+</code></pre></div>
+
+<p>
+    Of course, in this way, you can also change the author of an article, if you want.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$user</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="nv">$article</span> <span class="o">=</span> <span class="nx">Article</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">author</span> <span class="o">=</span> <span class="nv">$user</span><span class="p">;</span>
+
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">();</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+
+        
+
+
+    
+
+<h3>
+    
+    
+    <strong>Eager loading</strong>
+    
+    <a id="eager-loading" href="#eager-loading" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Loading related records may cause sometimes the <code>N + 1 query</code> problem.
+    To illustrated this problem, let's consider an <code>Article</code> model and
+    a <code>User</code> model.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">class</span> <span class="nc">Article</span> <span class="k">extends</span> <span class="nx">BaseModel</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">author</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">belongsTo</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">BaseModel</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">articles</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">hasMany</span><span class="p">(</span><span class="s1">&#39;Article&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>
+    Now, let's retrieve the first 10 articles and display the name of their author.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$articles</span> <span class="o">=</span> <span class="nx">Article</span><span class="o">::</span><span class="na">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">orderBy</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+
+<span class="k">foreach</span><span class="p">(</span><span class="nv">$articles</span> <span class="k">as</span> <span class="nv">$article</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">author</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>
+    The above code will execute 1 query to retrieve 10 articles and then,
+    for each of the 10 articles it will execute a query to retrieve the article's author,
+    meaning that 11 queries will be executed in total.
+</p>
+
+<p>
+    We can reduce this operation to just 2 queries by using eager loading.
+    Specifying which relationships to be eager loaded is done with the help of
+    the <code>with</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$articles</span> <span class="o">=</span> <span class="nx">Article</span><span class="o">::</span><span class="na">with</span><span class="p">(</span><span class="s1">&#39;author&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">orderBy</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+
+<span class="k">foreach</span><span class="p">(</span><span class="nv">$articles</span> <span class="k">as</span> <span class="nv">$article</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">author</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+        
+
+
+    
+
+<h5>
+    
+    
+    <strong>Multiple relationships</strong>
+    
+    <a id="eager-loading-multiple-relationships" href="#eager-loading-multiple-relationships" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    If you need to eager load multiple relationships, just pass to the <code>with</code>
+    method an array containing the names of the relationships.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$articles</span> <span class="o">=</span> <span class="nx">Article</span><span class="o">::</span><span class="na">with</span><span class="p">([</span><span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;comments&#39;</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">orderBy</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+        
+
+
+    
+
+<h5>
+    
+    
+    <strong>Nested relationships</strong>
+    
+    <a id="eager-loading-nested-relationships" href="#eager-loading-nested-relationships" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    Eager loading nested relationships is done by using the <em>dot</em> notation.
+    For example we can eager load the article's author and the author's profile in
+    a single statement.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$articles</span> <span class="o">=</span> <span class="nx">Article</span><span class="o">::</span><span class="na">with</span><span class="p">(</span><span class="s1">&#39;author.profile&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">orderBy</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+        
+
+
+    
+
+<h4>
+    
+    
+    <strong>Deferred execution</strong>
+    
+    <a id="eager-loading-deferred-execution" href="#eager-loading-deferred-execution" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p>
+    By default, the execution of the eager loading query will be deferred until the
+    dynamic property associated with the relationship is accessed for the first time. 
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="c1">// Articles are loaded. The execution of the eager loading query is deferred.</span>
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nx">Article</span><span class="o">::</span><span class="na">with</span><span class="p">(</span><span class="s1">&#39;author&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">orderBy</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+
+<span class="k">foreach</span><span class="p">(</span><span class="nv">$articles</span> <span class="k">as</span> <span class="nv">$article</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// The eager loading query is executed (once only).</span>
+    <span class="k">echo</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">author</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>
+    Changing this behavior is done by passing <code>true</code> as the second argument to the <code>with</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="c1">// Articles are loaded and the eager loading query is executed.</span>
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nx">Article</span><span class="o">::</span><span class="na">with</span><span class="p">(</span><span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">orderBy</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+
+<span class="k">foreach</span><span class="p">(</span><span class="nv">$articles</span> <span class="k">as</span> <span class="nv">$article</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">author</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+                
+
+
+
+
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+        
+    
+
+
+<ul class="pager">
+  
+  <li class="previous"><a href="/database/orm-relationships.html" title="Relationships">&larr; Back</a></li>
+  
+  
+</ul>
+                
+            </div>
+        </div>
+    </div>
+</section>
+<a href="#0" id="back-to-top">
+    <span class="fa fa-arrow-up"></span>
+</a>
+<script>
+    (function($){
+        
+        $(document).ready(function(){
+           var visible = false;
+           $(window).scroll(function(){
+                var top = $(this).scrollTop();
+                
+                if (top >= 100 && !visible) {
+                   visible = true;
+                   $('#back-to-top').fadeIn().show();
+                 }
+                 if(top < 100 && visible){
+                   visible = false;
+                   $('#back-to-top').fadeOut();  
+                 }
+           });
+           
+            $('#back-to-top').click(function(){
+                $('html, body').animate({scrollTop : 0},800);
+                return false;
+            });
+            
+        });
+        
+        
+    })(jQuery);
+</script>
+<footer class="text-center text-muted">
+    Copyright &copy; 2014-2015 Marius Sarca. All rights reserved.
+</footer>
+
+    </body>
+</html>

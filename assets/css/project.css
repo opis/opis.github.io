@@ -7,9 +7,9 @@ body{
     margin-bottom: 100px;
 }
 
-body > section {
+/*body > section {
     padding-top: 80px;
-}
+}*/
 
 header{
     position: static;
@@ -70,14 +70,14 @@ ol.submenu a{
 
 a.link-anchor{
     visibility: hidden;
-    padding-top: 80px;
-    margin-top: -80px;
+    /*padding-top: 80px;
+    margin-top: -80px;*/
 }
 
 a.top-anchor{
     visibility: hidden;
-    padding-top: 80px;
-    margin-top: -80px;
+    /*padding-top: 80px;
+    margin-top: -80px;*/
 }
 
 a.navbar-brand{
@@ -90,5 +90,47 @@ a.navbar-brand{
 
 p > code{
     white-space: pre-wrap;
+}
+
+ul.navigation, ul.navigation ul{
+    padding: 0px;
+    list-style: none;
+}
+
+ul.navigation .chapter {
+    font-size: 1.3em;
+    color: #bbb;
+    border-bottom: 1px dashed #bbb;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+ul.navigation ul{
+    margin-bottom: 25px;
+}
+
+ul.navigation a{
+    color: #2C3E50;
+}
+
+ul.navigation .active a{
+    color: #18bc9c;
+}
+
+#back-to-top{
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #18bc9c;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    z-index: 100;
+    outline: none;
+    display: none;
 }
 

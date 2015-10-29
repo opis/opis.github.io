@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="php, database, abstraction, query builder, schema builder, orm, obejct relational mapping">
+<meta name="description" content="Learn about Opis Database ORM (Object Relational Mapping)">
+<title>Object relational mapping | Opis Database</title>
+        
+        <link href="/assets/img/favicon.png" rel="shortcut icon">
+        
+        
+        
+<link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
+
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+
+<link href="/assets/css/syntax.css" rel="stylesheet">
+
+
+
+<link href="/assets/css/project.css" rel="stylesheet">
+
+
+        
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+        <![endif]--> 
+        
+        <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-50415801-1', 'opis.io');
+    ga('send', 'pageview');
+</script>
+
+    </head>
+    <body>
+        
+
+<div class="github-fork-ribbon-wrapper right hidden-sm hidden-xs">
+    <div class="github-fork-ribbon" style="background-color: #f80">
+        <a href="https://github.com/opis/database">Fork me on GitHub</a>
+    </div>
+</div>
+
+<header id="header" class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
+            <a href="/database" class="navbar-brand">
+                <strong>
+                    Database
+                </strong>
+            </a>
+            <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/" title="Main page">
+                        <span class="fa fa-home"></span> Home
+                    </a>
+                </li>
+                <li class="dropdown hidden-md hidden-lg">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="fa fa-file-text"></span> Documentation <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+    
+        
+        <li class="dropdown-header">Getting started</li>
+        
+        <li><a href="/database" title="Getting started with Opis Database">About</a></li>
+    
+        
+        <li><a href="/database/connection.html" title="Learn how to connect to a database">Database connections</a></li>
+    
+        
+        <li class="dropdown-header">The basics</li>
+        
+        <li><a href="/database/select.html" title="Fetching records from a database">Fetching records</a></li>
+    
+        
+        <li><a href="/database/result.html" title="Learn how to handle the result set of a query">Results handling</a></li>
+    
+        
+        <li><a href="/database/aggregate.html" title="Learn about aggregate functions">Aggregate functions</a></li>
+    
+        
+        <li><a href="/database/extended-selections.html" title="Learn about how to define custom selections">Extended selections</a></li>
+    
+        
+        <li><a href="/database/filter.html" title="Learn how to filter records">Filters</a></li>
+    
+        
+        <li><a href="/database/expression.html" title="Learn about expressions">Expressions</a></li>
+    
+        
+        <li><a href="/database/order.html" title="Learn how to order results">Ordering criteria</a></li>
+    
+        
+        <li><a href="/database/limit.html" title="Learn about limits and offsets">Limits and offsets</a></li>
+    
+        
+        <li><a href="/database/join.html" title="Learn how to perform joins">Joins</a></li>
+    
+        
+        <li><a href="/database/aggregates-handling.html" title="Learn how to work with aggregates">Working with aggregates</a></li>
+    
+        
+        <li><a href="/database/insert.html" title="Insert new records into a table">Create records</a></li>
+    
+        
+        <li><a href="/database/update.html" title="Learn how to update existing records">Update records</a></li>
+    
+        
+        <li><a href="/database/delete.html" title="Learn how to delete existing records">Delete records</a></li>
+    
+        
+        <li class="dropdown-header">Transactions</li>
+        
+        <li><a href="/database/transaction.html" title="Learn how to use transactions">Performing transactions</a></li>
+    
+        
+        <li class="dropdown-header">Database schema</li>
+        
+        <li><a href="/database/schema.html" title="Learn about Opis Database schema">Introduction</a></li>
+    
+        
+        <li><a href="/database/creating-tables.html" title="Creating new tables">Creating tables</a></li>
+    
+        
+        <li><a href="/database/modifying-tables.html" title="Modify existing tables">Modifying tables</a></li>
+    
+        
+        <li class="dropdown-header">ORM</li>
+        
+        <li class="active"><a href="/database/orm.html" title="Learn about Opis Database ORM">Introduction</a></li>
+    
+        
+        <li><a href="/database/orm-basics.html" title="Learn about ORM relationships">Basic operations</a></li>
+    
+        
+        <li><a href="/database/orm-relationships.html" title="Learn about ORM relationships">Relationships</a></li>
+    
+        
+        <li><a href="/database/orm-models.html" title="Learn about ORM relationships">Working with models</a></li>
+    
+    </ul>
+</li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="fa fa-cogs"></span> Components <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/cache" title="Caching library">Cache</a></li>
+                        <li><a href="/closure" title="Serializable closures">Closure</a></li>
+                        <li><a href="/config" title="Configuration manager">Config</a></li>
+                        <li><a href="/container" title="Dependency injection container">Container</a></li>
+                        <li><a href="/database" title="Database abstraction layer">Database</a></li>
+                        <li><a href="/events" title="Events library">Events</a></li>
+                        <li><a href="https://github.com/opis/http" title="HTTP library">HTTP</a></li>
+                        <li><a href="/http-routing" title="HTTP routing library">HTTP Routing</a></li>
+                        <li><a href="/routing" title="Routing framework">Routing</a></li>
+                        <li><a href="/session" title="Session manager">Session</a></li>
+                        <li><a href="/utils" title="Utilitary classes">Utils</a></li>
+                        <li><a href="/view" title="Rendering engine">View</a></li>
+                    </ul>
+                </li>
+                
+    
+    
+
+                <li class="hidden-md hidden-lg">
+                    <a href="https://github.com/opis/database" title="Github page">
+                        <span class="fa fa-github fa-lg"></span> GitHub
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 hidden-xs hidden-sm">
+                
+                    
+<ul class="navigation">
+
+    
+        
+            
+        
+        <li class="chapter">Getting started</li>
+        <ul>
+            <li><a href="/database" title="Getting started with Opis Database">About</a></li>
+    
+
+    
+        <li><a href="/database/connection.html" title="Learn how to connect to a database">Database connections</a></li>
+    
+
+    
+        
+        </ul>
+        
+        <li class="chapter">The basics</li>
+        <ul>
+            <li><a href="/database/select.html" title="Fetching records from a database">Fetching records</a></li>
+    
+
+    
+        <li><a href="/database/result.html" title="Learn how to handle the result set of a query">Results handling</a></li>
+    
+
+    
+        <li><a href="/database/aggregate.html" title="Learn about aggregate functions">Aggregate functions</a></li>
+    
+
+    
+        <li><a href="/database/extended-selections.html" title="Learn about how to define custom selections">Extended selections</a></li>
+    
+
+    
+        <li><a href="/database/filter.html" title="Learn how to filter records">Filters</a></li>
+    
+
+    
+        <li><a href="/database/expression.html" title="Learn about expressions">Expressions</a></li>
+    
+
+    
+        <li><a href="/database/order.html" title="Learn how to order results">Ordering criteria</a></li>
+    
+
+    
+        <li><a href="/database/limit.html" title="Learn about limits and offsets">Limits and offsets</a></li>
+    
+
+    
+        <li><a href="/database/join.html" title="Learn how to perform joins">Joins</a></li>
+    
+
+    
+        <li><a href="/database/aggregates-handling.html" title="Learn how to work with aggregates">Working with aggregates</a></li>
+    
+
+    
+        <li><a href="/database/insert.html" title="Insert new records into a table">Create records</a></li>
+    
+
+    
+        <li><a href="/database/update.html" title="Learn how to update existing records">Update records</a></li>
+    
+
+    
+        <li><a href="/database/delete.html" title="Learn how to delete existing records">Delete records</a></li>
+    
+
+    
+        
+        </ul>
+        
+        <li class="chapter">Transactions</li>
+        <ul>
+            <li><a href="/database/transaction.html" title="Learn how to use transactions">Performing transactions</a></li>
+    
+
+    
+        
+        </ul>
+        
+        <li class="chapter">Database schema</li>
+        <ul>
+            <li><a href="/database/schema.html" title="Learn about Opis Database schema">Introduction</a></li>
+    
+
+    
+        <li><a href="/database/creating-tables.html" title="Creating new tables">Creating tables</a></li>
+    
+
+    
+        <li><a href="/database/modifying-tables.html" title="Modify existing tables">Modifying tables</a></li>
+    
+
+    
+        
+        </ul>
+        
+        <li class="chapter">ORM</li>
+        <ul>
+            <li class="active"><a href="/database/orm.html" title="Learn about Opis Database ORM">Introduction</a></li>
+    
+
+    
+        <li><a href="/database/orm-basics.html" title="Learn about ORM relationships">Basic operations</a></li>
+    
+
+    
+        <li><a href="/database/orm-relationships.html" title="Learn about ORM relationships">Relationships</a></li>
+    
+
+    
+        <li><a href="/database/orm-models.html" title="Learn about ORM relationships">Working with models</a></li>
+    
+
+    </ul>
+</ul>
+
+                
+            </div>
+            <div class="col-md-8 col-sm-12">
+                
+        
+
+
+        
+
+<h1>
+    
+    <strong>ORM</strong>
+    
+</h1>
+
+<ol class="submenu">
+    <li>
+
+
+
+
+    
+
+<a href="#introduction">Introduction</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#mapping-models-to-tables">Mapping models to tables</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#table-s-primary-key">Table's primary key</a></li>
+</ol>
+
+
+        
+
+
+    
+
+
+        
+
+
+    
+
+<h3>
+    
+    
+    <strong>Introduction</strong>
+    
+    <a id="introduction" href="#introduction" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Opis Database ORM provides a simple and elegant ActiveRecord implementation for working
+    with database records, allowing you to map each table to a <code>model</code>.
+    Models are represented by classes that inherits from <code>Opis\Database\Model</code> abstract class,
+    which allow you to query tables, to insert new data in your tables, or to update or delete existing records.
+</p>
+
+<p>
+    Models should not directly extend the <code>Opis\Database\Model</code> class.
+    Instead, users should create a class that extends the <code>Opis\Database\Model</code> class and implements all
+    the abstract methods, then utilize that implementation as a base class for all models.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Database\Model</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Opis\Database\Connection</span><span class="p">;</span>
+
+<span class="c1">// Implementation of Opis\Database\Model</span>
+<span class="k">class</span> <span class="nc">BaseModel</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="k">static</span> <span class="nv">$connection</span><span class="p">;</span>
+    
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getConnection</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="k">static</span><span class="o">::</span><span class="nv">$connection</span> <span class="o">===</span> <span class="k">null</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">static</span><span class="o">::</span><span class="nv">$connection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Connection</span><span class="p">(</span><span class="s1">&#39;mysql:dbname=mydatabase&#39;</span><span class="p">,</span>
+                                                 <span class="s1">&#39;username&#39;</span><span class="p">,</span>
+                                                 <span class="s1">&#39;password&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+        
+        <span class="k">return</span> <span class="k">static</span><span class="o">::</span><span class="nv">$connection</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// User model</span>
+<span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">BaseModel</span>
+<span class="p">{</span>
+    <span class="c1">// </span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+
+        
+
+
+    
+
+<h3>
+    
+    
+    <strong>Mapping models to tables</strong>
+    
+    <a id="mapping-models-to-tables" href="#mapping-models-to-tables" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    If a model's associated table name is not explicitly specified by the user, Opis Database will try to automatically
+    map that model to a table. A model named <code>Bar</code> will be mapped to a table named <code>bars</code> and
+    a model named <code>FooBar</code> will be mapped to a table named <code>foo-bars</code>.
+</p>
+
+<p>
+    You can use the <code>$table</code> property to explicitly define the name of the table associated with the model.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="c1">// User model</span>
+<span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">BaseModel</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$table</span> <span class="o">=</span> <span class="s1">&#39;my-users&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+
+        
+
+
+    
+
+<h3>
+    
+    
+    <strong>Table's primary key</strong>
+    
+    <a id="table-s-primary-key" href="#table-s-primary-key" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    All tables are expected to have a primary key named <code>id</code>. If your table's primary key is named
+    different, then you can specify the primary key's name by adding a <code>$primaryKey</code> property to the model.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="c1">// User model</span>
+<span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">BaseModel</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$primaryKey</span> <span class="o">=</span> <span class="s1">&#39;uid&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>
+    By default, Opis Database ORM assumes that the table's primary key is an autoincrementing key.
+    If you want to provide a custom primary key you must set the <code>$primaryKeyType</code> property
+    to <code>Model::PRIMARY_KEY_CUSTOM</code> and overwrite the <code>generatePrimaryKey</code> method.
+</p>
+
+<p class="well text-danger">
+    <strong><span class="fa fa-exclamation-triangle"></span> Important!</strong>
+    You must make sure that the generated primary key is a unique value.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="c1">// User model</span>
+<span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">BaseModel</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$primaryKeyType</span> <span class="o">=</span> <span class="nx">Model</span><span class="o">::</span><span class="na">PRIMARY_KEY_CUSTOM</span><span class="p">;</span>
+    
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">generatePrimaryKey</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// return a unique primary key</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+                
+
+
+
+
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+        
+    
+
+    
+        
+            
+                
+                
+            
+        
+    
+
+    
+
+    
+
+
+<ul class="pager">
+  
+  <li class="previous"><a href="/database/modifying-tables.html" title="Modifying tables">&larr; Back</a></li>
+  
+  
+  <li class="next"><a href="/database/orm-basics.html" title="Basic operations">Next &rarr;</a></li>
+  
+</ul>
+                
+            </div>
+        </div>
+    </div>
+</section>
+<a href="#0" id="back-to-top">
+    <span class="fa fa-arrow-up"></span>
+</a>
+<script>
+    (function($){
+        
+        $(document).ready(function(){
+           var visible = false;
+           $(window).scroll(function(){
+                var top = $(this).scrollTop();
+                
+                if (top >= 100 && !visible) {
+                   visible = true;
+                   $('#back-to-top').fadeIn().show();
+                 }
+                 if(top < 100 && visible){
+                   visible = false;
+                   $('#back-to-top').fadeOut();  
+                 }
+           });
+           
+            $('#back-to-top').click(function(){
+                $('html, body').animate({scrollTop : 0},800);
+                return false;
+            });
+            
+        });
+        
+        
+    })(jQuery);
+</script>
+<footer class="text-center text-muted">
+    Copyright &copy; 2014-2015 Marius Sarca. All rights reserved.
+</footer>
+
+    </body>
+</html>

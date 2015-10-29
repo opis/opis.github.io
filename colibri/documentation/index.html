@@ -23,6 +23,7 @@
 <link href="/assets/css/colibri.css" rel="stylesheet">
 
 
+        
         <!--[if lt IE 9]>
 <script src="/assets/js/html5shiv.js"></script>
 <script src="/assets/js/respond.min.js"></script>
@@ -283,6 +284,15 @@ sudo mv composer.phar /usr/local/bin/composer
 
 <div class="highlight"><pre><code class="bash"><span class="nb">cd</span> /var/www
 composer create-project opis/colibri website.test
+</code></pre></div>
+
+<p>
+    If you are eager to see how <strong>Opis Colibri</strong> looks like, just type the following commands into the
+    terminal and navigate to <a href="http://localhost:8080" target="_blank" rel="nofollow">http://localhost:8080/</a>
+</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nb">cd </span>website.test
+php -S localhost:8080 -t public router.php
 </code></pre></div>
 
 
