@@ -5,8 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="keywords" content="php, view, rendering engine, html rendering, template engine">
-<meta name="description" content="A rendering engine that can be integrated with multiple template engines">
-<title>Opis View | www.opis.io</title>
+<meta name="description" content="Learn about template engines">
+<title>Template engines | Opis View</title>
         
         <link href="/assets/img/favicon.png" rel="shortcut icon">
         
@@ -88,7 +88,7 @@
     <ul class="dropdown-menu">
     
         
-        <li class="active"><a href="/view" title="Getting started with Opis View">About</a></li>
+        <li><a href="/view" title="Getting started with Opis View">About</a></li>
     
         
         <li><a href="/view/components.html" title="Learn about Opis View's components">The components</a></li>
@@ -100,7 +100,7 @@
         <li><a href="/view/render.html" title="Learn how to render views">Rendering views</a></li>
     
         
-        <li><a href="/view/engines.html" title="Learn about template engines">Template engines</a></li>
+        <li class="active"><a href="/view/engines.html" title="Learn about template engines">Template engines</a></li>
     
     </ul>
 </li>
@@ -145,7 +145,7 @@
                     <div class="list-group">
 
     
-    <a href="/view" class="list-group-item active">
+    <a href="/view" class="list-group-item">
     
         <h4 class="list-group-item-heading">About</h4>
         <p class="list-group-item-text text-muted">
@@ -181,7 +181,7 @@
     </a>
 
     
-    <a href="/view/engines.html" class="list-group-item">
+    <a href="/view/engines.html" class="list-group-item active">
     
         <h4 class="list-group-item-heading">Template engines</h4>
         <p class="list-group-item-text text-muted">
@@ -201,15 +201,66 @@
 
 <h1>
     
-    <strong>Rendering engine</strong>
+    <strong>Template engines</strong>
     
 </h1>
 
+<ol class="submenu">
+    <li>
+
+
+
+
+    
+
+<a href="#introduction">Introduction</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#registering-a-template-engine">Registering a template engine</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#priorities">Priorities</a></li>
+</ol>
+
+
+        
+
+
+    
+
+
+        
+
+
+    
+
+<h3>
+    
+    
+    <strong>Introduction</strong>
+    
+    <a id="introduction" href="#introduction" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
 
 <p>
-    <strong>Opis View</strong> is a rendering engine, based on the <strong>Opis Routing</strong> library,
-    that can be integrated with multiple template engines and is capable of using
-    those template engines simultaneously.
+    With Opis View you are able to use multiple template engines simultaneously.
+    By default, the library is shipped only with a single PHP template engine, implemented
+    in <code>Opis\View\PHPEngine</code> class.
+</p>
+
+<p>
+    All template engines must implement the <code>Opis\View\EngineInterface</code> as it
+    was stated <a href="components.html#the-template-engine">here</a>.
 </p>
 
 
@@ -227,95 +278,81 @@
 <h3>
     
     
-    <strong>License</strong>
+    <strong>Registering a template engine</strong>
     
-    <a id="license" href="#license" class="link-anchor"><span class="fa fa-link"></span></a>
+    <a id="registering-a-template-engine" href="#registering-a-template-engine" class="link-anchor"><span class="fa fa-link"></span></a>
 </h3>
 
 <p>
-    <strong>Opis View</strong> is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" rel="nofollow">Apache License, Version 2.0</a>.
+    Registering a new template engine is straightforward.
 </p>
 
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\View\ViewRouter</span><span class="p">;</span>
 
-        
+<span class="nv">$view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ViewRouter</span><span class="p">();</span>
 
-
-    
-
-
-        
-
-
-    
-
-<h3>
-    
-    
-    <strong>Requirements</strong>
-    
-    <a id="requirements" href="#requirements" class="link-anchor"><span class="fa fa-link"></span></a>
-</h3>
-
-<ul>
-    <li>PHP 5.3.* or higher</li>
-    <li><a href="/routing" data-toggle="tooltip" title="Opis Routing 3.0.*">Opis Routing</a> 3.0.*</li>
-</ul>
-
-
-        
-
-
-    
-
-
-        
-
-
-    
-
-<h3>
-    
-    
-    <strong>Installation</strong>
-    
-    <a id="installation" href="#installation" class="link-anchor"><span class="fa fa-link"></span></a>
-</h3>
-
-<p>
-    <strong>Opis View</strong> is available on
-    <a href="https://packagist.org/packages/opis/view" title="Packagist site" target="_blank">Packagist</a>
-    and can be installed using
-    <a href="http://getcomposer.org" target="_blank" rel="nofollow" title="Composer site">Composer</a>.
-</p>
-
-
-
-<div class="highlight"><pre><code class="json"><span class="p">{</span>
-    <span class="nt">&quot;require&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;opis/view&quot;</span><span class="p">:</span> <span class="s2">&quot;3.1.*&quot;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="nv">$view</span><span class="o">-&gt;</span><span class="na">engineResolver</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">register</span><span class="p">(</span><span class="k">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">TwigEngine</span><span class="p">();</span>
+<span class="p">})</span>
+<span class="o">-&gt;</span><span class="na">handle</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$path</span><span class="p">){</span>
+    <span class="k">return</span> <span class="nb">preg_match</span><span class="p">(</span><span class="s1">&#39;/.*\.twig$/&#39;</span><span class="p">,</span> <span class="nv">$path</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre></div>
 
-
 <p>
-    If you are unable to use <a href="http://getcomposer.org" target="_blank" rel="nofollow" title="Composer site">Composer</a>
-    you can download the
-    <a href="https://github.com/opis/view/archive/3.1.0.tar.gz" data-toggle="tooltip" title="Opis View 3.1.0">
-    
-        tar.gz
-    
-</a>
-    or the
-    <a href="https://github.com/opis/view/archive/3.1.0.zip" data-toggle="tooltip" title="Opis View 3.1.0">
-    
-        zip
-    
-</a> archive file,
-    extract the content of the archive and include de <code>autoload.php</code> file into your project.
+    The callback passed to the <code>register</code> method must be an instance of
+    <code>Closure</code> and it will be used as a factory. Therefore the callback must return an
+    instance of a class that implements the <code>Opis\View\EngineInterface</code> interface.
 </p>
 
-<div class="highlight"><pre><code class="php"><span class="k">require_once</span> <span class="s1">&#39;path/to/view-3.1.0/autoload.php&#39;</span><span class="p">;</span>
+<p>
+    The callback passed to the <code>handle</code> method must also be an instance of
+    <code>Closure</code> and it will be used as a filter. The callback receives as an argument
+    the view's resolved path and must return either <code>true</code> or <code>false</code>,
+    depending if it can handle the path or not.
+</p>
+
+
+        
+
+
+    
+
+
+        
+
+
+    
+
+<h3>
+    
+    
+    <strong>Priorities</strong>
+    
+    <a id="priorities" href="#priorities" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Each registered engine has an associated priority, which by default is <code>0</code>(zero).
+    An engine registered with a higher priority will be checked to see if it can handle a path
+    before an engine registered with a lower priority.
+</p>
+
+<p>
+    You can set the priority for a registered engine by passing a number as the second
+    argument to the register method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\View\ViewRouter</span><span class="p">;</span>
+
+<span class="nv">$view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ViewRouter</span><span class="p">();</span>
+
+<span class="nv">$view</span><span class="o">-&gt;</span><span class="na">engineResolver</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">register</span><span class="p">(</span><span class="k">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">TwigEngine</span><span class="p">();</span>
+<span class="p">},</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// Higher priority</span>
+<span class="o">-&gt;</span><span class="na">handle</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$path</span><span class="p">){</span>
+    <span class="k">return</span> <span class="nb">preg_match</span><span class="p">(</span><span class="s1">&#39;/.*\.twig$/&#39;</span><span class="p">,</span> <span class="nv">$path</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre></div>
 
                 
@@ -327,6 +364,8 @@
     
         
             
+                
+            
         
     
 
@@ -334,28 +373,39 @@
         
             
                 
+            
+        
+    
+
+    
+        
+            
                 
             
         
     
 
     
-
+        
+            
+                
+            
+        
     
 
+    
+        
+            
+        
     
 
 
 <ul class="pager">
   
+  <li class="previous"><a href="/view/render.html" title="Rendering views">&larr; Back</a></li>
   
-  <li class="next"><a href="/view/components.html" title="The components">Next &rarr;</a></li>
   
 </ul>
-                
-                    <script>
-    $('[data-toggle=tooltip]').tooltip();
-</script>
                 
             </div>
         </div>
