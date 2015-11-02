@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="php, HTTP, handle HTTP requests">
+<meta name="description" content="Learn how to send HTTP responses">
+<title>Responses | Opis HTTP</title>
+        
+        <link href="/assets/img/favicon.png" rel="shortcut icon">
+        
+        
+        
+<link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
+
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+
+<link href="/assets/css/syntax.css" rel="stylesheet">
+
+
+
+<link href="/assets/css/project.css" rel="stylesheet">
+
+
+        
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+        <![endif]--> 
+        
+        <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-50415801-1', 'opis.io');
+    ga('send', 'pageview');
+</script>
+
+    </head>
+    <body>
+        
+
+<div class="github-fork-ribbon-wrapper right hidden-sm hidden-xs">
+    <div class="github-fork-ribbon" style="background-color: #f80">
+        <a href="https://github.com/opis/http">Fork me on GitHub</a>
+    </div>
+</div>
+
+<header id="header" class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
+            <a href="/http" class="navbar-brand">
+                <strong>
+                    HTTP
+                </strong>
+            </a>
+            <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/" title="Main page">
+                        <span class="fa fa-home"></span> Home
+                    </a>
+                </li>
+                <li class="dropdown hidden-md hidden-lg">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="fa fa-file-text"></span> Documentation <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+    
+        
+        <li><a href="/http" title="Getting started with Opis HTTP">About</a></li>
+    
+        
+        <li><a href="/http/request.html" title="Learn how to handle HTTP requests">Handling requests</a></li>
+    
+        
+        <li class="active"><a href="/http/response.html" title="Learn how to send HTTP responses">Sending responses</a></li>
+    
+    </ul>
+</li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="fa fa-cogs"></span> Components <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/cache" title="Caching library">Cache</a></li>
+                        <li><a href="/closure" title="Serializable closures">Closure</a></li>
+                        <li><a href="/config" title="Configuration manager">Config</a></li>
+                        <li><a href="/container" title="Dependency injection container">Container</a></li>
+                        <li><a href="/database" title="Database abstraction layer">Database</a></li>
+                        <li><a href="/events" title="Events library">Events</a></li>
+                        <li><a href="/http" title="HTTP library">HTTP</a></li>
+                        <li><a href="/http-routing" title="HTTP routing library">HTTP Routing</a></li>
+                        <li><a href="/routing" title="Routing framework">Routing</a></li>
+                        <li><a href="/session" title="Session manager">Session</a></li>
+                        <li><a href="/utils" title="Utilitary classes">Utils</a></li>
+                        <li><a href="/view" title="Rendering engine">View</a></li>
+                    </ul>
+                </li>
+                
+    
+    
+
+                <li class="hidden-md hidden-lg">
+                    <a href="https://github.com/opis/http" title="Github page">
+                        <span class="fa fa-github fa-lg"></span> GitHub
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 hidden-xs hidden-sm">
+                
+                    <div class="list-group">
+
+    
+    <a href="/http" class="list-group-item">
+    
+        <h4 class="list-group-item-heading">About</h4>
+        <p class="list-group-item-text text-muted">
+            Getting started with Opis HTTP
+        </p>
+    </a>
+
+    
+    <a href="/http/request.html" class="list-group-item">
+    
+        <h4 class="list-group-item-heading">Handling requests</h4>
+        <p class="list-group-item-text text-muted">
+            Learn how to handle HTTP requests
+        </p>
+    </a>
+
+    
+    <a href="/http/response.html" class="list-group-item active">
+    
+        <h4 class="list-group-item-heading">Sending responses</h4>
+        <p class="list-group-item-text text-muted">
+            Learn how to send HTTP responses
+        </p>
+    </a>
+
+</div>
+                
+            </div>
+            <div class="col-md-8 col-sm-12">
+                
+        
+
+
+        
+
+<h1>
+    
+    <strong>Sending responses</strong>
+    
+</h1>
+
+<ol class="submenu">
+    <li>
+
+
+
+
+    
+
+<a href="#introduction">Introduction</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#response-content">Response content</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#response-headers">Response headers</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#cookies">Cookies</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#sending-the-response">Sending the response</a></li>
+</ol>
+
+
+        
+
+
+    
+
+
+        
+
+
+    
+
+<h3>
+    
+    
+    <strong>Introduction</strong>
+    
+    <a id="introduction" href="#introduction" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Responding to an HTTP request is done by creating a new instance of the <code>Opis\Http\Response</code> class
+    by passing as an argument to the constructor of the class, an instance of the <code>Opis\Http\Request</code> class,
+    representing the current HTTP request.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Http\Request</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Opis\Http\Response</span><span class="p">;</span>
+
+<span class="nv">$request</span> <span class="o">=</span> <span class="nx">Request</span><span class="o">::</span><span class="na">fromGlobals</span><span class="p">();</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">(</span><span class="nv">$request</span><span class="p">);</span>
+</code></pre></div>
+
+<p>
+    Another way of obtaining a <code>Response</code> object is by using the <code>response</code> method on a <code>Request</code> object.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Http\Request</span><span class="p">;</span>
+
+<span class="nv">$request</span> <span class="o">=</span> <span class="nx">Request</span><span class="o">::</span><span class="na">fromGlobals</span><span class="p">();</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">response</span><span class="p">();</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+
+        
+
+
+    
+
+<h3>
+    
+    
+    <strong>Response content</strong>
+    
+    <a id="response-content" href="#response-content" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Setting the content of the response is done with the help of the <code>body</code> method.
+    The method accepts as an argument a string or an object that implements the magic method <code>__toString</code>.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">body</span><span class="p">(</span><span class="nv">$content</span><span class="p">);</span>
+</code></pre></div>
+
+<p>
+    Setting the content type of the response can be done by using the <code>contentType</code>
+    method.
+</p>
+<div class="highlight"><pre><code class="php"><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">contentType</span><span class="p">(</span><span class="s1">&#39;text/html&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+<p>
+    You can also specify a charset for the content type by passing a second argument to the <code>contentType</code>
+    method, or by using the <code>charset</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">contentType</span><span class="p">(</span><span class="s1">&#39;text/html&#39;</span><span class="p">,</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">);</span>
+<span class="c1">//..</span>
+<span class="nv">$response</span><span class="o">-&gt;</span><span class="na">charset</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+<p>
+    Getting the content that was previously set is done by using the <code>getBody</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$content</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">();</span>
+</code></pre></div>
+
+<p>
+    You can also pass as an argument to the <code>body</code> method an anonymous function and print yourself
+    the content of the response. The anonymous function will receive as arguments a <code>Request</code>
+    and a <code>Response</code> object.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">body</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">){</span>
+    <span class="k">echo</span> <span class="s2">&quot;Content&quot;</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>
+    If you want to take the entire control over how a response is send back to the client, you can pass
+    as an argument for the <code>body</code> method an object implementing the <code>Opis\Http\HttpResponseInterface</code>.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">namespace</span> <span class="nx">Opis\Http</span><span class="p">;</span>
+
+<span class="k">interface</span> <span class="nx">HttpResponseInterface</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">,</span> <span class="nx">Response</span> <span class="nv">$response</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+
+        
+
+
+    
+
+
+        
+
+
+    
+
+<h3>
+    
+    
+    <strong>Response headers</strong>
+    
+    <a id="response-headers" href="#response-headers" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Setting a response header is done by using the <code>header</code> method.
+    The method takes as an argument the header name and the header's value.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;X-Foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+<p>
+    You can set multiple headers at once by using the <code>headers</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">headers</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;X-Foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;X-Bar&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;baz&#39;</span><span class="p">,</span>
+<span class="p">));</span>
+</code></pre></div>
+
+<p>
+    Clearing headers is done by using the <code>clearHeaders</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">clearHeaders</span><span class="p">();</span>
+</code></pre></div>
+
+<p>
+    Sending the response headers is done by using the <code>sendHeaders</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">sendHeaders</span><span class="p">();</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+
+        
+
+
+    
+
+<h3>
+    
+    
+    <strong>Cookies</strong>
+    
+    <a id="cookies" href="#cookies" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Setting a cookie is done with the help of the <code>cookie</code> method.
+    The method takes as arguments the name of the cookie, the cookie's value, an optional value
+    that specify when the cookie should expire and an optional array of settings. 
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="c1">//Set a cookie `foo` containing a value `bar` that will expire when browser is closed.</span>
+<span class="nv">$response</span><span class="o">-&gt;</span><span class="na">cookie</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">);</span>
+<span class="c1">// Set a cookie that will expire in an hour</span>
+<span class="nv">$response</span><span class="o">-&gt;</span><span class="na">cookie</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="mi">3600</span><span class="p">);</span>
+<span class="c1">// Setting cookie options</span>
+<span class="nv">$response</span><span class="o">-&gt;</span><span class="na">cookie</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="mi">3600</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;path&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/baz/&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;domain&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;exmaple.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;secure&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+    <span class="s1">&#39;httponly&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+<span class="p">));</span>
+</code></pre></div>
+
+<p>
+    You can delete a cookie by using the <code>deleteCookie</code> method.
+    The method takes as arguments the cookie name and an optional array of cookie options.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="c1">// Delete a cookie `foo` </span>
+<span class="nv">$response</span><span class="o">-&gt;</span><span class="na">deleteCookie</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">);</span>
+<span class="c1">// Delete a cookie `foo` that was setted using these options</span>
+<span class="nv">$response</span><span class="o">-&gt;</span><span class="na">deleteCookie</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;path&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/baz/&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;domain&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;exmaple.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;secure&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+    <span class="s1">&#39;httponly&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+<span class="p">));</span>
+</code></pre></div>
+
+<p>
+    Clearing all cookies is done by using the <code>clearCookies</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">clearCookies</span><span class="p">();</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+
+        
+
+
+    
+
+<h3>
+    
+    
+    <strong>Sending the response</strong>
+    
+    <a id="sending-the-response" href="#sending-the-response" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Sending the response is done with the help of <code>send</code> method. The method
+    will take care of sending all the headers and all the cookies that were set, along with the specified content.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Http\Request</span><span class="p">;</span>
+
+<span class="nv">$request</span> <span class="o">=</span> <span class="nx">Request</span><span class="o">::</span><span class="na">fromGlobals</span><span class="p">();</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">response</span><span class="p">();</span>
+
+<span class="nv">$response</span><span class="o">-&gt;</span><span class="na">body</span><span class="p">(</span><span class="s1">&#39;Hello world!&#39;</span><span class="p">);</span>
+<span class="nv">$response</span><span class="o">-&gt;</span><span class="na">contentType</span><span class="p">(</span><span class="s1">&#39;text/html&#39;</span><span class="p">);</span>
+<span class="nv">$response</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">();</span>
+</code></pre></div>
+
+<p>
+    You can specify a status code for a response by using the <code>status</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Http\Request</span><span class="p">;</span>
+
+<span class="nv">$request</span> <span class="o">=</span> <span class="nx">Request</span><span class="o">::</span><span class="na">fromGlobals</span><span class="p">();</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">response</span><span class="p">();</span>
+
+<span class="nv">$response</span><span class="o">-&gt;</span><span class="na">body</span><span class="p">(</span><span class="s1">&#39;Page not found&#39;</span><span class="p">);</span>
+<span class="nv">$response</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">(</span><span class="mi">404</span><span class="p">);</span>
+<span class="nv">$response</span><span class="o">-&gt;</span><span class="na">contentType</span><span class="p">(</span><span class="s1">&#39;text/html&#39;</span><span class="p">);</span>
+<span class="nv">$response</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">();</span>
+</code></pre></div>
+
+<p>
+    Sending a redirect response is done with the help of the <code>redirect</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Http\Request</span><span class="p">;</span>
+
+<span class="nv">$request</span> <span class="o">=</span> <span class="nx">Request</span><span class="o">::</span><span class="na">fromGlobals</span><span class="p">();</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">response</span><span class="p">();</span>
+
+<span class="nv">$response</span><span class="o">-&gt;</span><span class="na">redirect</span><span class="p">(</span><span class="s1">&#39;/other/path&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+<p>
+    You can also specify a redirect code (default is <code>302</code>).
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">redirect</span><span class="p">(</span><span class="s1">&#39;/other/path&#39;</span><span class="p">,</span> <span class="mi">301</span><span class="p">);</span>
+</code></pre></div>
+
+
+
+                
+
+
+
+
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+        
+    
+
+
+<ul class="pager">
+  
+  <li class="previous"><a href="/http/request.html" title="Handling requests">&larr; Back</a></li>
+  
+  
+</ul>
+                
+            </div>
+        </div>
+    </div>
+</section>
+<a href="#0" id="back-to-top">
+    <span class="fa fa-arrow-up"></span>
+</a>
+<script>
+    (function($){
+        
+        $(document).ready(function(){
+           var visible = false;
+           $(window).scroll(function(){
+                var top = $(this).scrollTop();
+                
+                if (top >= 100 && !visible) {
+                   visible = true;
+                   $('#back-to-top').fadeIn().show();
+                 }
+                 if(top < 100 && visible){
+                   visible = false;
+                   $('#back-to-top').fadeOut();  
+                 }
+           });
+           
+            $('#back-to-top').click(function(){
+                $('html, body').animate({scrollTop : 0},800);
+                return false;
+            });
+            
+        });
+        
+        
+    })(jQuery);
+</script>
+<footer class="text-center text-muted">
+    Copyright &copy; 2014-2015 Marius Sarca. All rights reserved.
+</footer>
+
+    </body>
+</html>
