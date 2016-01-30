@@ -455,7 +455,7 @@
 <p>
     If a model's associated table name is not explicitly specified by the user, Opis Database will try to automatically
     map that model to a table. A model named <code>Bar</code> will be mapped to a table named <code>bars</code> and
-    a model named <code>FooBar</code> will be mapped to a table named <code>foo-bars</code>.
+    a model named <code>FooBar</code> will be mapped to a table named <code>foo_bars</code>.
 </p>
 
 <p>
@@ -465,7 +465,7 @@
 <div class="highlight"><pre><code class="php"><span class="c1">// User model</span>
 <span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">BaseModel</span>
 <span class="p">{</span>
-    <span class="k">protected</span> <span class="nv">$table</span> <span class="o">=</span> <span class="s1">&#39;my-users&#39;</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$table</span> <span class="o">=</span> <span class="s1">&#39;my_users&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
