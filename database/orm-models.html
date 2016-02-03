@@ -352,7 +352,7 @@
 
     
 
-<a href="#creating-related-records">Creating related records</a></li>
+<a href="#create-related-records">Create related records</a></li>
     <li>
 
 
@@ -378,9 +378,9 @@
 <h3>
     
     
-    <strong>Creating related records</strong>
+    <strong>Create related records</strong>
     
-    <a id="creating-related-records" href="#creating-related-records" class="link-anchor"><span class="fa fa-link"></span></a>
+    <a id="create-related-records" href="#create-related-records" class="link-anchor"><span class="fa fa-link"></span></a>
 </h3>
 
 <p>
@@ -433,6 +433,84 @@
 
 <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">();</span>
 </code></pre></div>
+
+
+    
+
+
+    
+
+
+        
+
+
+    
+
+<h4>
+    
+    
+    <strong>Handling many-to-many relationships</strong>
+    
+    <a id="handling-many-to-many-relationships" href="#handling-many-to-many-relationships" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p class="well text-primary">
+    <strong><span class="fa fa-exclamation-triangle"></span> Important!</strong>
+    The <code>link</code> and the <code>unlink</code> methods are available only since version <code>3.3.0</code>.
+</p>
+
+<p>
+    Creating related models that have a many-to-many relationship is a bit different since they use a junction table.
+    Linking together two related models is done by using the <code>link</code> method. 
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$user</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="nv">$role</span> <span class="o">=</span> <span class="nx">Role</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="nv">$user</span><span class="o">-&gt;</span><span class="na">roles</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">link</span><span class="p">(</span><span class="nv">$role</span><span class="p">);</span>
+
+<span class="c1">// The above produce the same result as the following</span>
+
+<span class="nv">$role</span><span class="o">-&gt;</span><span class="na">users</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">link</span><span class="p">(</span><span class="nv">$user</span><span class="p">);</span>
+</code></pre></div>
+
+<p>
+    The <code>link</code> method takes as an argument a related model instance, the related model's ID or an array of related models or IDs.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$user</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">// Link multiple records using an array of models</span>
+<span class="nv">$user</span><span class="o">-&gt;</span><span class="na">roles</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">link</span><span class="p">(</span><span class="nx">Role</span><span class="o">::</span><span class="na">findAll</span><span class="p">());</span>
+
+<span class="c1">// Link a single record using the record&#39;s ID</span>
+<span class="nv">$user</span><span class="o">-&gt;</span><span class="na">roles</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">link</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">// Link multiple records using an array of IDs</span>
+<span class="nv">$user</span><span class="o">-&gt;</span><span class="na">roles</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">link</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]);</span>
+</code></pre></div>
+
+<p>
+    Unlinking related models is done with the help of the <code>unlink</code> method. The method takes the same arguments
+    as the <code>link</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$user</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="nv">$role</span> <span class="o">=</span> <span class="nx">Role</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">// Unlink a single record using a model instance</span>
+<span class="nv">$user</span><span class="o">-&gt;</span><span class="na">roles</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">unlink</span><span class="p">(</span><span class="nv">$role</span><span class="p">);</span>
+
+<span class="c1">// Unlink multiple records using an array of models</span>
+<span class="nv">$user</span><span class="o">-&gt;</span><span class="na">roles</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">unlink</span><span class="p">(</span><span class="nx">Role</span><span class="o">::</span><span class="na">findAll</span><span class="p">());</span>
+
+<span class="c1">// Unlink a single record using the record&#39;s ID</span>
+<span class="nv">$user</span><span class="o">-&gt;</span><span class="na">roles</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">unlink</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">// Unlink multiple records using an array of IDs</span>
+<span class="nv">$user</span><span class="o">-&gt;</span><span class="na">roles</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">unlink</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]);</span>
+</code></pre></div>
+
 
 
         
