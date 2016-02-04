@@ -682,6 +682,64 @@
 </code></pre></div>
 
 
+    
+
+
+    
+
+
+        
+
+
+    
+
+<h4>
+    
+    
+    <strong>Custom casting</strong>
+    
+    <a id="custom-casting" href="#custom-casting" class="link-anchor"><span class="fa fa-link"></span></a>
+</h4>
+
+<p class="well text-primary">
+    <strong><span class="fa fa-exclamation-triangle"></span> Important!</strong>
+    This feature is available starting with version <code>3.3.2</code>.
+</p>
+
+<p>
+    You can define a new casting type or how a casting operation is handled by using de <code>$castType</code>
+    property. If your cast callback is a non-static method on the current class, just use as a callback
+    the method's name prefixed with <code>@</code>. The callback takes as arguments the cast's name and the
+    value that needs to be casted.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">BaseModel</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$cast</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;registration_date&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;date&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;is_admin&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;boolean&#39;</span><span class="p">,</span>
+    <span class="p">];</span>
+    
+    <span class="k">protected</span> <span class="nv">$castType</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;is_admin&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="nx">__CLASS__</span><span class="p">,</span> <span class="s1">&#39;castBoolean&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;date&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;@castDate&#39;</span>
+    <span class="p">];</span>
+    
+    
+    <span class="c1">// Non-static handler</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">castDate</span><span class="p">(</span><span class="nv">$cast</span><span class="p">,</span> <span class="nv">$value</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// Static handler</span>
+    <span class="k">protected</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">castBoolean</span><span class="p">(</span><span class="nv">$cast</span><span class="p">,</span> <span class="nv">$value</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
 
         
 
