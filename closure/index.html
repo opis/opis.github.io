@@ -229,6 +229,7 @@
         <li>Serialize any closure</li>
         <li>Doesn't use <code>eval</code> for closure serialization or unserialization</li>
         <li>Works with any PHP version that has support for closures (Yes, even with PHP 5.3)</li>
+        <li>Supports PHP 7.0 syntax</li>
         <li>Handles all variables referenced/imported in <code>use()</code> and automatically
         wraps all referenced/imported closures for proper serialization</li>
         <li>Handles recursive closures</li>
@@ -245,7 +246,8 @@
         even those previously unserialized (this is possible because <code>eval()</code> is not used for unserialization)</li>
         <li>Handles static closures</li>
         <li>Supports cryptographically signed closures</li>
-        <li>Provides a reflector that can give you informations about closure code's, parameters, ...</li>
+        <li>Provides a reflector that can give you information about the serialized closure</li>
+        <li>Provides an analyzer for SuperClosure library</li>
         <li>Supports serialization of bounded objects and scopes (available only from PHP >= 5.4)</li>
     </ul>
 </p>
@@ -360,10 +362,19 @@
 
 
     
+<h3>
+    
+    
+    <strong>SuperClosure support</strong>
+    
+    <a id="note" href="#supper-closure" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
 
-
-        
-
+<p>
+    Starting with version 2.2.0, Opis Closure is shipped with an analyzer(<code>Opis\Closure\Analyzer</code>) 
+    which aims to provide <em>Opis Closure</em>'s parsing precision and speed to 
+    <a href="https://github.com/jeremeamia/super_closure">SuperClosure</a>.
+</p>
 
     
 
