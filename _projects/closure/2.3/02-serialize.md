@@ -10,7 +10,6 @@ redirect_from: /closure/serialize.html
 1. [Serialize closures](#serialize-closures)
 2. [Unserialize closures](#unserialize-closures)
 3. [The unserializeData method](#the-unserializedata-method)
-4. [Resolving class names](#resolving-class-names)
 
 ## Serialize closures
 
@@ -90,25 +89,3 @@ $closure = $wrapper->getClosure();
 
 echo $closure(5); //> 120
 ```
-
-## Resolving class names
-
-**Important!**{:.important}
-This feature is available starting with version 2.0.0
-{:.well .text-primary}
-
-All class names referenced by a closure are automatically resolved at 
-serialization time, allowing you to write a more clear and concise code. 
-
-```php
-use Some\Namespace\SomeClass;
-use Other\Namespace\SomeClass as OtherClass;
-
-$closure = function(SomeClass $a){
-    return new OtherClass($a);
-};
-
-//Class names are resolved
-$closure = unserialize(serialize(new SerializableClosure($closure)))->getClosure();
-```
-

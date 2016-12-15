@@ -3,7 +3,7 @@ layout: project
 permalink: closure/2.2/bound
 title: Bounded objects
 description: Learn how to serialize bounded objects
-canonical: /closure/2.3/bound
+redirect_from: /closure/bound.html
 ---
 # Bounded objects
 

@@ -6,7 +6,7 @@ html_subtitle: www.opis.io
 title: About
 description: Getting started with Opis Closure
 lib: opis/closure
-version: 2.3.1
+version: 2.3.2
 redirect_from: /closure/index.html
 ---
 # Serializable closures
