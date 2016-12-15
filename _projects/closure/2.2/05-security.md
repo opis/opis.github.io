@@ -1,11 +1,11 @@
 ---
 layout: project
 permalink: closure/2.2/security
-title: Secured closures
-description: Learn how to secure your closures
+title: Signed closures
+description: Learn how to cryptographically sign your closures
 canonical: /closure/2.3/security
 ---
-# Secured closures
+# Signed closures
 
 While fetching and unserializing closures from a local file or from a local database,
 that can not be accessed from outside is totally fine, there might be situations when

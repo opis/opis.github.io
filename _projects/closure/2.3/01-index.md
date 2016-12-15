@@ -32,7 +32,7 @@ regarding closure serialization by providing a wrapper that will make all closur
 - Supports cryptographically signed closures
 - Provides a reflector that can give you information about the serialized closure
 - Provides an analyzer for *SuperClosure* library
-- Supports serialization of bounded objects and scopes (available only from PHP >= 5.4)
+- Automatically detects when the scope and/or the bound object of a closure needs to be serialized in order for the closure to work after deserialization
 
 ## License
 **Opis Closure** is licensed under the [MIT License (MIT)][mit_license].
