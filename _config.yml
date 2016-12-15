@@ -1,4 +1,3 @@
-github: [metadata]
 host: homestead.app
 kramdown:
   input: GFM
