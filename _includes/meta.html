@@ -1,0 +1,23 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% if include.project.robots %}
+<meta name="robots" content="{{include.project.robots}}">
+{% endif %}
+{% if include.page.html_title %}
+    {% assign title = include.page.html_title %}
+{% else %}
+    {% assign title = include.page.title %}
+{% endif %}
+{% if include.page.html_subtitle %}
+        {% assign subtitle = include.page.html_subtitle %}
+    {% else %}
+        {% assign subtitle = include.project.full_name %}
+{% endif %}
+{% if include.page.keywords %}
+<meta name="keywords" content="{{ include.page.keywords }}">
+{% endif %}
+{% if include.page.description %}
+<meta name="keywords" content="{{ include.page.description }}">
+{% endif %}
+<title>{{title}} | {{subtitle}}</title>

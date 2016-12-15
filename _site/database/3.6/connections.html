@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="Learn how to connect to a database">
+<title>Connections | Opis Database</title>
+    <link href="/assets/img/favicon.png" rel="shortcut icon">
+<link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+<link href="/assets/css/syntax.css" rel="stylesheet">
+<link href="/assets/css/prism-github.css" rel="stylesheet">
+<link href="/assets/css/project.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+    <![endif]-->
+    <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/prism.js"></script>
+</head>
+<body>
+    <div class="github-fork-ribbon-wrapper right hidden-sm hidden-xs">
+        <div class="github-fork-ribbon" style="background-color: #f80">
+            <a href="https://github.com/opis/database">Fork me on GitHub</a>
+        </div>
+    </div>
+    <header id="header" class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
+                <a href="/database/3.6" class="navbar-brand">
+                    <strong>
+                        Database
+                    </strong>
+                </a>
+                <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/" title="Main page">
+                            <span class="fa fa-home"></span> Home
+                        </a>
+                    </li>
+                    <li class="dropdown hidden-md hidden-lg">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="fa fa-file-text"></span> Documentation <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+            <li class="dropdown-header">Getting started</li>
+            <li><a href="/database/3.6/index" title="Getting started with Opis Database">About</a></li>
+            <li class="active"><a href="/database/3.6/connections" title="Learn how to connect to a database">Database connections</a></li>
+            <li class="dropdown-header">The basics</li>
+            <li><a href="/database/3.6/fetching-records" title="Fetching records from a database">Fetching records</a></li>
+            <li><a href="/database/3.6/results-handling" title="Learn how to handle the result set of a query">Results handling</a></li>
+            <li><a href="/database/3.6/aggregate-functions" title="Learn about aggregate functions">Aggregate functions</a></li>
+            <li><a href="/database/3.6/extended-selections" title="Learn about how to define custom selections">Extended selections</a></li>
+            <li><a href="/database/3.6/filters" title="Learn how to filter records">Filter</a></li>
+            <li><a href="/database/3.6/expressions" title="Learn about expressions">Expressions</a></li>
+            <li><a href="/database/3.6/ordering-criteria" title="Learn how to order results">Ordering criteria</a></li>
+            <li><a href="/database/3.6/limits-and-offsets" title="Learn about limits and offsets">Limits and offset</a></li>
+            <li><a href="/database/3.6/joins" title="Learn how to perform joins">Joins</a></li>
+            <li><a href="/database/3.6/aggregates-handling" title="Learn how to work with aggregates">Working with aggregates</a></li>
+            <li><a href="/database/3.6/insert-records" title="Insert new records into a table">Insert records</a></li>
+            <li><a href="/database/3.6/update-records" title="Learn how to update existing records">Update records</a></li>
+            <li><a href="/database/3.6/delete-records" title="Learn how to delete existing records">Delete records</a></li>
+            <li class="dropdown-header">Transactions</li>
+            <li><a href="/database/3.6/transactions" title="Learn how to use transactions">Performing transactions</a></li>
+            <li class="dropdown-header">Database schema</li>
+            <li><a href="/database/3.6/schema" title="Learn about Opis Database schema">Introduction</a></li>
+            <li><a href="/database/3.6/schema-creating-tables" title="Learn how to create new tables">Creating tables</a></li>
+            <li><a href="/database/3.6/schema-modifying-tables" title="Learn how to alter existing new tables">Modifying tables</a></li>
+            <li class="dropdown-header">ORM</li>
+            <li><a href="/database/3.6/orm" title="Learn about Opis Database ORM">Introduction</a></li>
+            <li><a href="/database/3.6/orm-basics" title="Learn how to use Opis Database ORM">Basic operations</a></li>
+            <li><a href="/database/3.6/orm-relationships" title="Learn about ORM relationships">Relationships</a></li>
+            <li><a href="/database/3.6/orm-models" title="Learn how to work with models">Working with models</a></li>
+    </ul>
+</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="fa fa-cogs"></span> Components <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/cache/3.1">Cache</a></li>
+                            <li><a href="/closure/2.3">Closure</a></li>
+                            <li><a href="/config/2.1">Config</a></li>
+                            <li><a href="/container/2.3">Container</a></li>
+                            <li><a href="/database/3.6">Database</a></li>
+                            <li><a href="/events/4.1">Events</a></li>
+                            <li><a href="/http/2.0">HTTP</a></li>
+                            <li><a href="/http-routing/4.0">HTTP Routing</a></li>
+                            <li><a href="/routing/4.1">Routing</a></li>
+                            <li><a href="/session/3.1">Session</a></li>
+                            <li><a href="/view/4.1">View</a></li>
+                        </ul>
+                    </li>
+                    <li class="hidden-md hidden-lg">
+                        <a href="https://github.com/opis/database" title="Github page">
+                            <span class="fa fa-github fa-lg"></span> GitHub
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 hidden-xs hidden-sm">
+<ul class="navigation">
+            <li class="chapter">Getting started</li>
+            <ul>
+                <li><a href="/database/3.6/index" title="Getting started with Opis Database">About</a></li>
+            <li class="active"><a href="/database/3.6/connections" title="Learn how to connect to a database">Database connections</a></li>
+                </ul>
+            <li class="chapter">The basics</li>
+            <ul>
+                <li><a href="/database/3.6/fetching-records" title="Fetching records from a database">Fetching records</a></li>
+            <li><a href="/database/3.6/results-handling" title="Learn how to handle the result set of a query">Results handling</a></li>
+            <li><a href="/database/3.6/aggregate-functions" title="Learn about aggregate functions">Aggregate functions</a></li>
+            <li><a href="/database/3.6/extended-selections" title="Learn about how to define custom selections">Extended selections</a></li>
+            <li><a href="/database/3.6/filters" title="Learn how to filter records">Filter</a></li>
+            <li><a href="/database/3.6/expressions" title="Learn about expressions">Expressions</a></li>
+            <li><a href="/database/3.6/ordering-criteria" title="Learn how to order results">Ordering criteria</a></li>
+            <li><a href="/database/3.6/limits-and-offsets" title="Learn about limits and offsets">Limits and offset</a></li>
+            <li><a href="/database/3.6/joins" title="Learn how to perform joins">Joins</a></li>
+            <li><a href="/database/3.6/aggregates-handling" title="Learn how to work with aggregates">Working with aggregates</a></li>
+            <li><a href="/database/3.6/insert-records" title="Insert new records into a table">Insert records</a></li>
+            <li><a href="/database/3.6/update-records" title="Learn how to update existing records">Update records</a></li>
+            <li><a href="/database/3.6/delete-records" title="Learn how to delete existing records">Delete records</a></li>
+                </ul>
+            <li class="chapter">Transactions</li>
+            <ul>
+                <li><a href="/database/3.6/transactions" title="Learn how to use transactions">Performing transactions</a></li>
+                </ul>
+            <li class="chapter">Database schema</li>
+            <ul>
+                <li><a href="/database/3.6/schema" title="Learn about Opis Database schema">Introduction</a></li>
+            <li><a href="/database/3.6/schema-creating-tables" title="Learn how to create new tables">Creating tables</a></li>
+            <li><a href="/database/3.6/schema-modifying-tables" title="Learn how to alter existing new tables">Modifying tables</a></li>
+                </ul>
+            <li class="chapter">ORM</li>
+            <ul>
+                <li><a href="/database/3.6/orm" title="Learn about Opis Database ORM">Introduction</a></li>
+            <li><a href="/database/3.6/orm-basics" title="Learn how to use Opis Database ORM">Basic operations</a></li>
+            <li><a href="/database/3.6/orm-relationships" title="Learn about ORM relationships">Relationships</a></li>
+            <li><a href="/database/3.6/orm-models" title="Learn how to work with models">Working with models</a></li>
+    </ul>
+</ul>
+                </div>
+                <div class="col-md-8 col-sm-12">
+                    <h1 id="database-connections">Database connections</h1>
+<ol>
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#connection-options">Connection options</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>Working with databases is done with the help of the <code>Opis\Database\Database</code> class, which provides various methods
+that will ease the process of manipulating tables and records. 
+The constructor of the <code>Database</code> class takes as an argument an instance of the <code>Opis\Database\Connection</code> class. 
+The <code>Connection</code> class is responsible for establishing a connection to the database server, as well as for 
+sending and receiving data. The constructor of the <code>Connection</code> class accepts parameters for specifying
+the <a rel="nofollow" target="_blank" data-toggle="tooltip" href="http://en.wikipedia.org/wiki/Data_source_name" title="Data source name">DSN</a> and optionally for the username and password(if any).</p><pre><code class="language-php">use Opis\Database\Database;
+use Opis\Database\Connection;
+
+$connection = new Connection('mysql:host=localhost;dbname=test', 'username', 'password');
+
+$db = new Database($connection);
+</code></pre>
+<p>You can also create a connection by using the <code>create</code> static method of <code>Opid\Database\Connection</code> class.</p><pre><code class="language-php">$connection = Connection::create('mysql:host=localhost;dbname=test', 'user', 'password');
+</code></pre>
+<h2 id="connection-options">Connection options</h2>
+<p>The <a rel="nofollow" target="_blank" data-toggle="tooltip" href="http://en.wikipedia.org/wiki/Data_source_name" title="Data source name">DSN</a>, the username and the password provided when instantiating a new
+<code>Opis\Database\Connection</code> class, will be further used to build a <code>PDO</code> object that will actually
+ establish a connection to the database. 
+<strong>Opis Database</strong> allows you to specify options for the <code>PDO</code> object by calling the <code>option</code> method.</p><pre><code class="language-php">$connection = Connection::create($dsn, $user, $password)
+                        -&gt;option(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ)
+                        -&gt;option(PDO::ATTR_STRINGIFY_FETCHES, false);
+</code></pre>
+<p>Setting multiple options simultaneously is done by calling the <code>options</code> method 
+and passing as an argument an array of options.</p><pre><code class="language-php">$connection = Connection::create($dsn, $user, $password)
+                        -&gt;options(array(
+                            PDO::ATTR_DEFAULT_FETCH_MODE =&gt; PDO::FETCH_OBJ,
+                            PDO::ATTR_STRINGIFY_FETCHES =&gt; false
+                        ));
+</code></pre>
+<p>Making a connection persistent is done by using the <code>persistent</code> method.</p><pre><code class="language-php">$connection = Connection::create($dsn, $user, $password)
+                        -&gt;persistent();
+</code></pre>
+<p>You can keep a log with all of the queries sent to a database by calling the <code>logQueries</code> method. 
+Retrieving the list of logged queries is done using the <code>getLog</code> method.</p><pre><code class="language-php">$connection = Connection::create($dsn, $user, $password)
+                        -&gt;logQueries();
+
+//Your queries...
+
+foreach($connection-&gt;getLog() as $entry)
+{
+    echo $entry;
+}
+</code></pre>
+<p>You also have the possibility to specify a list of commands that will be executed after connecting
+to a database by using the <code>initCommand</code> method.</p><pre><code class="language-php">$connection = Connection::create($dsn, $user, $password)
+                        -&gt;initCommand('SET NAMES UTF-8');
+</code></pre>
+<ul class="pager">
+        <li class="previous"><a href="/database/3.6/index" title="About">&larr; Back</a></li>
+        <li class="next"><a href="/database/3.6/fetching-records" title="Fetching records">Next &rarr;</a></li>
+</ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <a href="#0" id="back-to-top">
+    <span class="fa fa-arrow-up"></span>
+</a>
+<script>
+    (function($){
+        $(document).ready(function(){
+            var visible = false;
+            $(window).scroll(function(){
+                var top = $(this).scrollTop();
+                if (top >= 100 && !visible) {
+                    visible = true;
+                    $('#back-to-top').fadeIn().show();
+                }
+                if(top < 100 && visible){
+                    visible = false;
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            $('#back-to-top').click(function(){
+                $('html, body').animate({scrollTop : 0},800);
+                return false;
+            });
+        });
+        $('h2[id],h3[id],h4[id],h5[id],h6[id]').each(function () {
+            var child = $('<a href="#' + this.getAttribute('id') + '" class="link-anchor"><span class="fa fa-link"></span></a>');
+            this.appendChild(child.get(0));
+        });
+        $('[data-toggle=tooltip]').tooltip();
+    })(jQuery);
+</script>
+    <footer class="text-center text-muted">
+        Copyright &copy; 2014-2016 The Opis Project. All rights reserved.
+    </footer>
+</body>
+</html>

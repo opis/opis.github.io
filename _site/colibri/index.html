@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="php, full-stack, framework, php framework, modules, modular framework">
+<meta name="description" content="A full-stack modular PHP framework">
+<title>Opis Colibri | www.opis.io</title>
+        
+        <link href="/assets/img/favicon.png" rel="shortcut icon">
+        
+        
+        
+<link rel="stylesheet" href="/assets/css/paper-theme.min.css">
+
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+
+<link href="/assets/css/syntax.css" rel="stylesheet">
+
+
+
+<link href="/assets/css/colibri.css" rel="stylesheet">
+
+
+        
+        <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-50415801-1', 'opis.io');
+    ga('send', 'pageview');
+</script>
+
+    </head>
+    <body>
+        <header id="header" class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="/colibri">
+                <img src="/assets/img/opis-colibri.png" class="img-responsive opis-inline-logo">
+            </a>
+            <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/colibri/documentation" title="Documentation">
+                        <span class="fa fa-file-text"></span> Documentation
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/opis/colibri" title="Github page">
+                        <span class="fa fa-github fa-lg"></span> GitHub
+                    </a>
+                </li>
+                <li>
+                    <a href="/" title="Main page">
+                        <span class="fa fa-home"></span> Home
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section>
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+
+<div class="text-center banner" style="margin-bottom: 30px">
+    <h2 class="text-uppercase" style="font-family: 'Poiret One', cursive;">A full-stack modular framework</h2>
+    <h2 style="font-family: 'Poiret One', cursive;"><small>The perfect tool for building your new web applications</small></h2>
+    <a href="/colibri/documentation" class="btn btn-danger">Checkout the documentation</a>
+</div>
+<div class="container">
+    <div class="row feature-v1">
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h4 class="text-success"><span class="fa fa-puzzle-piece"></span> Modular framework</h4>
+                    <p>
+                        Opis Colibri follows a modular architecture and treats each module as a standalone component that can be individually disabled or enabled on demand.
+                        Modules are reusable across all Opis Colibri based projects, offering a great way of extending existing web applications and maintaining large code bases clean and well structured.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h4 class="text-success"><span class="fa fa-gears"></span> Decoupled components</h4>
+                    <p>
+                        In contrast to other frameworks, Opis Colibri is builded from standalone libraries that can be used with any modern PHP framework.
+                        Each and every library was built to serve its own purpose and it's fully decoupled from the Opis Colibri framework, meaning that any feature of Opis Colibri can be ported to other systems.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h4 class="text-success"><span class="fa fa-code"></span> Open source</h4>
+                    <p>
+                        Opis Colibri is an open source project licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2.0 license</a>.
+                        The source code of this project is publicly available on <a href="http://github.com/opis/colibri">GitHub</a>
+                        and everyone is free to use, to modify, distribute or sublicense Opis Colibri or its standalone components, for both commercial or non-commercial purposes. 
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row feature-v2">
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h5 class="text-primary"><span class="fa fa-magic"></span> Composer compatible</h5>
+                    <p>
+                        Composer is a great tool for managing project dependencies and is fully compatible with Opis Colibri.
+                        Use Composer to enhance your web application functionalities by using third-party libraries listed on Packagist.
+                    </p>  
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h5 class="text-primary"><span class="fa fa-random"></span> Great routing system</h5>
+                    <p>
+                        Opis Colibri provides developers a high degree of freedom and flexibility when it comes to define complex routing patterns.
+                        Developers can control in slight details how a specific route will be handled by the framework.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h5 class="text-primary"><span class="fa fa-html5"></span> Flexible templating</h5>
+                    <p>
+                        When dealing with templates, Opis Colibri takes an unique approach.
+                        It allows you to use multiple rendering engines simultaneously and does not impose you how to store and retrieve your templates.
+                    </p>  
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h5 class="text-primary"><span class="fa fa-thumbs-o-up"></span> Developer-friendly</h5>
+                    <p>
+                        Opis Colibri follows an OOP paradigm and intensively uses anonymous functions to define callbacks.
+                        Principles as "code reusability" or "separation of concerns" are highly valued, making Opis Colibri the perfect tool for building new web applications.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<footer class="text-center text-muted">
+    Copyright &copy; 2014-2015 Marius Sarca. All rights reserved.
+</footer>
+
+    </body>
+</html>

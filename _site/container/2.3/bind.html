@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="Learn how to bind abstract types to concrete types">
+<title>Binding types | Opis Container</title>
+    <link href="/assets/img/favicon.png" rel="shortcut icon">
+<link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+<link href="/assets/css/syntax.css" rel="stylesheet">
+<link href="/assets/css/prism-github.css" rel="stylesheet">
+<link href="/assets/css/project.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+    <![endif]-->
+    <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/prism.js"></script>
+</head>
+<body>
+    <div class="github-fork-ribbon-wrapper right hidden-sm hidden-xs">
+        <div class="github-fork-ribbon" style="background-color: #f80">
+            <a href="https://github.com/opis/container">Fork me on GitHub</a>
+        </div>
+    </div>
+    <header id="header" class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
+                <a href="/container/2.3" class="navbar-brand">
+                    <strong>
+                        Container
+                    </strong>
+                </a>
+                <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/" title="Main page">
+                            <span class="fa fa-home"></span> Home
+                        </a>
+                    </li>
+                    <li class="dropdown hidden-md hidden-lg">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="fa fa-file-text"></span> Documentation <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+            <li><a href="/container/2.3/index" title="Getting started with Opis Container">About</a></li>
+            <li><a href="/container/2.3/container" title="Learn how the DIC works">The container</a></li>
+            <li class="active"><a href="/container/2.3/bind" title="Learn how to bind abstract types to concrete types">Binding types</a></li>
+            <li><a href="/container/2.3/extend" title="Learn how to extend abstract types">Binding types</a></li>
+    </ul>
+</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="fa fa-cogs"></span> Components <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/cache/3.1">Cache</a></li>
+                            <li><a href="/closure/2.3">Closure</a></li>
+                            <li><a href="/config/2.1">Config</a></li>
+                            <li><a href="/container/2.3">Container</a></li>
+                            <li><a href="/database/3.6">Database</a></li>
+                            <li><a href="/events/4.1">Events</a></li>
+                            <li><a href="/http/2.0">HTTP</a></li>
+                            <li><a href="/http-routing/4.0">HTTP Routing</a></li>
+                            <li><a href="/routing/4.1">Routing</a></li>
+                            <li><a href="/session/3.1">Session</a></li>
+                            <li><a href="/view/4.1">View</a></li>
+                        </ul>
+                    </li>
+                    <li class="hidden-md hidden-lg">
+                        <a href="https://github.com/opis/container" title="Github page">
+                            <span class="fa fa-github fa-lg"></span> GitHub
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 hidden-xs hidden-sm">
+                        <div class="list-group">
+        <a href="/container/2.3/index" class="list-group-item">
+            <h4 class="list-group-item-heading">About</h4>
+            <p class="list-group-item-text text-muted">
+                Getting started with Opis Container
+            </p>
+        </a>
+        <a href="/container/2.3/container" class="list-group-item">
+            <h4 class="list-group-item-heading">The container</h4>
+            <p class="list-group-item-text text-muted">
+                Learn how the DIC works
+            </p>
+        </a>
+        <a href="/container/2.3/bind" class="list-group-item active">
+            <h4 class="list-group-item-heading">Binding types</h4>
+            <p class="list-group-item-text text-muted">
+                Learn how to bind abstract types to concrete types
+            </p>
+        </a>
+        <a href="/container/2.3/extend" class="list-group-item">
+            <h4 class="list-group-item-heading">Binding types</h4>
+            <p class="list-group-item-text text-muted">
+                Learn how to extend abstract types
+            </p>
+        </a>
+</div>
+                </div>
+                <div class="col-md-8 col-sm-12">
+                    <h1 id="binding-types">Binding types</h1>
+<p>Binding an abstract type to a concrete type is done using the <code>bind</code> method. 
+The <code>bind</code> method takes two arguments: a string representing the abstract type and 
+another string representing the concrete type.</p><pre><code class="language-php">use Opis\Container\Container;
+
+interface GreetingInterface
+{
+    public function greet();
+}
+
+class Greeting implement GreetingInterface
+{
+    public function greet()
+    {
+        return 'Greetings man in white!'
+    }
+}
+
+$container = new Container();
+$container-&gt;bind('GreetingInterface', 'Greeting');
+
+echo $container('GreetingInterface')-&gt;greet(); //&gt; Greetings man in white!
+</code></pre>
+<p>If the second argument is omitted, the type passed as the first argument will be both abstract and concrete type.</p><pre><code class="language-php">$container-&gt;bind('SomeType');
+//same as
+$container-&gt;bind('SomeType', 'SomeType');
+</code></pre>
+<p>Alternatively, you can pass as the second argument to the <code>bind</code> method, an anonymous callback function 
+that will be used to resolve the abstract type. The callback will receive as arguments the container’s 
+instance and an array of values that can be further used as arguments to instantiate the concrete type.</p><pre><code class="language-php">use Opis\Container\Container;
+
+interface GreetingInterface
+{
+    public function greet();
+}
+
+class Greeting implement GreetingInterface
+{
+    protected $greetingText;
+    
+    public function __construct($text)
+    {
+        $this-&gt;greetingText = $text;
+    }
+    
+    public function greet()
+    {
+        return $this-&gt;greetingText;
+    }
+}
+
+$container = new Container();
+$container-&gt;bind('GreetingInterface', function($container, $args){
+    
+    if(!isset($args[0]))
+    {
+        $args[0] = 'Greetings man in white!';
+    }
+    
+    return new Greeting($args[0]);
+});
+
+echo $container('GreetingInterface')-&gt;greet(); //&gt; Greetings man in white!
+echo $container('GreetingInterface', array('Hello World!'))-&gt;greet(); //&gt; Hello World!
+</code></pre>
+<p>Once an abstract type was bound to a concrete type, it will be automatically resolved every time we use the container 
+to instantiate a another type that have that abstract type as a dependency.</p><pre><code class="language-php">class Stewie
+{
+    protected $greetings;
+    
+    public function __construct(GreetingInterface $greetings)
+    {
+        $this-&gt;greetings = $greetings;
+    }
+    
+    public function talk()
+    {
+        return $this-&gt;greetings-&gt;greet();
+    }
+}
+
+echo $container('Stewie')-&gt;talk(); //&gt; Greetings man in white!
+</code></pre>
+<h3 id="singletons">Singletons</h3>
+<p>Occasionally is desirable that some types to be resolved once, and the same object to be returned on subsequent calls 
+into the container. To achieve this behavior, simply bind the abstract type using the <code>singleton</code> method. 
+This method takes same arguments as the <code>bind</code> method.</p><pre><code class="language-php">use Opis\Container\Container;
+
+class Counter
+{
+    protected $count = 0;
+    
+    public function increment()
+    {
+        return $this-&gt;count++;
+    }
+}
+
+$container = new Container();
+
+$container-&gt;singleton('Counter');
+
+echo $container('Counter')-&gt;increment() //&gt; 0;
+echo $container('Counter')-&gt;increment() //&gt; 1;
+echo $container('Counter')-&gt;increment() //&gt; 2;
+</code></pre>
+<h3 id="setters">Setters</h3>
+<p>After a specified type was resolved, the container allows you to manipulate the resulted object by defining 
+one or more setters. Defining a setter is done by calling the <code>setter</code> method and passing an anonymous function 
+callback as an argument to the method. The callback has two arguments: the instance of the resolved type and 
+the instance of the container.</p><pre><code class="language-php">use Opis\Container\Container;
+
+interface GreetingInterface
+{
+    public function greet();
+}
+
+class Greeting implement GreetingInterface
+{
+    protected $text;
+    
+    public function greet()
+    {
+        return $this-&gt;text;
+    }
+    
+    public function setText($value)
+    {
+        $this-&gt;text = $value;
+    }
+}
+
+$container = new Container();
+$container-&gt;bind('GreetingInterface', 'Greeting')
+          -&gt;setter(function($instance, $container){
+                $instance-&gt;setText('Greetings man in white!');
+          });
+          
+echo $container('GreetingInterface')-&gt;greet(); //&gt; Greetings man in white!
+</code></pre>
+<ul class="pager">
+        <li class="previous"><a href="/container/2.3/container" title="The container">&larr; Back</a></li>
+        <li class="next"><a href="/container/2.3/extend" title="Binding types">Next &rarr;</a></li>
+</ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <a href="#0" id="back-to-top">
+    <span class="fa fa-arrow-up"></span>
+</a>
+<script>
+    (function($){
+        $(document).ready(function(){
+            var visible = false;
+            $(window).scroll(function(){
+                var top = $(this).scrollTop();
+                if (top >= 100 && !visible) {
+                    visible = true;
+                    $('#back-to-top').fadeIn().show();
+                }
+                if(top < 100 && visible){
+                    visible = false;
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            $('#back-to-top').click(function(){
+                $('html, body').animate({scrollTop : 0},800);
+                return false;
+            });
+        });
+        $('h2[id],h3[id],h4[id],h5[id],h6[id]').each(function () {
+            var child = $('<a href="#' + this.getAttribute('id') + '" class="link-anchor"><span class="fa fa-link"></span></a>');
+            this.appendChild(child.get(0));
+        });
+        $('[data-toggle=tooltip]').tooltip();
+    })(jQuery);
+</script>
+    <footer class="text-center text-muted">
+        Copyright &copy; 2014-2016 The Opis Project. All rights reserved.
+    </footer>
+</body>
+</html>

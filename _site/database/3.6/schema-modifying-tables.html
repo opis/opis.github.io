@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="Learn how to alter existing new tables">
+<title>Modifying tables | Opis Database</title>
+    <link href="/assets/img/favicon.png" rel="shortcut icon">
+<link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+<link href="/assets/css/syntax.css" rel="stylesheet">
+<link href="/assets/css/prism-github.css" rel="stylesheet">
+<link href="/assets/css/project.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+    <![endif]-->
+    <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/prism.js"></script>
+</head>
+<body>
+    <div class="github-fork-ribbon-wrapper right hidden-sm hidden-xs">
+        <div class="github-fork-ribbon" style="background-color: #f80">
+            <a href="https://github.com/opis/database">Fork me on GitHub</a>
+        </div>
+    </div>
+    <header id="header" class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
+                <a href="/database/3.6" class="navbar-brand">
+                    <strong>
+                        Database
+                    </strong>
+                </a>
+                <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/" title="Main page">
+                            <span class="fa fa-home"></span> Home
+                        </a>
+                    </li>
+                    <li class="dropdown hidden-md hidden-lg">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="fa fa-file-text"></span> Documentation <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+            <li class="dropdown-header">Getting started</li>
+            <li><a href="/database/3.6/index" title="Getting started with Opis Database">About</a></li>
+            <li><a href="/database/3.6/connections" title="Learn how to connect to a database">Database connections</a></li>
+            <li class="dropdown-header">The basics</li>
+            <li><a href="/database/3.6/fetching-records" title="Fetching records from a database">Fetching records</a></li>
+            <li><a href="/database/3.6/results-handling" title="Learn how to handle the result set of a query">Results handling</a></li>
+            <li><a href="/database/3.6/aggregate-functions" title="Learn about aggregate functions">Aggregate functions</a></li>
+            <li><a href="/database/3.6/extended-selections" title="Learn about how to define custom selections">Extended selections</a></li>
+            <li><a href="/database/3.6/filters" title="Learn how to filter records">Filter</a></li>
+            <li><a href="/database/3.6/expressions" title="Learn about expressions">Expressions</a></li>
+            <li><a href="/database/3.6/ordering-criteria" title="Learn how to order results">Ordering criteria</a></li>
+            <li><a href="/database/3.6/limits-and-offsets" title="Learn about limits and offsets">Limits and offset</a></li>
+            <li><a href="/database/3.6/joins" title="Learn how to perform joins">Joins</a></li>
+            <li><a href="/database/3.6/aggregates-handling" title="Learn how to work with aggregates">Working with aggregates</a></li>
+            <li><a href="/database/3.6/insert-records" title="Insert new records into a table">Insert records</a></li>
+            <li><a href="/database/3.6/update-records" title="Learn how to update existing records">Update records</a></li>
+            <li><a href="/database/3.6/delete-records" title="Learn how to delete existing records">Delete records</a></li>
+            <li class="dropdown-header">Transactions</li>
+            <li><a href="/database/3.6/transactions" title="Learn how to use transactions">Performing transactions</a></li>
+            <li class="dropdown-header">Database schema</li>
+            <li><a href="/database/3.6/schema" title="Learn about Opis Database schema">Introduction</a></li>
+            <li><a href="/database/3.6/schema-creating-tables" title="Learn how to create new tables">Creating tables</a></li>
+            <li class="active"><a href="/database/3.6/schema-modifying-tables" title="Learn how to alter existing new tables">Modifying tables</a></li>
+            <li class="dropdown-header">ORM</li>
+            <li><a href="/database/3.6/orm" title="Learn about Opis Database ORM">Introduction</a></li>
+            <li><a href="/database/3.6/orm-basics" title="Learn how to use Opis Database ORM">Basic operations</a></li>
+            <li><a href="/database/3.6/orm-relationships" title="Learn about ORM relationships">Relationships</a></li>
+            <li><a href="/database/3.6/orm-models" title="Learn how to work with models">Working with models</a></li>
+    </ul>
+</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="fa fa-cogs"></span> Components <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/cache/3.1">Cache</a></li>
+                            <li><a href="/closure/2.3">Closure</a></li>
+                            <li><a href="/config/2.1">Config</a></li>
+                            <li><a href="/container/2.3">Container</a></li>
+                            <li><a href="/database/3.6">Database</a></li>
+                            <li><a href="/events/4.1">Events</a></li>
+                            <li><a href="/http/2.0">HTTP</a></li>
+                            <li><a href="/http-routing/4.0">HTTP Routing</a></li>
+                            <li><a href="/routing/4.1">Routing</a></li>
+                            <li><a href="/session/3.1">Session</a></li>
+                            <li><a href="/view/4.1">View</a></li>
+                        </ul>
+                    </li>
+                    <li class="hidden-md hidden-lg">
+                        <a href="https://github.com/opis/database" title="Github page">
+                            <span class="fa fa-github fa-lg"></span> GitHub
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 hidden-xs hidden-sm">
+<ul class="navigation">
+            <li class="chapter">Getting started</li>
+            <ul>
+                <li><a href="/database/3.6/index" title="Getting started with Opis Database">About</a></li>
+            <li><a href="/database/3.6/connections" title="Learn how to connect to a database">Database connections</a></li>
+                </ul>
+            <li class="chapter">The basics</li>
+            <ul>
+                <li><a href="/database/3.6/fetching-records" title="Fetching records from a database">Fetching records</a></li>
+            <li><a href="/database/3.6/results-handling" title="Learn how to handle the result set of a query">Results handling</a></li>
+            <li><a href="/database/3.6/aggregate-functions" title="Learn about aggregate functions">Aggregate functions</a></li>
+            <li><a href="/database/3.6/extended-selections" title="Learn about how to define custom selections">Extended selections</a></li>
+            <li><a href="/database/3.6/filters" title="Learn how to filter records">Filter</a></li>
+            <li><a href="/database/3.6/expressions" title="Learn about expressions">Expressions</a></li>
+            <li><a href="/database/3.6/ordering-criteria" title="Learn how to order results">Ordering criteria</a></li>
+            <li><a href="/database/3.6/limits-and-offsets" title="Learn about limits and offsets">Limits and offset</a></li>
+            <li><a href="/database/3.6/joins" title="Learn how to perform joins">Joins</a></li>
+            <li><a href="/database/3.6/aggregates-handling" title="Learn how to work with aggregates">Working with aggregates</a></li>
+            <li><a href="/database/3.6/insert-records" title="Insert new records into a table">Insert records</a></li>
+            <li><a href="/database/3.6/update-records" title="Learn how to update existing records">Update records</a></li>
+            <li><a href="/database/3.6/delete-records" title="Learn how to delete existing records">Delete records</a></li>
+                </ul>
+            <li class="chapter">Transactions</li>
+            <ul>
+                <li><a href="/database/3.6/transactions" title="Learn how to use transactions">Performing transactions</a></li>
+                </ul>
+            <li class="chapter">Database schema</li>
+            <ul>
+                <li><a href="/database/3.6/schema" title="Learn about Opis Database schema">Introduction</a></li>
+            <li><a href="/database/3.6/schema-creating-tables" title="Learn how to create new tables">Creating tables</a></li>
+            <li class="active"><a href="/database/3.6/schema-modifying-tables" title="Learn how to alter existing new tables">Modifying tables</a></li>
+                </ul>
+            <li class="chapter">ORM</li>
+            <ul>
+                <li><a href="/database/3.6/orm" title="Learn about Opis Database ORM">Introduction</a></li>
+            <li><a href="/database/3.6/orm-basics" title="Learn how to use Opis Database ORM">Basic operations</a></li>
+            <li><a href="/database/3.6/orm-relationships" title="Learn about ORM relationships">Relationships</a></li>
+            <li><a href="/database/3.6/orm-models" title="Learn how to work with models">Working with models</a></li>
+    </ul>
+</ul>
+                </div>
+                <div class="col-md-8 col-sm-12">
+                    <h1 id="modifying-tables">Modifying tables</h1>
+<ol>
+  <li><a href="#alter-tables">Alter tables</a></li>
+  <li><a href="#changing-a-column-s-type">Changing a column’s type</a></li>
+  <li><a href="#truncate-tables">Truncate tables</a></li>
+  <li><a href="#rename-tables">Rename tables</a></li>
+  <li><a href="#drop-tables">Drop tables</a></li>
+</ol>
+<h2 id="alter-tables">Alter tables</h2>
+<p>You can alter existing tables by using the <code>alter</code> method. 
+This method takes two arguments: the first argument represents the name of the table
+you want to modify and the second argument is an anonymous callback function (<code>Closure</code>)
+that takes as an argument an instance of <code>Opis\Database\Schema\AlterTable</code> class.</p><pre><code class="language-php">$db-&gt;schema()-&gt;alter('users', function($table){
+    
+    //code
+    
+}));
+</code></pre>
+<h4 id="adding-columns">Adding columns</h4>
+<p>Adding a new column to an existing table is done in a similar way described in the 
+<a href="schema-creating-tables">Creating tables</a> section. 
+The only difference is that you won’t be able to directly add a constraint or an index.</p><pre><code class="language-php">$db-&gt;schema()-&gt;alter('users', function($table){
+    
+    $table-&gt;integer('age')-&gt;size('small')-&gt;unsigned();
+    
+}));
+</code></pre>
+<h4 id="deleting-columns">Deleting columns</h4>
+<p>You can delete a column by using the <code>dropColumn</code> method. 
+The method accepts a single argument representing the column’s name.</p><pre><code class="language-php">$db-&gt;schema()-&gt;alter('users', function($table){
+    
+    $table-&gt;dropColumn('age');
+    
+}));
+</code></pre>
+<h4 id="renaming-columns">Renaming columns</h4>
+<p>Renaming a column is done using the <code>renameColumn</code> method. 
+This method takes as arguments the current and the new name of the column.</p><pre><code class="language-php">$db-&gt;schema()-&gt;alter('users', function($table){
+    
+    $table-&gt;renameColumn('name', 'username');
+    
+}));
+</code></pre>
+<h4 id="adding-default-values">Adding default values</h4>
+<p>You can add a default value for a column by using the <code>setDefaultValue</code> method. 
+This method takes as arguments the name of the column and the default value for that column.</p><pre><code class="language-php">$db-&gt;schema()-&gt;alter('users', function($table){
+    
+    $table-&gt;setDefaultValue('age', 18);
+    
+}));
+</code></pre>
+<h4 id="removing-default-values">Removing default values</h4>
+<p>You can remove a default value of a column by using the <code>dropDefaultValue</code> method. 
+This method takes as an argument the name of the column.</p><pre><code class="language-php">$db-&gt;schema()-&gt;alter('users', function($table){
+    
+    $table-&gt;dropDefaultValue('age');
+    
+}));
+</code></pre>
+<h4 id="add-primary-key">Add primary key</h4>
+<p>You may add the primary key by calling the <code>primary</code> method.</p><pre><code class="language-php">$db-&gt;schema()-&gt;alter('users', function($table){
+    
+    $table-&gt;primary('age');
+    
+}));
+</code></pre>
+<h4 id="delete-primary-key">Delete primary key</h4>
+<p>Dropping primary key is done by using the <code>dropPrimary</code> method. 
+This method takes a single argument representing the name of the primary key.</p><pre><code class="language-php">$db-&gt;schema()-&gt;alter('users', function($table){
+    
+    $table-&gt;dropPrimary('id');
+    
+}));
+</code></pre>
+<h4 id="add-unique-keys">Add unique keys</h4>
+<p>You may add a unique key by calling the <code>unique</code> method.</p><pre><code class="language-php">$db-&gt;schema()-&gt;alter('users', function($table){
+    
+    $table-&gt;unique('email');
+    
+}));
+</code></pre>
+<h4 id="delete-unique-keys">Delete unique keys</h4>
+<p>Dropping a unique key is done by using the <code>dropUnique</code> method. 
+This method takes a single argument representing the name of the unique key you want to delete.</p><pre><code class="language-php">$db-&gt;schema()-&gt;alter('users', function($table){
+    
+    $table-&gt;dropUnique('email');
+    
+}));
+</code></pre>
+<h4 id="add-foreign-keys">Add foreign keys</h4>
+<p>You may add a foreign key by using the foreign method.</p><pre><code class="language-php">$db-&gt;schema()-&gt;alter('users', function($table){
+
+    $table-&gt;foreign('profile_id')-&gt;references('profiles')-&gt;on('id');
+
+}));
+</code></pre>
+<h4 id="delete-foreign-keys">Delete foreign keys</h4>
+<p>Dropping a foreign key is done by using the <code>dropForeign</code> method. 
+This method takes a single argument representing the name of the foreign key you want to delete.</p><pre><code class="language-php">$db-&gt;schema()-&gt;alter('users', function($table){
+    
+    $table-&gt;dropForeign('fk_profile');
+    
+}));
+</code></pre>
+<h4 id="add-indexes">Add indexes</h4>
+<p>You can add an index by calling the <code>index</code> method.</p><pre><code class="language-php">$db-&gt;schema()-&gt;alter('users', function($table){
+    
+    $table-&gt;index('username');
+    
+}));
+</code></pre>
+<h4 id="delete-indexes">Delete indexes</h4>
+<p>Dropping an index is done by using the <code>dropIndex</code> method.
+This method takes a single argument representing the name of the index you want to remove.</p><pre><code class="language-php">$db-&gt;schema()-&gt;alter('users', function($table){
+    
+    $table-&gt;dropIndex('username');
+    
+}));
+</code></pre>
+<h2 id="changing-a-column-s-type">Changing a column’s type</h2>
+<p>When a table is altered you may change the types of its columns by using the following methods:</p>
+<table class="table table-bordered box-highlight">
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;toInteger('column');</code></td>
+      <td>Changes the type of the column to <code>INTEGER</code> equivalent.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;toFloat('column');</code></td>
+      <td>Changes the type of the column to <code>FLOAT</code> equivalent.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;toDouble('column');</code></td>
+      <td>Changes the type of the column to <code>DOUBLE</code> equivalent.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;toDecimal('column');</code></td>
+      <td>Changes the type of the column to <code>DECIMAL</code> equivalent.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;toBoolean('column');</code></td>
+      <td>Changes the type of the column to <code>BOOLEAN</code> equivalent.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;toBinary('column');</code></td>
+      <td>Changes the type of the column to <code>BLOB</code> equivalent.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;toString('column');</code></td>
+      <td>Changes the type of the column to <code>VARCHAR</code> equivalent.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;toFixed('column');</code></td>
+      <td>Changes the type of the column to <code>CHAR</code> equivalent.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;toText('column');</code></td>
+      <td>Changes the type of the column to <code>TEXT</code> equivalent.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;toTime('column');</code></td>
+      <td>Changes the type of the column to <code>TIME</code> equivalent.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;toTimestamp('column');</code></td>
+      <td>Changes the type of the column to <code>TIMESTAMP</code> equivalent.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;toDate('column');</code></td>
+      <td>Changes the type of the column to <code>DATE</code> equivalent.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;toDateTime('column');</code></td>
+      <td>Changes the type of the column to <code>DATETIME</code> equivalent.</td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="truncate-tables">Truncate tables</h2>
+<p>You may use the <code>truncate</code> method if you want to remove all rows from a table.</p><pre><code class="language-php">$db-&gt;schema()-&gt;truncate('users');
+</code></pre>
+<h2 id="rename-tables">Rename tables</h2>
+<p>Renaming a table is done by using the <code>renameTable</code> method. 
+This method takes as arguments the current name of the table and the new name for that table.</p><pre><code class="language-php">//Rename table `user` to `users` 
+$db-&gt;schema()-&gt;renameTable('user', 'users');
+</code></pre>
+<h2 id="drop-tables">Drop tables</h2>
+<p>You may use the <code>drop</code> method if you want to delete a table.</p><pre><code class="language-php">$db-&gt;schema()-&gt;drop('users');
+</code></pre>
+<ul class="pager">
+        <li class="previous"><a href="/database/3.6/schema-creating-tables" title="Creating tables">&larr; Back</a></li>
+        <li class="next"><a href="/database/3.6/orm" title="Introduction">Next &rarr;</a></li>
+</ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <a href="#0" id="back-to-top">
+    <span class="fa fa-arrow-up"></span>
+</a>
+<script>
+    (function($){
+        $(document).ready(function(){
+            var visible = false;
+            $(window).scroll(function(){
+                var top = $(this).scrollTop();
+                if (top >= 100 && !visible) {
+                    visible = true;
+                    $('#back-to-top').fadeIn().show();
+                }
+                if(top < 100 && visible){
+                    visible = false;
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            $('#back-to-top').click(function(){
+                $('html, body').animate({scrollTop : 0},800);
+                return false;
+            });
+        });
+        $('h2[id],h3[id],h4[id],h5[id],h6[id]').each(function () {
+            var child = $('<a href="#' + this.getAttribute('id') + '" class="link-anchor"><span class="fa fa-link"></span></a>');
+            this.appendChild(child.get(0));
+        });
+        $('[data-toggle=tooltip]').tooltip();
+    })(jQuery);
+</script>
+    <footer class="text-center text-muted">
+        Copyright &copy; 2014-2016 The Opis Project. All rights reserved.
+    </footer>
+</body>
+</html>

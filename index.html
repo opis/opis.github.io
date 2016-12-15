@@ -1,51 +1,53 @@
+---
+---
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="keywords" content="php, project, components, open source, opis">
-<meta name="description" content="Open source PHP components. Database abstraction layer, Dependency injection, serializable closures and more">
-<title>The Opis Project | www.opis.io</title>
-        
-        <link href="/assets/img/favicon.png" rel="shortcut icon">
-        
-        
-        
-<link rel="stylesheet" href="/assets/css/paper-theme.min.css">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="php, project, components, open source, opis">
+    <meta name="description" content="Open source PHP components. Database abstraction layer, Dependency injection, serializable closures and more">
+    <title>The Opis Project | www.opis.io</title>
 
-<link href="/assets/css/font-awesome.css" rel="stylesheet">
-
-<link href="/assets/css/syntax.css" rel="stylesheet">
+    <link href="/assets/img/favicon.png" rel="shortcut icon">
 
 
 
-<link href="/assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/paper-theme.min.css">
+
+    <link href="/assets/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/assets/css/syntax.css" rel="stylesheet">
 
 
-        <!--[if lt IE 9]>
-<script src="/assets/js/html5shiv.js"></script>
-<script src="/assets/js/respond.min.js"></script>
-<![endif]-->
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="/assets/js/jquery-1.11.0.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="/assets/js/bootstrap.min.js"></script>
+
+    <link href="/assets/css/style.css" rel="stylesheet">
 
 
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  
-    ga('create', 'UA-50415801-1', 'opis.io');
-    ga('send', 'pageview');
-</script>
+    <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/assets/js/jquery-1.11.0.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/assets/js/bootstrap.min.js"></script>
 
-    </head>
-    <body>
-        <header id="header" class="navbar navbar-default navbar-fixed-top">
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-50415801-1', 'opis.io');
+        ga('send', 'pageview');
+    </script>
+
+</head>
+<body>
+<header id="header" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <a href="" class="navbar-brand">
@@ -70,18 +72,10 @@
                         <span class="fa fa-cogs"></span> Components <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="/cache" title="Caching library">Cache</a></li>
-                        <li><a href="/closure" title="Serializable closures">Closure</a></li>
-                        <li><a href="/config" title="Configuration manager">Config</a></li>
-                        <li><a href="/container" title="Dependency injection container">Container</a></li>
-                        <li><a href="/database" title="Database abstraction layer">Database</a></li>
-                        <li><a href="/events" title="Events library">Events</a></li>
-                        <li><a href="https://github.com/opis/http" title="HTTP library">HTTP</a></li>
-                        <li><a href="/http-routing" title="HTTP routing library">HTTP Routing</a></li>
-                        <li><a href="/routing" title="Routing framework">Routing</a></li>
-                        <li><a href="/session" title="Session manager">Session</a></li>
-                        <li><a href="/utils" title="Utilitary classes">Utils</a></li>
-                        <li><a href="/view" title="Rendering engine">View</a></li>
+                        {% assign comps = site.data.components | sort: 'name' %}
+                        {% for cmp in comps %}
+                        <li><a href="{{cmp.url}}">{{cmp.name}}</a></li>
+                        {% endfor %}
                     </ul>
                 </li>
                 <li>
@@ -100,417 +94,417 @@
 </header>
 <section>
     <div class="container">
-   <!--
-    <div class="jumbotron">
+        <!--
+         <div class="jumbotron">
+             <div class="row">
+                 <div class="col-md-4">
+                     <img class="img-responsive" src="/assets/img/opis-colibri-gs.png">
+                 </div>
+                 <div class="col-md-8">
+                     <h2 class="text-capitalized"><strong>A full-stack modular framework</strong></h2>
+                     <p class="lead">
+                         The perfect tool for building new web applications.
+                     </p>
+
+                     <p class="text-right">
+                         <a class="btn btn-success" role="button" href="/colibri">Find out more</a>
+                     </p>
+                 </div>
+             </div>
+         </div>
+         -->
         <div class="row">
             <div class="col-md-4">
-                <img class="img-responsive" src="/assets/img/opis-colibri-gs.png">
+
+
+
+
+                <div class="thumbnail">
+                    <div class="project-logo-box" data-project-title="Database"></div>
+                    <div class="caption">
+                        <h4><strong>Database abstraction layer</strong></h4>
+                        <div style="height: 125px">
+                            <p>
+                                Opis Database is a library that provides an abstraction layer over several database systems,
+                                offering a standard way of handling database records and thus, making the differences
+                                between various SQL dialects irrelevant to the developers.
+                            </p>
+                        </div>
+                        <p>
+
+                            <a href="https://github.com/opis/database" class="btn btn-default" role="button">
+                                <span class="fa fa-github fa-lg"></span> GitHub
+                            </a>
+
+
+
+                            <a href="/database" class="btn btn-primary" role="button"> Read more </a>
+
+
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-8">
-                <h2 class="text-capitalized"><strong>A full-stack modular framework</strong></h2>
-                <p class="lead">
-                    The perfect tool for building new web applications.
-                </p>
-                
-                <p class="text-right">
-                    <a class="btn btn-success" role="button" href="/colibri">Find out more</a>
-                </p>
+
+            <div class="col-md-4">
+
+
+
+
+                <div class="thumbnail">
+                    <div class="project-logo-box" data-project-title="Closure"></div>
+                    <div class="caption">
+                        <h4><strong>Serializable closures</strong></h4>
+                        <div style="height: 125px">
+                            <p>
+                                Opis Closure is a library that aims to overcome PHP's limitations regarding closure serialization
+                                by providing a wrapper that will make all closures serializable.
+                            </p>
+                        </div>
+                        <p>
+
+                            <a href="https://github.com/opis/closure" class="btn btn-default" role="button">
+                                <span class="fa fa-github fa-lg"></span> GitHub
+                            </a>
+
+
+
+                            <a href="/closure" class="btn btn-primary" role="button"> Read more </a>
+
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+
+
+
+
+                <div class="thumbnail">
+                    <div class="project-logo-box" data-project-title="Container"></div>
+                    <div class="caption">
+                        <h4><strong>Dependency injection</strong></h4>
+                        <div style="height: 125px">
+                            <p>
+                                Opis Container is a library that provides a fully serializable dependency injection
+                                container. The Opis Container library can be used to deliver a more reusable,
+                                testable and maintainable code, while increasing the speed of development.
+                            </p>
+                        </div>
+                        <p>
+
+                            <a href="https://github.com/opis/container" class="btn btn-default" role="button">
+                                <span class="fa fa-github fa-lg"></span> GitHub
+                            </a>
+
+
+
+                            <a href="/container" class="btn btn-primary" role="button"> Read more </a>
+
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+
+
+
+
+                <div class="thumbnail">
+                    <div class="project-logo-box" data-project-title="Cache"></div>
+                    <div class="caption">
+                        <h4><strong>Caching library</strong></h4>
+                        <div style="height: 125px">
+                            <p>
+                                Opis Cache is a caching library, with support for multiple backend storages, that provides
+                                developers an API which allows them to deal with cached content in a standardised way,
+                                no matter where that content is stored.
+                            </p>
+                        </div>
+                        <p>
+
+                            <a href="https://github.com/opis/cache" class="btn btn-default" role="button">
+                                <span class="fa fa-github fa-lg"></span> GitHub
+                            </a>
+
+
+
+                            <a href="/cache" class="btn btn-primary" role="button"> Read more </a>
+
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+
+
+
+
+                <div class="thumbnail">
+                    <div class="project-logo-box" data-project-title="Session"></div>
+                    <div class="caption">
+                        <h4><strong>Session manager</strong></h4>
+                        <div style="height: 125px">
+                            <p>
+                                Opis Session is a session manager library with support for multiple backend storages that
+                                provides developers with an API which allows them to handle session related informations
+                                in a standardised way.
+                            </p>
+                        </div>
+                        <p>
+
+                            <a href="https://github.com/opis/session" class="btn btn-default" role="button">
+                                <span class="fa fa-github fa-lg"></span> GitHub
+                            </a>
+
+
+
+                            <a href="/session" class="btn btn-primary" role="button"> Read more </a>
+
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+
+
+
+
+                <div class="thumbnail">
+                    <div class="project-logo-box" data-project-title="Config"></div>
+                    <div class="caption">
+                        <h4><strong>Configuration manager</strong></h4>
+                        <div style="height: 125px">
+                            <p>
+                                Opis Config is a configuration management library, with support for multiple backend
+                                storages, that provides developers an API which allows them to work with configurations
+                                in a standardised way, no matter where the configurations are stored.
+                            </p>
+                        </div>
+                        <p>
+
+                            <a href="https://github.com/opis/config" class="btn btn-default" role="button">
+                                <span class="fa fa-github fa-lg"></span> GitHub
+                            </a>
+
+
+
+                            <a href="/config" class="btn btn-primary" role="button"> Read more </a>
+
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+
+
+
+
+                <div class="thumbnail">
+                    <div class="project-logo-box" data-project-title="Routing"></div>
+                    <div class="caption">
+                        <h4><strong>Routing framework</strong></h4>
+                        <div style="height: 125px">
+                            <p>
+                                Opis Routing is a framework for building various routing components. In contrast to other routing
+                                libraries, it may handle anything that follows a pattern and is not limited only to
+                                HTTP requests.
+                            </p>
+                        </div>
+                        <p>
+
+                            <a href="https://github.com/opis/routing" class="btn btn-default" role="button">
+                                <span class="fa fa-github fa-lg"></span> GitHub
+                            </a>
+
+
+
+                            <a href="/routing" class="btn btn-primary" role="button"> Read more </a>
+
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+
+
+
+
+                <div class="thumbnail">
+                    <div class="project-logo-box" data-project-title="HTTP Routing"></div>
+                    <div class="caption">
+                        <h4><strong>HTTP routing library</strong></h4>
+                        <div style="height: 125px">
+                            <p>
+                                Opis HTTP Routing is a library that can be used to route all types of HTTP request, providing a full range of features,
+                                like path filters, domain filters, user defined filters, access filters,
+                                custom error handlers for HTTP errors and much more.
+                            </p>
+                        </div>
+                        <p>
+
+                            <a href="https://github.com/opis/http-routing" class="btn btn-default" role="button">
+                                <span class="fa fa-github fa-lg"></span> GitHub
+                            </a>
+
+
+
+                            <a href="/http-routing" class="btn btn-primary" role="button"> Read more </a>
+
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+
+
+
+
+                <div class="thumbnail">
+                    <div class="project-logo-box" data-project-title="Events"></div>
+                    <div class="caption">
+                        <h4><strong>Events library</strong></h4>
+                        <div style="height: 125px">
+                            <p>
+                                Opis Events is a library that can be used for dispatching and intercepting events.
+                                This library is builded on top of the Opis Routing library and provides a full range of
+                                features like filters and events' priorities.
+                            </p>
+                        </div>
+                        <p>
+
+                            <a href="https://github.com/opis/events" class="btn btn-default" role="button">
+                                <span class="fa fa-github fa-lg"></span> GitHub
+                            </a>
+
+
+
+                            <a href="/events" class="btn btn-primary" role="button"> Read more </a>
+
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+
+
+
+
+                <div class="thumbnail">
+                    <div class="project-logo-box" data-project-title="View"></div>
+                    <div class="caption">
+                        <h4><strong>Rendering engine</strong></h4>
+                        <div style="height: 125px">
+                            <p>
+                                A rendering engine, based on Opis Routing library, that can be integrated with multiple template engines.
+                            </p>
+                        </div>
+                        <p>
+
+                            <a href="https://github.com/opis/view" class="btn btn-default" role="button">
+                                <span class="fa fa-github fa-lg"></span> GitHub
+                            </a>
+
+
+
+                            <a href="/view" class="btn btn-primary" role="button"> Read more </a>
+
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+
+
+
+
+                <div class="thumbnail">
+                    <div class="project-logo-box" data-project-title="HTTP"></div>
+                    <div class="caption">
+                        <h4><strong>HTTP library</strong></h4>
+                        <div style="height: 125px">
+                            <p>
+                                Opis HTTP is a library that provides an HTTP abstraction layer
+                                that eases the work with HTTP requests and responses.
+                            </p>
+                        </div>
+                        <p>
+
+                            <a href="https://github.com/opis/http" class="btn btn-default" role="button">
+                                <span class="fa fa-github fa-lg"></span> GitHub
+                            </a>
+
+
+
+                            <a href="/http" class="btn btn-primary" role="button"> Read more </a>
+
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+
+
+
+
+                <div class="thumbnail">
+                    <div class="project-logo-box" data-project-title="Utils"></div>
+                    <div class="caption">
+                        <h4><strong>Utilitary classes</strong></h4>
+                        <div style="height: 125px">
+                            <p>
+                                Opis Utils is a collection of useful classes that will help you with UTF 8 strings,
+                                URLs, form validators, autoloading, versions and others.
+                            </p>
+                        </div>
+                        <p>
+
+                            <a href="https://github.com/opis/utils" class="btn btn-default" role="button">
+                                <span class="fa fa-github fa-lg"></span> GitHub
+                            </a>
+
+
+
+                            <a href="/utils" class="btn btn-primary" role="button"> Read more </a>
+
+
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    -->
-    <div class="row">
-        <div class="col-md-4">
-            
-    
-
-
-<div class="thumbnail">
-    <div class="project-logo-box" data-project-title="Database"></div>
-    <div class="caption">
-        <h4><strong>Database abstraction layer</strong></h4>
-        <div style="height: 125px">
-            <p>
-                Opis Database is a library that provides an abstraction layer over several database systems,
-                offering a standard way of handling database records and thus, making the differences
-                between various SQL dialects irrelevant to the developers.
-            </p>
-                    </div>
-        <p>
-        
-            <a href="https://github.com/opis/database" class="btn btn-default" role="button">
-                <span class="fa fa-github fa-lg"></span> GitHub
-            </a>
-        
-        
-        
-            <a href="/database" class="btn btn-primary" role="button"> Read more </a>
-        
-        
-        </p>
-    </div>
-</div>
-        </div>
-        
-        <div class="col-md-4">
-            
-    
-
-
-<div class="thumbnail">
-    <div class="project-logo-box" data-project-title="Closure"></div>
-    <div class="caption">
-        <h4><strong>Serializable closures</strong></h4>
-        <div style="height: 125px">
-            <p>
-                Opis Closure is a library that aims to overcome PHP's limitations regarding closure serialization
-                by providing a wrapper that will make all closures serializable. 
-            </p>
-                    </div>
-        <p>
-        
-            <a href="https://github.com/opis/closure" class="btn btn-default" role="button">
-                <span class="fa fa-github fa-lg"></span> GitHub
-            </a>
-        
-        
-        
-            <a href="/closure" class="btn btn-primary" role="button"> Read more </a>
-        
-        
-        </p>
-    </div>
-</div>
-        </div>
-        
-        <div class="col-md-4">
-            
-    
-
-
-<div class="thumbnail">
-    <div class="project-logo-box" data-project-title="Container"></div>
-    <div class="caption">
-        <h4><strong>Dependency injection</strong></h4>
-        <div style="height: 125px">
-            <p>
-                Opis Container is a library that provides a fully serializable dependency injection
-                container. The Opis Container library can be used to deliver a more reusable,
-                testable and maintainable code, while increasing the speed of development. 
-            </p>
-                    </div>
-        <p>
-        
-            <a href="https://github.com/opis/container" class="btn btn-default" role="button">
-                <span class="fa fa-github fa-lg"></span> GitHub
-            </a>
-        
-        
-        
-            <a href="/container" class="btn btn-primary" role="button"> Read more </a>
-        
-        
-        </p>
-    </div>
-</div>
-        </div>
-        
-    </div>
-    
-    <div class="row">
-        <div class="col-md-4">
-            
-    
-
-
-<div class="thumbnail">
-    <div class="project-logo-box" data-project-title="Cache"></div>
-    <div class="caption">
-        <h4><strong>Caching library</strong></h4>
-        <div style="height: 125px">
-            <p>
-                Opis Cache is a caching library, with support for multiple backend storages, that provides
-                developers an API which allows them to deal with cached content in a standardised way,
-                no matter where that content is stored.
-            </p>
-                    </div>
-        <p>
-        
-            <a href="https://github.com/opis/cache" class="btn btn-default" role="button">
-                <span class="fa fa-github fa-lg"></span> GitHub
-            </a>
-        
-        
-        
-            <a href="/cache" class="btn btn-primary" role="button"> Read more </a>
-        
-        
-        </p>
-    </div>
-</div>
-        </div>
-        
-        <div class="col-md-4">
-            
-    
-
-
-<div class="thumbnail">
-    <div class="project-logo-box" data-project-title="Session"></div>
-    <div class="caption">
-        <h4><strong>Session manager</strong></h4>
-        <div style="height: 125px">
-            <p>
-                Opis Session is a session manager library with support for multiple backend storages that
-                provides developers with an API which allows them to handle session related informations
-                in a standardised way. 
-            </p>
-                    </div>
-        <p>
-        
-            <a href="https://github.com/opis/session" class="btn btn-default" role="button">
-                <span class="fa fa-github fa-lg"></span> GitHub
-            </a>
-        
-        
-        
-            <a href="/session" class="btn btn-primary" role="button"> Read more </a>
-        
-        
-        </p>
-    </div>
-</div>
-        </div>
-        
-        <div class="col-md-4">
-            
-    
-
-
-<div class="thumbnail">
-    <div class="project-logo-box" data-project-title="Config"></div>
-    <div class="caption">
-        <h4><strong>Configuration manager</strong></h4>
-        <div style="height: 125px">
-            <p>
-                Opis Config is a configuration management library, with support for multiple backend
-                storages, that provides developers an API which allows them to work with configurations
-                in a standardised way, no matter where the configurations are stored. 
-            </p>
-                    </div>
-        <p>
-        
-            <a href="https://github.com/opis/config" class="btn btn-default" role="button">
-                <span class="fa fa-github fa-lg"></span> GitHub
-            </a>
-        
-        
-        
-            <a href="/config" class="btn btn-primary" role="button"> Read more </a>
-        
-        
-        </p>
-    </div>
-</div>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-md-4">
-            
-    
-
-
-<div class="thumbnail">
-    <div class="project-logo-box" data-project-title="Routing"></div>
-    <div class="caption">
-        <h4><strong>Routing framework</strong></h4>
-        <div style="height: 125px">
-            <p>
-                Opis Routing is a framework for building various routing components. In contrast to other routing
-                libraries, it may handle anything that follows a pattern and is not limited only to
-                HTTP requests. 
-            </p>
-                    </div>
-        <p>
-        
-            <a href="https://github.com/opis/routing" class="btn btn-default" role="button">
-                <span class="fa fa-github fa-lg"></span> GitHub
-            </a>
-        
-        
-        
-            <a href="/routing" class="btn btn-primary" role="button"> Read more </a>
-        
-        
-        </p>
-    </div>
-</div>
-        </div>
-        
-        <div class="col-md-4">
-            
-    
-
-
-<div class="thumbnail">
-    <div class="project-logo-box" data-project-title="HTTP Routing"></div>
-    <div class="caption">
-        <h4><strong>HTTP routing library</strong></h4>
-        <div style="height: 125px">
-            <p>
-                Opis HTTP Routing is a library that can be used to route all types of HTTP request, providing a full range of features,
-                like path filters, domain filters, user defined filters, access filters,
-                custom error handlers for HTTP errors and much more. 
-            </p>
-                    </div>
-        <p>
-        
-            <a href="https://github.com/opis/http-routing" class="btn btn-default" role="button">
-                <span class="fa fa-github fa-lg"></span> GitHub
-            </a>
-        
-        
-        
-            <a href="/http-routing" class="btn btn-primary" role="button"> Read more </a>
-        
-        
-        </p>
-    </div>
-</div>
-        </div>
-        
-        <div class="col-md-4">
-            
-    
-
-
-<div class="thumbnail">
-    <div class="project-logo-box" data-project-title="Events"></div>
-    <div class="caption">
-        <h4><strong>Events library</strong></h4>
-        <div style="height: 125px">
-            <p>
-                Opis Events is a library that can be used for dispatching and intercepting events.
-                This library is builded on top of the Opis Routing library and provides a full range of
-                features like filters and events' priorities. 
-            </p>
-                    </div>
-        <p>
-        
-            <a href="https://github.com/opis/events" class="btn btn-default" role="button">
-                <span class="fa fa-github fa-lg"></span> GitHub
-            </a>
-        
-        
-        
-            <a href="/events" class="btn btn-primary" role="button"> Read more </a>
-        
-        
-        </p>
-    </div>
-</div>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-md-4">
-            
-    
-
-
-<div class="thumbnail">
-    <div class="project-logo-box" data-project-title="View"></div>
-    <div class="caption">
-        <h4><strong>Rendering engine</strong></h4>
-        <div style="height: 125px">
-            <p>
-                A rendering engine, based on Opis Routing library, that can be integrated with multiple template engines.
-            </p>
-                    </div>
-        <p>
-        
-            <a href="https://github.com/opis/view" class="btn btn-default" role="button">
-                <span class="fa fa-github fa-lg"></span> GitHub
-            </a>
-        
-        
-        
-            <a href="/view" class="btn btn-primary" role="button"> Read more </a>
-        
-        
-        </p>
-    </div>
-</div>
-        </div>
-        
-        <div class="col-md-4">
-            
-    
-
-
-<div class="thumbnail">
-    <div class="project-logo-box" data-project-title="HTTP"></div>
-    <div class="caption">
-        <h4><strong>HTTP library</strong></h4>
-        <div style="height: 125px">
-            <p>
-                Opis HTTP is a library that provides an HTTP abstraction layer
-                that eases the work with HTTP requests and responses.
-            </p>
-                    </div>
-        <p>
-        
-            <a href="https://github.com/opis/http" class="btn btn-default" role="button">
-                <span class="fa fa-github fa-lg"></span> GitHub
-            </a>
-        
-        
-        
-            <a href="/http" class="btn btn-primary" role="button"> Read more </a>
-        
-        
-        </p>
-    </div>
-</div>
-        </div>
-        
-        <div class="col-md-4">
-            
-    
-
-
-<div class="thumbnail">
-    <div class="project-logo-box" data-project-title="Utils"></div>
-    <div class="caption">
-        <h4><strong>Utilitary classes</strong></h4>
-        <div style="height: 125px">
-            <p>
-                Opis Utils is a collection of useful classes that will help you with UTF 8 strings,
-                URLs, form validators, autoloading, versions and others. 
-            </p>
-                    </div>
-        <p>
-        
-            <a href="https://github.com/opis/utils" class="btn btn-default" role="button">
-                <span class="fa fa-github fa-lg"></span> GitHub
-            </a>
-        
-        
-        
-            <a href="/utils" class="btn btn-primary" role="button"> Read more </a>
-        
-        
-        </p>
-    </div>
-</div>
-        </div>
-    </div>
-</div>
 </section>
 <footer class="text-center text-muted">
     Copyright &copy; 2014-2015 Marius Sarca. All rights reserved.
 </footer>
 
-    </body>
+</body>
 </html>

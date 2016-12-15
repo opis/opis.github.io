@@ -1,0 +1,23 @@
+{% assign close = false %}
+<ul class="navigation">
+{% for doc in include.documents %}
+    {% assign d = doc.permalink | split: '/' %}
+    {% assign a = doc.url %}
+    {% capture p %}{{d[0]}}/{{d[1]}}{% endcapture %}
+    {% if p == include.project %}
+        {% if doc.chapter %}
+            {% if close != false %}
+                </ul>
+            {% else %}
+                {% assign close = true %}
+            {% endif %}
+            <li class="chapter">{{doc.chapter}}</li>
+            <ul>
+                <li{% if a == include.active %} class="active"{% endif %}><a href="{{doc.url}}" title="{{doc.description}}">{{doc.title}}</a></li>
+        {% else %}
+            <li{% if a == include.active %} class="active"{% endif %}><a href="{{doc.url}}" title="{{doc.description}}">{{doc.title}}</a></li>
+        {% endif %}
+    {% endif %}
+{% endfor %}
+    </ul>
+</ul>

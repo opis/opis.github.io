@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="Learn how to define views">
+<title>Defining views | </title>
+    <link href="/assets/img/favicon.png" rel="shortcut icon">
+<link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+<link href="/assets/css/syntax.css" rel="stylesheet">
+<link href="/assets/css/prism-github.css" rel="stylesheet">
+<link href="/assets/css/project.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+    <![endif]-->
+    <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/prism.js"></script>
+</head>
+<body>
+    <div class="github-fork-ribbon-wrapper right hidden-sm hidden-xs">
+        <div class="github-fork-ribbon" style="background-color: #f80">
+            <a href="">Fork me on GitHub</a>
+        </div>
+    </div>
+    <header id="header" class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
+                <a href="" class="navbar-brand">
+                    <strong>
+                    </strong>
+                </a>
+                <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/" title="Main page">
+                            <span class="fa fa-home"></span> Home
+                        </a>
+                    </li>
+                    <li class="dropdown hidden-md hidden-lg">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="fa fa-file-text"></span> Documentation <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+            <li><a href="/view/4.1/index" title="Getting started with Opis View">About</a></li>
+            <li><a href="/view/4.1/components" title="Learn about Opis View's components">The components</a></li>
+            <li class="active"><a href="/view/4.1/views" title="Learn how to define views">Defining views</a></li>
+            <li><a href="/view/4.1/render" title="Learn how to render views">Rendering views</a></li>
+            <li><a href="/view/4.1/engines" title="Learn about template engines">Template engines</a></li>
+    </ul>
+</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="fa fa-cogs"></span> Components <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/cache/3.1">Cache</a></li>
+                            <li><a href="/closure/2.3">Closure</a></li>
+                            <li><a href="/config/2.1">Config</a></li>
+                            <li><a href="/container/2.3">Container</a></li>
+                            <li><a href="/database/3.6">Database</a></li>
+                            <li><a href="/events/4.1">Events</a></li>
+                            <li><a href="/http/2.0">HTTP</a></li>
+                            <li><a href="/http-routing/4.0">HTTP Routing</a></li>
+                            <li><a href="/routing/4.1">Routing</a></li>
+                            <li><a href="/session/3.1">Session</a></li>
+                            <li><a href="/view/4.1">View</a></li>
+                        </ul>
+                    </li>
+                    <li class="hidden-md hidden-lg">
+                        <a href="" title="Github page">
+                            <span class="fa fa-github fa-lg"></span> GitHub
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 hidden-xs hidden-sm">
+                        <div class="list-group">
+        <a href="/view/4.1/index" class="list-group-item">
+            <h4 class="list-group-item-heading">About</h4>
+            <p class="list-group-item-text text-muted">
+                Getting started with Opis View
+            </p>
+        </a>
+        <a href="/view/4.1/components" class="list-group-item">
+            <h4 class="list-group-item-heading">The components</h4>
+            <p class="list-group-item-text text-muted">
+                Learn about Opis View's components
+            </p>
+        </a>
+        <a href="/view/4.1/views" class="list-group-item active">
+            <h4 class="list-group-item-heading">Defining views</h4>
+            <p class="list-group-item-text text-muted">
+                Learn how to define views
+            </p>
+        </a>
+        <a href="/view/4.1/render" class="list-group-item">
+            <h4 class="list-group-item-heading">Rendering views</h4>
+            <p class="list-group-item-text text-muted">
+                Learn how to render views
+            </p>
+        </a>
+        <a href="/view/4.1/engines" class="list-group-item">
+            <h4 class="list-group-item-heading">Template engines</h4>
+            <p class="list-group-item-text text-muted">
+                Learn about template engines
+            </p>
+        </a>
+</div>
+                </div>
+                <div class="col-md-8 col-sm-12">
+                    <h1 id="defining-views">Defining views</h1>
+<ol>
+  <li><a href="#registering-views">Registering views</a></li>
+  <li><a href="#priorities">Priorities</a></li>
+  <li><a href="#parameters">Parameters</a></li>
+  <li><a href="#special-implicit-values">Special implicit values</a></li>
+  <li><a href="#filters">Filters</a></li>
+</ol>
+<h2 id="registering-views">Registering views</h2>
+<p>Views are registered on an instance of a <code>Opis\View\ViewRouter</code> class with the help of the <code>handle</code> method. 
+The method takes as arguments the view’s name and a callback value. The callback must return the path were the content 
+of the view resides.</p><pre><code class="language-php">use Opis\View\ViewRouter;
+
+$view = new ViewRouter();
+
+$view-&gt;handle('foo', function(){
+    return  '/path/to/view.php';
+});
+</code></pre>
+<h2 id="priorities">Priorities</h2>
+<p>Each defined view has an associated priority, which by default is <code>0</code> (zero). The priorities are meant to be used as a 
+mechanism that allows you to overwrite existing views by simply adding new views that have higher priorities assigned.</p>
+<p>Specifying a views’s priority is done by passing a number representing the priority, 
+as the third argument to the <code>handle</code> method.</p><pre><code class="language-php">$view-&gt;handle('foo', function(){
+    return  '/path/to/view.php';
+}, 1);
+</code></pre>
+<h2 id="parameters">Parameters</h2>
+<p>A view’s name can also be divided into segments separated by <code>.</code> signs. 
+View names and view name’s segments can be transformed into parameters by enclosing them with curly braces. 
+The parameters can be used by the view’s callback, by simply referencing them into the callback’s arguments list.</p><pre><code class="language-php">$view-&gt;handle('{foo}', function($foo){
+    return  '/path/to/' . $foo . '.php';
+});
+
+$view-&gt;handle('foo.{bar}', function($bar){
+    return  '/path/to/' . $bar . '.php';
+});
+</code></pre>
+<p>Of course, you can define as many parameters as you need.</p><pre><code class="language-php">$view-&gt;handle('foo.{bar}.baz.{qux}', function($bar, $qux){
+    //
+});
+</code></pre>
+<h4 id="optional-parameters">Optional parameters</h4>
+<p>Specifying that a parameter is optional can be done by adding a <code>?</code> mark after the parameter name.</p><pre><code class="language-php">$view-&gt;handle('foo.{bar?}', function($bar = 'baz'){
+    return  '/path/to/' . $bar . '.php';
+});
+</code></pre>
+<h4 id="implicit-values">Implicit values</h4>
+<p>You can set an implicit value for a parameter by using the <code>implicit</code> method.</p><pre><code class="language-php">$view-&gt;handle('foo.{bar?}', function($bar){
+    return  '/path/to/' . $bar . '.php';
+})
+-&gt;implicit('bar', 'baz');
+</code></pre>
+<h4 id="regex-constraints">Regex constraints</h4>
+<p>You can add regex constraints to parameters by using the <code>where</code> method. 
+The method takes as arguments the parameter name and a regular expression defining 
+how the parameter should be constrained.</p><pre><code class="language-php">$view-&gt;handle('foo.{bar}', function($bar){
+    return  '/path/to/' . $bar . '.php';
+})
+-&gt;where('bar', '[a-z][a-z0-9]+');
+</code></pre>
+<h2 id="special-implicit-values">Special implicit values</h2>
+<p>There are two special implicit values: <code>self</code> and <code>path</code>. The <code>self</code> implicit’s value is the current route instance 
+and <code>path</code> implicit’s value is the current path object containing the view’s name. 
+The <code>$path</code> object is an instance of the <code>Opis\Routing\Path</code> class.</p><pre><code class="language-php">$view-&gt;handle('foo', function($self, $path){
+    // ..
+});
+</code></pre>
+<h2 id="filters">Filters</h2>
+<p>You can add a filter to a view by passing a callback value to the <code>filter</code> method. 
+The callback must return either <code>true</code> or <code>false</code>.</p><pre><code class="language-php">$view-&gt;handle('foo.{bar}', function($bar){
+    return  '/path/to/' . $bar . '.php';
+})
+-&gt;filter(function($bar){
+    return file_exist('/path/to/' . $bar . '.php');
+});
+</code></pre>
+<ul class="pager">
+        <li class="previous"><a href="/view/4.1/components" title="The components">&larr; Back</a></li>
+        <li class="next"><a href="/view/4.1/render" title="Rendering views">Next &rarr;</a></li>
+</ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <a href="#0" id="back-to-top">
+    <span class="fa fa-arrow-up"></span>
+</a>
+<script>
+    (function($){
+        $(document).ready(function(){
+            var visible = false;
+            $(window).scroll(function(){
+                var top = $(this).scrollTop();
+                if (top >= 100 && !visible) {
+                    visible = true;
+                    $('#back-to-top').fadeIn().show();
+                }
+                if(top < 100 && visible){
+                    visible = false;
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            $('#back-to-top').click(function(){
+                $('html, body').animate({scrollTop : 0},800);
+                return false;
+            });
+        });
+        $('h2[id],h3[id],h4[id],h5[id],h6[id]').each(function () {
+            var child = $('<a href="#' + this.getAttribute('id') + '" class="link-anchor"><span class="fa fa-link"></span></a>');
+            this.appendChild(child.get(0));
+        });
+        $('[data-toggle=tooltip]').tooltip();
+    })(jQuery);
+</script>
+    <footer class="text-center text-muted">
+        Copyright &copy; 2014-2016 The Opis Project. All rights reserved.
+    </footer>
+</body>
+</html>

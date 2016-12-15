@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="Getting started with Opis Config">
+<title>Opis Config | www.opis.io</title>
+    <link href="/assets/img/favicon.png" rel="shortcut icon">
+<link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+<link href="/assets/css/syntax.css" rel="stylesheet">
+<link href="/assets/css/prism-github.css" rel="stylesheet">
+<link href="/assets/css/project.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+    <![endif]-->
+    <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/prism.js"></script>
+</head>
+<body>
+    <div class="github-fork-ribbon-wrapper right hidden-sm hidden-xs">
+        <div class="github-fork-ribbon" style="background-color: #f80">
+            <a href="https://github.com/opis/config">Fork me on GitHub</a>
+        </div>
+    </div>
+    <header id="header" class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
+                <a href="/closure/2.1" class="navbar-brand">
+                    <strong>
+                        Config
+                    </strong>
+                </a>
+                <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/" title="Main page">
+                            <span class="fa fa-home"></span> Home
+                        </a>
+                    </li>
+                    <li class="dropdown hidden-md hidden-lg">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="fa fa-file-text"></span> Documentation <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+            <li class="active"><a href="/config/2.1/index" title="Getting started with Opis Config">About</a></li>
+            <li><a href="/config/2.1/use" title="Learn how to use the library">Using the library</a></li>
+            <li><a href="/config/2.1/example" title="Examples of how to use the library">Examples</a></li>
+    </ul>
+</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="fa fa-cogs"></span> Components <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/cache/3.1">Cache</a></li>
+                            <li><a href="/closure/2.3">Closure</a></li>
+                            <li><a href="/config/2.1">Config</a></li>
+                            <li><a href="/container/2.3">Container</a></li>
+                            <li><a href="/database/3.6">Database</a></li>
+                            <li><a href="/events/4.1">Events</a></li>
+                            <li><a href="/http/2.0">HTTP</a></li>
+                            <li><a href="/http-routing/4.0">HTTP Routing</a></li>
+                            <li><a href="/routing/4.1">Routing</a></li>
+                            <li><a href="/session/3.1">Session</a></li>
+                            <li><a href="/view/4.1">View</a></li>
+                        </ul>
+                    </li>
+<li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="fa fa-tags"></span> Versions <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+        <li><a href="/config/2.1">Latest version (2.1)</a></li>
+        <li><a href="/config/1.6">Version 1.6</a></li>
+    </ul>
+</li>
+                    <li class="hidden-md hidden-lg">
+                        <a href="https://github.com/opis/config" title="Github page">
+                            <span class="fa fa-github fa-lg"></span> GitHub
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 hidden-xs hidden-sm">
+                        <div class="list-group">
+        <a href="/config/2.1/index" class="list-group-item active">
+            <h4 class="list-group-item-heading">About</h4>
+            <p class="list-group-item-text text-muted">
+                Getting started with Opis Config
+            </p>
+        </a>
+        <a href="/config/2.1/use" class="list-group-item">
+            <h4 class="list-group-item-heading">Using the library</h4>
+            <p class="list-group-item-text text-muted">
+                Learn how to use the library
+            </p>
+        </a>
+        <a href="/config/2.1/example" class="list-group-item">
+            <h4 class="list-group-item-heading">Examples</h4>
+            <p class="list-group-item-text text-muted">
+                Examples of how to use the library
+            </p>
+        </a>
+</div>
+                </div>
+                <div class="col-md-8 col-sm-12">
+                    <h1 id="configuration-manager">Configuration manager</h1>
+<p><strong>Opis Config</strong> is a configuration management library, with support for multiple backend storages, 
+that provides developers an API which allows them to work with configurations in a standardised way, 
+no matter where the configurations are stored.</p>
+<p>The supported backend storages are: File, JSON, Mongo, MongoArray, PHPFile, Memory, DualStorage.</p>
+<p class="well text-primary"><strong class="important">Important!</strong>
+You can install additional storage adapters, for SQL databases, by using the optional <a href="https://github.com/opis/storages" title="Opis Storages">Opis Storages</a> package.</p>
+<h2 id="license">License</h2>
+<p><strong>Opis Config</strong> is licensed under the <a rel="nofollow" target="_blank" href="http://www.apache.org/licenses/LICENSE-2.0" title="Project license">Apache License, Version 2.0</a>.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+  <li>PHP 5.3.0 or higher</li>
+  <li><a data-toggle="tooltip" href="/closure" title="Opis Closure ^2.0.0">Opis Closure</a> ^2.0.0</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p><strong>Opis Config</strong> is available on <a rel="nofollow" target="_blank" href="https://packagist.org/packages/opis/config" title="Packagist">Packagist</a> and can be installed using <a rel="nofollow" target="_blank" href="http://getcomposer.org" title="Composer">Composer</a>.</p><pre><code class="language-json">{
+    "require": {
+        "opis/config": "^2.1.2"
+    }
+}
+</code></pre>
+<p>If you are unable to use <a rel="nofollow" target="_blank" href="http://getcomposer.org" title="Composer">Composer</a> you can download the <a data-toggle="tooltip" href="https://github.com/opis/config/archive/2.1.2.tar.gz" title="2.1.2">.tar.gz</a> or the <a data-toggle="tooltip" href="https://github.com/opis/config/archive/2.1.2.zip" title="2.1.2">.zip</a>
+archive file, extract the content of the archive and include de <code>autoload.php</code> file into your project.</p><pre><code class="language-php">require_once 'path/to/opis/config-2.1.2/autoload.php';
+</code></pre>
+<ul class="pager">
+        <li class="next"><a href="/config/2.1/use" title="Using the library">Next &rarr;</a></li>
+</ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <a href="#0" id="back-to-top">
+    <span class="fa fa-arrow-up"></span>
+</a>
+<script>
+    (function($){
+        $(document).ready(function(){
+            var visible = false;
+            $(window).scroll(function(){
+                var top = $(this).scrollTop();
+                if (top >= 100 && !visible) {
+                    visible = true;
+                    $('#back-to-top').fadeIn().show();
+                }
+                if(top < 100 && visible){
+                    visible = false;
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            $('#back-to-top').click(function(){
+                $('html, body').animate({scrollTop : 0},800);
+                return false;
+            });
+        });
+        $('h2[id],h3[id],h4[id],h5[id],h6[id]').each(function () {
+            var child = $('<a href="#' + this.getAttribute('id') + '" class="link-anchor"><span class="fa fa-link"></span></a>');
+            this.appendChild(child.get(0));
+        });
+        $('[data-toggle=tooltip]').tooltip();
+    })(jQuery);
+</script>
+    <footer class="text-center text-muted">
+        Copyright &copy; 2014-2016 The Opis Project. All rights reserved.
+    </footer>
+</body>
+</html>

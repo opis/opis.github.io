@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="php, full-stack, framework, php framework, modules, modular framework">
+<meta name="description" content="Learn about Opis Colibri routes">
+<title>Routes | Opis Colibri</title>
+        
+        <link href="/assets/img/favicon.png" rel="shortcut icon">
+        
+        
+        
+<link rel="stylesheet" href="/assets/css/paper-theme.min.css">
+
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+
+<link href="/assets/css/syntax.css" rel="stylesheet">
+
+
+
+<link href="/assets/css/colibri.css" rel="stylesheet">
+
+
+        
+        <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-50415801-1', 'opis.io');
+    ga('send', 'pageview');
+</script>
+
+    </head>
+    <body>
+        <header id="header" class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="/colibri">
+                <img src="/assets/img/opis-colibri.png" class="img-responsive opis-inline-logo">
+            </a>
+            <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/colibri/documentation" title="Documentation">
+                        <span class="fa fa-file-text"></span> Documentation
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/opis/colibri" title="Github page">
+                        <span class="fa fa-github fa-lg"></span> GitHub
+                    </a>
+                </li>
+                <li>
+                    <a href="/" title="Main page">
+                        <span class="fa fa-home"></span> Home
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            
+<ul class="navigation">
+
+    
+        
+            
+        
+        <li class="chapter">Quick start</li>
+        <ul>
+            <li><a href="/colibri/documentation" title="Learn how to install Opis Colibri">Installation</a></li>
+    
+
+    
+        
+        </ul>
+        
+        <li class="chapter">The basics</li>
+        <ul>
+            <li><a href="/colibri/documentation/modules.html" title="Learn about modules and how to create them">Modules</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/collectors.html" title="Learn about collectors and how to use them">Collectors</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/installer.html" title="Learn about installers and what they do">Installers</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/classes.html" title="Learn about modules' classes">Classes</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/assets.html" title="Learn about Opis Colibri assets">Assets</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/functions.html" title="Learn about framework's global functions">Global functions</a></li>
+    
+
+    
+        
+        </ul>
+        
+        <li class="chapter">Administration</li>
+        <ul>
+            <li><a href="/colibri/documentation/console.html" title="Learn about available console commands">Console commands</a></li>
+    
+
+    
+        
+        </ul>
+        
+        <li class="chapter">Collectible items</li>
+        <ul>
+            <li><a href="/colibri/documentation/routes.html" title="Learn about Opis Colibri routes">Routes</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/route-aliases.html" title="Learn about Opis Colibri route aliases">Route aliases</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/dispatchers.html" title="Learn about Opis Colibri dispatchers">Dispatchers</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/views.html" title="Learn about Opis Colibri views">Views</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/view-engines.html" title="Learn about Opis Colibri view engines">View engines</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/contracts.html" title="Learn about Opis Colibri contracts">Contracts</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/commands.html" title="Learn how to define new commands">Commands</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/events.html" title="Learn about Opis Colibri event handlers">Event handlers</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/databases.html" title="Learn about database connections">Database connections</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/session.html" title="Learn about Opis Colibri sessions">Session storages</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/cache.html" title="Learn about Opis Colibri cache storages">Cache storages</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/config.html" title="Learn about Opis Colibri config storages">Config storages</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/validators.html" title="Learn about Opis Colibri validators">Validators</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/translations.html" title="Learn about Opis Colibri translations">Translations</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/variables.html" title="Learn about Opis Colibri variables">Variables</a></li>
+    
+
+    </ul>
+</ul>
+
+        </div>
+        <div class="col-md-8">
+            
+    
+
+
+    
+
+<h2>
+    
+    Routes
+    
+</h2>
+
+<ol class="submenu">
+    <li>
+
+
+
+
+    
+
+<a href="#introduction">Introduction</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#creating-routes">Creating routes</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#route-parameters">Route parameters</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#special-implicit-values">Special implicit values</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#domain-constraints">Domain constraints</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#secure-connection-constraint">Secure connection constraint</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#bindings">Bindings</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#filters">Filters</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#stored-values">Stored values</a></li>
+</ol>
+
+
+        
+
+
+    
+
+
+    
+
+
+    
+
+<h3>
+    
+    
+    Introduction
+    
+    <a id="introduction" href="#introduction" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    The framework's routing system is based on <a href="/http-routing" target="_blank">Opis HTTP Routing</a> library.
+    Routes are collected using the <code>Routes</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="c1">// Collect routes</span>
+
+<span class="p">});</span>
+</code></pre></div>
+
+<p>
+    You can override existing routes by specifying a higher collecting priority.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="c1">// Override all routes that have a collecting priority lower than 1</span>
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="c1">// Collect routes</span>
+
+<span class="p">},</span> <span class="mi">1</span><span class="p">);</span>
+</code></pre></div>
+
+<p>
+    The collector passed to the callback function is an object that implements
+    the <code>Opis\Colibri\RouteCollectorInterface</code> interface.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">interface</span> <span class="nx">RouteCollectorInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * Defines a global binding</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param   string      $name       The name of the binding</span>
+<span class="sd">     * @param   callable    $callback   A callback that will return the binding&#39;s value</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return  \Opis\Colibri\RouteCollectorInterface   Self reference</span>
+<span class="sd">     */</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">bind</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$callback</span><span class="p">);</span>
+    
+    <span class="sd">/**</span>
+<span class="sd">     * Defines a global filter</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param   string      $name       The name of the filter</span>
+<span class="sd">     * @param   callable    $callback   A callback that will return the filter&#39;s value</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return  \Opis\Colibri\RouteCollectorInterface   Self reference</span>
+<span class="sd">     */</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">filter</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$callback</span><span class="p">);</span>
+    
+    
+    <span class="sd">/**</span>
+<span class="sd">     * Set a global wildcard</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param   string  $name   The name of the wildcard</span>
+<span class="sd">     * @param   string  $value  A regex expression</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return  \Opis\Colibri\RouteCollectorInterface   Self reference</span>
+<span class="sd">     */</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">wildcard</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$value</span><span class="p">);</span>
+    
+    <span class="sd">/**</span>
+<span class="sd">     * Set a global implicit value for a wildcard</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param   string  $name   The name of the wildcard</span>
+<span class="sd">     * @param   mixed   $value  The implicit value</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return  \Opis\Colibri\RouteCollectorInterface   Self reference</span>
+<span class="sd">     */</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">implicit</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$value</span><span class="p">);</span>
+    
+    <span class="sd">/**</span>
+<span class="sd">     * Defines a new route that will intercept all HTTP requests</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param   string      $path   The path to match</span>
+<span class="sd">     * @param   callable    $value  An action that will be executed</span>
+<span class="sd">     * @param   string      $name   (optional) Route name</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return  \Opis\HttpRouter\Route</span>
+<span class="sd">     */</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">all</span><span class="p">(</span><span class="nv">$path</span><span class="p">,</span> <span class="nv">$action</span><span class="p">,</span> <span class="nv">$name</span> <span class="o">=</span> <span class="k">null</span><span class="p">);</span>
+    
+    <span class="sd">/**</span>
+<span class="sd">     * Defines a new route that will intercept all GET requests</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param   string      $path   The path to match</span>
+<span class="sd">     * @param   callable    $value  An action that will be executed</span>
+<span class="sd">     * @param   string      $name   (optional) Route name</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return  \Opis\HttpRouter\Route</span>
+<span class="sd">     */</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">get</span><span class="p">(</span><span class="nv">$path</span><span class="p">,</span> <span class="nv">$action</span><span class="p">,</span> <span class="nv">$name</span> <span class="o">=</span> <span class="k">null</span><span class="p">);</span>
+    
+    <span class="sd">/**</span>
+<span class="sd">     * Defines a new route that will intercept all POST requests</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param   string      $path   The path to match</span>
+<span class="sd">     * @param   callable    $value  An action that will be executed</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return  \Opis\HttpRouter\Route</span>
+<span class="sd">     */</span>
+        
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">post</span><span class="p">(</span><span class="nv">$path</span><span class="p">,</span> <span class="nv">$action</span><span class="p">,</span> <span class="nv">$name</span> <span class="o">=</span> <span class="k">null</span><span class="p">);</span>
+    
+    <span class="sd">/**</span>
+<span class="sd">     * Defines a new route that will intercept all DELETE requests</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param   string      $path   The path to match</span>
+<span class="sd">     * @param   callable    $value  An action that will be executed</span>
+<span class="sd">     * @param   string      $name   (optional) Route name</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return  \Opis\HttpRouter\Route</span>
+<span class="sd">     */</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">delete</span><span class="p">(</span><span class="nv">$path</span><span class="p">,</span> <span class="nv">$action</span><span class="p">,</span> <span class="nv">$name</span> <span class="o">=</span> <span class="k">null</span><span class="p">);</span>
+    
+    <span class="sd">/**</span>
+<span class="sd">     * Defines a new route that will intercept all PUT requests</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param   string      $path   The path to match</span>
+<span class="sd">     * @param   callable    $value  An action that will be executed</span>
+<span class="sd">     * @param   string      $name   (optional) Route name</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return  \Opis\HttpRouter\Route</span>
+<span class="sd">     */</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">put</span><span class="p">(</span><span class="nv">$path</span><span class="p">,</span> <span class="nv">$action</span><span class="p">,</span> <span class="nv">$name</span> <span class="o">=</span> <span class="k">null</span><span class="p">);</span>
+    
+    <span class="sd">/**</span>
+<span class="sd">     * Defines a new route that will intercept all PATCH requests</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param   string      $path   The path to match</span>
+<span class="sd">     * @param   callable    $value  An action that will be executed</span>
+<span class="sd">     * @param   string      $name   (optional) Route name</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return  \Opis\HttpRouter\Route</span>
+<span class="sd">     */</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">patch</span><span class="p">(</span><span class="nv">$path</span><span class="p">,</span> <span class="nv">$action</span><span class="p">,</span> <span class="nv">$name</span> <span class="o">=</span> <span class="k">null</span><span class="p">);</span>
+    
+    <span class="sd">/**</span>
+<span class="sd">     * Define a new route that will intercept  the specified methods</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param   string|array    $path   The path to match</span>
+<span class="sd">     * @param   callable        $action An action that will be executed</span>
+<span class="sd">     * @param   string|array    $method (optional) Request method</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return  \Opis\HttpRouter\Route</span>
+<span class="sd">     */</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__invoke</span><span class="p">(</span><span class="nv">$path</span><span class="p">,</span> <span class="nv">$action</span><span class="p">,</span> <span class="nv">$method</span> <span class="o">=</span> <span class="k">null</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+
+    
+
+
+    
+
+<h3>
+    
+    
+    Creating routes
+    
+    <a id="creating-routes" href="#creating-routes" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Routes are created by simply defining a path and a callable value that will act as a callback. 
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
+    <span class="p">});</span>
+    
+    <span class="nv">$route</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
+    <span class="p">});</span>
+    
+    <span class="nv">$route</span><span class="o">-&gt;</span><span class="na">put</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
+    <span class="p">});</span>
+    
+    <span class="nv">$route</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
+    <span class="p">});</span>
+    
+    <span class="nv">$route</span><span class="o">-&gt;</span><span class="na">patch</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
+    <span class="p">});</span>
+
+<span class="p">});</span>
+</code></pre></div>
+
+<p>
+    Another way of creating a route is through direct invocation of the collector object.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
+    <span class="p">});</span>
+    
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
+    <span class="p">},</span> <span class="s1">&#39;POST&#39;</span><span class="p">);</span>
+    
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
+    <span class="p">},</span> <span class="s1">&#39;PUT&#39;</span><span class="p">);</span>
+    
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
+    <span class="p">},</span> <span class="s1">&#39;DELETE&#39;</span><span class="p">);</span>
+    
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
+    <span class="p">},</span> <span class="s1">&#39;PATCH&#39;</span><span class="p">);</span>
+
+<span class="p">});</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h5>
+    
+    
+    Respond to any HTTP verb
+    
+    <a id="respond-to-any-http-verb" href="#respond-to-any-http-verb" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    Creating a route that responds to any HTTP verb is done by using the <code>all</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello World&#39;</span><span class="p">;</span>
+    <span class="p">});</span>
+
+<span class="p">});</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h5>
+    
+    
+    Respond to multiple HTTP verbs
+    
+    <a id="respond-to-multiple-http-verbs" href="#respond-to-multiple-http-verbs" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    You can also create a route that responds to a list of HTTP verbs.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello World&#39;</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">method</span><span class="p">([</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">]);</span>
+    
+    <span class="c1">// OR ..</span>
+    
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
+    <span class="p">},</span> <span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">]);</span>
+
+<span class="p">});</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h5>
+    
+    
+    Named routes
+    
+    <a id="named-routes" href="#named-routes" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    Named routes can be used to generate a new URL from a specific route with
+    the help of the <code>PathFromRoute</code> global function.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello World&#39;</span><span class="p">;</span>
+    <span class="p">},</span> <span class="s1">&#39;name&#39;</span><span class="p">);</span>
+    
+    <span class="c1">// OR ..</span>
+    
+    <span class="nv">$route</span><span class="p">([</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/&#39;</span><span class="p">],</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
+    <span class="p">});</span>
+
+<span class="p">});</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+
+    
+
+
+    
+
+<h3>
+    
+    
+    Route parameters
+    
+    <a id="route-parameters" href="#route-parameters" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Parameters are used to capture segments of the route's path and they are always enclosed by
+    curly braces. A parameter can be used inside the route's callback function by adding
+    the parameter's name to the argument list of the callback function.
+    Therefore a parameter's name must not contain characters that are not allowed to be used
+    for naming PHP variables.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/message/{id}&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$id</span><span class="p">){</span>
+        <span class="c1">//</span>
+    <span class="p">});</span>
+
+<span class="p">});</span>
+</code></pre></div>
+
+<p>
+    You can define as many parameters as you need.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/inbox/{mailbox}/read/{id}&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$mailbox</span><span class="p">,</span> <span class="nv">$id</span><span class="p">){</span>
+        <span class="c1">//</span>
+    <span class="p">});</span>
+
+<span class="p">});</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h5>
+    
+    
+    Optional parameters
+    
+    <a id="optional-parameters" href="#optional-parameters" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    Specifying that a parameter is optional can be done by adding a <code>?</code>
+    mark after the parameter name.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/profile/{id?}&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$id</span> <span class="o">=</span> <span class="mi">0</span><span class="p">){</span>
+        <span class="c1">//</span>
+    <span class="p">});</span>
+
+<span class="p">});</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h5>
+    
+    
+    Implicit values
+    
+    <a id="implicit-values" href="#implicit-values" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    You can add an implicit value for a parameter name, using the <code>implicit</code>
+    method on a route instance.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/profile/{id?}&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$id</span><span class="p">){</span>
+        <span class="c1">//</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">implicit</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+<span class="p">});</span>
+</code></pre></div>
+
+<p>
+    An implicit value for a parameter name can also be made globally available by calling
+    the <code>implicit</code> method on the collector instance.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="o">-&gt;</span><span class="na">implicit</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/profile/{id?}&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$id</span><span class="p">){</span>
+        <span class="c1">// Returns $id or 0</span>
+        <span class="k">return</span> <span class="nv">$id</span><span class="p">;</span>
+    <span class="p">});</span>
+    
+    <span class="c1">// Overwrite</span>
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/user/{id?}&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$id</span><span class="p">){</span>
+        <span class="c1">// Retruns $id or 1</span>
+        <span class="k">return</span> <span class="nv">$id</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">implicit</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="p">});</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h5>
+    
+    
+    Regex constraints
+    
+    <a id="regex-constraints" href="#regex-constraints" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    You can add regex constraints to parameters by using the <code>where</code> method.
+    The method takes as arguments the parameter name and a regular expression defining how
+    the parameter should be constrained.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/profile/{id}&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$id</span><span class="p">){</span>
+        <span class="c1">//</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;[0-9]+&#39;</span><span class="p">);</span>
+    
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/user/{name}&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$name</span><span class="p">){</span>
+        <span class="c1">//</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;[a-zA-Z]+&#39;</span><span class="p">);</span>
+    
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/inbox/{mailbox}/{id}&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$mailbox</span><span class="p">){</span>
+        <span class="c1">//</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;[0-9]+&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;mailbox&#39;</span><span class="p">,</span> <span class="s1">&#39;[a-zA-Z]+&#39;</span><span class="p">);</span>
+
+<span class="p">});</span>
+</code></pre></div>
+
+<p>
+    You can make a regex constraint globally available by using the <code>wildcard</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="o">-&gt;</span><span class="na">wildcard</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;[0-9]+&#39;</span><span class="p">);</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/profile/{id}&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$id</span><span class="p">){</span>
+        <span class="c1">// $id use global constraint [0-9]+ </span>
+    <span class="p">});</span>
+    
+    <span class="c1">//Overwrite</span>
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/user/{id}&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$id</span><span class="p">){</span>
+        <span class="c1">// $id use local constraint [a-zA-Z]+</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;[a-zA-Z]+&#39;</span><span class="p">);</span>
+
+<span class="p">});</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+
+    
+
+
+    
+
+<h3>
+    
+    
+    Special implicit values
+    
+    <a id="special-implicit-values" href="#special-implicit-values" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    There are two special implicit values: <code>self</code> and <code>path</code>.
+    The <code>self</code> implicit's value is the current route instance and
+    <code>path</code> implicit's value is the current path object, which is an instance of the
+    <code>Opis\HttpRouting\Path</code> class.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$self</span><span class="p">,</span> <span class="nv">$path</span><span class="p">){</span>
+        <span class="c1">//</span>
+    <span class="p">});</span>
+
+<span class="p">});</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+
+    
+
+
+    
+
+<h3>
+    
+    
+    Domain constraints
+    
+    <a id="domain-constraints" href="#domain-constraints" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Some routes can be constrained to be available only for a specific domain or subdomain.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello World!&#39;</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">domain</span><span class="p">(</span><span class="s1">&#39;mysite.com&#39;</span><span class="p">);</span>
+    
+<span class="p">});</span>
+</code></pre></div>
+
+<p>
+    You can also use parameters when defining a domain for a route. The parameters can be used
+    inside the route's callback function and you can apply regex constraints to domain parameters.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/echo&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$subdomain</span><span class="p">){</span>
+        <span class="k">return</span> <span class="nv">$subdomain</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">domain</span><span class="p">(</span><span class="s1">&#39;{subdomain}.mysite.com&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;subdomain&#39;</span><span class="p">,</span>  <span class="s1">&#39;blog|forum|www&#39;</span><span class="p">);</span>
+    
+<span class="p">});</span>
+</code></pre></div>
+
+<p>
+    Domain parameters can also be marked as being optional.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/echo&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$subdomain</span> <span class="o">=</span> <span class="s1">&#39;www&#39;</span><span class="p">){</span>
+        <span class="k">return</span> <span class="nv">$subdomain</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">domain</span><span class="p">(</span><span class="s1">&#39;{subdomain?}.mysite.com&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;subdomain&#39;</span><span class="p">,</span>  <span class="s1">&#39;blog|forum|www&#39;</span><span class="p">);</span>
+    
+<span class="p">});</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+
+    
+
+
+    
+
+<h3>
+    
+    
+    Secure connection constraint
+    
+    <a id="secure-connection-constraint" href="#secure-connection-constraint" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Routes can be constrained to be available only when they are accessed using secure HTTP connections.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/payment&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="c1">//</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">secure</span><span class="p">();</span>
+    
+<span class="p">});</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+
+    
+
+
+    
+
+<h3>
+    
+    
+    Bindings
+    
+    <a id="bindings" href="#bindings" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Binding a value to an identifier is done by using the <code>bind</code> method on a route instance.
+    The method takes as arguments the identifier and a callback.
+    The newly created identifier can then be referenced by route's callback.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$value</span><span class="p">){</span>
+        <span class="k">return</span> <span class="nv">$value</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">bind</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello world!&#39;</span><span class="p">;</span>
+    <span class="p">});</span>
+
+<span class="p">});</span>
+</code></pre></div>
+
+<p>
+    Another usage for the <code>bind</code> method is to overwrite a parameter's value
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/echo/{text}&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$text</span><span class="p">){</span>
+        <span class="k">return</span> <span class="nv">$text</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">bind</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$text</span><span class="p">){</span>
+        <span class="k">return</span> <span class="nx">strtoupper</span><span class="p">(</span><span class="nv">$text</span><span class="p">);</span>
+    <span class="p">});</span>
+    
+<span class="p">});</span>
+</code></pre></div>
+
+<p>
+    An identifier can also be bound to a value that was formed by using multiple parameters.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/entity/{type}/{id}&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$entity</span><span class="p">){</span>
+        <span class="c1">// Do something with the entity object</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">bind</span><span class="p">(</span><span class="s1">&#39;entity&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$type</span><span class="p">,</span> <span class="nv">$id</span><span class="p">){</span>
+        <span class="k">return</span> <span class="nx">Database</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;entities&#39;</span><span class="p">)</span>
+                         <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">is</span><span class="p">(</span><span class="nv">$type</span><span class="p">)</span>
+                         <span class="o">-&gt;</span><span class="na">andWhere</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">is</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span>
+                         <span class="o">-&gt;</span><span class="na">select</span><span class="p">()</span>
+                         <span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
+    <span class="p">});</span>
+    
+<span class="p">});</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h5>
+    
+    
+    Global bindings
+    
+    <a id="global-bindings" href="#global-bindings" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    Bindings can be made globally available by using the <code>bind</code> method on the collector instance.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="o">-&gt;</span><span class="na">bind</span><span class="p">(</span><span class="s1">&#39;entity&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$type</span><span class="p">,</span> <span class="nv">$id</span><span class="p">){</span>
+        <span class="k">return</span> <span class="nx">Database</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;entities&#39;</span><span class="p">)</span>
+                         <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">is</span><span class="p">(</span><span class="nv">$type</span><span class="p">)</span>
+                         <span class="o">-&gt;</span><span class="na">andWhere</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">is</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span>
+                         <span class="o">-&gt;</span><span class="na">select</span><span class="p">()</span>
+                         <span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
+    <span class="p">});</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/entity/{type}/{id}&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$entity</span><span class="p">){</span>
+        <span class="c1">// </span>
+    <span class="p">});</span>
+    
+    <span class="cm">/* Use a parameter and an implicit value to create the entity */</span>
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/user/{id}&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$entity</span><span class="p">){</span>
+        <span class="c1">//</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">implicit</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">);</span>
+    
+<span class="p">});</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+
+    
+
+
+    
+
+<h3>
+    
+    
+    Filters
+    
+    <a id="filters" href="#filters" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Creating a local filter is done by using the <code>filter</code> method on a route instance.
+    The <code>filter</code> method takes as arguments the name of the filter and a valid callable value
+    that will act as a callback.
+    Depending if the route passes the filter or not, the callback must return either <code>true</code> or <code>false</code>.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">filter</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">});</span>
+    
+<span class="p">});</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h5>
+    
+    
+    Global filters
+    
+    <a id="global-filters" href="#global-filters" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    You can also create a global filter by calling the <code>filter</code>
+    method on the collector instance.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="o">-&gt;</span><span class="na">filter</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">});</span>
+    
+<span class="p">});</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h5>
+    
+    
+    Using filters
+    
+    <a id="using-filters" href="#using-filters" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    Simply creating a local or a global filter has no effect over a route
+    and it does not influence the routing process. Using a filter with a route
+    is done by using one of the following methods on a route instance: <code>before</code>,
+    <code>after</code> and <code>access</code>.
+</p>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h5>
+    
+    
+    Before
+    
+    <a id="before" href="#before" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    Filters added using the <code>before</code> method will be executed before the binding process
+    takes place. Filters are executed only if the path and the domain pass all defined constraints.
+    If a route does not pass a <em>before</em> filter, the route is ignored and the next route in
+    the list gets checked.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">filter</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">before</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">);</span>
+    
+<span class="p">});</span>
+</code></pre></div>
+
+<p>
+    You can add multiple filters by using, as an argument to the method, an array of filter names.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">before</span><span class="p">([</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">]);</span>
+    
+<span class="p">});</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h5>
+    
+    
+    After
+    
+    <a id="after" href="#after" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    Filters added using the <code>after</code> method gets executed only if all the
+    <em>before</em> filter passes. At the point when an <em>after</em> filter is executed,
+    all the bindings have been finalized. If a route does not pass an <em>after</em> filter,
+    then a <code>404 Not found</code> error page is returned. You can add multiple filters by using,
+    as an argument to the method, an array of filter names.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">before</span><span class="p">([</span><span class="s1">&#39;qux&#39;</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">after</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">);</span>
+    
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/path&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">after</span><span class="p">([</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">]);</span>
+    
+<span class="p">});</span>
+</code></pre></div>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+<h5>
+    
+    
+    Access
+    
+    <a id="access" href="#access" class="link-anchor"><span class="fa fa-link"></span></a>
+</h5>
+
+<p>
+    Filters added using the <code>access</code> method gets executed only if all the
+    <em>after</em> filter passes. If a route does not pass an <em>access</em> filter,
+    then a <code>403 Forbidden</code> error page is returned. You can add multiple filters by using,
+    as an argument to the method, an array of filter names.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">access</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">);</span>
+    
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/path&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">access</span><span class="p">([</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">]);</span>
+    
+<span class="p">});</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+
+    
+
+
+    
+
+<h3>
+    
+    
+    Stored values
+    
+    <a id="stored-values" href="#stored-values" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Storing an arbitrary value into a route instance using a key named <code>foo</code> is done
+    by calling a method <code>foo</code> on the route instance.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Routes</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$route</span><span class="p">){</span>
+
+    <span class="nv">$route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$self</span><span class="p">){</span>
+        <span class="nv">$foo</span> <span class="o">=</span> <span class="nv">$self</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">);</span>
+        <span class="nv">$bar</span> <span class="o">=</span> <span class="nv">$self</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">);</span>
+        <span class="nv">$baz</span> <span class="o">=</span> <span class="nv">$self</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;baz&#39;</span><span class="p">);</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">foo</span><span class="p">(</span><span class="s1">&#39;fooValue&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">bar</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+    <span class="o">-&gt;</span><span class="na">baz</span><span class="p">(</span><span class="k">function</span><span class="p">(){</span>
+    
+    <span class="p">});</span>
+    
+<span class="p">});</span>
+</code></pre></div>
+
+
+
+            
+
+
+
+
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+        
+    
+
+    
+        
+            
+                
+                
+            
+        
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<ul class="pager">
+  
+  <li class="previous"><a href="/colibri/documentation/console.html" title="Console commands">&larr; Back</a></li>
+  
+  
+  <li class="next"><a href="/colibri/documentation/route-aliases.html" title="Route aliases">Next &rarr;</a></li>
+  
+</ul>
+            
+        </div>
+    </div>
+    <a href="#0" id="back-to-top">
+        <span class="fa fa-arrow-up"></span>
+    </a>
+</div>
+<script>
+    (function($){
+        
+        $(document).ready(function(){
+           var visible = false;
+           $(window).scroll(function(){
+                var top = $(this).scrollTop();
+                
+                if (top >= 100 && !visible) {
+                   visible = true;
+                   $('#back-to-top').fadeIn().show();
+                 }
+                 if(top < 100 && visible){
+                   visible = false;
+                   $('#back-to-top').fadeOut();  
+                 }
+           });
+           
+            $('#back-to-top').click(function(){
+                $('html, body').animate({scrollTop : 0},800);
+                return false;
+            });
+            
+        });
+        
+        
+    })(jQuery);
+</script>
+</section>
+
+<footer class="text-center text-muted">
+    Copyright &copy; 2014-2015 Marius Sarca. All rights reserved.
+</footer>
+
+    </body>
+</html>

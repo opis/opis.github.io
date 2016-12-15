@@ -1,0 +1,142 @@
+html{
+    position: relative;
+    min-height: 100%;
+}
+
+body{
+    /*margin-bottom: 100px;*/
+}
+
+body > section {
+    /*padding-top: 80px;*/
+}
+
+header{
+    position: static;
+}
+
+.highlight pre{
+    background-color: #F8F8F8;
+    border: 1px solid #DDDDDD;
+    border-radius: 3px;
+    font-size: 13px;
+    line-height: 19px;
+    overflow: auto;
+    padding: 6px 10px;
+    color: inherit;
+}
+
+.box-highlight .highlight pre{
+    background-color: #fff;
+    border: none;
+    font-size: 11px;
+}
+
+.table.box-highlight th{
+    width: 50%;
+}
+
+.opis-inline-logo{
+    display: inline;
+    float: left;
+    height: 50px;
+    margin-right: 5px;
+    margin-top: 10px;
+}
+
+.feature-v1 .thumbnail {
+    min-height: 225px;
+}
+
+.feature-v2 .thumbnail {
+    min-height: 260px;
+}
+
+footer{
+    height: 100px;
+    /*position: absolute;
+    bottom: 0;*/
+    width: 100%;
+    line-height: 100px;
+}
+
+ol.submenu{
+    list-style: decimal; 
+}
+
+ol.submenu ol{
+    list-style: lower-latin;
+}
+
+a.link-anchor, a.alter-link{
+    color: inherit;
+}
+
+a.link-anchor{
+    visibility: hidden;
+    font-size: 0.75em;
+    /*margin-top: -80px;
+    padding-top: 80px;*/
+    outline: none;
+}
+
+a.top-anchor{
+    visibility: hidden;
+    /*margin-top: -80px;
+    padding-top: 80px;*/
+}
+
+a.navbar-brand{
+    outline: none;
+}
+
+*:hover > a.link-anchor{
+    visibility: visible;
+}
+
+p > code{
+    white-space: pre-wrap;
+}
+
+ul.file-tree{
+    list-style: none;
+    padding: 0px;
+}
+
+ul.file-tree ul.file-tree{
+    padding: 0px 20px;
+}
+
+ul.navigation, ul.navigation ul{
+    padding: 0px;
+    list-style: none;
+}
+
+ul.navigation .chapter {
+    font-size: 1.5em;
+    color: #bbb;
+    border-bottom: 1px dashed #bbb;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+ul.navigation ul{
+    margin-bottom: 25px;
+}
+
+#back-to-top{
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #e51c23;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    z-index: 100;
+    outline: none;
+    display: none;
+}

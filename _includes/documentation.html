@@ -1,0 +1,18 @@
+<li class="dropdown hidden-md hidden-lg">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="fa fa-file-text"></span> Documentation <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+    {% for doc in include.documents %}
+        {% assign d = doc.permalink | split: '/' %}
+        {% assign a = doc.url %}
+        {% capture p %}{{d[0]}}/{{d[1]}}{% endcapture %}
+        {% if p == include.project %}
+            {% if doc.chapter %}
+            <li class="dropdown-header">{{doc.chapter}}</li>
+            {% endif %}
+            <li{% if a == include.active %} class="active"{% endif %}><a href="{{doc.url}}" title="{{doc.description}}">{{doc.title}}</a></li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+</li>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="Learn how to update existing records">
+<title>Update records | Opis Database</title>
+    <link href="/assets/img/favicon.png" rel="shortcut icon">
+<link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+<link href="/assets/css/syntax.css" rel="stylesheet">
+<link href="/assets/css/prism-github.css" rel="stylesheet">
+<link href="/assets/css/project.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+    <![endif]-->
+    <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/prism.js"></script>
+</head>
+<body>
+    <div class="github-fork-ribbon-wrapper right hidden-sm hidden-xs">
+        <div class="github-fork-ribbon" style="background-color: #f80">
+            <a href="https://github.com/opis/database">Fork me on GitHub</a>
+        </div>
+    </div>
+    <header id="header" class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
+                <a href="/database/3.6" class="navbar-brand">
+                    <strong>
+                        Database
+                    </strong>
+                </a>
+                <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/" title="Main page">
+                            <span class="fa fa-home"></span> Home
+                        </a>
+                    </li>
+                    <li class="dropdown hidden-md hidden-lg">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="fa fa-file-text"></span> Documentation <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+            <li class="dropdown-header">Getting started</li>
+            <li><a href="/database/3.6/index" title="Getting started with Opis Database">About</a></li>
+            <li><a href="/database/3.6/connections" title="Learn how to connect to a database">Database connections</a></li>
+            <li class="dropdown-header">The basics</li>
+            <li><a href="/database/3.6/fetching-records" title="Fetching records from a database">Fetching records</a></li>
+            <li><a href="/database/3.6/results-handling" title="Learn how to handle the result set of a query">Results handling</a></li>
+            <li><a href="/database/3.6/aggregate-functions" title="Learn about aggregate functions">Aggregate functions</a></li>
+            <li><a href="/database/3.6/extended-selections" title="Learn about how to define custom selections">Extended selections</a></li>
+            <li><a href="/database/3.6/filters" title="Learn how to filter records">Filter</a></li>
+            <li><a href="/database/3.6/expressions" title="Learn about expressions">Expressions</a></li>
+            <li><a href="/database/3.6/ordering-criteria" title="Learn how to order results">Ordering criteria</a></li>
+            <li><a href="/database/3.6/limits-and-offsets" title="Learn about limits and offsets">Limits and offset</a></li>
+            <li><a href="/database/3.6/joins" title="Learn how to perform joins">Joins</a></li>
+            <li><a href="/database/3.6/aggregates-handling" title="Learn how to work with aggregates">Working with aggregates</a></li>
+            <li><a href="/database/3.6/insert-records" title="Insert new records into a table">Insert records</a></li>
+            <li class="active"><a href="/database/3.6/update-records" title="Learn how to update existing records">Update records</a></li>
+            <li><a href="/database/3.6/delete-records" title="Learn how to delete existing records">Delete records</a></li>
+            <li class="dropdown-header">Transactions</li>
+            <li><a href="/database/3.6/transactions" title="Learn how to use transactions">Performing transactions</a></li>
+            <li class="dropdown-header">Database schema</li>
+            <li><a href="/database/3.6/schema" title="Learn about Opis Database schema">Introduction</a></li>
+            <li><a href="/database/3.6/schema-creating-tables" title="Learn how to create new tables">Creating tables</a></li>
+            <li><a href="/database/3.6/schema-modifying-tables" title="Learn how to alter existing new tables">Modifying tables</a></li>
+            <li class="dropdown-header">ORM</li>
+            <li><a href="/database/3.6/orm" title="Learn about Opis Database ORM">Introduction</a></li>
+            <li><a href="/database/3.6/orm-basics" title="Learn how to use Opis Database ORM">Basic operations</a></li>
+            <li><a href="/database/3.6/orm-relationships" title="Learn about ORM relationships">Relationships</a></li>
+            <li><a href="/database/3.6/orm-models" title="Learn how to work with models">Working with models</a></li>
+    </ul>
+</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="fa fa-cogs"></span> Components <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/cache/3.1">Cache</a></li>
+                            <li><a href="/closure/2.3">Closure</a></li>
+                            <li><a href="/config/2.1">Config</a></li>
+                            <li><a href="/container/2.3">Container</a></li>
+                            <li><a href="/database/3.6">Database</a></li>
+                            <li><a href="/events/4.1">Events</a></li>
+                            <li><a href="/http/2.0">HTTP</a></li>
+                            <li><a href="/http-routing/4.0">HTTP Routing</a></li>
+                            <li><a href="/routing/4.1">Routing</a></li>
+                            <li><a href="/session/3.1">Session</a></li>
+                            <li><a href="/view/4.1">View</a></li>
+                        </ul>
+                    </li>
+                    <li class="hidden-md hidden-lg">
+                        <a href="https://github.com/opis/database" title="Github page">
+                            <span class="fa fa-github fa-lg"></span> GitHub
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 hidden-xs hidden-sm">
+<ul class="navigation">
+            <li class="chapter">Getting started</li>
+            <ul>
+                <li><a href="/database/3.6/index" title="Getting started with Opis Database">About</a></li>
+            <li><a href="/database/3.6/connections" title="Learn how to connect to a database">Database connections</a></li>
+                </ul>
+            <li class="chapter">The basics</li>
+            <ul>
+                <li><a href="/database/3.6/fetching-records" title="Fetching records from a database">Fetching records</a></li>
+            <li><a href="/database/3.6/results-handling" title="Learn how to handle the result set of a query">Results handling</a></li>
+            <li><a href="/database/3.6/aggregate-functions" title="Learn about aggregate functions">Aggregate functions</a></li>
+            <li><a href="/database/3.6/extended-selections" title="Learn about how to define custom selections">Extended selections</a></li>
+            <li><a href="/database/3.6/filters" title="Learn how to filter records">Filter</a></li>
+            <li><a href="/database/3.6/expressions" title="Learn about expressions">Expressions</a></li>
+            <li><a href="/database/3.6/ordering-criteria" title="Learn how to order results">Ordering criteria</a></li>
+            <li><a href="/database/3.6/limits-and-offsets" title="Learn about limits and offsets">Limits and offset</a></li>
+            <li><a href="/database/3.6/joins" title="Learn how to perform joins">Joins</a></li>
+            <li><a href="/database/3.6/aggregates-handling" title="Learn how to work with aggregates">Working with aggregates</a></li>
+            <li><a href="/database/3.6/insert-records" title="Insert new records into a table">Insert records</a></li>
+            <li class="active"><a href="/database/3.6/update-records" title="Learn how to update existing records">Update records</a></li>
+            <li><a href="/database/3.6/delete-records" title="Learn how to delete existing records">Delete records</a></li>
+                </ul>
+            <li class="chapter">Transactions</li>
+            <ul>
+                <li><a href="/database/3.6/transactions" title="Learn how to use transactions">Performing transactions</a></li>
+                </ul>
+            <li class="chapter">Database schema</li>
+            <ul>
+                <li><a href="/database/3.6/schema" title="Learn about Opis Database schema">Introduction</a></li>
+            <li><a href="/database/3.6/schema-creating-tables" title="Learn how to create new tables">Creating tables</a></li>
+            <li><a href="/database/3.6/schema-modifying-tables" title="Learn how to alter existing new tables">Modifying tables</a></li>
+                </ul>
+            <li class="chapter">ORM</li>
+            <ul>
+                <li><a href="/database/3.6/orm" title="Learn about Opis Database ORM">Introduction</a></li>
+            <li><a href="/database/3.6/orm-basics" title="Learn how to use Opis Database ORM">Basic operations</a></li>
+            <li><a href="/database/3.6/orm-relationships" title="Learn about ORM relationships">Relationships</a></li>
+            <li><a href="/database/3.6/orm-models" title="Learn how to work with models">Working with models</a></li>
+    </ul>
+</ul>
+                </div>
+                <div class="col-md-8 col-sm-12">
+                    <h1 id="update-records">Update records</h1>
+<p>Updating existing records is done by using the <code>update</code> method. 
+This method takes a single argument representing the table name which needs to be updated
+and returns an integer value, representing the number of updated records.</p>
+<p>Setting new values is done by passing as an argument to the <code>set</code> method a <code>key =&gt; value</code>
+mapped array, where the <code>key</code> represents the column that will be updated, and <code>value</code>
+represents the value that will be stored into the specified column.</p><pre><code class="language-php">// Update the description of all users
+
+$result = $db-&gt;update('users')
+             -&gt;set(array(
+                'description' =&gt; 'Some description'
+             ));
+</code></pre><pre><code class="language-sql">UPDATE `users` SET `description` = "Some description"
+</code></pre>
+<p>Updating a specific set of records is done by adding filtering conditions.</p><pre><code class="language-php">// Update the email and the description of a specific user
+
+$result = $db-&gt;update('users')
+             -&gt;where('id')-&gt;is(2014)
+             -&gt;set(array(
+                'email' =&gt; 'email@example.com',
+                'description' =&gt; 'Some description',
+             ));
+</code></pre><pre><code class="language-sql">UPDATE `users` SET 
+    `email` = "email@example.com", 
+    `description` = "Some description" 
+WHERE `id` = 2014
+</code></pre>
+<p>You can also use expressions when you update a table by setting a closure as the value for the column.</p><pre><code class="language-php">// Increments the number of friends
+
+$result = $db-&gt;update('users')
+             -&gt;where('id')-&gt;is(2014)
+             -&gt;set(array(
+                'friends_no' =&gt; function($expr){
+                    $expr-&gt;column('friends_no')-&gt;{'+'}-&gt;value(1);
+                }
+             ));
+</code></pre><pre><code class="language-sql">UPDATE `users` SET `friends_no` = `friends_no` + 1 WHERE `id` = 2014
+</code></pre>
+<p>Incrementing a column’s value can be achieved by using the <code>increment</code> method.</p><pre><code class="language-php">// Increments the number of friends
+
+$result = $db-&gt;update('users')
+             -&gt;where('id')-&gt;is(2014)
+             -&gt;increment('friends_no');
+</code></pre><pre><code class="language-sql">UPDATE `users` SET `friends_no` = `friends_no` + 1 WHERE `id` = 2014
+</code></pre>
+<p>Decrementing a column’s value can be achieved by using the <code>decrement</code> method.</p><pre><code class="language-php">// Decrements the number of friends
+
+$result = $db-&gt;update('users')
+             -&gt;where('id')-&gt;is(2014)
+             -&gt;decrement('friends_no');
+</code></pre><pre><code class="language-sql">UPDATE `users` SET `friends_no` = `friends_no` - 1 WHERE `id` = 2014
+</code></pre>
+<p>You can increment or decrement the value of a column by specifying an explicit quantity.</p><pre><code class="language-php">// Increments the number of friends by 2
+
+$result = $db-&gt;update('users')
+             -&gt;where('id')-&gt;is(2014)
+             -&gt;increment('friends_no', 2);
+</code></pre><pre><code class="language-sql">UPDATE `users` SET `friends_no` = `friends_no` + 2 WHERE `id` = 2014
+</code></pre>
+<p>You can also increment or decrement multiple columns at the same time and you can use different
+incrementing/decrementing values for each column.</p><pre><code class="language-php">/* Increments the number of friends and unread messages by 1
+   and the user's age by 5 */ 
+
+$result = $db-&gt;update('users')
+             -&gt;where('id')-&gt;is(2014)
+             -&gt;increment(array('friends_no', 'unread_messages', 'age' =&gt; 5));
+</code></pre><pre><code class="language-sql">UPDATE `users` SET
+    `friends_no` = `friends_no` + 1,
+    `unread_messages` = `unread_messages` + 1,
+    `age` = `age` + 5
+WHERE `id` = 2014
+</code></pre>
+<ul class="pager">
+        <li class="previous"><a href="/database/3.6/insert-records" title="Insert records">&larr; Back</a></li>
+        <li class="next"><a href="/database/3.6/delete-records" title="Delete records">Next &rarr;</a></li>
+</ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <a href="#0" id="back-to-top">
+    <span class="fa fa-arrow-up"></span>
+</a>
+<script>
+    (function($){
+        $(document).ready(function(){
+            var visible = false;
+            $(window).scroll(function(){
+                var top = $(this).scrollTop();
+                if (top >= 100 && !visible) {
+                    visible = true;
+                    $('#back-to-top').fadeIn().show();
+                }
+                if(top < 100 && visible){
+                    visible = false;
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            $('#back-to-top').click(function(){
+                $('html, body').animate({scrollTop : 0},800);
+                return false;
+            });
+        });
+        $('h2[id],h3[id],h4[id],h5[id],h6[id]').each(function () {
+            var child = $('<a href="#' + this.getAttribute('id') + '" class="link-anchor"><span class="fa fa-link"></span></a>');
+            this.appendChild(child.get(0));
+        });
+        $('[data-toggle=tooltip]').tooltip();
+    })(jQuery);
+</script>
+    <footer class="text-center text-muted">
+        Copyright &copy; 2014-2016 The Opis Project. All rights reserved.
+    </footer>
+</body>
+</html>

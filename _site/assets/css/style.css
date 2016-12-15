@@ -1,0 +1,116 @@
+html{
+    position: relative;
+    min-height: 100%;
+}
+
+body{
+    margin-bottom: 100px;
+}
+
+body > section {
+    padding-top: 80px;
+}
+
+header{
+    position: static;
+}
+
+.highlight pre{
+    background-color: #F8F8F8;
+    border: 1px solid #DDDDDD;
+    border-radius: 3px;
+    font-size: 13px;
+    line-height: 19px;
+    overflow: auto;
+    padding: 6px 10px;
+    color: inherit;
+}
+
+.box-highlight .highlight pre{
+    background-color: #fff;
+    border: none;
+    font-size: 11px;
+}
+
+.table.box-highlight th{
+    width: 50%;
+}
+
+.opis-inline-logo{
+    display: inline !important;
+    width: 60px;
+    height: 60px;
+}
+
+.navbar-brand{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+footer{
+    height: 100px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    line-height: 100px;
+}
+
+ol.submenu{
+    list-style: decimal; 
+}
+
+ol.submenu ol{
+    list-style: lower-latin;
+}
+
+ol.submenu a, a.link-anchor, a.alter-link{
+    color: #2C3E50;
+}
+
+ol.submenu a{
+    font-weight: bold;
+}
+
+a.link-anchor{
+    visibility: hidden;
+    padding-top: 80px;
+    margin-top: -80px;
+}
+
+a.top-anchor{
+    visibility: hidden;
+    padding-top: 80px;
+    margin-top: -80px;
+}
+
+a.navbar-brand{
+    outline: none;
+}
+
+*:hover > a.link-anchor{
+    visibility: visible;
+}
+
+p > code{
+    white-space: pre-wrap;
+}
+
+.project-logo-box{
+    background-image: url('/assets/img/opis-gs.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100px;
+}
+
+.project-logo-box:after{
+    content: attr(data-project-title);
+    font-family: "Lato","Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 100px;
+    display: block;
+    text-align: center;
+    padding-top: 40px;
+    text-shadow: 1px 1px 2px #EEEEEE, 2px 2px 0 #707070
+}
+

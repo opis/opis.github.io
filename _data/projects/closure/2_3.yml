@@ -1,0 +1,8 @@
+name: Closure
+full_name: Opis Closure
+url: /closure/v2.x
+usechapters: false
+git: https://github.com/opis/closure
+versions:
+  - title: Version 2.x
+    url: /closure/v2.x

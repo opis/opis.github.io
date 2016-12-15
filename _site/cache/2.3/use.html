@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="Learn how to use the library">
+<title>Using the library | Opis Cache</title>
+    <link href="/assets/img/favicon.png" rel="shortcut icon">
+            <link rel="canonical" href="/cache/3.1/use">
+<link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+<link href="/assets/css/syntax.css" rel="stylesheet">
+<link href="/assets/css/prism-github.css" rel="stylesheet">
+<link href="/assets/css/project.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+    <![endif]-->
+    <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/prism.js"></script>
+</head>
+<body>
+    <div class="github-fork-ribbon-wrapper right hidden-sm hidden-xs">
+        <div class="github-fork-ribbon" style="background-color: #f80">
+            <a href="https://github.com/opis/cache">Fork me on GitHub</a>
+        </div>
+    </div>
+    <header id="header" class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
+                <a href="/cache/2.3" class="navbar-brand">
+                    <strong>
+                        Cache
+                    </strong>
+                </a>
+                <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/" title="Main page">
+                            <span class="fa fa-home"></span> Home
+                        </a>
+                    </li>
+                    <li class="dropdown hidden-md hidden-lg">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="fa fa-file-text"></span> Documentation <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+            <li><a href="/cache/2.3/index" title="Getting started with Opis Cache">About</a></li>
+            <li class="active"><a href="/cache/2.3/use" title="Learn how to use the library">Using the library</a></li>
+            <li><a href="/cache/2.3/collection" title="Learn how to create and use storage collections">Storage collection</a></li>
+            <li><a href="/cache/2.3/storage" title="Learn how to add support for new storages">Add new storages</a></li>
+    </ul>
+</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="fa fa-cogs"></span> Components <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/cache/3.1">Cache</a></li>
+                            <li><a href="/closure/2.3">Closure</a></li>
+                            <li><a href="/config/2.1">Config</a></li>
+                            <li><a href="/container/2.3">Container</a></li>
+                            <li><a href="/database/3.6">Database</a></li>
+                            <li><a href="/events/4.1">Events</a></li>
+                            <li><a href="/http/2.0">HTTP</a></li>
+                            <li><a href="/http-routing/4.0">HTTP Routing</a></li>
+                            <li><a href="/routing/4.1">Routing</a></li>
+                            <li><a href="/session/3.1">Session</a></li>
+                            <li><a href="/view/4.1">View</a></li>
+                        </ul>
+                    </li>
+<li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="fa fa-tags"></span> Versions <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+        <li><a href="/cache/3.1">Latest version (3.1)</a></li>
+        <li><a href="/cache/2.3">Version 2.3</a></li>
+    </ul>
+</li>
+                    <li class="hidden-md hidden-lg">
+                        <a href="https://github.com/opis/cache" title="Github page">
+                            <span class="fa fa-github fa-lg"></span> GitHub
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 hidden-xs hidden-sm">
+                        <div class="list-group">
+        <a href="/cache/2.3/index" class="list-group-item">
+            <h4 class="list-group-item-heading">About</h4>
+            <p class="list-group-item-text text-muted">
+                Getting started with Opis Cache
+            </p>
+        </a>
+        <a href="/cache/2.3/use" class="list-group-item active">
+            <h4 class="list-group-item-heading">Using the library</h4>
+            <p class="list-group-item-text text-muted">
+                Learn how to use the library
+            </p>
+        </a>
+        <a href="/cache/2.3/collection" class="list-group-item">
+            <h4 class="list-group-item-heading">Storage collection</h4>
+            <p class="list-group-item-text text-muted">
+                Learn how to create and use storage collections
+            </p>
+        </a>
+        <a href="/cache/2.3/storage" class="list-group-item">
+            <h4 class="list-group-item-heading">Add new storages</h4>
+            <p class="list-group-item-text text-muted">
+                Learn how to add support for new storages
+            </p>
+        </a>
+</div>
+                </div>
+                <div class="col-md-8 col-sm-12">
+                    <h1 id="using-the-library">Using the library</h1>
+<p>Working with cached content is done by using the <code>Opis\Cache\Cache</code> class. 
+The constructor of this class takes as an argument an instance of the the 
+<code>Opis\Cache\StorageInterface</code>, representing the backend storage where you 
+will write and read from.</p><pre><code class="language-php">use Opis\Cache\Cache;
+use Opis\Cache\Storage\Memory as CacheStorage;
+
+$cache = new Cache(new CacheStorage());
+</code></pre>
+<p>All content is stored using key-value pairs and storing a value is done by 
+calling the <code>write</code> method. The method takes as a first argument a string, 
+representing the key, and as a second argument the value you want to be stored. 
+The method returns <code>true</code> if the content was cached successfully and <code>false</code> otherwise.</p><pre><code class="language-php">$cache-&gt;write('hello', 'Hello World!');
+</code></pre>
+<p>Optionally, you can specify how long will be the cached content available, 
+by passing a third argument to the <code>write</code> method, representing the amount 
+of time expressed in seconds. By default the cached content is available 
+for an undetermined period.</p><pre><code class="language-php">//The content will expire after 1 hour
+$cache-&gt;write('hello', 'Hello World!', 3600);
+</code></pre>
+<p>Retrieving content from cache is done by calling the <code>read</code> method with 
+a string argument representing the key that was used to store the content. 
+If no content is available, or if the cached content has expired, the method
+returns <code>false</code>.</p><pre><code class="language-php">echo $cache-&gt;read('hello'); //&gt; Hello World!
+</code></pre>
+<p>Checking if some content was stored under a certain key is done by calling 
+the <code>has</code> method and passing as an argument a string representing the key’s 
+name you want to check. This method returns <code>false</code> if nothing was stored 
+under the specified key or if the content expired and <code>true</code> otherwise.</p><pre><code class="language-php">if($cache-&gt;has('read'))
+{
+    echo $cache-&gt;read('hello'); //&gt; Hello World!
+}
+</code></pre>
+<p>The <code>load</code> method returns the data stored under the specified key, or if 
+nothing was stored under that key, it will store and return the result obtained 
+by calling the given closure with a string argument representing the specified key.</p><pre><code class="language-php">$content = $cache-&gt;load('hello', function($key){
+    return 'Hello Wolrd!';
+});
+</code></pre>
+<p>Optionally, you can specify how long will be available the content obtained 
+when the given closure was called, by passing a third argument to the <code>load</code> method, 
+representing the amount of time expressed in seconds.</p><pre><code class="language-php">$content = $cache-&gt;load('hello', function($key){
+    return 'Hello Wolrd!';
+}, 3600);
+</code></pre>
+<p>Deleting content that was stored under a certain key is done by calling the 
+<code>delete</code> method. This method returns <code>true</code> on success and <code>false</code> otherwise.</p><pre><code class="language-php">$cache-&gt;delete('hello');
+</code></pre>
+<p>You can delete all cached content by calling the <code>clear</code> method. 
+The method returns <code>true</code> on success and <code>false</code> otherwise.</p><pre><code class="language-php">$cache-&gt;clear();
+</code></pre>
+<ul class="pager">
+        <li class="previous"><a href="/cache/2.3/index" title="About">&larr; Back</a></li>
+        <li class="next"><a href="/cache/2.3/collection" title="Storage collection">Next &rarr;</a></li>
+</ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <a href="#0" id="back-to-top">
+    <span class="fa fa-arrow-up"></span>
+</a>
+<script>
+    (function($){
+        $(document).ready(function(){
+            var visible = false;
+            $(window).scroll(function(){
+                var top = $(this).scrollTop();
+                if (top >= 100 && !visible) {
+                    visible = true;
+                    $('#back-to-top').fadeIn().show();
+                }
+                if(top < 100 && visible){
+                    visible = false;
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            $('#back-to-top').click(function(){
+                $('html, body').animate({scrollTop : 0},800);
+                return false;
+            });
+        });
+        $('h2[id],h3[id],h4[id],h5[id],h6[id]').each(function () {
+            var child = $('<a href="#' + this.getAttribute('id') + '" class="link-anchor"><span class="fa fa-link"></span></a>');
+            this.appendChild(child.get(0));
+        });
+        $('[data-toggle=tooltip]').tooltip();
+    })(jQuery);
+</script>
+    <footer class="text-center text-muted">
+        Copyright &copy; 2014-2016 The Opis Project. All rights reserved.
+    </footer>
+</body>
+</html>

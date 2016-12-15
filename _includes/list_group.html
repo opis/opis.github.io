@@ -1,0 +1,19 @@
+<div class="list-group">
+{% for doc in include.documents %}
+    {% assign d = doc.permalink | split: '/' %}
+    {% assign a = doc.url %}
+    {% capture p %}{{d[0]}}/{{d[1]}}{% endcapture %}
+    {% if p == include.project %}
+        {% if a == include.active %}
+        <a href="{{doc.url}}" class="list-group-item active">
+        {% else %}
+        <a href="{{doc.url}}" class="list-group-item">
+        {% endif %}
+            <h4 class="list-group-item-heading">{{doc.title}}</h4>
+            <p class="list-group-item-text text-muted">
+                {{doc.description}}
+            </p>
+        </a>
+    {% endif %}
+{% endfor %}
+</div>

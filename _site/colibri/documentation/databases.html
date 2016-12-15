@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="php, full-stack, framework, php framework, modules, modular framework">
+<meta name="description" content="Learn about database connections">
+<title>Database connections | Opis Colibri</title>
+        
+        <link href="/assets/img/favicon.png" rel="shortcut icon">
+        
+        
+        
+<link rel="stylesheet" href="/assets/css/paper-theme.min.css">
+
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+
+<link href="/assets/css/syntax.css" rel="stylesheet">
+
+
+
+<link href="/assets/css/colibri.css" rel="stylesheet">
+
+
+        
+        <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-50415801-1', 'opis.io');
+    ga('send', 'pageview');
+</script>
+
+    </head>
+    <body>
+        <header id="header" class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="/colibri">
+                <img src="/assets/img/opis-colibri.png" class="img-responsive opis-inline-logo">
+            </a>
+            <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/colibri/documentation" title="Documentation">
+                        <span class="fa fa-file-text"></span> Documentation
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/opis/colibri" title="Github page">
+                        <span class="fa fa-github fa-lg"></span> GitHub
+                    </a>
+                </li>
+                <li>
+                    <a href="/" title="Main page">
+                        <span class="fa fa-home"></span> Home
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            
+<ul class="navigation">
+
+    
+        
+            
+        
+        <li class="chapter">Quick start</li>
+        <ul>
+            <li><a href="/colibri/documentation" title="Learn how to install Opis Colibri">Installation</a></li>
+    
+
+    
+        
+        </ul>
+        
+        <li class="chapter">The basics</li>
+        <ul>
+            <li><a href="/colibri/documentation/modules.html" title="Learn about modules and how to create them">Modules</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/collectors.html" title="Learn about collectors and how to use them">Collectors</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/installer.html" title="Learn about installers and what they do">Installers</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/classes.html" title="Learn about modules' classes">Classes</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/assets.html" title="Learn about Opis Colibri assets">Assets</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/functions.html" title="Learn about framework's global functions">Global functions</a></li>
+    
+
+    
+        
+        </ul>
+        
+        <li class="chapter">Administration</li>
+        <ul>
+            <li><a href="/colibri/documentation/console.html" title="Learn about available console commands">Console commands</a></li>
+    
+
+    
+        
+        </ul>
+        
+        <li class="chapter">Collectible items</li>
+        <ul>
+            <li><a href="/colibri/documentation/routes.html" title="Learn about Opis Colibri routes">Routes</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/route-aliases.html" title="Learn about Opis Colibri route aliases">Route aliases</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/dispatchers.html" title="Learn about Opis Colibri dispatchers">Dispatchers</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/views.html" title="Learn about Opis Colibri views">Views</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/view-engines.html" title="Learn about Opis Colibri view engines">View engines</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/contracts.html" title="Learn about Opis Colibri contracts">Contracts</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/commands.html" title="Learn how to define new commands">Commands</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/events.html" title="Learn about Opis Colibri event handlers">Event handlers</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/databases.html" title="Learn about database connections">Database connections</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/session.html" title="Learn about Opis Colibri sessions">Session storages</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/cache.html" title="Learn about Opis Colibri cache storages">Cache storages</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/config.html" title="Learn about Opis Colibri config storages">Config storages</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/validators.html" title="Learn about Opis Colibri validators">Validators</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/translations.html" title="Learn about Opis Colibri translations">Translations</a></li>
+    
+
+    
+        <li><a href="/colibri/documentation/variables.html" title="Learn about Opis Colibri variables">Variables</a></li>
+    
+
+    </ul>
+</ul>
+
+        </div>
+        <div class="col-md-8">
+            
+    
+
+
+    
+
+<h2>
+    
+    Database connections
+    
+</h2>
+
+<ol class="submenu">
+    <li>
+
+
+
+
+    
+
+<a href="#introduction">Introduction</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#defining-database-connections">Defining database connections</a></li>
+    <li>
+
+
+
+
+    
+
+<a href="#using-database-connections">Using database connections</a></li>
+</ol>
+
+
+        
+
+
+    
+
+
+    
+
+
+    
+
+<h3>
+    
+    
+    Introduction
+    
+    <a id="introduction" href="#introduction" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Opis Colibri provides a database abstraction layer with the help of the
+    <a href="/database" target="_blank">Opis Database</a> library.
+    Database connections are collected using the <code>Connections</code> method.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Connections</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$connection</span><span class="p">){</span>
+
+    <span class="c1">// Collect database connections</span>
+
+<span class="p">});</span>
+</code></pre></div>
+
+<p>
+    You can override a database connection by specifying a lower collecting priority.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Connections</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$connection</span><span class="p">){</span>
+
+    <span class="c1">// Collect database connections</span>
+
+<span class="p">},</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</code></pre></div>
+
+<p>
+    The collector passed to the callback function is an object that implements
+    the <code>Opis\Colibri\ConnectionCollectorInterface</code> interface.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">interface</span> <span class="nx">ConnectionCollectorInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * Defines a new database connection</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param   string      $name       Connection name</span>
+<span class="sd">     * @param   \Closure    $callback   Connection constructor callback</span>
+<span class="sd">     * @param   boolean     $default    (optional) Default flag</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return  \Opis\Colibri\ConnectionCollectorInterface  Self reference</span>
+<span class="sd">     */</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nx">Closure</span> <span class="nv">$callback</span><span class="p">,</span> <span class="nv">$default</span> <span class="o">=</span> <span class="k">false</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+
+    
+
+
+    
+
+<h3>
+    
+    
+    Defining database connections
+    
+    <a id="defining-database-connections" href="#defining-database-connections" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Database connections are defined by passing a connection name and a callback closure
+    to the <code>create</code> method. The callback closure must return an instance of the
+    <code>Opis\Database\Connection</code> class. Optionally, you can pass <code>true</code>,
+    as the third argument of the <code>create</code> method, if you want to mark the connection
+    as being the default connection. If a database connection was defined when the framework was installed,
+    then that database connection will be used as the default database connection and it cannot be overridden.
+</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">use</span> <span class="nx">Opis\Colibri\Define</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Opis\Database\Connection</span><span class="p">;</span>
+
+<span class="nx">Define</span><span class="o">::</span><span class="na">Connections</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$connection</span><span class="p">){</span>
+
+    <span class="nv">$connection</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;MyConnection&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+       <span class="k">return</span> <span class="k">new</span> <span class="nx">Connection</span><span class="p">(</span><span class="s1">&#39;mysql:localhost;dbname=somedb&#39;</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;pass&#39;</span><span class="p">);</span> 
+    <span class="p">});</span>
+    
+    <span class="nv">$connection</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;DefaultConnection&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(){</span>
+       <span class="k">return</span> <span class="k">new</span> <span class="nx">Connection</span><span class="p">(</span><span class="s1">&#39;mysql:localhost;dbname=otherdb&#39;</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;pass&#39;</span><span class="p">);</span> 
+    <span class="p">},</span> <span class="k">true</span><span class="p">);</span>
+
+<span class="p">});</span>
+</code></pre></div>
+
+
+        
+
+
+    
+
+
+    
+
+
+    
+
+<h3>
+    
+    
+    Using database connections
+    
+    <a id="using-database-connections" href="#using-database-connections" class="link-anchor"><span class="fa fa-link"></span></a>
+</h3>
+
+<p>
+    Database connections are used in conjunction with the <a href="functions.html">Database</a> and
+    <a href="functions.html">Schema</a> global functions, by passing the connection's name, as an argument,
+    to the functions.
+</p>
+
+<div class="highlight"><pre><code class="php">    
+<span class="nv">$items</span> <span class="o">=</span> <span class="nx">Database</span><span class="p">(</span><span class="s1">&#39;MyConnection&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>
+                                 <span class="o">-&gt;</span><span class="na">select</span><span class="p">()</span>
+                                 <span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+
+<span class="nx">Schema</span><span class="p">(</span><span class="s1">&#39;MyConnection&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+   <span class="c1">// ...</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>
+    If the connection's name is omitted, then the default database connection will be used.
+</p>
+
+<div class="highlight"><pre><code class="php">    
+<span class="nv">$items</span> <span class="o">=</span> <span class="nx">Database</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>
+                   <span class="o">-&gt;</span><span class="na">select</span><span class="p">()</span>
+                   <span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+
+<span class="nx">Schema</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$table</span><span class="p">){</span>
+   <span class="c1">// ...</span>
+<span class="p">});</span>
+</code></pre></div>
+
+            
+
+
+
+
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+                
+            
+        
+    
+
+    
+        
+            
+        
+    
+
+    
+        
+            
+                
+                
+            
+        
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<ul class="pager">
+  
+  <li class="previous"><a href="/colibri/documentation/events.html" title="Event handlers">&larr; Back</a></li>
+  
+  
+  <li class="next"><a href="/colibri/documentation/session.html" title="Session storages">Next &rarr;</a></li>
+  
+</ul>
+            
+        </div>
+    </div>
+    <a href="#0" id="back-to-top">
+        <span class="fa fa-arrow-up"></span>
+    </a>
+</div>
+<script>
+    (function($){
+        
+        $(document).ready(function(){
+           var visible = false;
+           $(window).scroll(function(){
+                var top = $(this).scrollTop();
+                
+                if (top >= 100 && !visible) {
+                   visible = true;
+                   $('#back-to-top').fadeIn().show();
+                 }
+                 if(top < 100 && visible){
+                   visible = false;
+                   $('#back-to-top').fadeOut();  
+                 }
+           });
+           
+            $('#back-to-top').click(function(){
+                $('html, body').animate({scrollTop : 0},800);
+                return false;
+            });
+            
+        });
+        
+        
+    })(jQuery);
+</script>
+</section>
+
+<footer class="text-center text-muted">
+    Copyright &copy; 2014-2015 Marius Sarca. All rights reserved.
+</footer>
+
+    </body>
+</html>

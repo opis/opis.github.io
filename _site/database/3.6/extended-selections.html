@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="Learn about how to define custom selections">
+<title>Extended selections | Opis Database</title>
+    <link href="/assets/img/favicon.png" rel="shortcut icon">
+<link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+<link href="/assets/css/syntax.css" rel="stylesheet">
+<link href="/assets/css/prism-github.css" rel="stylesheet">
+<link href="/assets/css/project.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+    <![endif]-->
+    <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/prism.js"></script>
+</head>
+<body>
+    <div class="github-fork-ribbon-wrapper right hidden-sm hidden-xs">
+        <div class="github-fork-ribbon" style="background-color: #f80">
+            <a href="https://github.com/opis/database">Fork me on GitHub</a>
+        </div>
+    </div>
+    <header id="header" class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
+                <a href="/database/3.6" class="navbar-brand">
+                    <strong>
+                        Database
+                    </strong>
+                </a>
+                <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/" title="Main page">
+                            <span class="fa fa-home"></span> Home
+                        </a>
+                    </li>
+                    <li class="dropdown hidden-md hidden-lg">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="fa fa-file-text"></span> Documentation <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+            <li class="dropdown-header">Getting started</li>
+            <li><a href="/database/3.6/index" title="Getting started with Opis Database">About</a></li>
+            <li><a href="/database/3.6/connections" title="Learn how to connect to a database">Database connections</a></li>
+            <li class="dropdown-header">The basics</li>
+            <li><a href="/database/3.6/fetching-records" title="Fetching records from a database">Fetching records</a></li>
+            <li><a href="/database/3.6/results-handling" title="Learn how to handle the result set of a query">Results handling</a></li>
+            <li><a href="/database/3.6/aggregate-functions" title="Learn about aggregate functions">Aggregate functions</a></li>
+            <li class="active"><a href="/database/3.6/extended-selections" title="Learn about how to define custom selections">Extended selections</a></li>
+            <li><a href="/database/3.6/filters" title="Learn how to filter records">Filter</a></li>
+            <li><a href="/database/3.6/expressions" title="Learn about expressions">Expressions</a></li>
+            <li><a href="/database/3.6/ordering-criteria" title="Learn how to order results">Ordering criteria</a></li>
+            <li><a href="/database/3.6/limits-and-offsets" title="Learn about limits and offsets">Limits and offset</a></li>
+            <li><a href="/database/3.6/joins" title="Learn how to perform joins">Joins</a></li>
+            <li><a href="/database/3.6/aggregates-handling" title="Learn how to work with aggregates">Working with aggregates</a></li>
+            <li><a href="/database/3.6/insert-records" title="Insert new records into a table">Insert records</a></li>
+            <li><a href="/database/3.6/update-records" title="Learn how to update existing records">Update records</a></li>
+            <li><a href="/database/3.6/delete-records" title="Learn how to delete existing records">Delete records</a></li>
+            <li class="dropdown-header">Transactions</li>
+            <li><a href="/database/3.6/transactions" title="Learn how to use transactions">Performing transactions</a></li>
+            <li class="dropdown-header">Database schema</li>
+            <li><a href="/database/3.6/schema" title="Learn about Opis Database schema">Introduction</a></li>
+            <li><a href="/database/3.6/schema-creating-tables" title="Learn how to create new tables">Creating tables</a></li>
+            <li><a href="/database/3.6/schema-modifying-tables" title="Learn how to alter existing new tables">Modifying tables</a></li>
+            <li class="dropdown-header">ORM</li>
+            <li><a href="/database/3.6/orm" title="Learn about Opis Database ORM">Introduction</a></li>
+            <li><a href="/database/3.6/orm-basics" title="Learn how to use Opis Database ORM">Basic operations</a></li>
+            <li><a href="/database/3.6/orm-relationships" title="Learn about ORM relationships">Relationships</a></li>
+            <li><a href="/database/3.6/orm-models" title="Learn how to work with models">Working with models</a></li>
+    </ul>
+</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="fa fa-cogs"></span> Components <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/cache/3.1">Cache</a></li>
+                            <li><a href="/closure/2.3">Closure</a></li>
+                            <li><a href="/config/2.1">Config</a></li>
+                            <li><a href="/container/2.3">Container</a></li>
+                            <li><a href="/database/3.6">Database</a></li>
+                            <li><a href="/events/4.1">Events</a></li>
+                            <li><a href="/http/2.0">HTTP</a></li>
+                            <li><a href="/http-routing/4.0">HTTP Routing</a></li>
+                            <li><a href="/routing/4.1">Routing</a></li>
+                            <li><a href="/session/3.1">Session</a></li>
+                            <li><a href="/view/4.1">View</a></li>
+                        </ul>
+                    </li>
+                    <li class="hidden-md hidden-lg">
+                        <a href="https://github.com/opis/database" title="Github page">
+                            <span class="fa fa-github fa-lg"></span> GitHub
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 hidden-xs hidden-sm">
+<ul class="navigation">
+            <li class="chapter">Getting started</li>
+            <ul>
+                <li><a href="/database/3.6/index" title="Getting started with Opis Database">About</a></li>
+            <li><a href="/database/3.6/connections" title="Learn how to connect to a database">Database connections</a></li>
+                </ul>
+            <li class="chapter">The basics</li>
+            <ul>
+                <li><a href="/database/3.6/fetching-records" title="Fetching records from a database">Fetching records</a></li>
+            <li><a href="/database/3.6/results-handling" title="Learn how to handle the result set of a query">Results handling</a></li>
+            <li><a href="/database/3.6/aggregate-functions" title="Learn about aggregate functions">Aggregate functions</a></li>
+            <li class="active"><a href="/database/3.6/extended-selections" title="Learn about how to define custom selections">Extended selections</a></li>
+            <li><a href="/database/3.6/filters" title="Learn how to filter records">Filter</a></li>
+            <li><a href="/database/3.6/expressions" title="Learn about expressions">Expressions</a></li>
+            <li><a href="/database/3.6/ordering-criteria" title="Learn how to order results">Ordering criteria</a></li>
+            <li><a href="/database/3.6/limits-and-offsets" title="Learn about limits and offsets">Limits and offset</a></li>
+            <li><a href="/database/3.6/joins" title="Learn how to perform joins">Joins</a></li>
+            <li><a href="/database/3.6/aggregates-handling" title="Learn how to work with aggregates">Working with aggregates</a></li>
+            <li><a href="/database/3.6/insert-records" title="Insert new records into a table">Insert records</a></li>
+            <li><a href="/database/3.6/update-records" title="Learn how to update existing records">Update records</a></li>
+            <li><a href="/database/3.6/delete-records" title="Learn how to delete existing records">Delete records</a></li>
+                </ul>
+            <li class="chapter">Transactions</li>
+            <ul>
+                <li><a href="/database/3.6/transactions" title="Learn how to use transactions">Performing transactions</a></li>
+                </ul>
+            <li class="chapter">Database schema</li>
+            <ul>
+                <li><a href="/database/3.6/schema" title="Learn about Opis Database schema">Introduction</a></li>
+            <li><a href="/database/3.6/schema-creating-tables" title="Learn how to create new tables">Creating tables</a></li>
+            <li><a href="/database/3.6/schema-modifying-tables" title="Learn how to alter existing new tables">Modifying tables</a></li>
+                </ul>
+            <li class="chapter">ORM</li>
+            <ul>
+                <li><a href="/database/3.6/orm" title="Learn about Opis Database ORM">Introduction</a></li>
+            <li><a href="/database/3.6/orm-basics" title="Learn how to use Opis Database ORM">Basic operations</a></li>
+            <li><a href="/database/3.6/orm-relationships" title="Learn about ORM relationships">Relationships</a></li>
+            <li><a href="/database/3.6/orm-models" title="Learn how to work with models">Working with models</a></li>
+    </ul>
+</ul>
+                </div>
+                <div class="col-md-8 col-sm-12">
+                    <h1 id="extended-selections">Extended selections</h1>
+<ol>
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#adding-columns">Adding columns</a></li>
+  <li><a href="#adding-aggregates">Adding aggregates</a></li>
+  <li><a href="#adding-functions">Adding functions</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>Let’s assume that you want to select from a table, the minimum, the maximum and 
+the average value of a column. Of course, to achieve this, you could simply use 
+the <a href="aggregates">aggregates functions</a> but, unfortunately,
+this means to make three separate queries to the database. 
+To overcome this issue <strong>Opis Database</strong> provides developers a mechanism that can 
+be used to define the columns or other properties that will be included in the final result set.</p>
+<p>In order to use this mechanism you must pass as an argument to the <code>select</code> method 
+an anonymous callback function, which in turn will receive as an argument an object 
+that must be used to specify which columns should be added to the result set.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                //code here
+             })
+             -&gt;all();
+</code></pre>
+<h2 id="adding-columns">Adding columns</h2>
+<p>Adding columns to the result set is done using the <code>column</code> method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;column('name');
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT `name` FROM `users`
+</code></pre>
+<p>If you want to provide an alias name for the column, you must pass that alias 
+as the second argument to the <code>column</code> method.</p><pre><code class="language-php">
+
+$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;column('name', 'n');
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT `name` AS `n` FROM `users`
+</code></pre>
+<p>Of course, you can add multiple columns, by calling the <code>column</code> method multiple times, once for each column.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;column('name')
+                        -&gt;column('age');
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT `name`, `age` FROM `users`
+</code></pre>
+<p>Adding multiple columns at once can be achieved by using the <code>columns</code> method 
+and passing as an argument to the method an array of column names.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;columns(['name', 'age']);
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT `name`, `age` FROM `users`
+</code></pre>
+<p>Aliasing column names is done by passing as an argument to the <code>columns</code> method 
+a <code>key =&gt; value</code> mapped array, where the <code>key</code> represents the column name 
+and the <code>value</code> represents the alias name. If you want that a column to not being aliased,
+ all you have to do is to omit the <code>key</code> for that column, providing only the <code>value</code>.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;columns(['user' =&gt; 'u', 'age']);
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT `user` AS `u`, `age` FROM `users`
+</code></pre>
+<h2 id="adding-aggregates">Adding aggregates</h2>
+<p>Adding aggregates is done by using the <code>count</code>, <code>max</code>, <code>min</code>, <code>avg</code>, and <code>sum</code> methods. 
+These methods can be used in conjunction with <code>column</code> and <code>columns</code> methods.</p>
+<h4 id="counting">Counting</h4>
+<p>Counting records is done using the count method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;count();
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT COUNT(*) FROM `users`
+</code></pre>
+<p>Counting all values(<code>NULL</code> values will not be counted) of a column is done by passing
+the column’s name as an argument to the <code>count</code> method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;count('email');
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT COUNT(`email`) FROM `users`
+</code></pre>
+<p>Adding an alias for the value returned by this aggregate function is done by passing
+the alias name as the second argument to the <code>count</code> method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;count('email', 'email_count');
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT COUNT(`email`) AS `email_count` FROM `users`
+</code></pre>
+<p>If you want to count only the distinct values of a column, you must pass <code>true</code>
+ as the third argument to the <code>count</code> method.</p><pre><code class="language-php">
+
+$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;count('email', 'email_count', true);
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT COUNT(DISTINCT `email`) AS `email_count` FROM `users`
+</code></pre>
+<h4 id="largest-value">Largest value</h4>
+<p>Finding the largest value of a column is done using the <code>max</code> method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;max('age');
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT MAX(`age`) FROM `users`
+</code></pre>
+<p>Adding an alias for the value returned by this aggregate function is done by passing 
+the alias name as the second argument to the <code>max</code> method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;max('age', 'max_age');
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT MAX(`age`) AS `max_age` FROM `users`
+</code></pre>
+<h4 id="smallest-value">Smallest value</h4>
+<p>Finding the smallest value of a column is done using the <code>min</code> method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;min('age');
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT MIN(`age`) FROM `users`
+</code></pre>
+<p>Adding an alias for the value returned by this aggregate function is done by passing
+the alias name as the second argument to the <code>min</code> method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;min('age', 'min_age');
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT MIN(`age`) AS `min_age` FROM `users`
+</code></pre>
+<h4 id="summing">Summing</h4>
+<p>Findind the sum of a column is done using the <code>sum</code> method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;sum('wallet');
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT SUM(`wallet`) FROM `users`
+</code></pre>
+<p>Adding an alias for the value returned by this aggregate function is done by passing
+the alias name as the second argument to the <code>sum</code> method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;sum('wallet', 'total_amount');
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT SUM(`wallet`) AS `total_amount` FROM `users`
+</code></pre>
+<p>If you want to sum only the distinct values of a column, you must pass <code>true</code> as 
+the third argument to the <code>sum</code> method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;sum('wallet', 'total_amount', true);
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT SUM(DISTINCT `wallet`) AS `total_amount` FROM `users`
+</code></pre>
+<h4 id="average">Average</h4>
+<p>Finding the average value of a column is done using the <code>avg</code> method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;avg('wallet');
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT AVG(`wallet`) FROM `users`
+</code></pre>
+<p>Adding an alias for the value returned by this aggregate function is done by passing
+the alias name as the second argument to the <code>avg</code> method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;sum('wallet', 'average_amount');
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT SUM(`wallet`) AS `average_amount` FROM `users`
+</code></pre>
+<h2 id="adding-functions">Adding functions</h2>
+<p>Adding functions is done using one of the following methods: <code>ucase</code>, <code>lcase</code>, 
+<code>mid</code>, <code>len</code>, <code>round</code>, <code>format</code> and <code>now</code>.</p>
+<h4 id="upper-case">Upper case</h4>
+<p>Selecting the upper case value of a column is done by using the <code>ucase</code> method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;ucase('name');
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT UCASE(`name`) FROM `users`
+</code></pre>
+<p>You can also alias the returned value by passing an alias name as the second argument of the method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;ucase('ucname');
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT UCASE(`name`) AS `ucname` FROM `users` 
+</code></pre>
+<h4 id="lower-case">Lower case</h4>
+<p>Selecting the lower case value of a column is done by using the <code>lcase</code> method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;lcase('name');
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT LCASE(`name`) FROM `users`
+</code></pre>
+<p>You can also alias the returned value by passing an alias name as the second argument of the method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;lcase('lcname');
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT LCASE(`name`) AS `lcname` FROM `users`
+</code></pre>
+<h4 id="substring">Substring</h4>
+<p>Extracting a substring from a column is done by using the <code>mid</code> method. 
+The method takes as arguments the column’s name and the starting position 
+from which the substring will be extracted. The substring counting starts from <code>1</code>.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;mid('name', 3);
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT MID(`name`, 3) FROM `users`
+</code></pre>
+<p>You can also alias the returned value by passing an alias name as the third argument of the method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;mid('name', 3, 'sname');
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT MID(`name`, 3) AS `sname` FROM `users`
+</code></pre>
+<p>You can limit the length of the substring by passing a fourth argument to the <code>mid</code> method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;mid('name', 3, null, 2);
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT MID(`name`, 3, 2) FROM `users`
+</code></pre>
+<h4 id="length">Length</h4>
+<p>Adding the length of a column is done by using the <code>len</code> method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;len('name');
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT LENGTH(`name`) FROM `users`
+</code></pre>
+<p>You can also alias the returned value by passing an alias name as the second argument of the method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;len('lname');
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT LENGTH(`name`) AS `lname` FROM `users`
+</code></pre>
+<h4 id="formatting">Formatting</h4>
+<p>Formatting the value of a column to a number with a specified number of decimals
+is done by using the <code>format</code> method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;format('wallet', 4);
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT FORMAT(`wallet`, 4) FROM `users`
+</code></pre>
+<p>The same effect can be obtained by using the <code>round</code> method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;round('wallet', 4);
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT FORMAT(`wallet`, 4) FROM `users`
+</code></pre>
+<p>You can also alias the returned value by passing an alias name as the second argument of the method.</p><pre><code class="language-php">$result = $db-&gt;from('users')
+             -&gt;select(function($include){
+                $include-&gt;format('wallet', 4, 'fwallet');
+             })
+             -&gt;all();
+</code></pre><pre><code class="language-sql">SELECT FORMAT(`wallet`, 4) AS `fwallet` FROM `users`
+</code></pre>
+<ul class="pager">
+        <li class="previous"><a href="/database/3.6/aggregate-functions" title="Aggregate functions">&larr; Back</a></li>
+        <li class="next"><a href="/database/3.6/filters" title="Filter">Next &rarr;</a></li>
+</ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <a href="#0" id="back-to-top">
+    <span class="fa fa-arrow-up"></span>
+</a>
+<script>
+    (function($){
+        $(document).ready(function(){
+            var visible = false;
+            $(window).scroll(function(){
+                var top = $(this).scrollTop();
+                if (top >= 100 && !visible) {
+                    visible = true;
+                    $('#back-to-top').fadeIn().show();
+                }
+                if(top < 100 && visible){
+                    visible = false;
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            $('#back-to-top').click(function(){
+                $('html, body').animate({scrollTop : 0},800);
+                return false;
+            });
+        });
+        $('h2[id],h3[id],h4[id],h5[id],h6[id]').each(function () {
+            var child = $('<a href="#' + this.getAttribute('id') + '" class="link-anchor"><span class="fa fa-link"></span></a>');
+            this.appendChild(child.get(0));
+        });
+        $('[data-toggle=tooltip]').tooltip();
+    })(jQuery);
+</script>
+    <footer class="text-center text-muted">
+        Copyright &copy; 2014-2016 The Opis Project. All rights reserved.
+    </footer>
+</body>
+</html>

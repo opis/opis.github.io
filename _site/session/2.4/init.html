@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="Learn how to initiate a session">
+<title>Initiating a session | Opis Session</title>
+    <link href="/assets/img/favicon.png" rel="shortcut icon">
+            <link rel="canonical" href="/session/3.1/init">
+<link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+<link href="/assets/css/syntax.css" rel="stylesheet">
+<link href="/assets/css/prism-github.css" rel="stylesheet">
+<link href="/assets/css/project.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+    <![endif]-->
+    <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/prism.js"></script>
+</head>
+<body>
+    <div class="github-fork-ribbon-wrapper right hidden-sm hidden-xs">
+        <div class="github-fork-ribbon" style="background-color: #f80">
+            <a href="https://github.com/opis/session">Fork me on GitHub</a>
+        </div>
+    </div>
+    <header id="header" class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
+                <a href="/session/2.4" class="navbar-brand">
+                    <strong>
+                        Session
+                    </strong>
+                </a>
+                <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/" title="Main page">
+                            <span class="fa fa-home"></span> Home
+                        </a>
+                    </li>
+                    <li class="dropdown hidden-md hidden-lg">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="fa fa-file-text"></span> Documentation <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+            <li><a href="/session/2.4/index" title="Getting started with Opis Session">About</a></li>
+            <li class="active"><a href="/session/2.4/init" title="Learn how to initiate a session">Initiating a session</a></li>
+    </ul>
+</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="fa fa-cogs"></span> Components <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/cache/3.1">Cache</a></li>
+                            <li><a href="/closure/2.3">Closure</a></li>
+                            <li><a href="/config/2.1">Config</a></li>
+                            <li><a href="/container/2.3">Container</a></li>
+                            <li><a href="/database/3.6">Database</a></li>
+                            <li><a href="/events/4.1">Events</a></li>
+                            <li><a href="/http/2.0">HTTP</a></li>
+                            <li><a href="/http-routing/4.0">HTTP Routing</a></li>
+                            <li><a href="/routing/4.1">Routing</a></li>
+                            <li><a href="/session/3.1">Session</a></li>
+                            <li><a href="/view/4.1">View</a></li>
+                        </ul>
+                    </li>
+<li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="fa fa-tags"></span> Versions <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+        <li><a href="/routing/3.1">Latest version (3.1)</a></li>
+        <li><a href="/routing/2.4">Version 2.4</a></li>
+    </ul>
+</li>
+                    <li class="hidden-md hidden-lg">
+                        <a href="https://github.com/opis/session" title="Github page">
+                            <span class="fa fa-github fa-lg"></span> GitHub
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 hidden-xs hidden-sm">
+                        <div class="list-group">
+        <a href="/session/2.4/index" class="list-group-item">
+            <h4 class="list-group-item-heading">About</h4>
+            <p class="list-group-item-text text-muted">
+                Getting started with Opis Session
+            </p>
+        </a>
+        <a href="/session/2.4/init" class="list-group-item active">
+            <h4 class="list-group-item-heading">Initiating a session</h4>
+            <p class="list-group-item-text text-muted">
+                Learn how to initiate a session
+            </p>
+        </a>
+</div>
+                </div>
+                <div class="col-md-8 col-sm-12">
+                    <h1 id="initiating-a-session">Initiating a session</h1>
+<p>Initiating a sessions is done by creating a new instance of the <code>Opis\Session\Session</code> class. 
+The constructor of this class takes two optional arguments: an instance of <code>SessionHandlerInterface</code>, representing the 
+session storage, and an array containing configuration options.</p><pre><code class="language-php">use Opis\Session\Session;
+use Opis\Session\Storage\File;
+
+$session = new Session(new File('/path/to/session/folder'), array('name' =&gt; 'my_session'));
+</code></pre>
+<p>You can instantiate a session using the default configuration options, by omitting the second argument.</p><pre><code class="language-php">use Opis\Session\Session;
+use Opis\Session\Storage\File;
+
+$session = new Session(new File('/path/to/session/folder'));
+</code></pre>
+<p>The available configuration options are:</p>
+<ul>
+  <li><code>name</code> → The session name. The default value is <code>opis</code>.</li>
+  <li><code>flashslot</code> → The name of the key where flash data will be saved. The default value is <code>opis:flashdata</code>.</li>
+  <li><code>lifetime</code> → Lifetime of the session cookie, defined in seconds. The default value is retrieved 
+from <code>php.ini (session.cookie_lifetime)</code></li>
+  <li><code>domain</code> → Cookie’s domain. To make cookies visible on all subdomains then the domain must be prefixed with a dot. 
+The default value is retrieved from <code>php.ini (session.cookie_domain)</code></li>
+  <li><code>path</code> → Path on the domain where the cookie will work. Use a single slash (<code>/</code>) for all paths on the domain. 
+The default value is retrieved from <code>php.ini (session.cookie_path)</code></li>
+  <li><code>secure</code> → If true cookie will only be sent over secure connections. 
+The default value is retrieved from <code>php.ini (session.cookie_secure)</code></li>
+  <li><code>httponly</code> → If set to true then PHP will attempt to send the <code>httponly</code> flag when setting the session cookie. T
+he default value is retrieved from <code>php.ini (session.cookie_httponly)</code></li>
+</ul>
+<p>To use the PHP’s default session storage along with the default configurations, 
+simply create an instance of the <code>Opis\Session\Sessio</code>n class without passing arguments to the constructor.</p><pre><code class="language-php">use Opis\Session\Session;
+
+$session = new Session();
+</code></pre>
+<p>If you want to use the PHP’s default session storage, but you also want to setup some configurations, 
+then pass null as the first argument to the constructor.</p><pre><code class="language-php">use Opis\Session\Session;
+
+$session = new Session(null, array('name' =&gt; 'my_session'));
+</code></pre>
+<ul class="pager">
+        <li class="previous"><a href="/session/2.4/index" title="About">&larr; Back</a></li>
+</ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <a href="#0" id="back-to-top">
+    <span class="fa fa-arrow-up"></span>
+</a>
+<script>
+    (function($){
+        $(document).ready(function(){
+            var visible = false;
+            $(window).scroll(function(){
+                var top = $(this).scrollTop();
+                if (top >= 100 && !visible) {
+                    visible = true;
+                    $('#back-to-top').fadeIn().show();
+                }
+                if(top < 100 && visible){
+                    visible = false;
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            $('#back-to-top').click(function(){
+                $('html, body').animate({scrollTop : 0},800);
+                return false;
+            });
+        });
+        $('h2[id],h3[id],h4[id],h5[id],h6[id]').each(function () {
+            var child = $('<a href="#' + this.getAttribute('id') + '" class="link-anchor"><span class="fa fa-link"></span></a>');
+            this.appendChild(child.get(0));
+        });
+        $('[data-toggle=tooltip]').tooltip();
+    })(jQuery);
+</script>
+    <footer class="text-center text-muted">
+        Copyright &copy; 2014-2016 The Opis Project. All rights reserved.
+    </footer>
+</body>
+</html>

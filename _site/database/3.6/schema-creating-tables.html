@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="Learn how to create new tables">
+<title>Creating tables | Opis Database</title>
+    <link href="/assets/img/favicon.png" rel="shortcut icon">
+<link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+<link href="/assets/css/syntax.css" rel="stylesheet">
+<link href="/assets/css/prism-github.css" rel="stylesheet">
+<link href="/assets/css/project.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+    <![endif]-->
+    <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/prism.js"></script>
+</head>
+<body>
+    <div class="github-fork-ribbon-wrapper right hidden-sm hidden-xs">
+        <div class="github-fork-ribbon" style="background-color: #f80">
+            <a href="https://github.com/opis/database">Fork me on GitHub</a>
+        </div>
+    </div>
+    <header id="header" class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
+                <a href="/database/3.6" class="navbar-brand">
+                    <strong>
+                        Database
+                    </strong>
+                </a>
+                <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/" title="Main page">
+                            <span class="fa fa-home"></span> Home
+                        </a>
+                    </li>
+                    <li class="dropdown hidden-md hidden-lg">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="fa fa-file-text"></span> Documentation <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+            <li class="dropdown-header">Getting started</li>
+            <li><a href="/database/3.6/index" title="Getting started with Opis Database">About</a></li>
+            <li><a href="/database/3.6/connections" title="Learn how to connect to a database">Database connections</a></li>
+            <li class="dropdown-header">The basics</li>
+            <li><a href="/database/3.6/fetching-records" title="Fetching records from a database">Fetching records</a></li>
+            <li><a href="/database/3.6/results-handling" title="Learn how to handle the result set of a query">Results handling</a></li>
+            <li><a href="/database/3.6/aggregate-functions" title="Learn about aggregate functions">Aggregate functions</a></li>
+            <li><a href="/database/3.6/extended-selections" title="Learn about how to define custom selections">Extended selections</a></li>
+            <li><a href="/database/3.6/filters" title="Learn how to filter records">Filter</a></li>
+            <li><a href="/database/3.6/expressions" title="Learn about expressions">Expressions</a></li>
+            <li><a href="/database/3.6/ordering-criteria" title="Learn how to order results">Ordering criteria</a></li>
+            <li><a href="/database/3.6/limits-and-offsets" title="Learn about limits and offsets">Limits and offset</a></li>
+            <li><a href="/database/3.6/joins" title="Learn how to perform joins">Joins</a></li>
+            <li><a href="/database/3.6/aggregates-handling" title="Learn how to work with aggregates">Working with aggregates</a></li>
+            <li><a href="/database/3.6/insert-records" title="Insert new records into a table">Insert records</a></li>
+            <li><a href="/database/3.6/update-records" title="Learn how to update existing records">Update records</a></li>
+            <li><a href="/database/3.6/delete-records" title="Learn how to delete existing records">Delete records</a></li>
+            <li class="dropdown-header">Transactions</li>
+            <li><a href="/database/3.6/transactions" title="Learn how to use transactions">Performing transactions</a></li>
+            <li class="dropdown-header">Database schema</li>
+            <li><a href="/database/3.6/schema" title="Learn about Opis Database schema">Introduction</a></li>
+            <li class="active"><a href="/database/3.6/schema-creating-tables" title="Learn how to create new tables">Creating tables</a></li>
+            <li><a href="/database/3.6/schema-modifying-tables" title="Learn how to alter existing new tables">Modifying tables</a></li>
+            <li class="dropdown-header">ORM</li>
+            <li><a href="/database/3.6/orm" title="Learn about Opis Database ORM">Introduction</a></li>
+            <li><a href="/database/3.6/orm-basics" title="Learn how to use Opis Database ORM">Basic operations</a></li>
+            <li><a href="/database/3.6/orm-relationships" title="Learn about ORM relationships">Relationships</a></li>
+            <li><a href="/database/3.6/orm-models" title="Learn how to work with models">Working with models</a></li>
+    </ul>
+</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="fa fa-cogs"></span> Components <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/cache/3.1">Cache</a></li>
+                            <li><a href="/closure/2.3">Closure</a></li>
+                            <li><a href="/config/2.1">Config</a></li>
+                            <li><a href="/container/2.3">Container</a></li>
+                            <li><a href="/database/3.6">Database</a></li>
+                            <li><a href="/events/4.1">Events</a></li>
+                            <li><a href="/http/2.0">HTTP</a></li>
+                            <li><a href="/http-routing/4.0">HTTP Routing</a></li>
+                            <li><a href="/routing/4.1">Routing</a></li>
+                            <li><a href="/session/3.1">Session</a></li>
+                            <li><a href="/view/4.1">View</a></li>
+                        </ul>
+                    </li>
+                    <li class="hidden-md hidden-lg">
+                        <a href="https://github.com/opis/database" title="Github page">
+                            <span class="fa fa-github fa-lg"></span> GitHub
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 hidden-xs hidden-sm">
+<ul class="navigation">
+            <li class="chapter">Getting started</li>
+            <ul>
+                <li><a href="/database/3.6/index" title="Getting started with Opis Database">About</a></li>
+            <li><a href="/database/3.6/connections" title="Learn how to connect to a database">Database connections</a></li>
+                </ul>
+            <li class="chapter">The basics</li>
+            <ul>
+                <li><a href="/database/3.6/fetching-records" title="Fetching records from a database">Fetching records</a></li>
+            <li><a href="/database/3.6/results-handling" title="Learn how to handle the result set of a query">Results handling</a></li>
+            <li><a href="/database/3.6/aggregate-functions" title="Learn about aggregate functions">Aggregate functions</a></li>
+            <li><a href="/database/3.6/extended-selections" title="Learn about how to define custom selections">Extended selections</a></li>
+            <li><a href="/database/3.6/filters" title="Learn how to filter records">Filter</a></li>
+            <li><a href="/database/3.6/expressions" title="Learn about expressions">Expressions</a></li>
+            <li><a href="/database/3.6/ordering-criteria" title="Learn how to order results">Ordering criteria</a></li>
+            <li><a href="/database/3.6/limits-and-offsets" title="Learn about limits and offsets">Limits and offset</a></li>
+            <li><a href="/database/3.6/joins" title="Learn how to perform joins">Joins</a></li>
+            <li><a href="/database/3.6/aggregates-handling" title="Learn how to work with aggregates">Working with aggregates</a></li>
+            <li><a href="/database/3.6/insert-records" title="Insert new records into a table">Insert records</a></li>
+            <li><a href="/database/3.6/update-records" title="Learn how to update existing records">Update records</a></li>
+            <li><a href="/database/3.6/delete-records" title="Learn how to delete existing records">Delete records</a></li>
+                </ul>
+            <li class="chapter">Transactions</li>
+            <ul>
+                <li><a href="/database/3.6/transactions" title="Learn how to use transactions">Performing transactions</a></li>
+                </ul>
+            <li class="chapter">Database schema</li>
+            <ul>
+                <li><a href="/database/3.6/schema" title="Learn about Opis Database schema">Introduction</a></li>
+            <li class="active"><a href="/database/3.6/schema-creating-tables" title="Learn how to create new tables">Creating tables</a></li>
+            <li><a href="/database/3.6/schema-modifying-tables" title="Learn how to alter existing new tables">Modifying tables</a></li>
+                </ul>
+            <li class="chapter">ORM</li>
+            <ul>
+                <li><a href="/database/3.6/orm" title="Learn about Opis Database ORM">Introduction</a></li>
+            <li><a href="/database/3.6/orm-basics" title="Learn how to use Opis Database ORM">Basic operations</a></li>
+            <li><a href="/database/3.6/orm-relationships" title="Learn about ORM relationships">Relationships</a></li>
+            <li><a href="/database/3.6/orm-models" title="Learn how to work with models">Working with models</a></li>
+    </ul>
+</ul>
+                </div>
+                <div class="col-md-8 col-sm-12">
+                    <h1 id="creating-tables">Creating tables</h1>
+<ol>
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#adding-columns">Adding columns</a>
+    <ol>
+      <li><a href="#column-s-size">Column’s size</a></li>
+      <li><a href="#column-s-properties">Column’s properties</a></li>
+      <li><a href="#column-s-constraints">Column’s constraints</a></li>
+      <li><a href="#indexing-a-column">Indexing a column</a></li>
+    </ol>
+  </li>
+  <li><a href="#primary-key">Primary key</a></li>
+  <li><a href="#unique-keys">Unique keys</a></li>
+  <li><a href="#foreign-keys">Foreign keys</a></li>
+  <li><a href="#indexes">Indexes</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>You can create new tables by using the <code>create</code> method. This method takes two arguments:
+its first argument represents the name of the table you want to create and the second 
+argument is an anonymous callback function (<code>Closure</code>) that takes as an argument 
+an instance of <code>Opis\Database\Schema\CreateTable</code> class.</p><pre><code class="language-php">$db-&gt;schema()-&gt;create('users', function($table){
+    //add columns here
+}));
+</code></pre>
+<p>The object passed as an argument to the anonymous callback function, will be further 
+used to add columns, constraints and indexes to the newly created table.</p><pre><code class="language-php">$db-&gt;schema()-&gt;create('users', function($table){
+    //add column
+    $table-&gt;integer('age');
+}));
+</code></pre>
+<h2 id="adding-columns">Adding columns</h2>
+<p>Below is a list containing all columns types that you may use when building your tables.</p>
+<table class="table table-bordered box-highlight">
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;integer('age');</code></td>
+      <td>Adds an <code>INTEGER</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;float('height');</code></td>
+      <td>Adds a <code>FLOAT</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;double('distance');</code></td>
+      <td>Adds a <code>DOUBLE</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;decimal('ammount');</code></td>
+      <td>Adds a <code>DECIMAL</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;decimal('ammount', 16, 4);</code></td>
+      <td>Adds a <code>DECIMAL</code> equivalent column to the table and specify column’s precision.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;boolean('registered');</code></td>
+      <td>Adds a <code>BOOLEAN</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;binary('picture');</code></td>
+      <td>Adds a <code>BLOB</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;string('email');</code></td>
+      <td>Adds a <code>VARCHAR</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;string('email', 128);</code></td>
+      <td>Adds a <code>VARCHAR</code> equivalent column to the table and specify the column’s length.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;fixed('country_code');</code></td>
+      <td>Adds a <code>CHAR</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;fixed('country_code', 2);</code></td>
+      <td>Adds a <code>CHAR</code> equivalent column to the table and specify the column’s length.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;text('description');</code></td>
+      <td>Adds a <code>TEXT</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;time('sunrise');</code></td>
+      <td>Adds a <code>TIME</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;timestamp('created_at');</code></td>
+      <td>Adds a <code>TIMESTAMP</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;string('email');</code></td>
+      <td>Adds a <code>VARCHAR</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;date('created_at');</code></td>
+      <td>Adds a <code>DATE</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;dateTime('created_at');</code></td>
+      <td>Adds a <code>DATETIME</code> equivalent column to the table.</td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="column-s-size">Column’s size</h4>
+<p>For <code>integer</code>, <code>text</code> and <code>binary</code> types you can specify the column size by calling 
+the <code>size</code> method. The valid sizes values are: <code>tiny</code>, <code>small</code>, <code>normal</code>, <code>medium</code> and <code>big</code>.</p><pre><code class="language-php">$db-&gt;schema()-&gt;create('users', function($table){
+
+    $table-&gt;integer('id')-&gt;size('big');
+
+}));
+</code></pre>
+<table class="table table-bordered box-highlight">
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;integer('column')-&gt;size('tiny');</code></td>
+      <td>Adds an <code>TINYINT</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;integer('column')-&gt;size('small');</code></td>
+      <td>Adds an <code>SMALLINT</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;integer('column')-&gt;size('normal');</code></td>
+      <td>Adds an <code>INTEGER</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;integer('column')-&gt;size('medium');</code></td>
+      <td>Adds an MEDIUMINT equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;integer('column')-&gt;size('big');</code></td>
+      <td>Adds an BIGINT equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;text('column')-&gt;size('tiny');</code></td>
+      <td>Adds an <code>TINYTEXT</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;text('column')-&gt;size('small');</code></td>
+      <td>Adds an <code>TINYTEXT</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;text('column')-&gt;size('normal');</code></td>
+      <td>Adds an <code>TEXT</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;text('column')-&gt;size('medium');</code></td>
+      <td>Adds an <code>MEDIUMTEXT</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;text('column')-&gt;size('big');</code></td>
+      <td>Adds an <code>LONGTEXT</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;binary('column')-&gt;size('tiny');</code></td>
+      <td>Adds an <code>TINYBLOB</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;binary('column')-&gt;size('small');</code></td>
+      <td>Adds an <code>TINYBLOB</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;binary('column')-&gt;size('normal');</code></td>
+      <td>Adds an <code>BLOB</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;binary('column')-&gt;size('medium');</code></td>
+      <td>Adds an <code>MEDIUMBLOB</code> equivalent column to the table.</td>
+    </tr>
+    <tr>
+      <td><code class="language-php nobg">$table-&gt;binary('column')-&gt;size('big');</code></td>
+      <td>Adds an <code>LONGBLOB</code> equivalent column to the table.</td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="column-s-properties">Column’s properties</h4>
+<p>You can specify that an <code>integer</code> column contains an unsigned integer value 
+by using the <code>unsigned</code> method.</p><pre><code class="language-php">$table-&gt;integer('id')-&gt;unsigned();
+</code></pre>
+<p>You can provide a default value for column by using the <code>defaultValue</code> method.</p><pre><code class="language-php">$table-&gt;string('role', 32)-&gt;defaultValue('user');
+</code></pre>
+<p>Specifying that a column in not nullable id bone by using the <code>notNull</code> method.</p><pre><code class="language-php">$table-&gt;string('email')-&gt;notNull();
+</code></pre>
+<h4 id="column-s-constraints">Column’s constraints</h4>
+<p>Adding a primary key constraint is done by using the <code>primary</code> method. 
+The name of the constraint will be the same as the column’s name.</p><pre><code class="language-php">$table-&gt;integer('id')-&gt;primary();
+</code></pre>
+<p>Adding an unique constraint is done by using the <code>unique</code> method. 
+The name of the constraint will be the same as the column’s name</p><pre><code class="language-php">$table-&gt;string('email')-&gt;unique();
+</code></pre>
+<p>For <code>integer</code> column types you can specify that the column’s value will be 
+incremented automatically, when a new row is inserted into the table, by using 
+the <code>autoincrement</code> method. When using this feature, a <code>primary key</code> constraint 
+will be automatically added to the column.</p><pre><code class="language-php">$table-&gt;integer('id')-&gt;autoincrement();
+</code></pre>
+<h4 id="indexing-a-column">Indexing a column</h4>
+<p>You can specify that the current column should be indexed, by calling the <code>index</code> method.
+The name of the newly added index will be the same as the column’s name.</p><pre><code class="language-php">$table-&gt;string('username', 32)-&gt;index();
+</code></pre>
+<h2 id="primary-key">Primary key</h2>
+<p>Adding a primary key for a newly created table is done using the <code>primary</code> method. 
+The method takes as an argument the name of the column on which you want to add 
+the primary key constraint. The name of the primary key will be the same as the column’s name.</p><pre><code class="language-php">$db-&gt;schema()-&gt;create('users', function($table){
+
+    $table-&gt;integer('id');
+    // ... Add other columns
+    //Add primary key
+    $table-&gt;primary('id');
+
+}));
+</code></pre>
+<p class="well text-primary"><strong class="important">Important!</strong>
+You can add only one primary key per table.</p>
+<p>Adding a primary key that has a custom name can be done by passing as arguments 
+to the <code>primary</code> method the name of the primary key and the name of the column on 
+which the primary key will be added.</p><pre><code class="language-php">$db-&gt;schema()-&gt;create('users', function($table){
+
+    $table-&gt;integer('id');
+    // ... Add other columns
+    //Add a primary key named `pk_id` on column `id`
+    $table-&gt;primary('pk_id', 'id');
+
+}));
+</code></pre>
+<p>If you want add a primary key on multiple columns, you simply have to pass as arguments 
+to the <code>primary</code> method the name of the primary key and an array containing the column names 
+on which the primary key will be added.</p><pre><code class="language-php">$db-&gt;schema()-&gt;create('users', function($table){
+
+    $table-&gt;integer('id');
+    $table-&gt;integer('group');
+    // ... Add other columns
+    //Add a primary key named `users_pk` on columns `id` and `group`
+    $table-&gt;primary('users_pk', array('id', 'group'));
+
+}));
+</code></pre>
+<h2 id="unique-keys">Unique keys</h2>
+<p>Adding a unique key for a newly created table is done using the <code>unique</code> method. 
+The method takes as an argument the name of the column on which you want to add 
+the unique key constraint. The name of the unique key will be the same as the column’s name.</p><pre><code class="language-php">$db-&gt;schema()-&gt;create('users', function($table){
+
+    $table-&gt;string('email');
+    // ... Add other columns
+    //Add unique key
+    $table-&gt;unique('email');
+
+}));
+</code></pre>
+<p>Adding a unique key that has a custom name can be done by passing as arguments to 
+the <code>unique</code> method the name of the unique key and the name of the column on 
+which the unique key will be added.</p><pre><code class="language-php">$db-&gt;schema()-&gt;create('users', function($table){
+
+    $table-&gt;string('email');
+    // ... Add other columns
+    //Add a unique key named `uk_email` on column `email`
+    $table-&gt;unique('uk_email', 'email');
+
+}));
+</code></pre>
+<p>If you want add a unique key on multiple columns, you simply have to pass as arguments
+to the <code>unique</code> method the name of the unique key and an array containing the column names 
+on which the unique key will be added.</p><pre><code class="language-php">$db-&gt;schema()-&gt;create('users', function($table){
+
+    $table-&gt;string('email');
+    $table-&gt;string('username');
+    // ... Add other columns
+    //Add a unique key named `uk_users` on columns `email` and `uesername`
+    $table-&gt;unique('uk_users', array('email', 'username'));
+
+}));
+</code></pre>
+<h2 id="foreign-keys">Foreign keys</h2>
+<p>Adding a foreign key to a newly created table is done using the <code>foreign</code> method. 
+The method takes as an argument the name of the column on which you want to add the foreign key. 
+The name of the foreign will be the same as the column’s name.</p>
+<p>The referenced table is set by calling the <code>references</code> method and the referenced column 
+is set by calling the <code>on</code> method.</p><pre><code class="language-php">$db-&gt;schema()-&gt;create('users', function($table){
+
+    $table-&gt;integer('profile_id');
+    // ... Add other columns
+    //Add a foreign key
+    $table-&gt;foreign('profile_id')-&gt;references('profiles')-&gt;on('id');
+
+}));
+</code></pre>
+<p>You may also specify options for the <code>on delete</code> and <code>on update</code> actions by using the 
+<code>onDelete</code> and <code>onUpdate</code> methods. These methods accepts as an argument only the 
+following string values: <code>cascade</code>, <code>restrict</code>, <code>no action</code> and <code>set null</code>.</p><pre><code class="language-php">$db-&gt;schema()-&gt;create('users', function($table){
+
+    $table-&gt;integer('profile_id');
+    // ... Add other columns
+    //Add a foreign key
+    $table-&gt;foreign('profile_id')
+          -&gt;references('profiles')-&gt;on('id')
+          -&gt;onDelete('cascade')
+          -&gt;onUpdate('cascade');
+
+}));
+</code></pre>
+<p>Adding a foreign key that has a custom name can be done by passing as arguments to the 
+<code>foreign</code> method the name of the foreign key and the name of the column on which the 
+foreign key will be added.</p><pre><code class="language-php">$db-&gt;schema()-&gt;create('users', function($table){
+
+    $table-&gt;integer('profile_id');
+    // ... Add other columns
+    //Add a foreign key named `fk_custom_name` on column `profile_id`
+    $table-&gt;foreign('fk_custom_name', 'profile_id')-&gt;references('profiles')-&gt;on('id');
+
+}));
+</code></pre>
+<h2 id="indexes">Indexes</h2>
+<p>Adding an index for a newly created table is done using the <code>index</code> method. 
+The method takes as an argument the name of the column on which you want to add the index. 
+The name of the index will be the same as the column’s name.</p><pre><code class="language-php">$db-&gt;schema()-&gt;create('users', function($table){
+
+    $table-&gt;string('name');
+    // ... Add other columns
+    //Add index
+    $table-&gt;index('name');
+
+}));
+</code></pre>
+<p>Adding a index that has a custom name can be done by passing as arguments 
+to the <code>index</code> method the name of the index and the name of the column that you want to be indexed.</p><pre><code class="language-php">$db-&gt;schema()-&gt;create('users', function($table){
+
+    $table-&gt;string('name');
+    // ... Add other columns
+    //Add an index named `idx_name` on column `name`
+    $table-&gt;index('idx_name', 'name');
+
+}));
+</code></pre>
+<p>If you want add a index on multiple columns, you simply have to pass as arguments 
+to the <code>index</code> method the name of the index and an array containing the column names 
+on which the index will be added.</p><pre><code class="language-php">$db-&gt;schema()-&gt;create('users', function($table){
+
+    $table-&gt;string('name');
+    $table-&gt;string('email');
+    // ... Add other columns
+    //Add an index named `idx_users` on columns `email` and `name`
+    $table-&gt;index('idx_users', array('email', 'name'));
+
+}));
+</code></pre>
+<ul class="pager">
+        <li class="previous"><a href="/database/3.6/schema" title="Introduction">&larr; Back</a></li>
+        <li class="next"><a href="/database/3.6/schema-modifying-tables" title="Modifying tables">Next &rarr;</a></li>
+</ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <a href="#0" id="back-to-top">
+    <span class="fa fa-arrow-up"></span>
+</a>
+<script>
+    (function($){
+        $(document).ready(function(){
+            var visible = false;
+            $(window).scroll(function(){
+                var top = $(this).scrollTop();
+                if (top >= 100 && !visible) {
+                    visible = true;
+                    $('#back-to-top').fadeIn().show();
+                }
+                if(top < 100 && visible){
+                    visible = false;
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            $('#back-to-top').click(function(){
+                $('html, body').animate({scrollTop : 0},800);
+                return false;
+            });
+        });
+        $('h2[id],h3[id],h4[id],h5[id],h6[id]').each(function () {
+            var child = $('<a href="#' + this.getAttribute('id') + '" class="link-anchor"><span class="fa fa-link"></span></a>');
+            this.appendChild(child.get(0));
+        });
+        $('[data-toggle=tooltip]').tooltip();
+    })(jQuery);
+</script>
+    <footer class="text-center text-muted">
+        Copyright &copy; 2014-2016 The Opis Project. All rights reserved.
+    </footer>
+</body>
+</html>

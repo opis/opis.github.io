@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="Learn how to render views">
+<title>Rendering views | </title>
+    <link href="/assets/img/favicon.png" rel="shortcut icon">
+<link rel="stylesheet" href="/assets/css/flatly-theme.min.css">
+<link href="/assets/css/font-awesome.css" rel="stylesheet">
+<link href="/assets/css/syntax.css" rel="stylesheet">
+<link href="/assets/css/prism-github.css" rel="stylesheet">
+<link href="/assets/css/project.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+    <![endif]-->
+    <!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/prism.js"></script>
+</head>
+<body>
+    <div class="github-fork-ribbon-wrapper right hidden-sm hidden-xs">
+        <div class="github-fork-ribbon" style="background-color: #f80">
+            <a href="">Fork me on GitHub</a>
+        </div>
+    </div>
+    <header id="header" class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <img src="/assets/img/opis-gs-100.png" class="img-responsive opis-inline-logo">
+                <a href="" class="navbar-brand">
+                    <strong>
+                    </strong>
+                </a>
+                <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <nav id="navbar-main" class="collapse navbar-collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/" title="Main page">
+                            <span class="fa fa-home"></span> Home
+                        </a>
+                    </li>
+                    <li class="dropdown hidden-md hidden-lg">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="fa fa-file-text"></span> Documentation <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+            <li><a href="/view/4.1/index" title="Getting started with Opis View">About</a></li>
+            <li><a href="/view/4.1/components" title="Learn about Opis View's components">The components</a></li>
+            <li><a href="/view/4.1/views" title="Learn how to define views">Defining views</a></li>
+            <li class="active"><a href="/view/4.1/render" title="Learn how to render views">Rendering views</a></li>
+            <li><a href="/view/4.1/engines" title="Learn about template engines">Template engines</a></li>
+    </ul>
+</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="fa fa-cogs"></span> Components <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/cache/3.1">Cache</a></li>
+                            <li><a href="/closure/2.3">Closure</a></li>
+                            <li><a href="/config/2.1">Config</a></li>
+                            <li><a href="/container/2.3">Container</a></li>
+                            <li><a href="/database/3.6">Database</a></li>
+                            <li><a href="/events/4.1">Events</a></li>
+                            <li><a href="/http/2.0">HTTP</a></li>
+                            <li><a href="/http-routing/4.0">HTTP Routing</a></li>
+                            <li><a href="/routing/4.1">Routing</a></li>
+                            <li><a href="/session/3.1">Session</a></li>
+                            <li><a href="/view/4.1">View</a></li>
+                        </ul>
+                    </li>
+                    <li class="hidden-md hidden-lg">
+                        <a href="" title="Github page">
+                            <span class="fa fa-github fa-lg"></span> GitHub
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 hidden-xs hidden-sm">
+                        <div class="list-group">
+        <a href="/view/4.1/index" class="list-group-item">
+            <h4 class="list-group-item-heading">About</h4>
+            <p class="list-group-item-text text-muted">
+                Getting started with Opis View
+            </p>
+        </a>
+        <a href="/view/4.1/components" class="list-group-item">
+            <h4 class="list-group-item-heading">The components</h4>
+            <p class="list-group-item-text text-muted">
+                Learn about Opis View's components
+            </p>
+        </a>
+        <a href="/view/4.1/views" class="list-group-item">
+            <h4 class="list-group-item-heading">Defining views</h4>
+            <p class="list-group-item-text text-muted">
+                Learn how to define views
+            </p>
+        </a>
+        <a href="/view/4.1/render" class="list-group-item active">
+            <h4 class="list-group-item-heading">Rendering views</h4>
+            <p class="list-group-item-text text-muted">
+                Learn how to render views
+            </p>
+        </a>
+        <a href="/view/4.1/engines" class="list-group-item">
+            <h4 class="list-group-item-heading">Template engines</h4>
+            <p class="list-group-item-text text-muted">
+                Learn about template engines
+            </p>
+        </a>
+</div>
+                </div>
+                <div class="col-md-8 col-sm-12">
+                    <h1 id="rendering-views">Rendering views</h1>
+<ol>
+  <li><a href="#the-basics">The basics</a></li>
+  <li><a href="#the-placeholder">The view placeholder</a></li>
+  <li><a href="#the-interface">The ViewableInterface interface</a></li>
+</ol>
+<h2 id="the-basics">The basics</h2>
+<p>Views are rendered with the help of the <code>render</code> method, called on a <code>ViewRouter</code> instance. 
+The method takes as an argument an object implementing the <code>Opis\View\ViewableInterface</code> interface.</p>
+<p>The library’s default implementation of the <code>Opis\View\ViewableInterfac</code>e interface is the <code>Opis\View\View</code> class. 
+The class takes as arguments the name of the view you want to render and optionally an array of placeholders.</p><pre><code class="language-php">use Opis\View\View;
+use Opis\View\ViewRouter;
+
+$view = new ViewRouter();
+
+$view-&gt;handle('foo', function(){
+    return  '/path/to/foo.php';
+});
+
+echo $view-&gt;render(new View('foo', ['text' =&gt; 'Hello world!']));
+</code></pre>
+<p>Assuming that the content of the <code>/path/to/foo.php</code> is defined like below …</p><pre><code class="language-php">&lt;h1&gt;
+    &lt;?php echo $title; ?&gt;
+&lt;/h1&gt;
+</code></pre>
+<p>… the rendered content will be</p><pre><code class="language-html">&lt;h1&gt;
+    Hello world!
+&lt;/h1&gt;
+</code></pre>
+<p>Another way of rendering a view is with the help of the <code>renderView</code> method. 
+This method takes as arguments the name of the view and optionally an array of placeholders.</p><pre><code class="language-php">echo $view-&gt;renderView('foo', ['text' =&gt; 'Hello world!']);
+</code></pre>
+<h2 id="the-placeholder">The <em>view</em> placeholder</h2>
+<p>Beside the user provided placeholders, the <code>ViewRouter</code> inject itself in the array of placeholders on the view key.</p><pre><code class="language-php">&lt;h1&gt;
+    &lt;?php echo $title; ?&gt;
+&lt;/h1&gt;
+&lt;div&gt;
+    &lt;?php echo $view-&gt;renderView('page.content'); ?&gt;
+&lt;/div&gt;
+</code></pre>
+<p>Changing this behaviour can be accomplished by passing false as the third argument to the <code>ViewRouter</code>’s constructor.</p><pre><code class="language-php">$view = new ViewRouter(null, null, false);
+</code></pre>
+<p>If you want to keep this behavior and only change the placeholder’s name, the pass the placeholder’s name as the 
+fourth argument to the <code>ViewRouter</code>’s constructor.</p><pre><code class="language-php">$view = new ViewRouter(null, null, true, 'otherKey');
+</code></pre>
+<h2 id="the-interface">The <em>ViewableInterface</em> interface</h2>
+<p>Making an instance of a class being renderable is done by implementing the <code>Opis\View\ViewableInterface</code>
+interface on that class.</p><pre><code class="language-php">interface ViewableInterface
+{
+    public function viewName();
+    
+    public function viewArguments();
+}
+</code></pre>
+<p>The interface has only two methods that needs to be implemented. 
+The <code>viewName</code> method must return the name of the view, and the <code>viewArguments</code> must return an array of placeholders.</p><pre><code class="language-php">use Opis\View\ViewableInterface
+
+class User extends Model implements ViewableInterface
+{
+    
+    public function viewName()
+    {
+        return 'profile';
+    }
+    
+    public function viewArguments()
+    {
+        return array(
+            'name' =&gt; $this-&gt;name,
+            'age' =&gt; $this-&gt;age,
+        );
+    }
+}
+
+// ...
+
+$user = User::find(1);
+echo $view-&gt;render($user); // Render user's profile
+</code></pre>
+<ul class="pager">
+        <li class="previous"><a href="/view/4.1/views" title="Defining views">&larr; Back</a></li>
+        <li class="next"><a href="/view/4.1/engines" title="Template engines">Next &rarr;</a></li>
+</ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <a href="#0" id="back-to-top">
+    <span class="fa fa-arrow-up"></span>
+</a>
+<script>
+    (function($){
+        $(document).ready(function(){
+            var visible = false;
+            $(window).scroll(function(){
+                var top = $(this).scrollTop();
+                if (top >= 100 && !visible) {
+                    visible = true;
+                    $('#back-to-top').fadeIn().show();
+                }
+                if(top < 100 && visible){
+                    visible = false;
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            $('#back-to-top').click(function(){
+                $('html, body').animate({scrollTop : 0},800);
+                return false;
+            });
+        });
+        $('h2[id],h3[id],h4[id],h5[id],h6[id]').each(function () {
+            var child = $('<a href="#' + this.getAttribute('id') + '" class="link-anchor"><span class="fa fa-link"></span></a>');
+            this.appendChild(child.get(0));
+        });
+        $('[data-toggle=tooltip]').tooltip();
+    })(jQuery);
+</script>
+    <footer class="text-center text-muted">
+        Copyright &copy; 2014-2016 The Opis Project. All rights reserved.
+    </footer>
+</body>
+</html>

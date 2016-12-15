@@ -1,0 +1,26 @@
+github: [metadata]
+host: homestead.app
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter_opts:
+    disable: true
+php: php?start_inline=1
+collections:
+  projects:
+    output: true
+compress_html:
+  clippings: []
+  comments: []
+  endings: []
+  ignore:
+    envs: []
+  blanklines: true
+  profile: false
+  startings: []
+favicon: /assets/img/favicon.png
+gems:
+  - jekyll-coffeescript
+  - jekyll-paginate
+  - jekyll-redirect-from
+
