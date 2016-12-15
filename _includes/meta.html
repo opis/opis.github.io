@@ -17,7 +17,12 @@
 {% if include.page.keywords %}
 <meta name="keywords" content="{{ include.page.keywords }}">
 {% endif %}
-{% if include.page.description %}
-<meta name="keywords" content="{{ include.page.description }}">
+{% if include.page.html_description %}
+    {% assign description = include.page.html_description %}
+{% else %}
+    {% assign description = include.page.description %}
+{% endif %}
+{% if description %}
+<meta name="keywords" content="{{ description }}">
 {% endif %}
 <title>{{title}} | {{subtitle}}</title>

@@ -2,7 +2,7 @@
 layout: project
 permalink: closure/2.3/features
 title: Features
-description: Library features
+description: A list of main library features
 ---
 # Features
 

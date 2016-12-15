@@ -3,6 +3,7 @@ layout: project
 permalink: closure/2.3/index
 html_title: Opis Closure
 html_subtitle: www.opis.io
+html_description: A mature and stable PHP library that can be used to serialize closures.
 title: About
 description: Getting started with Opis Closure
 lib: opis/closure
