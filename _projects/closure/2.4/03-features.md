@@ -82,7 +82,7 @@ $closure = function(Class1 $a, Class2 $b, T $c){
 $closure = unserialize(serialize(new SerializableClosure($closure)))->getClosure();
 ```
 
-It also has support for type hints
+Type hints are supported as well
 
 ```php
 
