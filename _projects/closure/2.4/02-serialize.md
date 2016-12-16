@@ -1,9 +1,9 @@
 ---
 layout: project
-permalink: closure/2.3/serialize
+permalink: closure/2.4/serialize
 title: Serialize closures
 description: Learn how to wrap a closure and make it serializable
-canonical: /closure/2.4/index
+redirect_from: /closure/serialize.html
 ---
 # Serialize closures
 

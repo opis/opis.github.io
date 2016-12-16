@@ -1,14 +1,14 @@
 ---
 layout: project
-permalink: closure/2.3/index
+permalink: closure/2.4/index
 html_title: Opis Closure
 html_subtitle: www.opis.io
 html_description: A mature and stable PHP library that can be used to serialize closures.
 title: About
 description: Getting started with Opis Closure
 lib: opis/closure
-version: 2.3.2
-canonical: /closure/2.4/index
+version: 2.4.0
+redirect_from: /closure/index.html
 ---
 # Serializable closures
 

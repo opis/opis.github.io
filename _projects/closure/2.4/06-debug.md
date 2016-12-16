@@ -1,9 +1,9 @@
 ---
 layout: project
-permalink: closure/2.3/debug
+permalink: closure/2.4/debug
 title: Debugging closures
 description: Learn how to debug serialized closures
-canonical: /closure/2.4/index
+redirect_from: /closure/debug.html
 ---
 # Debugging closures
 
