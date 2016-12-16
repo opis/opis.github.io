@@ -61,7 +61,7 @@ $provider = SecureClosure::getSecurityProvider();
 
 Once a security provider was set, you can start serialize and unserialze secured closures
 just like you would do with normal closures, and if a closure's validation fails, 
-then a `Opis\Colibri\SecurityException` exception will be thrown. 
+then a `Opis\Closure\SecurityException` exception will be thrown. 
 
 **Important!**{:.important}
  You must make sure that the same security provider,
