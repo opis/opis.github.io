@@ -16,7 +16,7 @@ description: Learn about how to define custom selections
 
 Let's assume that you want to select from a table, the minimum, the maximum and 
 the average value of a column. Of course, to achieve this, you could simply use 
-the [aggregates functions](aggregates) but, unfortunately,
+the [aggregates functions](aggregate-functions) but, unfortunately,
 this means to make three separate queries to the database. 
 To overcome this issue **Opis Database** provides developers a mechanism that can 
 be used to define the columns or other properties that will be included in the final result set. 

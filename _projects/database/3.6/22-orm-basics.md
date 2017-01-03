@@ -322,7 +322,7 @@ $name = User::where('id')->is(1)->column('name');
 
 #### Aggregates
 
-You can also use all the [aggregates](aggregates) functions. 
+You can also use all the [aggregates](aggregate-functions) functions. 
 These methods return scalar values.
 
 ```php
@@ -453,6 +453,6 @@ User::where('age')->lessThan(18)
 ```
 
 [filters]: filters "Filters"
-[limits]: limit-and-offsets "Limits and offsets"
+[limits]: limits-and-offsets "Limits and offsets"
 [joins]: joins "Joins"
 [ordering criteria]: ordering-criteria "Ordering criteria"

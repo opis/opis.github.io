@@ -14,7 +14,7 @@ description: Learn how to handle the result set of a query
 
 ## Introduction
 
-As you have already learned, [fetching records](fetch-records) 
+As you have already learned, [fetching records](fetching-records) 
 is done by using the `select` method. In order to improve performance and to
  provide developers a greater control over the result set returned by a query, 
 instead of simply returning a list with results, the `select` method returns a 
