@@ -1,6 +1,6 @@
 ---
 layout: project
-permalink: session/3.1/manage
+permalink: session/2.4/manage
 title: Session management
 description: Learn how to manage sessions
 canonical: /session/3.1/manage
