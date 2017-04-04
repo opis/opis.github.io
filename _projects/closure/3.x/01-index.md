@@ -68,7 +68,7 @@ require_once 'path/to/{{page.lib}}-{{page.version}}/autoload.php';
 
 ### Migrating from 2.x
 
-The support for PHP 5.3 was dropped. If your project needs to support PHP 5.3 you can continue using the `2.x` version
+If your project needs to support PHP 5.3 you can continue using the `2.x` version
 of **Opis Closure**. Otherwise, assuming you are not using one of the removed/refactored classes or features(see 
 [CHANGELOG](https://github.com/opis/closure/blob/master/CHANGELOG.md)), migrating to version `3.x` is simply a matter
 of updating your `composer.json` file. 
