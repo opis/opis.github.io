@@ -2,7 +2,8 @@
 layout: project
 permalink: closure/2.4/features
 title: Features
-description: A list of main library features
+description: A list of library's main features
+canonical: /closure/3.0/features
 ---
 # Features
 

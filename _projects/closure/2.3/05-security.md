@@ -3,7 +3,7 @@ layout: project
 permalink: closure/2.3/security
 title: Signed closures
 description: Learn how to cryptographically sign your closures
-canonical: /closure/2.4/index
+canonical: /closure/3.0/index
 ---
 # Signed closures
 

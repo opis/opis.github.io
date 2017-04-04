@@ -3,7 +3,7 @@ layout: project
 permalink: closure/2.4/context
 title: Serialization context
 description: Learn about serialization context
-redirect_from: /closure/context.html
+canonical: /closure/3.0/context
 ---
 # Serialization context
 

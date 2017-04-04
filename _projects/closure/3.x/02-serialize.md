@@ -1,16 +1,15 @@
 ---
 layout: project
-permalink: closure/2.2/serialize
+permalink: closure/3.x/serialize
 title: Serialize closures
 description: Learn how to wrap a closure and make it serializable
-canonical: /closure/3.0/serialize
+canonical: /closure/2.x/serialize
 ---
 # Serialize closures
 
 1. [Serialize closures](#serialize-closures)
 2. [Unserialize closures](#unserialize-closures)
-3. [The unserializeData method](#the-unserializedata-method)
-4. [Resolving class names](#resolving-class-names)
+3. [Serialize/unserialize arbitrary objects](#serialize-unserialize-arbitrary-objects)
 
 ## Serialize closures
 
@@ -70,45 +69,34 @@ echo $closure(5); //> 120
 // It worked!
 ```
 
-### The *unserializeData* method 
-{: #the-unserializedata-method }
+### Serialize/unserialize arbitrary objects
+{: #serialize-unserialize-arbitrary-objects }
 
-If you are planning to support PHP 5.3, then you should be aware that there 
-is a [bug](https://bugs.php.net/bug.php?id=36424) (fixed in PHP 5.4.0) 
-that will prevent **Opis Closure** to work properly in [certain situations](context.html).
-
-This problem can be overcome by using the `unserializeData` static method of the 
-`Opis\Closure\SerializableClosure` class, which is just a wrapper for the `unserialize`
-function, that will somehow fix the previously mentioned bug. 
+**Opis Closure** allows you to serialize arbitrary objects with the help of the `Opis\Closure\serialize` function.
+Unserialization is made by using the `Opis\Closure\unserialize` function.
 
 ```php
-// Unserialize the closure
-$wrapper = SerializableClosure::unserializeData($serialized);
+use function Opis\Closure\{serialize as s, unserialize as u}
 
-// Extract the closure object
-$closure = $wrapper->getClosure();
+class A
+{
+    private $closure;
+    
+    public function __construct()
+    {
+        $this->closure = function(){
+            echo 'It works!';
+        };
+    }
+    
+    public function test()
+    {
+        //call closure
+        ($this->closure)();
+    }
+}
 
-echo $closure(5); //> 120
+$obj = new A();
+
+u(s($obj))->test(); // It works
 ```
-
-## Resolving class names
-
-**Important!**{:.important}
-This feature is available starting with version 2.0.0
-{:.well .text-primary}
-
-All class names referenced by a closure are automatically resolved at 
-serialization time, allowing you to write a more clear and concise code. 
-
-```php
-use Some\Namespace\SomeClass;
-use Other\Namespace\SomeClass as OtherClass;
-
-$closure = function(SomeClass $a){
-    return new OtherClass($a);
-};
-
-//Class names are resolved
-$closure = unserialize(serialize(new SerializableClosure($closure)))->getClosure();
-```
-

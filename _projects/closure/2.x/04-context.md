@@ -1,9 +1,9 @@
 ---
 layout: project
-permalink: closure/2.2/context
+permalink: closure/2.x/context
 title: Serialization context
 description: Learn about serialization context
-canonical: /closure/3.0/context
+redirect_from: /closure/context.html
 ---
 # Serialization context
 
@@ -43,8 +43,8 @@ $b = $collection['b']->getClosure();
 print $a === $b ? 'TRUE' : 'FALSE';
 ```
 
-As we can see, in the above example, even though the same closure instance
-was serialized, after the deserialization, two different instances of the 
+As we can see in the above example, even though the same closure instance
+was serialized, after the deserialization two different instances of the 
 same closure were created.
 
 This happened because the same closure was wrapped by two different 
@@ -72,7 +72,7 @@ SerializableClosure::exitContext();
 //Serialize
 $collection = serialize($collection);
 //Unserialize
-$collection = SerializableClosure::unserializeData($collection);
+$collection = unserialize($collection);
 
 $a = $collection['a']->getClosure();
 $b = $collection['b']->getClosure();

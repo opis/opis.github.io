@@ -8,7 +8,7 @@ title: About
 description: Getting started with Opis Closure
 lib: opis/closure
 version: 2.3.2
-canonical: /closure/2.4/index
+canonical: /closure/3.0/index
 ---
 # Serializable closures
 

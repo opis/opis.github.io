@@ -1,13 +1,14 @@
 ---
 layout: project
-permalink: closure/2.2/index
+permalink: closure/2.x/index
 html_title: Opis Closure
 html_subtitle: www.opis.io
+html_description: A mature and stable PHP library that can be used to serialize closures.
 title: About
 description: Getting started with Opis Closure
 lib: opis/closure
-version: 2.2.1
-canonical: /closure/3.0/index
+version: 2.4.0
+redirect_from: /closure/index.html
 ---
 # Serializable closures
 
@@ -32,7 +33,7 @@ regarding closure serialization by providing a wrapper that will make all closur
 - Supports cryptographically signed closures
 - Provides a reflector that can give you information about the serialized closure
 - Provides an analyzer for *SuperClosure* library
-- Supports serialization of bounded objects and scopes (available only from PHP >= 5.4)
+- Automatically detects when the scope and/or the bound object of a closure needs to be serialized in order for the closure to work after deserialization
 
 ## License
 **Opis Closure** is licensed under the [MIT License (MIT)][mit_license].

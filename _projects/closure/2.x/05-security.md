@@ -1,9 +1,9 @@
 ---
 layout: project
-permalink: closure/2.4/security
+permalink: closure/2.x/security
 title: Signed closures
 description: Learn how to cryptographically sign your closures
-canonical: /closure/3.0/security
+redirect_from: /closure/security.html
 ---
 # Signed closures
 

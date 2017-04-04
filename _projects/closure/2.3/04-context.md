@@ -3,7 +3,7 @@ layout: project
 permalink: closure/2.3/context
 title: Serialization context
 description: Learn about serialization context
-canonical: /closure/2.4/index
+canonical: /closure/3.0/index
 ---
 # Serialization context
 

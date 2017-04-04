@@ -1,16 +1,10 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Moved to new URL</title>
-        <meta http-equiv=refresh content="0; url={{page.location}}" />
-        <meta name="robots" content="noindex,follow">
-    </head>
-    <body>
-        <div id="main" style="display: none;">
-            <h1>This page has been moved to a new URL</h1>
-            <p>
-                If your browser doesn't redirect you to the new location please <a href="{{page.location}}"><b>click here</b></a>.
-            </p>
-        </div>
-    </body>
+<html lang="en-US">
+<meta charset="utf-8">
+<title>Redirecting…</title>
+<link rel="canonical" href="{{site.url}}{{page.location}}">
+<meta http-equiv="refresh" content="0; url={{site.url}}{{page.location}}">
+<h1>Redirecting…</h1>
+<a href="{{site.url}}{{page.location}}">Click here if you are not redirected.</a>
+<script>location="{{site.url}}{{page.location}}"</script>
 </html>

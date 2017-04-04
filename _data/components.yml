@@ -3,7 +3,7 @@
 - name: Database
   url: /database/3.6
 - name: Closure
-  url: /closure/2.4
+  url: /closure/3.0
 - name: Container
   url: /container/2.3
 - name: Config

@@ -8,6 +8,7 @@
         {% assign d = doc.permalink | split: '/' %}
         {% assign a = doc.url %}
         {% capture p %}{{d[0]}}/{{d[1]}}{% endcapture %}
+        {% unless doc.hidden %}
         {% if p == include.project %}
             {% if a == include.active %}
                 {% assign take = true %}
@@ -20,6 +21,7 @@
                 {% endif %}
             {% endif %}
         {% endif %}
+        {% endunless %}
     {% endunless%}
 {% endfor %}
 <ul class="pager">

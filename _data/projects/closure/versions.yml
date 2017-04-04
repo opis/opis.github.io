@@ -1,9 +1,6 @@
-- name: 2.4
-  title: Latest version (2.4)
-  url: /closure/2.4
-- name: 2.3
-  title: Version 2.3
-  url: /closure/2.3
-- name: 2.2
-  title: Version 2.2
-  url: /closure/2.2
+- name: 3.x
+  title: Dev version (3.x)
+  url: /closure/3.x
+- name: 2.x
+  title: Version 2.x
+  url: /closure/2.x

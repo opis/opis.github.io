@@ -1,9 +1,9 @@
 ---
 layout: project
-permalink: closure/2.3/features
+permalink: closure/2.x/features
 title: Features
 description: A list of library's main features
-canonical: /closure/3.0/index
+redirect_from: /closure/features.html
 ---
 # Features
 
@@ -21,9 +21,11 @@ allowing you to write a cleaner code.
 use Some\Namespace\SomeClass;
 use Some\Namespace as X;
 use Other\Namespace\SomeClass as OtherClass;
+use Some\Namespace\CaseInsensitiveClass;
 
 $closure = function(SomeClass $a, OtherClass $b, X\SomeClass $c){
     return [
+        new CASEInsenitiveCLASS(),
         new X\SomeClass(),
         new SomeClass(),
         new OtherClass(),
@@ -42,10 +44,12 @@ The library also supports referencing functions and constants.
 ```php
 use function Some\Namespace\f;
 use function Other\Namespace\f as a;
+use function Some\Namespace\CaseInsensitive;
 use const Some\Namespace\C;
 use const Other\Namespace\C as U;
 
 $closure = function(){
+    caseInsensitive();
     f(U);
     a(C);
 };
@@ -74,6 +78,20 @@ $closure = function(Class1 $a, Class2 $b, T $c){
     f1();
     function2();
 };
+
+//Names are resolved
+$closure = unserialize(serialize(new SerializableClosure($closure)))->getClosure();
+```
+
+Type hints are supported as well
+
+```php
+
+use Some\Namespace as N;
+
+$closure = function(string $a, int $b = null, $c): N\SomeClass{
+    return $c instanceof self;
+}
 
 //Names are resolved
 $closure = unserialize(serialize(new SerializableClosure($closure)))->getClosure();

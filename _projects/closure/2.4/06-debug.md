@@ -3,7 +3,7 @@ layout: project
 permalink: closure/2.4/debug
 title: Debugging closures
 description: Learn how to debug serialized closures
-redirect_from: /closure/debug.html
+canonical: /closure/3.0/debug
 ---
 # Debugging closures
 
