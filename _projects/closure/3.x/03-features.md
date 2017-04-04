@@ -133,27 +133,3 @@ class A
     }
 }
 ```
-
-You can force the serialization of the `$this`
-object by passing `true` as the second argument to the `SerialiazbleClosure` constructor 
-or to the `SerialiazbleClosure::from` [method](context#the-from-method).
-
-```php
-use Opis\Closure\SerialiazbleClosure;
-
-class A
-{
-    function d()
-    {
-        // scope & $this are serialized (forced)
-        serialize(new SerializableClosure(function(){
-            echo 123
-        }, true));
-        
-        // scope & $this are serialized (forced)
-        serialize(SerializableClosure::from(function(){
-            echo 123
-        }, true));
-    }
-}
-```
