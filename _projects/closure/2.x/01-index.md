@@ -1,5 +1,4 @@
 ---
-redirect_from: /closure/index.html
 layout: project
 permalink: closure/2.x/index
 html_title: Opis Closure
@@ -9,6 +8,7 @@ title: About
 description: Getting started with Opis Closure
 lib: opis/closure
 version: 2.4.0
+redirect_from: /closure/index.html
 ---
 # Serializable closures
 
