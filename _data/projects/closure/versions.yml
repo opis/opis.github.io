@@ -1,6 +1,6 @@
 - name: 3.x
-  title: Dev version (3.x)
+  title: Version 3.x (dev)
   url: /closure/3.x
 - name: 2.x
-  title: Version 2.x
+  title: Version 2.x (stable)
   url: /closure/2.x
