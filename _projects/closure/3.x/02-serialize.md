@@ -3,7 +3,7 @@ layout: project
 permalink: closure/3.x/serialize
 title: Serialize closures
 description: Learn how to wrap a closure and make it serializable
-canonical: /closure/2.x/serialize
+redirect_from: /closure/serialize
 ---
 # Serialize closures
 

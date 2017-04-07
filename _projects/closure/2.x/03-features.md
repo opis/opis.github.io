@@ -3,7 +3,7 @@ layout: project
 permalink: closure/2.x/features
 title: Features
 description: A list of library's main features
-redirect_from: /closure/features.html
+canonical: /closure/3.x/features
 ---
 # Features
 
