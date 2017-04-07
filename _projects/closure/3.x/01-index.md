@@ -73,6 +73,10 @@ of **Opis Closure**. Otherwise, assuming you are not using one of the removed/re
 [CHANGELOG](https://github.com/opis/closure/blob/master/CHANGELOG.md)), migrating to version `3.x` is simply a matter
 of updating your `composer.json` file. 
 
+### Semantic versioning
+
+**Opis Closure** follows the [SemVer](http://semver.org/) specifications.
+
 ### SuperClosure support 
 
 **Opis Closure** is shipped with an analyzer(`Opis\Closure\Analyzer`) which 
