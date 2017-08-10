@@ -29,6 +29,8 @@ $route = new Route('/some/{path}', function(){
 ``` 
 
 All routes must be stored into a collection represented by the `Opis\Routing\RouteCollection` class.
+The constructor of the class takes as an optional argument an instance of a [compiler](#the-compiler).
+If no object is provided to the constructor, a default compiler instance will be used.
 
 ```php
 use Opis\Routing\Route;
@@ -46,10 +48,25 @@ $collection->addRoute($route);
 Both routes and route collections objects are serializable, meaning that they can be stored and
 therefore cached.
 
-#### The compiler
+## The compiler
  
-The constructor of the class takes as an optional argument a compiler represented
-by an instance of the `Opis\Routing\Compiler` class. The compiler has the important role of
+The compiler is represented by an instance of the `Opis\Routing\Compiler` class. It has the important role of
 compiling a route's pattern into a regular expression that will be further used to 
-match a route contained by the collection against a given path.
-If no object is provided, a default compiler instance will be used.
+match routes contained by the route collection against a given path.
+
+The compiler takes as an argument an optional configuration array, that tells how the compiler will behave.
+If no configuration is provided, then the following configuration will be assumed:
+
+```php
+use Opis\Routing\Compiler as C;
+
+$compiler = new C([
+    C::CAPTURE_MODE => C::STANDARD_MODE, // CAPTURE_LEFT|CAPTURE_TRAIL|OPT_SEPARATOR_TRAIL
+    C::START_TAG => '{',
+    C::END_TAG => '}',
+    C::TAG_SEPARATOR => '/',
+    C::OPTIONAL_TAG => '?',
+    C::WILDCARD => '[^/]+', // '[^'.preg_quote($separator, $delimiter).']+'
+]);
+```
+
