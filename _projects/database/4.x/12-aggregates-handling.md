@@ -1,7 +1,7 @@
 ---
 layout: project
-permalink: database/3.6/aggregates-handling
-canonical: /database/4.x/aggregates-handling
+permalink: database/4.x/aggregates-handling
+redirect_from: /database/aggregates-handling.html
 title: Working with aggregates
 description: Learn how to work with aggregates
 ---

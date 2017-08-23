@@ -1,7 +1,7 @@
 ---
 layout: project
-permalink: database/3.6/ordering-criteria
-canonical: /database/4.x/ordering-criteria
+permalink: database/4.x/ordering-criteria
+redirect_from: /database/order.html
 title: Ordering criteria
 description: Learn how to order results
 ---

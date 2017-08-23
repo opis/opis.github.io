@@ -1,10 +1,10 @@
 ---
 layout: project
-permalink: database/3.6/fetching-records
+permalink: database/4.x/fetching-records
+redirect_from: /database/select.html
 chapter: The basics
 title: Fetching records
 description: Fetching records from a database
-canonical: /database/4.x/fetching-records
 ---
 # Fetching records
 

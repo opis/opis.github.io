@@ -1,7 +1,7 @@
 ---
 layout: project
-permalink: database/3.6/limits-and-offsets
-canonical: /database/4.x/limits-and-offsets
+permalink: database/4.x/limits-and-offsets
+redirect_from: /database/limit.html
 title: Limits and offsets
 description: Learn about limits and offsets
 ---

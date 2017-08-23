@@ -1,7 +1,7 @@
 - name: Cache
   url: /cache
 - name: Database
-  url: /database
+  url: /database/3.6
 - name: Closure
   url: /closure
 - name: Container

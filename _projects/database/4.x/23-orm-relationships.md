@@ -1,7 +1,7 @@
 ---
 layout: project
-permalink: database/3.6/orm-relationships
-canonical: /database/4.x/orm-relationships
+permalink: database/4.x/orm-relationships
+redirect_from: /database/orm-relationships.html
 title: Relationships
 description: Learn about ORM relationships
 ---

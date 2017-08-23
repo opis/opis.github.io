@@ -1,9 +1,9 @@
 ---
 layout: project
-permalink: database/3.6/aggregate-functions
+permalink: database/4.x/aggregate-functions
+redirect_from: /database/aggregate.html
 title: Aggregate functions
 description: Learn about aggregate functions
-canonical: /database/4.x/aggregate-functions
 ---
 # Aggregate functions
 
