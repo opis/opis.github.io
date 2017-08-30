@@ -1,7 +1,7 @@
 ---
 layout: project
-permalink: database/3.6/expressions
-canonical: /database/4.x/expressions
+permalink: database/4.x/expressions
+redirect_from: /database/expression.html
 title: Expressions
 description: Learn about expressions
 ---

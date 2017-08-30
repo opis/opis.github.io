@@ -1,9 +1,9 @@
 ---
 layout: project
-permalink: database/3.6/results-handling
+permalink: database/4.x/results-handling
+redirect_from: /database/result.html
 title: Results handling
 description: Learn how to handle the result set of a query
-canonical: /database/4.x/results-handling
 ---
 # Results handling
 

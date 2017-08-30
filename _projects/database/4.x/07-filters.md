@@ -1,7 +1,7 @@
 ---
 layout: project
-permalink: database/3.6/filters
-canonical: /database/4.x/filters
+permalink: database/4.x/filters
+redirect_from: /database/filter.html
 title: Filters
 description: Learn how to filter records
 ---

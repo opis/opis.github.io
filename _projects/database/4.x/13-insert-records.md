@@ -1,7 +1,7 @@
 ---
 layout: project
-permalink: database/3.6/insert-records
-canonical: /database/4.x/insert-records
+permalink: database/4.x/insert-records
+redirect_from: /database/insert.html
 title: Insert records
 description: Insert new records into a table
 ---

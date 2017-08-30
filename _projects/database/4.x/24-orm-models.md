@@ -1,7 +1,7 @@
 ---
 layout: project
-permalink: database/3.6/orm-models
-canonical: /database/4.x/orm-models
+permalink: database/4.x/orm-models
+redirect_from: /database/orm-models.html
 title: Working with models
 description: Learn how to work with models
 ---

@@ -1,7 +1,7 @@
 ---
 layout: project
-permalink: database/3.6/update-records
-canonical: /database/4.x/update-records
+permalink: database/4.x/update-records
+redirect_from: /database/update.html
 title: Update records
 description: Learn how to update existing records
 ---

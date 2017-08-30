@@ -1,7 +1,7 @@
 ---
 layout: project
-permalink: database/3.6/schema-modifying-tables
-canonical: /database/4.x/schema-modifying-tables
+permalink: database/4.x/schema-modifying-tables
+redirect_from: /database/modifying-tables.html
 title: Modifying tables
 description: Learn how to alter existing new tables
 ---

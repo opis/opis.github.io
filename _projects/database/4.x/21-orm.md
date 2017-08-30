@@ -1,7 +1,7 @@
 ---
 layout: project
-permalink: database/3.6/orm
-canonical: /database/4.x/orm
+permalink: database/4.x/orm
+redirect_from: /database/orm.html
 chapter: ORM
 title: Introduction
 html_title: Object relational mapping

@@ -1,7 +1,7 @@
 ---
 layout: project
-permalink: database/3.6/delete-records
-canonical: /database/4.x/delete-records
+permalink: database/4.x/delete-records
+redirect_from: /database/delete.html
 title: Delete records
 description: Learn how to delete existing records
 ---

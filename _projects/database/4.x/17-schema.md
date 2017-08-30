@@ -1,7 +1,7 @@
 ---
 layout: project
-permalink: database/3.6/schema
-canonical: /database/4.x/schema
+permalink: database/4.x/schema
+redirect_from: /database/schema.html
 chapter: Database schema
 title: Introduction
 html_title: Schema

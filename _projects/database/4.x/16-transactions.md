@@ -1,7 +1,7 @@
 ---
 layout: project
-permalink: database/3.6/transactions
-canonical: /database/4.x/transactions
+permalink: database/4.x/transactions
+redirect_from: /database/transaction.html
 chapter: Transactions
 title: Performing transactions
 html_title: Transactions

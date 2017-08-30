@@ -1,7 +1,7 @@
 ---
 layout: project
-permalink: database/3.6/joins
-canonical: /database/4.x/joins
+permalink: database/4.x/joins
+redirect_from: /database/join.html
 title: Joins
 description: Learn how to perform joins
 ---

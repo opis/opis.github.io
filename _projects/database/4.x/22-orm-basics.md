@@ -1,7 +1,7 @@
 ---
 layout: project
-permalink: database/3.6/orm-basics
-canonical: /database/4.x/orm-basics
+permalink: database/4.x/orm-basics
+redirect_from: /database/orm-basics.html
 title: Basic operations
 description: Learn how to use Opis Database ORM
 ---

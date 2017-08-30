@@ -1,7 +1,7 @@
 ---
 layout: project
-permalink: database/3.6/schema-creating-tables
-canonical: /database/4.x/schema-creating-tables
+permalink: database/4.x/schema-creating-tables
+redirect_from: /database/creating-tables.html
 title: Creating tables
 description: Learn how to create new tables
 ---

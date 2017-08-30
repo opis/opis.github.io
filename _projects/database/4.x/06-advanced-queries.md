@@ -1,11 +1,11 @@
 ---
 layout: project
-permalink: database/3.6/extended-selections
-canonical: /database/4.x/extended-selections
-title: Extended selections
-description: Learn about how to define custom selections
+permalink: database/4.x/advanced-queries
+redirect_from: /database/extended-selections.html
+title: Advanced queries
+description: Learn about how to define advanced queries
 ---
-# Extended selections
+# Advanced queries
 
 1. [Introduction](#introduction)
 2. [Adding columns](#adding-columns)
