@@ -39,7 +39,15 @@ a configuration array which tells what kind of patterns the compiler will unders
 All recognizable patterns must have a separator mark that acts as a delimiter and splits a pattern into segments.
 For a file path pattern that delimiter is the `/` sign while for a host name pattern the delimiter is the
 `.` sign. In the case of the custom pattern presented above, the separator mark is `, `(comma followed by space).
+The default separator mark of a compiler is the `/` sign. Changing the separator mark can be accomplished like bellow:
 
+```php
+use Opis\Colibri\Compiler;
+
+$compiler = new Compiler([
+    Compiler::SEPARATOR_MARK => '.', // new separator mark
+]);
+```
 
 
 ## Routes and route collections
