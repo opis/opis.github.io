@@ -11,12 +11,10 @@ redirect_from: /routing/index.html
 ---
 # Routing framework
  
-**Opis Routing** is a framework for building various routing components. 
+**Opis Routing** is a routing framework that offers a collection of classes that will help you 
+build your routing system in no time.  
 In contrast to other routing libraries, it may handle anything that 
 follows a pattern and is not limited only to HTTP request.
-
-This library was conceived to be embedded by other libraries that need routing capabilities and not as a standalone 
-library; although the usage of this library as a standalone library is not discouraged. 
 
 ## License
 **Opis Routing** is licensed under the [Apache License, Version 2.0][apache_license].

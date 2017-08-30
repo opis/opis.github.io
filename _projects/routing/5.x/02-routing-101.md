@@ -9,10 +9,38 @@ description: Learn how Opis Routing works
 1. [Introduction](#introduction)
 2. [Routes and route collections](#routes-and-route-collections)
 3. [The compiler](#the-compiler)
+4. [The routing context](#the-routing-context)
+5. [The dispatcher](#the-dispatcher)
+6. [Filters and filter collections](#filters-and-filter-collections)
+7. [The router](#the-router)
 
 ## Introduction
 
-**Opis Routing** offers a collection of classes that
+The first step in building a routing system is to decide over the structure of the paths you want to handle and
+find a pattern for that structure. 
+
+```php
+// File path pattern
+$a = '/a/b/c';
+
+// Host name pattern
+$b = 'subdomain.example.com';
+
+// Custom pattern
+$c = 'a, b, c';
+```
+
+Once you have established the structure of your paths and found a pattern, is time to move forward and create a compiler 
+that can understand a given pattern and transform it into a regex rule that can be matched against an arbitrary path.
+
+The compiler is represented by an instance of `Opis\Routing\Compiler` class and takes as an argument 
+a configuration array which tells what kind of patterns the compiler will understand and how it will handle them.
+
+All recognizable patterns must have a separator mark that acts as a delimiter and splits a pattern into segments.
+For a file path pattern that delimiter is the `/` sign while for a host name pattern the delimiter is the
+`.` sign. In the case of the custom pattern presented above, the separator mark is `, `(comma followed by space).
+
+
 
 ## Routes and route collections
 
@@ -70,3 +98,28 @@ $compiler = new C([
 ]);
 ```
 
+## The routing context
+
+The routing context is an instance of `Opis\Routing\Context` and it is responsible for storing the path that needs
+to be matched as well as other information that it's necessary during the routing process. This class can be extended
+in order to provide custom routing context.
+
+## The dispatcher
+
+The dispatcher is the most critical component of the **Opis Routing** framework. It's main task is to
+control and dictate every single step that it's involved into the routing process. Every dispatcher must
+be represented by the instance of a class that implements the `Opis\Routing\IDispatcher` interface.
+A default implementation is provided by the `Opis\Routing\Dispatcher` class.
+
+## Filter and filter collections
+
+Filters are instances of classes that are implementing the `Opis\Routing\IFilter` interface and are used
+to eliminate routes that don't match certain criteria from the routing process.
+Every filter must be stored into a filter collection represented by an instance of `Opis\Routing\FilterCollection` class.
+
+## The router
+
+The router's role is to put up all pieces together and to provide an entry point for the routing process.
+The router is represented by the `Opis\Routing\Router` class. The constructor of this class takes as parameters
+a route collection and optionally a dispatcher, a filter collection and an array of special values. The entry point
+is represented by the `route` method which accepts as an argument an instance of a routing context.
