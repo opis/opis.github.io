@@ -16,7 +16,7 @@ description: Learn how Opis Routing works
 
 ## Introduction
 
-The first step in building a routing system is to decide over the structure of the paths you want to handle and
+The first step into building a routing system is to decide over the structure of the paths you want to handle and
 find a pattern for that structure. 
 
 ```php
