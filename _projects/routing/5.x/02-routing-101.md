@@ -7,12 +7,9 @@ description: Learn how Opis Routing works
 # Opis Routing 101
 
 1. [Introduction](#introduction)
-2. [Routes and route collections](#routes-and-route-collections)
-3. [The compiler](#the-compiler)
-4. [The routing context](#the-routing-context)
-5. [The dispatcher](#the-dispatcher)
-6. [Filters and filter collections](#filters-and-filter-collections)
-7. [The router](#the-router)
+2. [Tags and segments](#tags-and-segments)
+3. [Compiler's methods](#compilers-methods)
+4. [Capture mode](#capture-mode)
 
 ## Introduction
 
@@ -31,58 +28,231 @@ $c = 'a, b, c';
 ```
 
 Once you have established the structure of your paths and found a pattern, is time to move forward and create a compiler 
-that can understand a given pattern and transform it into a regex rule that can be matched against an arbitrary path.
+that can understand a given pattern and is able to transform it into a regex rule that can be matched against an arbitrary path.
 
 The compiler is represented by an instance of `Opis\Routing\Compiler` class and takes as an argument 
-a configuration array which tells what kind of patterns the compiler will understand and how it will handle them.
+an optional configuration array which tells what kind of patterns the compiler will understand and how it will handle them.
+If no configuration array is provided, then the following setup is assumed:
 
-All recognizable patterns must have a separator mark that acts as a delimiter and splits a pattern into segments.
+```php
+use Opis\Routing\Compiler;
+
+$compiler = new Compiler([
+    Compiler::CAPTURE_MODE => Compiler::STANDARD_MODE, 
+    Compiler::START_TAG_MARKER => '{',
+    Compiler::END_TAG_MARKER => '}',
+    Compiler::SEGMENT_DELIMITER => '/',
+    Compiler::OPTIONAL_TAG_SYMBOL => '?',
+    Compiler::WILDCARD => '[^/]+',
+    Compiler::REGEX_DELIMITER => '`',
+    Compiler::REGEX_MODIFIER => 'u', 
+]);
+```
+
+## Tags and segments
+
+All recognizable patterns must have a symbol or a group of symbols that acts as a delimiter and splits a pattern into segments.
 For a file path pattern that delimiter is the `/` sign while for a host name pattern the delimiter is the
-`.` sign. In the case of the custom pattern presented above, the separator mark is `, `(comma followed by space).
-The default separator mark of a compiler is the `/` sign. Changing the separator mark can be accomplished like bellow:
+`.` sign. In the case of the custom pattern presented above, the delimiter is `, `(comma followed by space).
+The default delimiter is set to be the `/` mark, and it can be changed in the configuration array
+by using the `Compiler::SEGMENT_DELIMITER` key
 
 ```php
 use Opis\Colibri\Compiler;
 
 $compiler = new Compiler([
-    Compiler::SEPARATOR_MARK => '.', // new separator mark
+    Compiler::SEGMENT_DELIMITER => '.', // new delimiter
 ]);
 ```
 
-
-## Routes and route collections
-
-A *route* is one of the most fundamental concepts of the **Opis Routing** framework and 
-it's represented with the help of the `Opis\Routing\Route` class. 
-The class' constructor takes as arguments a pattern, a callback, and optionally a name.
+Pattern's segments can be tagged and then replaced with regex expressions by enclosing them with a start tag marker and
+an end tag marker. The text enclosed by the markers represents the tag's name and acts as an identifier for that specific
+segment.
 
 ```php
-use Opis\Routing\Route;
+use Opis\Colibri\Compiler;
 
-$route = new Route('/some/{path}', function(){
-    return 'bar';
-}, 'foo');
-``` 
+//Default configuration
+$compiler = new Compiler();
 
-All routes must be stored into a collection represented by the `Opis\Routing\RouteCollection` class.
-The constructor of the class takes as an optional argument an instance of a [compiler](#the-compiler).
-If no object is provided to the constructor, a default compiler instance will be used.
+// Pattern
+$pattern = '/a/{b}/c';
 
-```php
-use Opis\Routing\Route;
-use Opis\Routing\RouteCollection;
-
-$collection = new RouteCollection();
-
-$route = new Route('/some/{path}', function(){
-    return 'bar';
-}, 'foo');
-
-$collection->addRoute($route);
+// Replace the segment tagged and identified as 'b' with a custom regex expression.
+echo $compiler->getRegex($pattern, [
+    'b' => '[a-z]+'
+]);
+// Outputs: `^/a/(?P<b>([a-z]+))/c(/)?$`u
 ```
 
-Both routes and route collections objects are serializable, meaning that they can be stored and
-therefore cached.
+As you can see in the above example, the method used to compile a pattern into a regex rule is called `getRegex` and
+takes as an argument the pattern you want to compile and a array that will used to map tags to regex expression and 
+replace them in the final regex rule.
+
+If you omit to specify a value for a tag, then a default regex expression will be used. 
+
+```php
+echo $compiler->getRegex($patern);
+// Outputs: `^/a/(?P<b>([^/]+))/c(/)?$`u
+```
+
+The default regex expression is automatically derived from the existing settings, 
+but it can be also manually set as well.
+
+```php
+$compiler = new Compiler([
+    Compiler::WILDCARD => '[0-9]+'
+]);
+```
+
+The default symbols used for delimiting tags (`{` and `}`) can be easily replaced in the configuration array:
+
+```php
+$compiler = new Compiler([
+    Compiler::START_TAG_MARKER => '<',
+    Compiler::END_TAG_MARKER => '>'
+]);
+$pattern = '/a/b/<c>';
+echo $compiler->getRegex($patern);
+// Outputs: `^/a/b/(?P<c>([^/]+))(/)?$`u
+``` 
+
+A tag can also be marked as being optional by using a predefined symbol that can be changed 
+in the configuration array by using the `Compiler::OPTIONAL_TAG_SYMBOL` key. The default symbol for specifying 
+an optional tag is the `?` mark.
+
+```php
+// The 'c' tag is optional
+$pattern = '/a/b/{c?}';
+
+echo $compiler->getRegex($pattern, [
+    'c' => [0-9]+
+]);
+// Outputs: `^/a/b(?:/(?P<c>([0-9]+)))?(/)?$`u
+```
+
+## Compiler's methods
+
+Beside the `getRegex` method described above, the `Compiler` class has two other method: `getKeys` and `getValues`.
+
+The `getKeys` method can be used to extract all tag names from a given pattern.
+
+```php
+$pattern = '/a/b/{c}/d/{e?}';
+$tags = $compiler->getKeys($pattern); 
+// $tags = ['c', 'e']
+```
+
+The `getValues` method takes as an argument a regex expression (compiled from a pattern) and a path, and it returns
+an array of values mapped to their corresponding tag names.
+
+```php
+use Opis\Colibri\Compiler;
+
+//Default configuration
+$compiler = new Compiler();
+
+// Pattern
+$pattern = '/a/b/{c}/d/{e?}';
+// Path
+$path = '/a/b/hello/d/world';
+//Regex
+$regex = $compiler->getRegex($pattern);
+
+// Extract values
+$values = $compiler->getValues($regex, $path);
+/*
+ $values = [
+    'c' => 'hello', 
+    'e' => 'world',
+ ];
+*/
+```
+
+## Capture mode
+
+The capture mode tells the compiler how to deal with optional tags and how to transform them to regex expressions.
+The default capture mode used is `Compiler::STANDARD_MODE`, 
+which is just a shorter notation of the following bit operation:
+
+```php
+// Compiler::STANDARD_MODE
+Compiler::CAPTURE_LEFT | Compiler::CAPTURE_TRAIL | Compiler::ADD_OPT_SEPARATOR;
+```
+
+The `Compiler::CAPTURE_LEFT` and `Compiler::CAPTURE_RIGHT` options are used to indicate which segment delimiter of
+the pattern to capture together with the optional tag: the one to the left, or the other to the right.
+
+```php
+use Opis\Routing\Compiler;
+
+$pattern = '/a/{b?}';
+
+$compiler = new Compiler([
+    Compiler::CAPTURE_MODE => Compiler::CAPTURE_LEFT
+]);
+
+// `^/a(?:/(?P<b>([^/]+)))?$`u
+$regex_left = $compiler->getRegex($pattern);
+
+$compiler = new Compiler([
+    Compiler::CAPTURE_MODE => Compiler::CAPTURE_RIGHT
+]);
+
+// `^/a/((?P<b>([^/]+)))?$`u
+$regex_right = $compiler->getRegex($pattern);
+
+// Paths
+$paths = ['/a', '/a/'];
+
+foreach($paths as $path){
+    var_dump((bool)preg_match($regex_left, $path));
+    var_dump((bool)preg_match($regex_right, $path));
+}
+
+// Outputs
+/*
+bool(true)
+bool(false)
+bool(false)
+bool(true)
+*/
+```
+
+The `Compiler::CAPTURE_TRAIL` option tells the compiler to allow an optional extra segment delimiter symbol, 
+either to the left of the regex expression or to the right, depending on the capture direction.
+
+```php
+use Opis\Routing\Compiler;
+
+$pattern = '/a/{b}';
+
+$compiler = new Compiler([
+    Compiler::CAPTURE_MODE => Compiler::CAPTURE_LEFT | Compiler::CAPTURE_TRAIL
+]);
+
+// `^/a/(?P<b>([^/]+))(/)?$`u
+$regex = $compiler->getRegex($pattern);
+```
+
+If the capture direction is to the left and the pattern doesn't start with a segment delimiter, you can
+use the `Compiler::ADD_OPT_SEPARATOR` to add an optional segment delimiter to the beginning of the regex rule.
+
+```php
+use Opis\Routing\Compiler;
+
+$pattern = '{a}/b';
+
+$compiler = new Compiler([
+    Compiler::CAPTURE_MODE => Compiler::CAPTURE_LEFT | Compiler::ADD_OPT_SEPARATOR
+]);
+
+// `^(/)?(?P<a>([^/]+))/b$`u
+$regex = $compiler->getRegex($pattern);
+```
+
+You can also use this option if the capture direction is to the right and the pattern doesn't end with a
+segment delimiter.
 
 ## The compiler
  
