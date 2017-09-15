@@ -27,12 +27,13 @@ $b = 'subdomain.example.com';
 $c = 'a, b, c';
 ```
 
-Once you have established the structure of your paths and found a pattern, is time to move forward and create a compiler 
-that can understand a given pattern and is able to transform it into a regex rule that can be matched against an arbitrary path.
+Once you have established the structure of your paths, and found a pattern, is time to move forward and create a 
+compiler that can understand a given pattern and is able to transform it into a regex rule that can be matched against 
+an arbitrary path.
 
 The compiler is represented by an instance of `Opis\Routing\Compiler` class and takes as an argument 
-an optional configuration array which tells what kind of patterns the compiler will understand and how it will handle them.
-If no configuration array is provided, then the following setup is assumed:
+an optional configuration array which tells what kind of patterns the compiler will understand and how it will 
+handle them. If no configuration array is provided, then the following setup is assumed:
 
 ```php
 use Opis\Routing\Compiler;
@@ -51,9 +52,9 @@ $compiler = new Compiler([
 
 ## Tags and segments
 
-All recognizable patterns must have a symbol or a group of symbols that acts as a delimiter and splits a pattern into segments.
-For a file path pattern that delimiter is the `/` sign while for a host name pattern the delimiter is the
-`.` sign. In the case of the custom pattern presented above, the delimiter is `, `(comma followed by space).
+All recognizable patterns must have a symbol or a group of symbols that acts as a delimiter and splits a pattern 
+into segments. For a file path pattern that delimiter is the `/` sign while for a host name pattern the delimiter 
+is the `.` sign. In the case of the custom pattern presented above, the delimiter is `, `(comma followed by space).
 The default delimiter is set to be the `/` mark, and it can be changed in the configuration array
 by using the `Compiler::SEGMENT_DELIMITER` key
 

@@ -32,7 +32,7 @@ $pattern = $route->getPattern();
 $callback = $route->getAction();
 ```
 
-### Working with properties
+#### Working with properties
 
 Setting an arbitrary property on a route instance is done by calling a method that have the same name as the 
 property you want to set. Another way of settings properties is by using the `set` method.
@@ -65,9 +65,9 @@ Array
 */
 ``` 
 
-Getting values from individual properties is done with the help of `get` method. The method
-allows you to specify a default value that will be returned if the specified property doesn't exist.
-You can always check if a property was set using the `has` method.
+Individual properties can be accessed by using the `get` method. The method allows you to specify a default value that 
+will be returned if the specified property doesn't exist. You can always check if a property was set, by using 
+the `has` method.
 
 ```php
 $prop1 = $route->get('prop1');
