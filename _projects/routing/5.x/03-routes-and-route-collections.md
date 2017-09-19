@@ -6,10 +6,14 @@ description: Learn about routes and route collections and how they work together
 ---
 # Routes and route collections
 
-1. [Routes](#routes)
-2. [Route collections](#route-collections)
+1. [Introduction](#introduction)
+2. [Properties](#properties)
+3. [References](#references)
+4. [Binding](#binding)
+5. [Regex constraints](#regex-constraints)
+6. [Route collections](#route-collections)
 
-## Routes
+## Introduction
 
 A *route* is one of the most fundamental concepts of the **Opis Routing** framework and 
 it's represented with the help of the `Opis\Routing\Route` class. 
@@ -32,7 +36,7 @@ $pattern = $route->getPattern();
 $callback = $route->getAction();
 ```
 
-#### Working with properties
+## Properties
 
 Setting an arbitrary property on a route instance is done by calling a method that have the same name as the 
 property you want to set. Another way of settings properties is by using the `set` method.
@@ -76,6 +80,117 @@ $propX = $route->get('propX', 'x');
 if($route->has('prop2')){
     var_dump($route->get('prop2'));
 }
+```
+
+## References
+
+The callback passed to the route's constructor can reference variables, such as 
+[segment values](routing-101#tags-and-segments), by simply adding arguments named exactly the same as 
+the variables you want to reference. The variables might be referenced in any order you want.
+
+```php
+use Opis\Routing\Route;
+
+/*
+Presuming that the routed path is "/user/123",
+then the route's callback will return "123".
+*/
+$route1 = new Route('/user/{id}', function($id){
+    return $id;
+});
+
+/*
+If the routed path is "/user/123/foo", then the returned value will be "123foo";
+*/
+$route2 = new Route('/user/{id}/{name}', function($name, $id){
+    return $id . $name;
+});
+```
+
+Providing an implicit value for an optional segment is done by calling the `implicit` method on the route instance.
+
+```php
+use Opis\Routing\Route;
+
+/*
+If the routed path is "/user/foo", then the route's callback will return "foo".
+Otherwise, if the last segment is missing and the routed path is "/user", 
+then the returned value will be "bar".
+*/
+$route = (new Route('/user/{name?}', function($name){
+    return $name;
+}))
+->implicit('name', 'bar');
+```
+
+The `implicit` method can be also used to create new variables that are not defined in the route's pattern.
+This newly created variables can also be referenced in route's callback.
+
+```php
+use Opis\Routing\Route;
+
+/*
+If the routed path is "/user/foo", then the route's callback will return "foobar".
+*/
+$route = (new Route('/user/{name}', function($name, $id){
+    return  $name . $id;
+}))
+->implicit('id', 'bar');
+```
+
+## Bindings
+
+Another way of creating variables is by using the `bind` method. The method takes as arguments the 
+variable's name and a callback that will return the variable's value. The newly resulted variable can also
+be referenced in the route's callback.
+
+```php
+use Opis\Routing\Route;
+
+/*
+No matter what the routed path is, the returned value will allways be 'bar';
+*/
+$route = (new Route('/user/{name}', function($name){
+    return $name;
+}))
+->bind('name', function(){
+    return 'bar';
+});
+```
+
+The binding's callback, just like the route's callback, is able to reference variables, so a binding
+can be used to overwrite a variable's value.
+
+```php
+use Opis\Routing\Route;
+
+/*
+If the routed path is "/user/foo", then the returned value will be "FOO";
+*/
+$route = (new Route('/user/{name}', function($name){
+    return $name;
+}))
+->bind('name', function($name){
+    return strtoupper($name);
+});
+```
+
+
+#### Regex constraints
+
+You can provide regex expression for a route's tags by using the `where` method.
+
+```php
+use Opis\Routing\Route;
+
+/*
+This route will match only paths that ends with a segment composed of digits.
+Ex: "/some/123" will be matched, while "/some/a123" will not be matched.
+*/
+$route = (new Route('/some/{foo}', function($foo){
+    return $foo;
+}))
+->where('foo', '[0-9]+');
 ```
 
 ## Route collections

@@ -7,7 +7,7 @@ description: Learn how Opis Routing works
 # Opis Routing 101
 
 1. [Introduction](#introduction)
-2. [Tags and segments](#tags-and-segments)
+2. [Segments and placeholders](#segments-and-placeholders)
 3. [Compiler's methods](#compilers-methods)
 4. [Capture mode](#capture-mode)
 
@@ -50,7 +50,7 @@ $compiler = new Compiler([
 ]);
 ```
 
-## Tags and segments
+## Segments and placeholders
 
 All recognizable patterns must have a symbol or a group of symbols that acts as a delimiter and splits a pattern 
 into segments. For a file path pattern that delimiter is the `/` sign while for a host name pattern the delimiter 
@@ -66,8 +66,8 @@ $compiler = new Compiler([
 ]);
 ```
 
-Pattern's segments can be tagged and then replaced with regex expressions by enclosing them with a start tag marker and
-an end tag marker. The text enclosed by the markers represents the tag's name and acts as an identifier for that specific
+Pattern's segments can be tagged and then replaced with regex expressions by enclosing them with a start marker and
+an end marker. The text enclosed by the markers represents the placeholder's name and acts as an identifier for that specific
 segment.
 
 ```php
@@ -79,7 +79,7 @@ $compiler = new Compiler();
 // Pattern
 $pattern = '/a/{b}/c';
 
-// Replace the segment tagged and identified as 'b' with a custom regex expression.
+// Replace the placeholder identified as 'b' with a custom regex expression.
 echo $compiler->getRegex($pattern, [
     'b' => '[a-z]+'
 ]);
@@ -87,10 +87,10 @@ echo $compiler->getRegex($pattern, [
 ```
 
 As you can see in the above example, the method used to compile a pattern into a regex rule is called `getRegex` and
-takes as an argument the pattern you want to compile and a array that will used to map tags to regex expression and 
-replace them in the final regex rule.
+takes as an argument the pattern you want to compile and a array that will used to map placeholder's names to regex 
+expression and replace them in the final regex rule.
 
-If you omit to specify a value for a tag, then a default regex expression will be used. 
+If you omit to specify a value for a placeholder, then a default regex expression will be used. 
 
 ```php
 echo $compiler->getRegex($patern);
@@ -106,7 +106,7 @@ $compiler = new Compiler([
 ]);
 ```
 
-The default symbols used for delimiting tags (`{` and `}`) can be easily replaced in the configuration array:
+The default symbols used for delimiting placeholders (`{` and `}`) can be easily replaced in the configuration array:
 
 ```php
 $compiler = new Compiler([
@@ -118,12 +118,12 @@ echo $compiler->getRegex($patern);
 // Outputs: `^/a/b/(?P<c>([^/]+))(/)?$`u
 ``` 
 
-A tag can also be marked as being optional by using a predefined symbol that can be changed 
+A placeholder can also be marked as being optional by using a predefined symbol that can be changed 
 in the configuration array by using the `Compiler::OPTIONAL_TAG_SYMBOL` key. The default symbol for specifying 
-an optional tag is the `?` mark.
+an optional placeholder is the `?` mark.
 
 ```php
-// The 'c' tag is optional
+// The 'c' placeholder is optional
 $pattern = '/a/b/{c?}';
 
 echo $compiler->getRegex($pattern, [
@@ -136,12 +136,12 @@ echo $compiler->getRegex($pattern, [
 
 Beside the `getRegex` method described above, the `Compiler` class has two other method: `getKeys` and `getValues`.
 
-The `getKeys` method can be used to extract all tag names from a given pattern.
+The `getKeys` method can be used to extract all placeholder names from a given pattern.
 
 ```php
 $pattern = '/a/b/{c}/d/{e?}';
-$tags = $compiler->getKeys($pattern); 
-// $tags = ['c', 'e']
+$names = $compiler->getKeys($pattern); 
+// $names = ['c', 'e']
 ```
 
 The `getValues` method takes as an argument a regex expression (compiled from a pattern) and a path, and it returns
