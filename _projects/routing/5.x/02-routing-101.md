@@ -40,11 +40,11 @@ use Opis\Routing\Compiler;
 
 $compiler = new Compiler([
     Compiler::CAPTURE_MODE => Compiler::STANDARD_MODE, 
-    Compiler::START_TAG_MARKER => '{',
-    Compiler::END_TAG_MARKER => '}',
+    Compiler::START_MARKER => '{',
+    Compiler::END_MARKER => '}',
     Compiler::SEGMENT_DELIMITER => '/',
-    Compiler::OPTIONAL_TAG_SYMBOL => '?',
-    Compiler::WILDCARD => '[^/]+',
+    Compiler::OPT_PLACEHOLDER_SYMBOL => '?',
+    Compiler::DEFAULT_REGEX_EXP => '[^/]+',
     Compiler::REGEX_DELIMITER => '`',
     Compiler::REGEX_MODIFIER => 'u', 
 ]);
@@ -102,7 +102,7 @@ but it can be also manually set as well.
 
 ```php
 $compiler = new Compiler([
-    Compiler::WILDCARD => '[0-9]+'
+    Compiler::DEFAULT_REGEX_EXP => '[0-9]+'
 ]);
 ```
 
@@ -110,8 +110,8 @@ The default symbols used for delimiting placeholders (`{` and `}`) can be easily
 
 ```php
 $compiler = new Compiler([
-    Compiler::START_TAG_MARKER => '<',
-    Compiler::END_TAG_MARKER => '>'
+    Compiler::START_MARKER => '<',
+    Compiler::END_MARKER => '>'
 ]);
 $pattern = '/a/b/<c>';
 echo $compiler->getRegex($patern);
@@ -136,16 +136,16 @@ echo $compiler->getRegex($pattern, [
 
 Beside the `getRegex` method described above, the `Compiler` class has two other method: `getKeys` and `getValues`.
 
-The `getKeys` method can be used to extract all placeholder names from a given pattern.
+The `getNames` method can be used to extract all placeholder names from a given pattern.
 
 ```php
 $pattern = '/a/b/{c}/d/{e?}';
-$names = $compiler->getKeys($pattern); 
+$names = $compiler->getNames($pattern); 
 // $names = ['c', 'e']
 ```
 
 The `getValues` method takes as an argument a regex expression (compiled from a pattern) and a path, and it returns
-an array of values mapped to their corresponding tag names.
+an array of values mapped to their corresponding placeholder names.
 
 ```php
 use Opis\Colibri\Compiler;
@@ -172,7 +172,7 @@ $values = $compiler->getValues($regex, $path);
 
 ## Capture mode
 
-The capture mode tells the compiler how to deal with optional tags and how to transform them to regex expressions.
+The capture mode tells the compiler how to deal with optional tags and how to transform them into regex expressions.
 The default capture mode used is `Compiler::STANDARD_MODE`, 
 which is just a shorter notation of the following bit operation:
 
@@ -182,7 +182,7 @@ Compiler::CAPTURE_LEFT | Compiler::CAPTURE_TRAIL | Compiler::ADD_OPT_SEPARATOR;
 ```
 
 The `Compiler::CAPTURE_LEFT` and `Compiler::CAPTURE_RIGHT` options are used to indicate which segment delimiter of
-the pattern to capture together with the optional tag: the one to the left, or the other to the right.
+the pattern to capture together with the optional placeholder: the one to the left, or the other to the right.
 
 ```php
 use Opis\Routing\Compiler;

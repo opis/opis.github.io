@@ -142,7 +142,7 @@ $route = (new Route('/user/{name}', function($name, $id){
 
 Another way of creating variables is by using the `bind` method. The method takes as arguments the 
 variable's name and a callback that will return the variable's value. The newly resulted variable can also
-be referenced in the route's callback.
+be referenced by the route's callback.
 
 ```php
 use Opis\Routing\Route;
@@ -158,8 +158,8 @@ $route = (new Route('/user/{name}', function($name){
 });
 ```
 
-The binding's callback, just like the route's callback, is able to reference variables, so a binding
-can be used to overwrite a variable's value.
+The callback value of a binding, just like the route’s one, is able to reference variables, 
+therefore a binding can be used to overwrite a variable’s value.
 
 ```php
 use Opis\Routing\Route;
@@ -175,10 +175,9 @@ $route = (new Route('/user/{name}', function($name){
 });
 ```
 
+## Regex constraints
 
-#### Regex constraints
-
-You can provide regex expression for a route's tags by using the `where` method.
+Providing a regex expression for a placeholder is done by using the `placeholder` method.
 
 ```php
 use Opis\Routing\Route;
@@ -187,6 +186,15 @@ use Opis\Routing\Route;
 This route will match only paths that ends with a segment composed of digits.
 Ex: "/some/123" will be matched, while "/some/a123" will not be matched.
 */
+$route = (new Route('/some/{foo}', function($foo){
+    return $foo;
+}))
+->placeholder('foo', '[0-9]+');
+```
+
+Alternatively, you can use the `where` method, which is just an alias for the `placeholder` method.
+
+```php
 $route = (new Route('/some/{foo}', function($foo){
     return $foo;
 }))
