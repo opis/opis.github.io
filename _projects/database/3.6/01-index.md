@@ -9,6 +9,7 @@ description: Getting started with Opis Database
 lib: opis/database
 version: 3.6.8
 canonical: /database/4.x
+redirect_from: /database/index.html
 ---
 # Database abstraction layer
 

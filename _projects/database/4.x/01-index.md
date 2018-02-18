@@ -8,7 +8,6 @@ title: About
 description: Getting started with Opis Database
 lib: opis/database
 version: 4.0.0
-redirect_from: /database/index.html
 ---
 # Database abstraction layer
 
