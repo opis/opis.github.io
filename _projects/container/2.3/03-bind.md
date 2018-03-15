@@ -19,11 +19,11 @@ interface GreetingInterface
     public function greet();
 }
 
-class Greeting implement GreetingInterface
+class Greeting implements GreetingInterface
 {
     public function greet()
     {
-        return 'Greetings man in white!'
+        return 'Greetings man in white!';
     }
 }
 
@@ -53,7 +53,7 @@ interface GreetingInterface
     public function greet();
 }
 
-class Greeting implement GreetingInterface
+class Greeting implements GreetingInterface
 {
     protected $greetingText;
     
@@ -148,7 +148,7 @@ interface GreetingInterface
     public function greet();
 }
 
-class Greeting implement GreetingInterface
+class Greeting implements GreetingInterface
 {
     protected $text;
     
