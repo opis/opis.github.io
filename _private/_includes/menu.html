@@ -4,7 +4,7 @@
     <ul class="nav flex-column">
         {% for page in chapter.pages %}
         <li class="nav-item">
-            <a class="nav-link text-secondary{% if include.url == page.url %} active{% endif %}"
+            <a class="nav-link{% if include.url == page.url %} active{% endif %}"
                href="{{include.prefix}}{{page.url}}"
                title="{{page.description}}">{{page.title}}</a>
         </li>

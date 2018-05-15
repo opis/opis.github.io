@@ -39,9 +39,12 @@ layout: default
 </script>
 {% endif %}
 <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+    <nav class="navbar navbar-expand-lg {{project.classes.navbar | default: 'navbar-dark bg-primary mb-3'}}">
         <a class="navbar-brand" href="#">
-            <img src="{{project.logo}}" height="24">
+            <a class="navbar-brand" href="/" title="The Opis Project">
+                <img src="{{project.logo}}" width="30" height="30">
+                Opis
+            </a>
         </a>
         <button class="navbar-toggler" type="button"
                 data-toggle="collapse"
@@ -55,7 +58,7 @@ layout: default
         <div class="collapse navbar-collapse" id="navbarLight">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{project.url}}" title="Home page">
+                    <a class="nav-link" href="{{project.url}}" title="{{project.title}}">
                         <i class="fas fa-home"></i> Home
                     </a>
                 </li>
