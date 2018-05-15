@@ -42,7 +42,8 @@ if(!preg_match('/^\/assets/', $path)){
 }
 
 $rules = [
-    '/^\/orm/' => __DIR__ . '/../orm/docs/_site'
+    '/^\/orm/' => __DIR__ . '/../orm/docs/_site',
+    '/^\/json-schema/' => __DIR__ . '/../json-schema/docs/_site'
 ];
 
 $file = resolve_path($path, $rules);
