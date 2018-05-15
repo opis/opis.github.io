@@ -40,11 +40,9 @@ layout: default
 {% endif %}
 <header{% if project.classes.header %}class="{{project.classes.header}}"{% endif %}>
     <nav class="navbar navbar-expand-lg {{project.classes.navbar | default: 'navbar-dark bg-primary'}}">
-        <a class="navbar-brand" href="#">
-            <a class="navbar-brand" href="/" title="The Opis Project">
-                <img src="{{project.logo}}" width="30" height="30">
-                Opis
-            </a>
+        <a class="navbar-brand" href="/" title="The Opis Project">
+            <img src="{{project.logo}}" width="30" height="30">
+            Opis
         </a>
         <button class="navbar-toggler" type="button"
                 data-toggle="collapse"
