@@ -27,7 +27,7 @@ layout: default
     <link href="{{style}}" rel="stylesheet">
     {% endfor %}
 </head>
-<body>
+<body {% if project.classes.body %}class="{{project.classes.body}}"{% endif %}>
 {% if project.ga %}
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
