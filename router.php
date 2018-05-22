@@ -42,23 +42,23 @@ if(!preg_match('/^\/assets/', $path)){
 }
 
 $rules = [
-    '/^\/orm/' => __DIR__ . '/../orm/docs/_site',
-    '/^\/database/' => __DIR__ . '/../database/docs/_site',
-    '/^\/closure/' => __DIR__ . '/../closure/docs/_site',
-    '/^\/container/' => __DIR__ . '/../container/docs/_site',
-    '/^\/view/' => __DIR__ . '/../view/docs/_site',
-    '/^\/cache/' => __DIR__ . '/../cache/docs/_site',
-    '/^\/session/' => __DIR__ . '/../session/docs/_site',
-    '/^\/config/' => __DIR__ . '/../config/docs/_site',
-    '/^\/routing/' => __DIR__ . '/../routing/docs/_site',
-    '/^\/http-routing/' => __DIR__ . '/../http-routing/docs/_site',
-    '/^\/http/' => __DIR__ . '/../http/docs/_site',
-    '/^\/events/' => __DIR__ . '/../events/docs/_site',
-    '/^\/json-schema/' => __DIR__ . '/../json-schema/docs/_site',
-    '/^\/pattern/' => __DIR__ . '/../pattern/docs/_site',
-    '/^\/intl/' => __DIR__ . '/../intl/docs/_site',
-    '/^\/string/' => __DIR__ . '/../string/docs/_site',
-    '/^\/validation/' => __DIR__ . '/../validation/docs/_site'
+    '/^\/orm/' => __DIR__ . '/../orm/_site',
+    '/^\/database/' => __DIR__ . '/../database/_site',
+    '/^\/closure/' => __DIR__ . '/../closure/_site',
+    '/^\/container/' => __DIR__ . '/../container/_site',
+    '/^\/view/' => __DIR__ . '/../view/_site',
+    '/^\/cache/' => __DIR__ . '/../cache/_site',
+    '/^\/session/' => __DIR__ . '/../session/_site',
+    '/^\/config/' => __DIR__ . '/../config/_site',
+    '/^\/routing/' => __DIR__ . '/../routing/_site',
+    '/^\/http-routing/' => __DIR__ . '/../http-routing/_site',
+    '/^\/http/' => __DIR__ . '/../http/_site',
+    '/^\/events/' => __DIR__ . '/../events/_site',
+    '/^\/json-schema/' => __DIR__ . '/../json-schema/_site',
+    '/^\/pattern/' => __DIR__ . '/../pattern/_site',
+    '/^\/intl/' => __DIR__ . '/../intl/_site',
+    '/^\/string/' => __DIR__ . '/../string/_site',
+    '/^\/validation/' => __DIR__ . '/../validation/_site'
 ];
 
 $file = resolve_path($path, $rules);
