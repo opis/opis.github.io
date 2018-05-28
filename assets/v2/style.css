@@ -46,6 +46,12 @@ html, body {
     margin-left: -1em;
 }
 
+.menu-links li a:before {
+    content: "#";
+    margin-right: 5px;
+    color: #000;
+}
+
 /* Hidden */
 @media (max-width: 575px) {
     .hidden-xs {
