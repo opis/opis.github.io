@@ -50,6 +50,7 @@ $rules = [
     '/^\/cache/' => __DIR__ . '/../cache/_site',
     '/^\/session/' => __DIR__ . '/../session/_site',
     '/^\/config/' => __DIR__ . '/../config/_site',
+    '/^\/data-store/' => __DIR__ . '/../data-store/_site',
     '/^\/routing/' => __DIR__ . '/../routing/_site',
     '/^\/http-routing/' => __DIR__ . '/../http-routing/_site',
     '/^\/http/' => __DIR__ . '/../http/_site',
