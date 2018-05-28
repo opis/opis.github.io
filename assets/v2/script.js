@@ -23,7 +23,7 @@
     });
 
     $('h2[id],h3[id],h4[id],h5[id],h6[id]').each(function () {
-        var child = $('<a href="#' + this.getAttribute('id') + '" class="ml-1 text-dark link-anchor"><span class="fas fa-link"></span></a>');
+        var child = $('<a href="#' + this.getAttribute('id') + '" class="ml-1 text-dark link-anchor"><span class="fas fa-hashtag"></span></a>');
         this.appendChild(child.get(0));
     });
 
