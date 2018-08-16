@@ -41,8 +41,8 @@ layout: default
 <header{% if project.classes.header %}class="{{project.classes.header}}"{% endif %}>
     <nav class="navbar navbar-expand-lg {{project.classes.navbar | default: 'navbar-dark bg-primary'}}">
         <a class="navbar-brand" href="/" title="The Opis Project">
-            <img src="{{project.logo}}" width="30" height="30">
-            Opis
+            <img src="{{project.brand.logo}}" width="30" height="30">
+            {{project.brand.title}}
         </a>
         <button class="navbar-toggler" type="button"
                 data-toggle="collapse"
@@ -88,7 +88,7 @@ layout: default
 </main>
 
 <footer class="{{ project.classes.footer | default: 'text-center text-muted py-3'}}">
-    Copyright &copy; {{project.copyright.start}}-{{project.copyright.end}} {{project.copyright.owner}}. All rights reserved.
+    Copyright &copy; {{project.copyright}}. All rights reserved.
 </footer>
 
 {% for script in project.scripts %}
