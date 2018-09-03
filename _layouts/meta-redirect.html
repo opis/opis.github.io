@@ -2,9 +2,11 @@
 <html lang="en-US">
 <meta charset="utf-8">
 <title>Redirecting…</title>
-<link rel="canonical" href="{{site.url}}{{page.location}}">
-<meta http-equiv="refresh" content="0; url={{site.url}}{{page.location}}">
+<link rel="canonical" href="{{page.location}}">
+<meta http-equiv="refresh" content="0; url={{page.location}}">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="pragma" content="no-cache">
 <h1>Redirecting…</h1>
-<a href="{{site.url}}{{page.location}}">Click here if you are not redirected.</a>
-<script>location="{{site.url}}{{page.location}}"</script>
+<a href="{{page.location}}">Click here if you are not redirected.</a>
+<script>location="{{page.location}}"</script>
 </html>

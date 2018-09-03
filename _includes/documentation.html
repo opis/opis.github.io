@@ -1,18 +1,23 @@
-<li class="dropdown hidden-md hidden-lg">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-        <span class="fa fa-file-text"></span> Documentation <span class="caret"></span>
+<li class="nav-item dropdown hidden-md hidden-lg hidden-xl">
+    <a class="nav-link dropdown-toggle"
+       href="#" id="docsDropDown"
+       role="button"
+       data-toggle="dropdown"
+       aria-haspopup="true"
+       aria-expanded="false">
+        <i class="fas fa-book"></i>
+        Documentation
     </a>
-    <ul class="dropdown-menu">
-    {% for doc in include.documents %}
-        {% assign d = doc.permalink | split: '/' %}
-        {% assign a = doc.url %}
-        {% capture p %}{{d[0]}}/{{d[1]}}{% endcapture %}
-        {% if p == include.project %}
-            {% if doc.chapter %}
-            <li class="dropdown-header">{{doc.chapter}}</li>
-            {% endif %}
-            <li{% if a == include.active %} class="active"{% endif %}><a href="{{doc.url}}" title="{{doc.description}}">{{doc.title}}</a></li>
+    <div class="dropdown-menu" aria-labelledby="docsDropDown">
+        {% for chapter in include.menu %}
+        {% if include.chapters %}
+        <h6 class="dropdown-header">{{chapter.title}}</h6>
         {% endif %}
-    {% endfor %}
-    </ul>
+            {%for page in chapter.pages%}
+            <a class="dropdown-item{% if include.url == page.url %} active{% endif %}"
+               href="{{include.prefix}}{{page.url}}"
+               title="{{page.title}}">{{page.title}}</a>
+            {% endfor %}
+        {% endfor %}
+    </div>
 </li>
