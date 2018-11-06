@@ -59,6 +59,7 @@ $rules = [
     '/^\/pattern/' => __DIR__ . '/../pattern/_site',
     '/^\/intl/' => __DIR__ . '/../intl/_site',
     '/^\/string/' => __DIR__ . '/../string/_site',
+    '/^\/stream/' => __DIR__ . '/../stream/_site',
     '/^\/validation/' => __DIR__ . '/../validation/_site'
 ];
 
