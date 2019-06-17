@@ -425,13 +425,17 @@ pre {
 }
 
 .content-footer {
+  margin-top: auto;
+}
+
+.content-footer .pager {
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
   margin: 32px 0;
 }
 
-.content-footer .goto {
+.content-footer .pager .goto {
   padding: 16px 32px;
   border-radius: 4px;
   box-shadow: var(--shadow-sm);
@@ -443,19 +447,25 @@ pre {
   transition: .25s;
 }
 
-.content-footer .goto:hover {
+.content-footer .pager .goto:hover {
   box-shadow: var(--shadow-lg);
 }
 
-.content-footer .goto p {
+.content-footer .pager .goto p {
   font-size: 12px;
   letter-spacing: .5px;
   color: var(--gray);
   margin-bottom: 8px;
 }
 
-.content-footer .goto h5 {
+.content-footer .pager .goto h5 {
   margin: 0;
+}
+
+.content-footer .copyright {
+  color: var(--gray);
+  text-align: center;
+  font-size: 13px;
 }
 
 .shadow-sm {
@@ -731,19 +741,22 @@ pre {
 }
 
 .content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   padding: 32px 16px 16px;
 }
 
 @media (min-width: 640px) {
-  .content-footer {
+  .content-footer .pager {
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "previous next";
   }
-  .content-footer .previous-page {
+  .content-footer .pager .previous-page {
     text-align: right;
     grid-area: previous;
   }
-  .content-footer .next-page {
+  .content-footer .pager .next-page {
     grid-area: next;
   }
   .region-right .drawer {

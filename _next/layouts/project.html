@@ -111,6 +111,9 @@ layout: default
 
             <div class="content-footer">
                 {% include pager.html menu=menu url=page.url prefix=project.url %}
+                {% if project.copyright %}
+                <div class="copyright">{{project.copyright}}</div>
+                {% endif %}
             </div>
         </div>
     </div>

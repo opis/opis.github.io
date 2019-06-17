@@ -19,25 +19,27 @@
         {% endunless%}
     {% endfor %}
 {% endfor %}
-{% if prev %}
-<a href="{{include.prefix}}{{prev.url}}" class="goto previous-page">
-    <div>
-        <i class="fas fa-arrow-left"></i>
-    </div>
-    <div>
-        <p>{{prev.description}}</p>
-        <h5>{{prev.title}}</h5>
-    </div>
-</a>
-{% endif %}
-{% if next%}
-<a href="{{include.prefix}}{{next.url}}" class="goto next-page">
-    <div>
-        <p>{{next.description}}</p>
-        <h5>{{next.title}}</h5>
-    </div>
-    <div>
-        <i class="fas fa-arrow-right"></i>
-    </div>
-</a>
-{% endif %}
+<div class="pager">
+    {% if prev %}
+    <a href="{{include.prefix}}{{prev.url}}" class="goto previous-page">
+        <div>
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        <div>
+            <p>{{prev.description}}</p>
+            <h5>{{prev.title}}</h5>
+        </div>
+    </a>
+    {% endif %}
+    {% if next%}
+    <a href="{{include.prefix}}{{next.url}}" class="goto next-page">
+        <div>
+            <p>{{next.description}}</p>
+            <h5>{{next.title}}</h5>
+        </div>
+        <div>
+            <i class="fas fa-arrow-right"></i>
+        </div>
+    </a>
+    {% endif %}
+</div>
