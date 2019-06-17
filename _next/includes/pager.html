@@ -1,0 +1,43 @@
+{% assign prev = false %}
+{% assign next = false %}
+{% assign take = false %}
+{% assign done = false %}
+
+{% for chapter in include.menu %}
+    {% for page in chapter.pages %}
+        {% unless done != false %}
+            {% if include.url == page.url %}
+                {% assign take = true %}
+            {% else %}
+                {% if take %}
+                    {% assign next = page %}
+                    {% assign done = true %}
+                {% else %}
+                    {% assign prev = page %}
+                {% endif %}
+            {% endif %}
+        {% endunless%}
+    {% endfor %}
+{% endfor %}
+{% if prev %}
+<a href="{{include.prefix}}{{prev.url}}" class="goto previous-page">
+    <div>
+        <i class="fas fa-arrow-left"></i>
+    </div>
+    <div>
+        <p>{{prev.description}}</p>
+        <h5>{{prev.title}}</h5>
+    </div>
+</a>
+{% endif %}
+{% if next%}
+<a href="{{include.prefix}}{{next.url}}" class="goto next-page">
+    <div>
+        <p>{{next.description}}</p>
+        <h5>{{next.title}}</h5>
+    </div>
+    <div>
+        <i class="fas fa-arrow-right"></i>
+    </div>
+</a>
+{% endif %}

@@ -1,0 +1,29 @@
+:root {
+    --dark: #414549;
+    --gray: #8999a9;
+    --primary: #7b4fe9;
+    --secondary: #e9edef;
+    --light: #f3f6f9;
+    --link: #0099ff;
+    --link-content: var(--primary);
+    --white: #ffffff;
+    --info: #21a1e1;
+    --success: #00c8a8;
+    --warning: #fba965;
+    --danger: #ea4a7a;
+
+    --shadow-color: rgba(85, 64, 191, 0.25);
+    --shadow: 0 3px 8px var(--shadow-color);
+    --shadow-sm: 0 2px 8px var(--shadow-color);
+    --shadow-lg: 0px 8px 24px var(--shadow-color);
+
+    --navbar-height: 64px;
+    --content-padding-left: 32px;
+
+    --h1: 42px;
+    --h2: 32px;
+    --h3: 24px;
+    --h4: 18px;
+    --h5: 16px;
+    --h6: 14px;
+}
