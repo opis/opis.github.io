@@ -201,12 +201,18 @@ search.addWidget(
 search.addWidget(
     instantsearch.widgets.hits({
         container: '#algolia-hits',
+        cssClasses: {
+            root: 'algolia-search-result',
+            emptyRoot: 'algolia-empty-list',
+            list: 'algolia-result-list',
+            item: 'algolia-result-item',
+        },
         templates: {
             item: (hit) => {
                 console.log(hit);
                 let headings = '';
                 if (hit._highlightResult.hasOwnProperty('headings')) {
-                    headings = '<div># ' + hit._highlightResult.headings.map(v => `<span>${v.value}</span>`).join(' > ') + '</div>';
+                    headings = '<div class="search-result-breadcrumb"># ' + hit._highlightResult.headings.map(v => `<span>${v.value}</span>`).join(' > ') + '</div>';
                 }
                 return `
                     <div data-url="${hit.url}" data-anchor="${hit.anchor}" class="search-result">

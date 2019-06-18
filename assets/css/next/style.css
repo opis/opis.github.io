@@ -38,3 +38,18 @@
 .fix-pre .region-content pre[class*="language-"] {
     overflow: auto;
 }
+
+.algolia-result-list {
+    list-style: none;
+    padding: 0;
+}
+
+.algolia-result-item {
+    border-bottom: 1px solid var(--gray);
+    margin-bottom: 15px;
+}
+
+.algolia-result-item:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
