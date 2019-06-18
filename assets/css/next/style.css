@@ -20,10 +20,21 @@
     --navbar-height: 64px;
     --content-padding-left: 32px;
 
+    --scrollbar-color: rgba(0, 0, 0, 0.25);
+    --scrollbar-background: transparent;
+
     --h1: 42px;
     --h2: 32px;
     --h3: 24px;
     --h4: 18px;
     --h5: 16px;
     --h6: 14px;
+}
+
+.region-content pre[class*="language-"] {
+    overflow: hidden;
+}
+
+.fix-pre .region-content pre[class*="language-"] {
+    overflow: auto;
 }

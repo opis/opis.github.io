@@ -118,9 +118,9 @@ window.addEventListener('load', function () {
     scrollSpy('#on-this-page-section');
     scrollNavbar('.navbar', 'scrolled-down');
 
-    document.querySelectorAll('h2[id],h3[id],h4[id],h5[id],h6[id]').forEach(function (element) {
-        // append a hash tag
-    })
+    setTimeout(function () {
+        document.body.classList.add('fix-pre');
+    }, 0);
 });
 
 function algoliaNavigate(prefix, url, anchor) {
