@@ -45,11 +45,29 @@
 }
 
 .algolia-result-item {
-    border-bottom: 1px solid var(--gray);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.algolia-result-item h3{
+    font-size: calc(var(--h3) - 10%);
+}
+
+.algolia-result-item h5 {
+    font-size: calc(var(--h5) - 10%);
+}
+
+.algolia-result-item p {
+    font-size: 13px;
 }
 
 .algolia-result-item:hover {
     background-color: rgba(0, 0, 0, 0.1);
     cursor: pointer;
+}
+
+.algolia-result-item mark {
+    background-color: rgba(0, 0, 0, 0.1);
 }

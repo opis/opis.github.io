@@ -159,14 +159,6 @@ algoliaHit.addEventListener('click', function (event) {
     algoliaNavigate(urlPrefix, element.getAttribute('data-url'), element.getAttribute('data-anchor'));
 });
 
-const itemTemplate = instantsearch => {
-    const header = hit => {
-        const obj = {header: hit.join(' > ')}
-        return `<div>in</div>`
-    }
-    return `<div>`
-};
-
 const search = instantsearch({
     indexName: searchElement.getAttribute('data-index'),
     searchClient,
@@ -212,11 +204,11 @@ search.addWidget(
                 console.log(hit);
                 let headings = '';
                 if (hit._highlightResult.hasOwnProperty('headings')) {
-                    headings = '<div class="search-result-breadcrumb"># ' + hit._highlightResult.headings.map(v => `<span>${v.value}</span>`).join(' > ') + '</div>';
+                    headings = '<h5 class="search-result-breadcrumb"># ' + hit._highlightResult.headings.map(v => `<span>${v.value}</span>`).join(' > ') + '</h5>';
                 }
                 return `
-                    <div data-url="${hit.url}" data-anchor="${hit.anchor}" class="search-result">
-                        <h5>${instantsearch.highlight({ attribute: 'title', highlightedTagName: 'mark', hit })}</h5>
+                    <div data-url="${hit.url}" data-anchor="${hit.hasOwnProperty('anchor') ? hit.anchor : ''}" class="search-result">
+                        <h3>${instantsearch.highlight({ attribute: 'title', highlightedTagName: 'mark', hit })}</h3>
                         ${headings}
                         <p>${instantsearch.snippet({ attribute: 'content', highlightedTagName: 'mark', hit })}</p>
                     </div>
