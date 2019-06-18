@@ -85,9 +85,18 @@ function scrollNavbar(selector, className) {
 
     let height = parseFloat(window.getComputedStyle(element).height);
     let prevScrollPosition = window.scrollY;
+    let prevScrollHeight = window.document.body.scrollHeight;
 
     let callback = function (event) {
         let scrollPosition = window.scrollY;
+        let scrollHeight = window.document.body.scrollHeight;
+
+        if (scrollHeight !== prevScrollHeight) {
+            prevScrollPosition = scrollPosition;
+            prevScrollHeight = scrollHeight;
+            return;
+        }
+
         if (prevScrollPosition > scrollPosition) {
             if (element.classList.contains(className)) {
                 element.classList.remove(className);
@@ -99,6 +108,7 @@ function scrollNavbar(selector, className) {
         }
 
         prevScrollPosition = scrollPosition;
+        prevScrollHeight = scrollHeight;
     };
 
     window.addEventListener('scroll', callback);

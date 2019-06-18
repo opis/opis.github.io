@@ -114,6 +114,27 @@ pre {
   border-radius: 2px;
 }
 
+table.table {
+  border-collapse: collapse;
+  border: 1px solid var(--gray);
+}
+
+table.table th, table.table td {
+  border: 1px solid var(--gray);
+}
+
+table.table-align-center {
+  text-align: center;
+}
+
+table.table-align-left {
+  text-align: left;
+}
+
+tabletable-align-right {
+  text-align: right;
+}
+
 #drawer-overlay {
   display: none;
   position: fixed;
