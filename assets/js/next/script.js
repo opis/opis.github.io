@@ -135,14 +135,17 @@ function algoliaNavigate(prefix, url, anchor) {
 const searchElement = document.getElementById('search-drawer');
 const searchClient = algoliasearch(searchElement.getAttribute('data-app-id'),
     searchElement.getAttribute('data-api-key'));
+const versionFilter = searchElement.getAttribute('data-version');
 
 const urlPrefix = searchElement.getAttribute('data-prefix');
+const algoliaHit = document.getElementById('algolia-hits');
 
 const search = instantsearch({
     indexName: searchElement.getAttribute('data-index'),
     searchClient,
     searchFunction: function(helper) {
         if (helper.state.query === '') {
+            algoliaHit.innerHTML = "";
             return;
         }
 
@@ -161,6 +164,11 @@ search.addWidget(
     })
 );
 
+search.addWidget(
+    instantsearch.widgets.configure({
+        filters: `version:"${versionFilter}"`,
+    })
+);
 
 search.addWidget(
     instantsearch.widgets.hits({
