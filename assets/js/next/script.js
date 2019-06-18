@@ -140,6 +140,33 @@ const versionFilter = searchElement.getAttribute('data-version');
 const urlPrefix = searchElement.getAttribute('data-prefix');
 const algoliaHit = document.getElementById('algolia-hits');
 
+algoliaHit.addEventListener('click', function (event) {
+    let element = event.target;
+
+    do {
+        if (element.classList.contains('search-result')) {
+            break;
+        }
+        element = element.parentElement;
+    } while (element !== algoliaHit);
+
+    if (element === algoliaHit) {
+        return true;
+    }
+
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    algoliaNavigate(urlPrefix, element.getAttribute('data-url'), element.getAttribute('data-anchor'));
+});
+
+const itemTemplate = instantsearch => {
+    const header = hit => {
+        const obj = {header: hit.join(' > ')}
+        return `<div>in</div>`
+    }
+    return `<div>`
+};
+
 const search = instantsearch({
     indexName: searchElement.getAttribute('data-index'),
     searchClient,
@@ -170,18 +197,25 @@ search.addWidget(
     })
 );
 
+
 search.addWidget(
     instantsearch.widgets.hits({
         container: '#algolia-hits',
         templates: {
-            item: `
-        <div onclick="algoliaNavigate('${urlPrefix}','{{url}}','{{anchor}}')">
-            <h5>
-            {{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}
-            </h5>
-            <p>{{#helpers.highlight}}{ "attribute": "content" }{{/helpers.highlight}}</p>
-        </div>
-    `,
+            item: (hit) => {
+                console.log(hit);
+                let headings = '';
+                if (hit._highlightResult.hasOwnProperty('headings')) {
+                    headings = '<div># ' + hit._highlightResult.headings.map(v => `<span>${v.value}</span>`).join(' > ') + '</div>';
+                }
+                return `
+                    <div data-url="${hit.url}" data-anchor="${hit.anchor}" class="search-result">
+                        <h5>${instantsearch.highlight({ attribute: 'title', highlightedTagName: 'mark', hit })}</h5>
+                        ${headings}
+                        <p>${instantsearch.snippet({ attribute: 'content', highlightedTagName: 'mark', hit })}</p>
+                    </div>
+                `
+            }
         },
     })
 );
