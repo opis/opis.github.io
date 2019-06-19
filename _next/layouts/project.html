@@ -58,7 +58,7 @@ layout: default
     <div class="region-right">
         <div class="search-bar">
             <i class="fas fa-search"></i>
-            <span onclick="toggleShow('search-drawer')" style="cursor: text; padding-left: 18px">Search...</span>
+            <span onclick="toggleShow('search-drawer', '#algolia-search-box input')" style="cursor: text; padding-left: 18px">Search...</span>
         </div>
     </div>
 
@@ -136,7 +136,7 @@ layout: default
                     <i class="fas fa-search"></i>
                     <div id="algolia-search-box"></div>
                 </div>
-                <div class="close-drawer" onclick="toggleShow('search-drawer', '#algolia-search-box input')">
+                <div class="close-drawer" onclick="toggleShow('search-drawer')">
                     <i class="fas fa-arrow-right"></i>
                 </div>
             </div>
