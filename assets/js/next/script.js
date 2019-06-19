@@ -13,7 +13,9 @@ function toggleShow(id, focus = null) {
                 focusElement.focus();
             }
         }
+        document.body.classList.add('overflow-hidden');
     } else {
+        document.body.classList.remove('overflow-hidden');
         overlay.onclick = null;
     }
 }
@@ -125,7 +127,7 @@ window.addEventListener('load', function () {
     scrollNavbar('.navbar', 'scrolled-down');
 
     setTimeout(function () {
-        document.body.classList.add('fix-pre');
+        document.body.classList.add('fix-pre-scrollbars');
     }, 0);
 });
 
@@ -209,7 +211,7 @@ search.addWidget(
             item: (hit) => {
                 let headings = '';
                 if (hit._highlightResult.hasOwnProperty('headings')) {
-                    headings = '<h5 class="search-result-breadcrumb"># ' + hit._highlightResult.headings.map(v => `<span>${v.value}</span>`).join(' > ') + '</h5>';
+                    headings = '<h5># ' + hit._highlightResult.headings.map(v => `<span>${v.value}</span>`).join(' > ') + '</h5>';
                 }
                 return `
                     <div data-url="${hit.url}" data-anchor="${hit.hasOwnProperty('anchor') ? hit.anchor : ''}" class="search-result">
