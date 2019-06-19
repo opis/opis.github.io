@@ -1,6 +1,5 @@
 /**
  * Opis default theme for PHP, JavaScript, CSS and HTML
- * Based on https://github.com/PrismJS/prism/blob/master/themes/prism.css
  * @author Marius Sarca
  */
 
@@ -52,6 +51,8 @@ pre[class*="language-"] {
     padding: 1em;
     margin: .5em 0;
     overflow: auto;
+    border: 1px solid rgba(112, 128, 144, 0.15);
+    border-radius: 5px;
 }
 
 :not(pre) > code[class*="language-"],
