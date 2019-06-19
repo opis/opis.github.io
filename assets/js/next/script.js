@@ -1,4 +1,4 @@
-function toggleShow(id) {
+function toggleShow(id, focus = null) {
     let target = document.getElementById(id);
     let overlay = document.getElementById('drawer-overlay');
     target.classList.toggle("show");
@@ -6,6 +6,12 @@ function toggleShow(id) {
     if (overlay.classList.contains('show')) {
         overlay.onclick = function () {
             toggleShow(id);
+        };
+        if (focus) {
+            let focusElement = document.querySelector(focus);
+            if (focusElement) {
+                focusElement.focus();
+            }
         }
     } else {
         overlay.onclick = null;
@@ -201,7 +207,6 @@ search.addWidget(
         },
         templates: {
             item: (hit) => {
-                console.log(hit);
                 let headings = '';
                 if (hit._highlightResult.hasOwnProperty('headings')) {
                     headings = '<h5 class="search-result-breadcrumb"># ' + hit._highlightResult.headings.map(v => `<span>${v.value}</span>`).join(' > ') + '</h5>';
