@@ -118,6 +118,16 @@ pre {
   border-radius: 2px;
 }
 
+img {
+  vertical-align: middle;
+  border-style: none;
+}
+
+img.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
 table.table {
   width: 100%;
   max-width: 100%;
