@@ -23,6 +23,9 @@
     --scrollbar-color: rgba(0, 0, 0, 0.25);
     --scrollbar-background: transparent;
 
+    --table-border-color: var(--gray);
+    --table-background-color: rgba(137, 153, 169, 0.15);
+
     --h1: 42px;
     --h2: 32px;
     --h3: 24px;
