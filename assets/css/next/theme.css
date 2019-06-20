@@ -190,6 +190,14 @@ table.table-align-right {
   overflow: auto;
 }
 
+pre[class*="language-"] {
+  margin: 0 0 16px;
+}
+
+.tab-content pre[class*="language-"] {
+  margin: 0;
+}
+
 .algolia-result-list {
   list-style: none;
   padding: 0;
@@ -249,8 +257,10 @@ table.table-align-right {
 }
 
 .search-bar {
+  display: -webkit-flex;
   display: flex;
-  align-items: center;
+  -webkit-align-items: center;
+          align-items: center;
   width: 100%;
 }
 
@@ -267,10 +277,6 @@ table.table-align-right {
   color: var(--gray);
 }
 
-.search-bar input::-moz-placeholder {
-  color: var(--gray);
-}
-
 .search-bar input:-ms-input-placeholder {
   color: var(--gray);
 }
@@ -284,10 +290,6 @@ table.table-align-right {
 }
 
 .search-bar input:focus::-webkit-input-placeholder {
-  color: transparent;
-}
-
-.search-bar input:focus::-moz-placeholder {
   color: transparent;
 }
 
@@ -366,7 +368,6 @@ table.table-align-right {
   padding: 16px 32px;
   border-left: 3px solid var(--alert-color);
   box-shadow: var(--shadow-sm);
-  margin: 16px 0;
 }
 
 .alert[data-title]::before {
@@ -467,9 +468,11 @@ table.table-align-right {
 }
 
 .tabs {
+  display: -webkit-flex;
   display: flex;
-  flex-wrap: wrap;
-  margin: 32px 0;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+  margin: 16px 0;
   border-radius: 2px;
   box-shadow: var(--shadow-sm);
   overflow-x: auto;
@@ -492,7 +495,8 @@ table.table-align-right {
 .tabs .tab-content {
   width: 100%;
   padding: 16px;
-  order: 1;
+  -webkit-order: 1;
+          order: 1;
 }
 
 .tabs input[type=radio],
@@ -509,8 +513,10 @@ table.table-align-right {
 }
 
 .content-header {
+  display: -webkit-flex;
   display: flex;
-  justify-content: space-between;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
   padding-bottom: 16px;
   margin-bottom: 32px;
   border-bottom: 1px solid var(--secondary);
@@ -542,9 +548,12 @@ table.table-align-right {
   box-shadow: var(--shadow-sm);
   text-decoration: none;
   color: var(--dark);
+  display: -webkit-flex;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-align-items: center;
+          align-items: center;
   transition: .25s;
 }
 
@@ -608,8 +617,10 @@ table.table-align-right {
 }
 
 .dropdown-versions .version-name {
+  display: -webkit-flex;
   display: flex;
-  justify-content: space-between;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
   padding: 16px 32px;
 }
 
@@ -673,8 +684,10 @@ table.table-align-right {
 }
 
 .navbar .region-left {
+  display: -webkit-flex;
   display: flex;
-  justify-content: center;
+  -webkit-justify-content: center;
+          justify-content: center;
   background-color: inherit;
 }
 
@@ -688,15 +701,19 @@ table.table-align-right {
 }
 
 .navbar .menu-btn {
+  display: -webkit-flex;
   display: flex;
-  align-items: center;
+  -webkit-align-items: center;
+          align-items: center;
   font-size: 18px;
   padding-left: 16px;
 }
 
 .navbar .logo {
+  display: -webkit-flex;
   display: flex;
-  align-items: center;
+  -webkit-align-items: center;
+          align-items: center;
   font-size: 18px;
   font-weight: 600;
   color: inherit;
@@ -709,9 +726,12 @@ table.table-align-right {
 }
 
 .navbar .search-btn {
+  display: -webkit-flex;
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  -webkit-justify-content: flex-end;
+          justify-content: flex-end;
+  -webkit-align-items: center;
+          align-items: center;
   font-size: 18px;
   padding: 0 16px;
 }
@@ -737,8 +757,10 @@ table.table-align-right {
 
 .drawer-header {
   height: var(--navbar-height);
+  display: -webkit-flex;
   display: flex;
-  align-items: center;
+  -webkit-align-items: center;
+          align-items: center;
   padding: 0 32px;
   border-bottom: 1px solid rgba(191, 204, 223, 0.568);
   margin-bottom: 32px;
@@ -842,8 +864,10 @@ table.table-align-right {
 }
 
 .content {
+  display: -webkit-flex;
   display: flex;
-  flex-direction: column;
+  -webkit-flex-direction: column;
+          flex-direction: column;
   height: 100%;
   padding: 32px 16px 16px;
 }
@@ -877,14 +901,17 @@ table.table-align-right {
     grid-template-columns: 1fr minmax(0, 750px) 1fr;
   }
   .navbar .region-left {
-    justify-content: flex-start;
+    -webkit-justify-content: flex-start;
+            justify-content: flex-start;
   }
   .navbar .menu-btn {
     display: none;
   }
   .navbar .nav-menu {
+    display: -webkit-flex;
     display: flex;
-    align-items: center;
+    -webkit-align-items: center;
+            align-items: center;
     padding-left: var(--content-padding-left);
   }
   .navbar .nav-menu a {
@@ -893,7 +920,8 @@ table.table-align-right {
     margin-right: 32px;
   }
   .navbar .logo-container {
-    justify-content: flex-start;
+    -webkit-justify-content: flex-start;
+            justify-content: flex-start;
   }
   .navbar .logo {
     padding-left: var(--content-padding-left);
@@ -949,20 +977,25 @@ table.table-align-right {
     grid-template-columns: 1fr minmax(0, 750px) 1fr;
   }
   .navbar .region-left {
-    justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+            justify-content: flex-end;
   }
   .navbar .region-right {
+    display: -webkit-flex;
     display: flex;
   }
   .navbar .search-btn {
     display: none;
   }
   .navbar .search-bar {
+    display: -webkit-flex;
     display: flex;
   }
   .navbar .search-bar {
+    display: -webkit-flex;
     display: flex;
-    align-items: center;
+    -webkit-align-items: center;
+            align-items: center;
     width: 300px;
     padding-left: var(--content-padding-left);
   }
@@ -975,9 +1008,6 @@ table.table-align-right {
   .navbar .search-bar input::-webkit-input-placeholder {
     color: white;
   }
-  .navbar .search-bar input::-moz-placeholder {
-    color: white;
-  }
   .navbar .search-bar input:-ms-input-placeholder {
     color: white;
   }
@@ -988,8 +1018,10 @@ table.table-align-right {
     color: white;
   }
   .region-left {
+    display: -webkit-flex;
     display: flex;
-    justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+            justify-content: flex-end;
   }
   .region-left .drawer {
     height: calc(100vh - var(--navbar-height));
