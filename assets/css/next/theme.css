@@ -483,6 +483,10 @@ table.table-align-right {
   font-weight: 500;
   letter-spacing: .5px;
   cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .tabs .tab-content {
