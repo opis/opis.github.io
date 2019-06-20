@@ -106,6 +106,9 @@ layout: default
                     {% include page-items.html menu=menu url=page.url project=project dropdown="true" %}
                 </div>
             </div>
+            {% if project.unmaintained %}
+            {% include unmaintained.html prefix=project.url versions=project.versions %}
+            {% endif %}
 
             {{ content }}
 
