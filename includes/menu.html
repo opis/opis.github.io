@@ -1,0 +1,16 @@
+{% for entry in include.menu %}
+{% if entry.chapter %}
+<div class="chapter">{{ entry.chapter }}</div>
+{% endif %}
+<ul>
+    {% for page in entry.pages %}
+    <li>
+        {% if include.url == page.url %}
+        <a href="{{include.prefix}}{{page.url}}" title="{{page.description}}" class="active">{{page.title}}</a>
+        {% else %}
+        <a href="{{include.prefix}}{{page.url}}" title="{{page.description}}">{{page.title}}</a>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% endfor %}

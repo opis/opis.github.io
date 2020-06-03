@@ -1,0 +1,7 @@
+{% for link in include.links %}
+{% if link[1].target %}
+<a href="{{ link[1].url }}" target="{{ link[1].target }}">{{ link[0] }}</a>
+{% else %}
+<a href="{{ link[1] }}">{{ link[0] }}</a>
+{% endif %}
+{% endfor %}
