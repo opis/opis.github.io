@@ -69,8 +69,8 @@ If the `if` keyword is not present the `then` and `else` keywords are
 ignored, but when the `if` keyword is present at least `then` or `else`
 should also be present (both can be at the same time).
 The instance is valid against this keyword in one of the following cases:
-- the if `keyword` validates the instance and the `then` keyword also validates it
-- the if `keyword` doesn't validate the instance but the `else` keyword validates it.
+- the `if` keyword validates the instance and the `then` keyword also validates it
+- the `if` keyword doesn't validate the instance but the `else` keyword validates it.
 
 As a best practice, please place these keywords in the same order as defined here and do not
 add other keywords between them.
