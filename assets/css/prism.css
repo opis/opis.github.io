@@ -1,44 +1,48 @@
 /**
- * Darcula theme
- *
- * Adapted from a theme based on:
- * IntelliJ Darcula Theme (https://github.com/bulenkov/Darcula)
- *
- * @author Alexandre Paradis <service.paradis@gmail.com>
- * @version 1.0
+ * Opis default theme for PHP, JavaScript, CSS and HTML
+ * @author Marius Sarca
  */
 
 code[class*="language-"],
 pre[class*="language-"] {
-    color: #a9b7c6;
-    font-family: Consolas, Monaco, 'Andale Mono', monospace;
-    direction: ltr;
+    color: #333;
+    background: none;
+    text-shadow: 0 1px white;
+    font-family: 'Roboto Mono', 'Ubuntu Mono', Consolas, monospace;
+    font-size: 14px;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
     word-break: normal;
+    word-wrap: normal;
     line-height: 1.5;
 
     -moz-tab-size: 4;
     -o-tab-size: 4;
-    tab-size: 4;
+       tab-size: 4;
 
     -webkit-hyphens: none;
-    -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
 }
 
 pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
-    color: inherit;
-    background: rgba(33,66,131,.85);
+    text-shadow: none;
+    background: #b3d4fc;
 }
 
 pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
 code[class*="language-"]::selection, code[class*="language-"] ::selection {
-    color: inherit;
-    background: rgba(33,66,131,.85);
+    text-shadow: none;
+    background: #b3d4fc;
+}
+
+@media print {
+    code[class*="language-"],
+    pre[class*="language-"] {
+        text-shadow: none;
+    }
 }
 
 /* Code blocks */
@@ -46,117 +50,91 @@ pre[class*="language-"] {
     padding: 1em;
     margin: .5em 0;
     overflow: auto;
+    border: 1px solid rgba(112, 128, 144, 0.15);
+    border-radius: 5px;
 }
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-    background: #2b2b2b;
+    background: #f8f9fc;
 }
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
     padding: .1em;
     border-radius: .3em;
+    white-space: normal;
 }
 
 .token.comment,
 .token.prolog,
-.token.cdata {
-    color: #808080;
-}
-
-.token.delimiter,
-.token.boolean,
-.token.keyword,
-.token.selector,
-.token.important,
-.token.atrule {
-    color: #cc7832;
-}
-
-.token.operator,
-.token.punctuation,
-.token.attr-name {
-    color: #a9b7c6;
-}
-
-.token.tag,
-.token.tag .punctuation,
 .token.doctype,
-.token.builtin {
-    color: #e8bf6a;
+.token.cdata {
+    color: #999;
 }
 
-.token.entity,
-.token.number,
-.token.symbol {
-    color: #6897bb;
+.token.punctuation {
+    color: #708090;
+}
+
+.namespace {
+    opacity: .7;
 }
 
 .token.property,
+.token.tag,
+.token.boolean,
+.token.number,
 .token.constant,
-.token.variable {
-    color: #9876aa;
+.token.symbol,
+.token.deleted {
+    color: #8b008b;
 }
 
+.token.selector,
+.token.attr-name,
 .token.string,
-.token.char {
-    color: #6a8759;
+.token.char,
+.token.builtin,
+.token.inserted {
+    color: #c70;
 }
 
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+    color: #708090
+}
+
+.token.atrule,
 .token.attr-value,
-.token.attr-value .punctuation {
-    color: #a5c261;
-}
-.token.attr-value .punctuation:first-child {
-    color: #a9b7c6;
+.token.keyword {
+    color: #800000;
 }
 
-.token.url {
-    color: #287bde;
-    text-decoration: underline;
+.token.function,
+.token.scope,
+.token.class-name {
+    color: #008080;
 }
 
-.token.function {
-    color: #ffc66d;
+
+.token.regex,
+.token.important,
+.token.variable {
+    color: #07a;
 }
 
-.token.regex {
-    background: #364135;
-}
-
+.token.important,
 .token.bold {
     font-weight: bold;
 }
-
 .token.italic {
     font-style: italic;
 }
 
-.token.inserted {
-    background: #294436;
-}
-
-.token.deleted {
-    background: #484a4a;
-}
-
-/*code.language-css .token.punctuation {
-	color: #cc7832;
-}*/
-
-code.language-css .token.property,
-code.language-css .token.property + .token.punctuation {
-    color: #a9b7c6;
-}
-
-code.language-css .token.id {
-    color: #ffc66d;
-}
-
-code.language-css .token.selector > .token.class,
-code.language-css .token.selector > .token.attribute,
-code.language-css .token.selector > .token.pseudo-class,
-code.language-css .token.selector > .token.pseudo-element {
-    color: #ffc66d;
+.token.entity {
+    cursor: help;
 }

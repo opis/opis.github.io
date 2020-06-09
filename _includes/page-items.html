@@ -1,0 +1,36 @@
+{% assign done = false %}
+{% assign entry = false %}
+
+{% for chapter in include.menu %}
+    {% for page in chapter.pages %}
+        {% unless done != false %}
+        {% assign url = page.url | prepend: include.prefix %}
+        {% if include.url == url %}
+            {% assign entry = page %}
+            {% assign done = true %}
+        {% endif %}
+        {% endunless %}
+    {% endfor %}
+{% endfor %}
+
+{% if include.dropdown %}
+    <a href="#" class="btn btn-light btn-sm btn-toc" onclick="toggleDropdown('dropdown-toc')"><i
+            class="fas fa-list-ul"></i></a>
+    <div class="dropdown-toc shadow" id="dropdown-toc">
+        {% include versions.html id="dropdown-versions-secondary"
+        versions=include.project.versions prefix=include.prefix current=page.version %}
+        {% if include.toc != '' %}
+            <div class="chapter">On this page</div>
+            {{ include.toc }}
+        {% endif %}
+    </div>
+{% else %}
+    {% include versions.html id="dropdown-versions-primary"
+        versions=include.project.versions prefix=include.prefix current=page.version %}
+    {% if include.toc != '' %}
+        <div id="{{include.id}}">
+            <div class="chapter">On this page</div>
+            {{ include.toc }}
+        </div>
+    {% endif %}
+{% endif %}

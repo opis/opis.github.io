@@ -42,25 +42,25 @@ if(!preg_match('/^\/assets/', $path)){
 }
 
 $rules = [
-    '/^\/orm/' => __DIR__ . '/../orm/_site',
-    '/^\/database/' => __DIR__ . '/../database/_site',
-    '/^\/closure/' => __DIR__ . '/../closure/_site',
-    '/^\/container/' => __DIR__ . '/../container/_site',
-    '/^\/view/' => __DIR__ . '/../view/_site',
-    '/^\/cache/' => __DIR__ . '/../cache/_site',
-    '/^\/session/' => __DIR__ . '/../session/_site',
-    '/^\/config/' => __DIR__ . '/../config/_site',
-    '/^\/data-store/' => __DIR__ . '/../data-store/_site',
-    '/^\/routing/' => __DIR__ . '/../routing/_site',
-    '/^\/http-routing/' => __DIR__ . '/../http-routing/_site',
-    '/^\/http/' => __DIR__ . '/../http/_site',
-    '/^\/events/' => __DIR__ . '/../events/_site',
-    '/^\/json-schema/' => __DIR__ . '/../json-schema/_site',
-    '/^\/pattern/' => __DIR__ . '/../pattern/_site',
-    '/^\/intl/' => __DIR__ . '/../intl/_site',
-    '/^\/string/' => __DIR__ . '/../string/_site',
-    '/^\/stream/' => __DIR__ . '/../stream/_site',
-    '/^\/validation/' => __DIR__ . '/../validation/_site'
+    //'/^\/orm/' => __DIR__ . '/../orm/_site',
+    //'/^\/database/' => __DIR__ . '/../database/_site',
+    //'/^\/closure/' => __DIR__ . '/../closure/_site',
+    //'/^\/container/' => __DIR__ . '/../container/_site',
+    //'/^\/view/' => __DIR__ . '/../view/_site',
+    //'/^\/cache/' => __DIR__ . '/../cache/_site',
+    //'/^\/session/' => __DIR__ . '/../session/_site',
+    //'/^\/config/' => __DIR__ . '/../config/_site',
+    //'/^\/data-store/' => __DIR__ . '/../data-store/_site',
+    //'/^\/routing/' => __DIR__ . '/../routing/_site',
+    //'/^\/http-routing/' => __DIR__ . '/../http-routing/_site',
+    //'/^\/http/' => __DIR__ . '/../http/_site',
+    //'/^\/events/' => __DIR__ . '/../events/_site',
+    //'/^\/json-schema/' => __DIR__ . '/../json-schema/_site',
+    //'/^\/pattern/' => __DIR__ . '/../pattern/_site',
+    //'/^\/intl/' => __DIR__ . '/../intl/_site',
+    //'/^\/string/' => __DIR__ . '/../string/_site',
+    //'/^\/stream/' => __DIR__ . '/../stream/_site',
+    //'/^\/validation/' => __DIR__ . '/../validation/_site'
 ];
 
 $file = resolve_path($path, $rules);

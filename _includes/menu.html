@@ -1,28 +1,17 @@
-{% if include.chapters %}
-{% for chapter in include.menu %}
-    <div class="chapter h5 text-muted">{{chapter.title}}</div>
-    <ul class="nav flex-column">
-        {% for page in chapter.pages %}
-        <li class="nav-item">
-            <a class="nav-link{% if include.url == page.url %} active{% endif %}"
-               href="{{include.prefix}}{{page.url}}"
-               title="{{page.description}}">{{page.title}}</a>
-        </li>
-        {% endfor %}
-    </ul>
-{% endfor %}
-{% else %}
-<div class="list-group">
-{% assign lg_class = "list-group-item list-group-item-action flex-column align-items-start" %}
-{% for chapter in include.menu %}
-    {% for page in chapter.pages %}
-    <a href="{{include.prefix}}{{page.url}}"
-       title="{{page.description}}"
-       class="{{lg_class}}{% if include.url == page.url %} active{% endif %}">
-        <h4>{{page.title}}</h4>
-        <p class="text-muted">{{page.description}}</p>
-    </a>
-    {% endfor %}
-{% endfor %}
-</div>
+{% for entry in include.menu %}
+{% if entry.chapter %}
+<div class="chapter">{{ entry.chapter }}</div>
 {% endif %}
+<ul>
+    {% for page in entry.pages %}
+    <li>
+        {% assign url = page.url | prepend: include.prefix %}
+        {% if include.url == url %}
+        <a href="{{url}}" title="{{page.description}}" class="active">{{page.title}}</a>
+        {% else %}
+        <a href="{{url}}" title="{{page.description}}">{{page.title}}</a>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% endfor %}

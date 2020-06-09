@@ -1,84 +1,44 @@
-html, body {
-    height: 100%;
+:root {
+    --dark: #414549;
+    --gray: #8999a9;
+    --primary: #7b4fe9;
+    --secondary: #e9edef;
+    --light: #f3f6f9;
+    --link: #0099ff;
+    --link-content: var(--primary);
+    --white: #ffffff;
+    --info: #21a1e1;
+    --success: #00c8a8;
+    --warning: #fba965;
+    --danger: #ea4a7a;
+
+    --shadow-color: rgba(85, 64, 191, 0.25);
+    --shadow: 0 3px 8px var(--shadow-color);
+    --shadow-sm: 0 2px 8px var(--shadow-color);
+    --shadow-lg: 0px 8px 24px var(--shadow-color);
+
+    --navbar-height: 64px;
+    --content-padding-left: 32px;
+
+    --scrollbar-color: rgba(0, 0, 0, 0.25);
+    --scrollbar-background: transparent;
+
+    --table-border-color: var(--gray);
+    --table-background-color: rgba(137, 153, 169, 0.15);
+
+    --h1: 42px;
+    --h2: 32px;
+    --h3: 24px;
+    --h4: 18px;
+    --h5: 16px;
+    --h6: 14px;
 }
 
-#back-to-top {
-    position: fixed;
-    display: none;
-    bottom: 1rem;
-    right: 1rem;
-    width: 3rem;
-    height: 3rem;
-    line-height: 3rem;
-    text-align: center;
-    vertical-align: middle;
-    border-radius: 50%;
-    z-index: 100;
+.algolia-logo {
+    margin-left: 220px;
+    margin-top: 10px;
 }
 
-.link-anchor {
-    visibility: hidden;
-    font-size: 0.75em;
-}
-
-*:hover > .link-anchor {
-    visibility: visible;
-}
-
-.chapter {
-    padding-bottom: 0.25rem;
-    border-bottom-width: 1px;
-    border-bottom-style: dashed;
-}
-
-.nav + .chapter {
-    margin-top: 1rem;
-}
-
-.nav-link.active {
-    font-weight: bold;
-}
-.nav-link.active:before{
-    content: "✓";
-    display: block;
-    float: left;
-    width: 1em;
-    margin-left: -1em;
-}
-
-.menu-links li a:before {
-    content: "#";
-    margin-right: 5px;
-    color: #000;
-}
-
-/* Hidden */
-@media (max-width: 575px) {
-    .hidden-xs {
-        display: none;
-    }
-}
-
-@media (min-width: 576px) and (max-width: 767px) {
-    .hidden-sm {
-        display: none;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-    .hidden-md {
-        display: none;
-    }
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-    .hidden-lg {
-        display: none;
-    }
-}
-
-@media (min-width: 1200px) {
-    .hidden-xl {
-        display: none;
-    }
+.algolia-logo img {
+    width: 120px;
 }
