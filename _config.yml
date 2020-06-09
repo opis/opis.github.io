@@ -48,15 +48,15 @@ opis:
     "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap",
     "https://fonts.googleapis.com/css?family=Roboto+Mono:400&display=swap",
     "https://use.fontawesome.com/releases/v5.7.2/css/all.css",
-    "/assets/next/css/prism.css",
-    "/assets/next/css/theme.css",
-    "/assets/next/css/style.css"
+    "/assets/css/next/prism.css",
+    "/assets/css/next/theme.css",
+    "/assets/css/next/style.css"
   ]
   scripts: [
     "https://cdn.jsdelivr.net/npm/algoliasearch@3.32.0/dist/algoliasearchLite.min.js",
     "https://cdn.jsdelivr.net/npm/instantsearch.js@3.0.0/dist/instantsearch.production.min.js",
-    "/assets/next/js/prism.js",
-    "/assets/next/js/script.js"
+    "/assets/js/next/prism.js",
+    "/assets/js/next/script.js"
   ]
 
 
