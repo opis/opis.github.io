@@ -46,7 +46,7 @@ require_once 'path/to/{{page.lib.name}}-{{page.lib.version}}/autoload.php';
 
 [apache_license]: http://www.apache.org/licenses/LICENSE-2.0 "Project license" 
 {:rel="nofollow" target="_blank"}
-[Packagist]: https://packagist.org/packages/{{page.lib}} "Packagist" 
+[Packagist]: https://packagist.org/packages/{{page.lib.name}} "Packagist" 
 {:rel="nofollow" target="_blank"}
 [Composer]: http://getcomposer.org "Composer" 
 {:ref="nofollow" target="_blank"}
