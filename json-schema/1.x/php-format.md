@@ -58,7 +58,7 @@ use Opis\JsonSchema\{
 $formats = new FormatContainer();
 
 // Register our prime format
-$formats->add("integer", "prime", PrimeNumberFormat());
+$formats->add("integer", "prime", new PrimeNumberFormat());
 
 // Create a IValidator
 $validator = new Validator();
