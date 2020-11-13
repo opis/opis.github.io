@@ -1,3 +1,3 @@
-#The Opis Project
+# Opis PHP
 
-The source for www.opis.io
+https://opis.io
